@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-text-primary: #555555;
+}
+
+body {
+  height: 100vh;
+  min-height: 100vh;
+  overflow: auto;
+  color: var(--color-text-primary);
+  padding: 1rem;
+}
+
+p {
+  font-family: var(--font-roboto);
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+}
