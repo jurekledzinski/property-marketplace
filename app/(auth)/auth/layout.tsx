@@ -19,25 +19,17 @@ export const metadata: Metadata = {
   description: 'Sell and rent houses, apartments',
 };
 
-export default function RootLayout({
+export default function AuthLayout({
   children,
-  footer,
-  header,
 }: Readonly<{
   children: React.ReactNode;
-  header: React.ReactNode;
-  footer: React.ReactNode;
 }>) {
   return (
     <html
       lang="en"
       className={[montserrat.variable, roboto.variable].join(' ')}
     >
-      <body>
-        {header}
-        {children}
-        {footer}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
