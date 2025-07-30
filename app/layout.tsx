@@ -21,15 +21,23 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  footer,
+  header,
 }: Readonly<{
   children: React.ReactNode;
+  header: React.ReactNode;
+  footer: React.ReactNode;
 }>) {
   return (
     <html
       lang="en"
       className={[montserrat.variable, roboto.variable].join(' ')}
     >
-      <body>{children}</body>
+      <body>
+        {header}
+        {children}
+        {footer}
+      </body>
     </html>
   );
 }
