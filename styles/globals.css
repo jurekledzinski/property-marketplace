@@ -12,7 +12,19 @@
 
   /* Colors */
 
-  --color-primary-50: #e3f2fd;
+  --color-primary-50: #f0fff0;
+  --color-primary-100: #ccf3cc;
+  --color-primary-200: #aae8aa;
+  --color-primary-300: #8cdc8c;
+  --color-primary-400: #70d172;
+  --color-primary-500: #45b649;
+  --color-primary-600: #28942f;
+  --color-primary-700: #16711e;
+  --color-primary-800: #0c4f13;
+  --color-primary-900: #052d0a;
+  --color-primary-1000: #010a02;
+
+  /* --color-primary-50: #e3f2fd;
   --color-primary-100: #bbdefb;
   --color-primary-200: #90caf9;
   --color-primary-300: #64b5f6;
@@ -21,7 +33,7 @@
   --color-primary-600: #1e87e5;
   --color-primary-700: #1976d2;
   --color-primary-800: #1564c0;
-  --color-primary-900: #0d46a1;
+  --color-primary-900: #0d46a1; */
 
   --color-secondary-50: #f9f9f9;
   --color-secondary-100: #f3f3f3;
@@ -133,6 +145,14 @@
   --color-surface-50: #b6b6b6;
   --color-surface-elevated: transparent;
   --color-surface-elevated-base: #ffffff;
+
+  /* Spacing */
+  --space-initial: 'initial';
+  --space-xxs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
 }
 
 [data-theme='dark'] {
@@ -167,6 +187,30 @@ body {
   color: var(--color-text-primary);
   font-weight: 400;
   font-family: var(--font-roboto);
+}
+
+button:focus-visible,
+a:focus-visible {
+  transition: none;
+  outline: none;
+  box-shadow: 0 0 0 0.1rem var(--color-focus, var(--color-primary-500, #2095f3));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-montserrat);
+}
+
+a,
+button,
+input,
+textarea {
+  font-family: var(--font-roboto);
+  font-weight: 400;
 }
 
 ::-moz-scrollbar {
