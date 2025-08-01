@@ -1,6 +1,6 @@
 import styles from '../../Button.module.css';
 import { ButtonContentProps } from './types';
-import { Icon, Loader } from '@/components/shared';
+import { Icon, Loader } from '@/components';
 
 export const ButtonContent = ({
   isLoading,
