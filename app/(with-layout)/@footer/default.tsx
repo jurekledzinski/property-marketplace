@@ -1,5 +1,7 @@
+import { Footer as FooterElement } from '@/components';
+
 const Footer = () => {
-  return <footer>Default footer</footer>;
+  return <FooterElement />;
 };
 
 export default Footer;
