@@ -1,5 +1,7 @@
+import { Header as HeaderElement } from '@/components';
+
 const Header = () => {
-  return <header>Header</header>;
+  return <HeaderElement />;
 };
 
 export default Header;
