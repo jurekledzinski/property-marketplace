@@ -1,0 +1,408 @@
+/* --- Colors --- */
+
+.primary {
+  background-color: var(--color-primary-700);
+  color: var(--color-text-white);
+  border: 1px solid var(--color-primary-700);
+  /* Set color focus for global */
+  --color-focus: var(--color-focus-primary);
+}
+
+.secondary {
+  background-color: var(--color-secondary-400);
+  color: var(--color-text-white);
+  border: 1px solid var(--color-secondary-400);
+  --color-focus: var(--color-focus-secondary);
+}
+
+.success {
+  background-color: var(--color-success-400);
+  color: var(--color-text-white);
+  border: 1px solid var(--color-success-400);
+  --color-focus: var(--color-focus-success);
+}
+
+.negative {
+  background-color: var(--color-negative-500);
+  color: var(--color-text-white);
+  border: 1px solid var(--color-negative-500);
+  --color-focus: var(--color-focus-negative);
+}
+
+.warning {
+  background-color: var(--color-warning-900);
+  color: var(--color-text-white);
+  border: 1px solid var(--color-warning-900);
+  --color-focus: var(--color-focus-warning);
+}
+
+/* --- Hover color --- */
+
+.primary:hover {
+  background-color: var(--color-primary-800);
+  border-color: var(--color-primary-800);
+}
+
+.secondary:hover {
+  background-color: var(--color-secondary-500);
+  border-color: var(--color-secondary-500);
+}
+
+.success:hover {
+  background-color: var(--color-success-500);
+  border-color: var(--color-success-500);
+}
+
+.negative:hover {
+  background-color: var(--color-negative-600);
+  border-color: var(--color-negative-600);
+}
+
+.warning:hover {
+  background-color: var(--color-warning-1000);
+  border-color: var(--color-warning-1000);
+}
+
+/* Contrast colors */
+
+.negative-contrast {
+  background-color: var(--color-negative-700);
+  border-color: var(--color-negative-700);
+}
+
+.primary-contrast {
+  background-color: var(--color-primary-900);
+  border-color: var(--color-primary-900);
+}
+
+.secondary-contrast {
+  background-color: var(--color-secondary-600);
+  border-color: var(--color-secondary-600);
+}
+
+.success-contrast {
+  background-color: var(--color-success-600);
+  border-color: var(--color-success-600);
+}
+
+.warning-contrast {
+  background-color: var(--color-warning-1100);
+  border-color: var(--color-warning-1100);
+}
+
+/* ---- */
+
+/* --- variants --- */
+
+.outlined.primary,
+.outlined.secondary,
+.outlined.success,
+.outlined.negative,
+.outlined.warning {
+  background: initial;
+  background-color: transparent;
+}
+
+.outlined.primary,
+.text.primary {
+  color: var(--color-primary-700);
+}
+
+.outlined.secondary,
+.text.secondary {
+  color: var(--color-secondary-700);
+}
+
+.outlined.success,
+.text.success {
+  color: var(--color-success-400);
+}
+
+.outlined.negative,
+.text.negative {
+  color: var(--color-negative-500);
+}
+
+.outlined.warning,
+.text.warning {
+  color: var(--color-warning-900);
+}
+
+/* Outline text color icon */
+
+/* .outlined.primary svg,
+.text.primary svg {
+  fill: var(--color-primary-700);
+}
+
+.outlined.secondary svg,
+.text.secondary svg {
+  fill: var(--color-secondary-400);
+}
+
+.outlined.success svg,
+.text.success svg {
+  fill: var(--color-success-400);
+}
+
+.outlined.negative svg,
+.text.negative svg {
+  fill: var(--color-negative-500);
+}
+
+.outlined.warning svg,
+.text.warning svg {
+  fill: var(--color-warning-900);
+} */
+
+/* --- Hover outline variant --- */
+
+.outlined.primary:hover,
+.text.primary:hover {
+  background-color: var(--color-primary-50);
+}
+
+.outlined.secondary:hover,
+.text.secondary:hover {
+  background-color: var(--color-secondary-50);
+}
+
+.outlined.success:hover,
+.text.success:hover {
+  background-color: var(--color-success-50);
+}
+
+.outlined.negative:hover,
+.text.negative:hover {
+  background-color: var(--color-negative-50);
+}
+
+.outlined.warning:hover,
+.text.warning:hover {
+  background-color: var(--color-warning-50);
+}
+
+.text.primary,
+.text.secondary,
+.text.success,
+.text.negative,
+.text.warning {
+  background: initial;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+/* ---- */
+
+/* --- Disabled --- */
+
+.button:disabled,
+a.disabled {
+  display: flex;
+  background-color: var(--color-disabled-100);
+  border-color: var(--color-disabled-100);
+  cursor: not-allowed;
+}
+
+.button.outlined:disabled,
+a.outlined.disabled {
+  border-color: var(--color-disabled-100);
+}
+
+.button.outlined:disabled,
+.button.outlined:disabled svg,
+.button.text:disabled,
+.button.text:disabled svg,
+a.outlined.disabled,
+a.outlined.disabled svg,
+a.text.disabled,
+a.text.disabled svg {
+  color: var(--color-text-disabled);
+}
+
+a:focus-visible.disabled,
+a:focus-visible.disabled svg {
+  box-shadow: none;
+}
+
+/* --- Clear hover on disable --- */
+
+.button.text:disabled:hover,
+a.text.disabled:hover {
+  border-color: transparent;
+}
+
+.button.outlined:disabled:hover,
+.button.text:disabled:hover,
+a.outlined.disabled:hover,
+a.text.disabled:hover {
+  background-color: transparent;
+}
+
+.button:disabled:hover,
+a.disabled:hover {
+  background-color: var(--color-disabled-100);
+  border-color: var(--color-disabled-100);
+}
+
+/* ---- */
+
+/* border */
+
+.border-xs {
+  border-width: 1px;
+}
+
+.border-sm {
+  border-width: 2px;
+}
+
+.border-md {
+  border-width: 3px;
+}
+
+.border-lg {
+  border-width: 4px;
+}
+
+.border-xl {
+  border-width: 5px;
+}
+
+.radius-xs {
+  border-radius: 2px;
+}
+
+.radius-sm {
+  border-radius: 4px;
+}
+
+.radius-md {
+  border-radius: 6px;
+}
+
+.radius-lg {
+  border-radius: 8px;
+}
+
+.radius-xl {
+  border-radius: 100vh;
+}
+
+/* ---- */
+
+.iconButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.3s linear;
+  text-decoration: none;
+}
+
+.iconCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 20px */
+.size-xxs {
+  min-width: 24px;
+  padding: 4px;
+  font-size: 14px;
+}
+
+/* 28px */
+.size-xs {
+  min-width: 28px;
+  padding: 6px;
+  font-size: 14px;
+}
+
+/* 30px */
+.size-sm {
+  min-width: 30px;
+  padding: 6.5px;
+  font-size: 15px;
+}
+
+/* 32px */
+.size-md {
+  min-width: 32px;
+  padding: 7px;
+  font-size: 16px;
+}
+
+/* 36px */
+.size-lg {
+  min-width: 36px;
+  padding: 8px;
+  font-size: 18px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Variant minimal only for icon button */
+
+.iconButton.minimal {
+  background-color: transparent;
+  border: none;
+  padding: initial;
+  min-width: initial;
+}
+
+.iconButton.minimal > span > svg {
+  fill: #555555;
+  transition: 300ms linear;
+}
+
+.iconButton.minimal:hover > span > svg {
+  fill: #444444;
+}
+
+.iconButton.minimal.primary > span > svg {
+  fill: var(--color-primary-700);
+}
+
+.iconButton.minimal.primary:hover > span > svg {
+  fill: var(--color-primary-800);
+}
+
+.iconButton.minimal.secondary > span > svg {
+  fill: var(--color-secondary-400);
+}
+
+.iconButton.minimal.secondary:hover > span > svg {
+  fill: var(--color-secondary-500);
+}
+
+.iconButton.minimal.success > span > svg {
+  fill: var(--color-success-400);
+}
+
+.iconButton.minimal.success:hover > span > svg {
+  fill: var(--color-success-500);
+}
+
+.iconButton.minimal.negative > span > svg {
+  fill: var(--color-negative-500);
+}
+
+.iconButton.minimal.negative:hover > span > svg {
+  fill: var(--color-negative-600);
+}
+
+.iconButton.minimal.warning > span > svg {
+  fill: var(--color-warning-900);
+}
+
+.iconButton.minimal.warning:hover > span > svg {
+  fill: var(--color-warning-1000);
+}
