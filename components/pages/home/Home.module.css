@@ -4,9 +4,11 @@
 
 .layerMain {
   background-color: white;
-  min-height: calc(100vh - 484px);
+  min-height: calc(100vh - 384px);
 }
 
 .containerLayout {
+  width: calc(100% - 1rem) !important;
   min-height: inherit;
+  padding-bottom: 0.5rem;
 }
