@@ -1,17 +1,19 @@
 .drawer {
-  background-color: var(--color-surface-10);
+  /* background-color: var(--color-surface-10); */
+  background-color: white;
 }
 
 .inner {
   position: sticky;
-  top: 0;
+  top: 54px;
   align-self: flex-start;
+  z-index: 4;
 }
 
 .horizontal,
 .vertical {
   position: fixed;
-  background-color: var(--color-surface-10);
+  /* background-color: var(--color-surface-10); */
   z-index: 5;
   flex-shrink: 0;
 }
@@ -56,6 +58,7 @@
   right: 0;
   bottom: 0;
   transform: translateX(100%);
+  /* transform: translateX(calc(100% - 2.5rem)); */
   transition: 300ms ease;
 }
 
