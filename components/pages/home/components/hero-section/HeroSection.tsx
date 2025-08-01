@@ -1,5 +1,5 @@
 import styles from './HeroSection.module.css';
-import { Heading } from '@/components/shared';
+import { Heading } from '@/components';
 
 export const HeroSection = () => {
   return (
