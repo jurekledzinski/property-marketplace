@@ -1,0 +1,31 @@
+.backdropElement {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.enter {
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.enterActive {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.3s linear;
+}
+
+.exit {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.exitActive {
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: 0.3s linear;
+}
