@@ -1,0 +1,12 @@
+.layerHero {
+  background-color: white;
+}
+
+.layerMain {
+  background-color: white;
+  min-height: calc(100vh - 487px);
+}
+
+.containerLayout {
+  min-height: inherit;
+}
