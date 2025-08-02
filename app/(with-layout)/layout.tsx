@@ -33,7 +33,7 @@ export default function RootLayout({
       lang="en"
       className={[montserrat.variable, roboto.variable].join(' ')}
     >
-      <body>
+      <body data-theme="light">
         {header}
         {children}
         {footer}
