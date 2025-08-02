@@ -1,5 +1,7 @@
+import { RegisterPage } from '@/components';
+
 const Register = async () => {
-  return <div>Register page</div>;
+  return <RegisterPage />;
 };
 
 export default Register;
