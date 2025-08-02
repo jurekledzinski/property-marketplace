@@ -189,6 +189,10 @@ body {
   font-family: var(--font-roboto);
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 button:focus-visible,
 a:focus-visible {
   transition: none;
