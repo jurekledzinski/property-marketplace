@@ -23,7 +23,7 @@
   top: 54px;
   display: flex;
   gap: 0.5rem;
-  background-color: white;
+  background-color: var(--color-surface-elevated-base);
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
