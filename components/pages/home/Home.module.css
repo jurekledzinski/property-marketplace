@@ -1,10 +1,10 @@
 .layerHero {
-  background-color: white;
+  background-color: var(--color-surface);
 }
 
 .layerMain {
-  background-color: white;
-  min-height: calc(100vh - 384px);
+  background-color: var(--color-surface);
+  min-height: calc(100vh - 404px);
 }
 
 .containerLayout {
