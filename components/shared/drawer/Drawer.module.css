@@ -1,21 +1,14 @@
-.drawer {
-  /* background-color: var(--color-surface-10); */
-  background-color: white;
-}
-
 .inner {
   position: sticky;
   top: 54px;
   align-self: flex-start;
-  z-index: 4;
 }
 
 .horizontal,
 .vertical {
   position: fixed;
-  /* background-color: var(--color-surface-10); */
-  z-index: 5;
-  flex-shrink: 0;
+  background-color: var(--color-surface-elevated-base);
+  z-index: 10;
 }
 
 .horizontal {
@@ -25,6 +18,8 @@
 .vertical {
   width: min(250px, 100%);
   min-height: inherit;
+  height: 100vh;
+  flex-shrink: 0;
 }
 
 /* --- Directions --- */
@@ -58,7 +53,6 @@
   right: 0;
   bottom: 0;
   transform: translateX(100%);
-  /* transform: translateX(calc(100% - 2.5rem)); */
   transition: 300ms ease;
 }
 
@@ -94,8 +88,7 @@
     transform: unset;
 
     position: sticky;
-    top: 0;
-    /* align-self: flex-start; */
+    top: 0px;
   }
 
   .horizontal.bottom.push,
