@@ -1,6 +1,6 @@
-import { Backdrop, Drawer, FilterPanel } from '@/components';
-import styles from './AdvertsLayout.module.css';
 import Image from 'next/image';
+import styles from './AdvertsLayout.module.css';
+import { Backdrop, Drawer, FilterPanel } from '@/components';
 
 export const AdvertsLayout = () => {
   return (
@@ -26,7 +26,6 @@ export const AdvertsLayout = () => {
           })}
         </section>
       </div>
-
       <Backdrop open={false} />
       <Drawer variant="pinned" direction="right">
         <FilterPanel />
