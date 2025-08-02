@@ -9,7 +9,6 @@ export const getClassNamesDrawer = (params: Params) => {
 
   return {
     drawer: generateClassNames(styles, {
-      drawer: true,
       ['open']: Boolean(open),
       [direction]: Boolean(direction),
       ['horizontal']: direction === 'bottom' || direction === 'top',
