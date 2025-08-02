@@ -1,5 +1,7 @@
+import { LoginPage } from '@/components';
+
 const Login = async () => {
-  return <div>Login page</div>;
+  return <LoginPage />;
 };
 
 export default Login;
