@@ -1,6 +1,6 @@
 import { PaginationItem } from './components';
 import { PaginationItemsProps } from './types';
-import { usePaginationContext } from '../../context';
+import { usePaginationContext } from '../../store';
 import { getPaginationItemsProps } from '../../utils';
 
 export const PaginationItems = ({ ...props }: PaginationItemsProps) => {

@@ -1,6 +1,6 @@
 import { getClassNamesPaginationInfo } from '../../utils';
 import { PaginationInfoProps } from './types';
-import { usePaginationContext } from '../../context';
+import { usePaginationContext } from '../../store';
 
 export const PaginationInfo = ({
   indexEnd,

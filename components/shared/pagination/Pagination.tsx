@@ -1,4 +1,4 @@
-import PaginationProvider from './context';
+import PaginationProvider from './store';
 import { getClassNamesPagination, getPaginationProps } from './utils';
 import { PaginationProps } from './types';
 import { usePagination } from './hooks';

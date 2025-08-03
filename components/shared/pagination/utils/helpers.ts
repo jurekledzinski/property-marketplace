@@ -1,4 +1,4 @@
-import { PaginationContextValue } from '../context';
+import { PaginationContextValue } from '../store';
 import { PaginationProps } from '../types';
 
 type CustomPaginationProps = Omit<PaginationProps, 'children'>;

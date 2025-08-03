@@ -4,7 +4,7 @@ import {
   Icon,
 } from '@/components';
 import { PaginationArrowProps } from './types';
-import { usePaginationContext } from '../../context';
+import { usePaginationContext } from '../../store';
 
 export const PaginationArrow = ({
   id,
