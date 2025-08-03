@@ -1,0 +1,689 @@
+.fieldset {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  border: none;
+}
+
+/* Input */
+
+.input,
+.textarea {
+  display: flex;
+  width: 100%;
+  padding: 4px 6px;
+  color: var(--color-text-primary);
+  font-size: 15px;
+  border: 1px solid var(--color-surface-30);
+  background-color: var(--color-surface-elevated);
+  transition: box-shadow 300ms linear;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-black-200);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.textarea {
+  resize: none;
+}
+
+/* --- Font size in inputs and height --- */
+
+.input-size-xs,
+.textarea-size-xs {
+  padding: 4.5px 6px;
+}
+
+.input-size-sm,
+.textarea-size-sm {
+  padding: 5.5px 6px;
+}
+
+.input-size-md,
+.textarea-size-md {
+  padding: 6.5px 6px;
+}
+
+.input-size-lg,
+.textarea-size-lg {
+  padding: 8px 6px;
+  font-size: 16px;
+}
+
+/* --- Disabled --- */
+
+.input:disabled,
+.textarea:disabled,
+.input:disabled:focus,
+.textarea:disabled:focus {
+  border-color: var(--color-disabled-100);
+  background-color: var(--color-disabled-50);
+  color: var(--color-disabled-200);
+  cursor: not-allowed;
+}
+
+.input:disabled + .legend,
+.textarea:disabled + .legend,
+.input:disabled:not(:placeholder-shown) + .legend,
+.input:disabled:focus + .legend,
+.textarea:disabled:not(:placeholder-shown) + .legend,
+.textarea:disabled:focus + .legend {
+  color: var(--color-disabled-200);
+  cursor: not-allowed;
+}
+
+/* --- Legend --- */
+
+.legend {
+  position: absolute;
+  top: 50%;
+  left: 0.35rem;
+  z-index: -1;
+  font-size: 14px;
+  transition-property: color, top, left, font-size;
+  transition-duration: 200ms;
+  transition-timing-function: linear;
+}
+
+.legend-size-xs {
+  font-size: 14px;
+}
+
+.legend-size-sm {
+  font-size: 14px;
+}
+
+.legend-size-md {
+  font-size: 15px;
+}
+
+.legend-size-lg {
+  font-size: 16px;
+}
+
+/* --- Status legend --- */
+
+.legend-valid {
+  color: var(--color-focus-success);
+}
+
+.legend-inValid {
+  color: var(--color-focus-negative);
+}
+
+/* --- Focus legend --- */
+
+.input:not(:placeholder-shown) + .legend,
+.input:focus + .legend,
+.textarea:not(:placeholder-shown) + .legend,
+.textarea:focus + .legend {
+  top: -1px;
+  z-index: 1;
+  background-color: var(--color-surface);
+  color: var(--color-focus-primary);
+  font-size: 12px;
+}
+
+.input-size-md:not(:placeholder-shown) + .legend,
+.input-size-md:focus + .legend,
+.textarea-size-md:not(:placeholder-shown) + .legend,
+.textarea-size-md:focus + .legend {
+  font-size: 13px;
+}
+
+.input-size-lg:not(:placeholder-shown) + .legend,
+.input-size-lg:focus + .legend,
+.textarea-size-lg:not(:placeholder-shown) + .legend,
+.textarea-size-lg:focus + .legend {
+  font-size: 14px;
+}
+
+/* --- Focus input --- */
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--color-focus-primary);
+  outline: 1px solid var(--color-focus-primary);
+}
+
+/* --- Status input --- */
+
+.input-valid,
+.textarea-valid {
+  border-color: var(--color-focus-success);
+}
+
+.input-inValid,
+.textarea-inValid {
+  border-color: var(--color-focus-negative);
+}
+
+.input-valid:focus,
+.textarea-valid:focus {
+  border-color: var(--color-focus-success);
+  outline-color: var(--color-focus-success);
+}
+
+.input-inValid:focus,
+.textarea-inValid:focus {
+  border-color: var(--color-focus-negative);
+  outline-color: var(--color-focus-negative);
+}
+
+/* --- Status legend on focus --- */
+
+.input-valid:not(:placeholder-shown) + .legend,
+.input-valid:focus + .legend,
+.textarea-valid:not(:placeholder-shown) + .legend,
+.textarea-valid:focus + .legend {
+  color: var(--color-focus-success);
+}
+
+.input-inValid:not(:placeholder-shown) + .legend,
+.input-inValid:focus + .legend,
+.textarea-inValid:not(:placeholder-shown) + .legend,
+.textarea-inValid:focus + .legend {
+  color: var(--color-focus-negative);
+}
+
+/* Contained */
+
+/* --- Disabled --- */
+
+.input-contained:disabled:focus,
+.textarea-contained:disabled:focus {
+  box-shadow: inset 0 -1px 0 0 var(--color-disabled-100);
+}
+
+.fieldset-contained.fieldset-disabled::before {
+  background-color: var(--color-disabled-50);
+}
+
+.fieldset-contained.fieldset-disabled .input,
+.fieldset-contained.fieldset-disabled .textarea {
+  background-color: transparent;
+}
+
+/* --- Focus --- */
+
+.input-contained:focus,
+.textarea-contained:focus {
+  outline: none;
+  box-shadow: inset 0 -1px 0 0 var(--color-focus-primary);
+}
+
+/* --- Status --- */
+
+.input-contained.input-valid:focus,
+.textarea-contained.textarea-valid:focus {
+  box-shadow: inset 0 -1px 0 0 var(--color-focus-success);
+}
+
+.input-contained.input-inValid:focus,
+.textarea-contained.textarea-inValid:focus {
+  box-shadow: inset 0 -1px 0 0 var(--color-focus-negative);
+}
+
+/* --- Background ---  */
+
+.fieldset-contained::before {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-surface-10);
+  z-index: -1;
+}
+
+.fieldset-contained {
+  padding: 16px 0 0;
+}
+
+/* --- Reset for contained ---  */
+
+.input-contained,
+.textarea-contained {
+  background-color: transparent;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+/* --- Legend --- */
+
+.legend-contained {
+  top: 4px;
+}
+
+/* --- Focus legend --- */
+
+.input-contained:not(:placeholder-shown) + .legend,
+.input-contained:focus + .legend,
+.textarea-contained:not(:placeholder-shown) + .legend,
+.textarea-contained:focus + .legend {
+  top: 4px;
+  background-color: transparent;
+}
+
+/* Outlined */
+
+/* --- Legend --- */
+
+.legend-outlined {
+  position: absolute;
+  top: 50%;
+  left: 0.4rem;
+  z-index: -1;
+  transform: translateY(-50%);
+}
+
+.textarea + .legend-outlined {
+  top: 14px;
+}
+
+.input-outlined,
+.textarea-outlined {
+  background-color: transparent;
+}
+
+/* Underline */
+
+/* --- Legend --- */
+
+.legend-underline {
+  position: absolute;
+  top: 50%;
+  left: 0.3rem;
+  z-index: -1;
+  transform: translateY(-50%);
+}
+
+.legend-underline {
+  left: -1px;
+}
+
+.textarea + .legend-underline {
+  top: 0px;
+}
+
+/* --- Disabled --- */
+
+.input-underline:disabled,
+.textarea-underline:disabled {
+  background-color: transparent;
+}
+
+.input-underline:disabled:focus,
+.textarea-underline:disabled:focus {
+  box-shadow: inset 0 -1px 0 0 var(--color-disabled-100);
+}
+
+/* --- Focus --- */
+
+.input-underline:focus,
+.textarea-underline:focus {
+  outline: none;
+  box-shadow: inset 0 -1px 0 0 var(--color-focus-primary);
+}
+
+/* --- Status in focus --- */
+
+.input-underline.input-valid:focus,
+.textarea-underline.textarea-valid:focus {
+  box-shadow: inset 0 -1px 0 0 var(--color-focus-success);
+}
+
+.input-underline.input-inValid:focus,
+.textarea-underline.textarea-inValid:focus {
+  box-shadow: inset 0 -1px 0 0 var(--color-focus-negative);
+}
+
+/* Rest for underline */
+
+.input-underline,
+.textarea-underline {
+  padding-left: 0;
+  padding-right: 0;
+  background-color: transparent;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+/* --- Legend on focus --- */
+
+.input-underline:not(:placeholder-shown) + .legend,
+.input-underline:focus + .legend,
+.textarea-underline:not(:placeholder-shown) + .legend,
+.textarea-underline:focus + .legend {
+  top: -4px;
+}
+
+/* Input wrapper */
+
+.wrapper {
+  position: relative;
+  display: flex;
+  width: inherit;
+  border: 1px solid var(--color-surface-30);
+  transition: box-shadow 300ms linear;
+}
+
+.wrapper .input,
+.wrapper .textarea {
+  border: none;
+}
+
+/* --- Focus --- */
+
+.wrapper .input:focus,
+.wrapper .textarea:focus {
+  outline: none;
+}
+
+.wrapper:focus-within,
+.wrapper.focused {
+  border-color: var(--color-focus-primary);
+  outline: 1px solid var(--color-focus-primary);
+}
+
+/* --- Styled elements inside --- */
+
+.wrapper-divider > button.endIcon::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 1px;
+  background-color: var(--color-black-500);
+}
+
+.wrapper > .endIcon,
+.wrapper > .startIcon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: var(--color-surface-elevated);
+  color: var(--color-black-600);
+  padding: 6px 8px;
+  width: 38px;
+  box-shadow: none;
+  outline: none;
+}
+
+.wrapper > button.startIcon:focus {
+  outline: none;
+}
+
+.wrapper > button:focus-visible {
+  color: var(--color-focus-primary);
+  outline: none;
+}
+
+.wrapper-startIcon .input {
+  padding-left: 0;
+}
+
+.wrapper-inValid .input,
+.wrapper-valid .input,
+.wrapper-endIcon:not(.wrapper-divider) .input {
+  padding-right: 0;
+}
+
+/* --- Size icons --- */
+
+.startIcon-size-xs,
+.endIcon-size-xs {
+  max-height: 28px;
+  font-size: 14px;
+}
+
+.startIcon-size-sm,
+.endIcon-size-sm,
+.startIcon-size-md,
+.endIcon-size-md {
+  font-size: 14px;
+}
+
+.startIcon-size-sm,
+.endIcon-size-sm {
+  max-height: 30px;
+}
+
+.startIcon-size-md,
+.endIcon-size-md {
+  max-height: 32px;
+}
+
+.startIcon-size-lg,
+.endIcon-size-lg {
+  max-height: 36px;
+  font-size: 16px;
+}
+
+/* --- Status --- */
+
+.wrapper-inValid {
+  border-color: var(--color-focus-negative);
+}
+
+.wrapper-valid {
+  border-color: var(--color-focus-success);
+}
+
+.wrapper-inValid span.endIcon {
+  color: var(--color-focus-negative);
+}
+
+.wrapper-valid span.endIcon {
+  color: var(--color-focus-success);
+}
+
+.wrapper-valid:focus-within,
+.wrapper-valid.focused {
+  outline: 1px solid var(--color-focus-success);
+  border-color: var(--color-focus-success);
+}
+
+.wrapper-inValid:focus-within,
+.wrapper-inValid.focused {
+  outline: 1px solid var(--color-focus-negative);
+  border-color: var(--color-focus-negative);
+}
+
+.wrapper-valid:focus-within .input,
+.wrapper-inValid:focus-within .input,
+.wrapper-valid:focus-within .textarea,
+.wrapper-inValid:focus-within .textarea {
+  box-shadow: none;
+}
+
+/* --- Variant contained --- */
+
+.wrapper-contained,
+.wrapper-underline {
+  border-right: none;
+  border-left: none;
+  border-top: none;
+}
+
+.wrapper-contained {
+  z-index: 0;
+  background-color: var(--color-surface-10);
+}
+
+.wrapper-contained:focus-within,
+.wrapper-underline:focus-within,
+.wrapper-contained.focused,
+.wrapper-underline.focused {
+  outline: none;
+  box-shadow: inset 0 -1px 0 0 var(--color-focus-primary);
+}
+
+.wrapper > .fieldset-contained::before {
+  content: none;
+}
+
+.wrapper-contained > .startIcon,
+.wrapper-contained > .endIcon {
+  align-items: center;
+  margin-top: 1rem;
+  z-index: -1;
+}
+
+.wrapper-contained > .startIcon,
+.wrapper-contained > .endIcon,
+.wrapper-underline > .startIcon,
+.wrapper-underline > .endIcon {
+  background-color: transparent;
+}
+
+.wrapper-area.wrapper-contained > .startIcon,
+.wrapper-area.wrapper-contained > .endIcon {
+  align-items: flex-start;
+  margin-top: 15px;
+  z-index: -1;
+}
+
+/* --- Variant outlined --- */
+
+.wrapper-outlined > .startIcon,
+.wrapper-outlined > .endIcon {
+  background-color: transparent;
+}
+
+.wrapper-startIcon.wrapper-outlined .legend {
+  left: -2px;
+}
+
+.wrapper-startIcon.wrapper-outlined .input:not(:placeholder-shown) + .legend,
+.wrapper-startIcon.wrapper-outlined .input:focus + .legend,
+.wrapper-startIcon.wrapper-outlined .textarea:not(:placeholder-shown) + .legend,
+.wrapper-startIcon.wrapper-outlined .textarea:focus + .legend {
+  left: -26px;
+}
+
+/* --- Variant underline --- */
+
+.wrapper-startIcon.wrapper-underline .input:not(:placeholder-shown) + .legend,
+.wrapper-startIcon.wrapper-underline .input:focus + .legend,
+.wrapper-startIcon.wrapper-underline
+  .textarea:not(:placeholder-shown)
+  + .legend,
+.wrapper-startIcon.wrapper-underline .textarea:focus + .legend {
+  left: -32px;
+}
+
+/* --- Variant contained and underline --- */
+
+.wrapper-valid.wrapper-underline:focus-within,
+.wrapper-valid.wrapper-contained:focus-within {
+  outline: none;
+  border-color: var(--color-focus-success);
+  box-shadow: inset 0 -1px 0 0 var(--color-focus-success);
+}
+
+.wrapper-inValid.wrapper-underline:focus-within,
+.wrapper-inValid.wrapper-contained:focus-within {
+  outline: none;
+  border-color: var(--color-focus-negative);
+  box-shadow: inset 0 -1px 0 0 var(--color-focus-negative);
+}
+
+.wrapper-area.wrapper-startIcon.wrapper-contained .legend {
+  left: 0.3rem;
+}
+
+.wrapper-startIcon.wrapper-contained .legend {
+  left: -1.5rem;
+}
+
+/* --- Legend --- */
+
+.wrapper-valid .legend {
+  color: var(--color-focus-success);
+}
+
+.wrapper-inValid .legend {
+  color: var(--color-focus-negative);
+}
+
+/* --- Disabled --- */
+
+.wrapper-disabled,
+.wrapper-disabled:focus-within,
+.wrapper-disabled.wrapper-inValid:focus-within,
+.wrapper-disabled.wrapper-valid:focus-within {
+  border-color: var(--color-disabled-100);
+  outline: none;
+  box-shadow: none;
+}
+
+.wrapper-disabled .startIcon,
+.wrapper-disabled .endIcon,
+.wrapper-disabled.wrapper-inValid .startIcon,
+.wrapper-disabled.wrapper-inValid .endIcon,
+.wrapper-disabled.wrapper-valid .startIcon,
+.wrapper-disabled.wrapper-valid .endIcon,
+.wrapper-disabled .startIcon:focus-visible,
+.wrapper-disabled .endIcon:focus-visible {
+  color: var(--color-disabled-200);
+  background-color: var(--color-disabled-50);
+  pointer-events: none;
+}
+
+.wrapper-disabled.wrapper-contained .startIcon,
+.wrapper-disabled.wrapper-contained .endIcon,
+.wrapper-disabled.wrapper-underline .startIcon,
+.wrapper-disabled.wrapper-underline .endIcon,
+.wrapper-disabled.wrapper-area .endIcon,
+.wrapper-disabled.wrapper-area .startIcon {
+  background-color: transparent;
+}
+
+.wrapper-readOnly .startIcon,
+.wrapper-readOnly .endIcon {
+  pointer-events: none;
+}
+
+.wrapper-disabled .legend {
+  color: var(--color-disabled-200);
+}
+
+.wrapper-disabled.wrapper-divider button.endIcon::before {
+  background-color: var(--color-disabled-100);
+}
+
+.wrapper-disabled.wrapper-contained {
+  background-color: var(--color-disabled-50);
+}
+
+/* Disabled textarea with icons */
+
+.wrapper-area.wrapper-endIcon.wrapper-disabled:not(.wrapper-underline),
+.wrapper-area.wrapper-disabled.wrapper-inValid:not(.wrapper-underline),
+.wrapper-area.wrapper-disabled.wrapper-valid:not(.wrapper-underline) {
+  background-color: var(--color-disabled-50);
+}
+
+.wrapper-area.wrapper-endIcon .textarea:disabled,
+.wrapper-area.wrapper-inValid .textarea:disabled,
+.wrapper-area.wrapper-valid .textarea:disabled {
+  background-color: transparent;
+}
+
+.wrapper-area.wrapper-endIcon .textarea {
+  padding-right: 0;
+}
