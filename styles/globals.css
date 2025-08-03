@@ -153,6 +153,13 @@
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 24px;
+
+  /* Max width */
+
+  --max-w-sm: 1000px;
+  --max-w-md: 1100px;
+  --max-w-lg: 1200px;
+  --max-w-xl: 1300px;
 }
 
 [data-theme='dark'] {
