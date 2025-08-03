@@ -1,3 +1,4 @@
+'use client';
 import styles from './Login.module.css';
 import stylesCommon from './Common.module.css';
 import { classNames } from '@/helpers';
