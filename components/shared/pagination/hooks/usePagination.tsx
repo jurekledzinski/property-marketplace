@@ -1,3 +1,4 @@
+'use client';
 import { ActionType, UsePaginationProps } from './types';
 import { useCallback, useState } from 'react';
 

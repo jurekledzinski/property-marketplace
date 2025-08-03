@@ -1,3 +1,4 @@
+'use client';
 import { CardFilePreview } from './components';
 import { PreviewFileProps } from './types';
 import { getClassNamesPreviewFiles } from './utils';

@@ -1,3 +1,4 @@
+'use client';
 import { SelectPanelProps } from './types';
 import { useAriaAttributes } from '@/hooks';
 import { useRef } from 'react';

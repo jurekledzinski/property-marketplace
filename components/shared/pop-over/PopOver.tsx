@@ -1,3 +1,4 @@
+'use client';
 import styles from './PopOver.module.css';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';

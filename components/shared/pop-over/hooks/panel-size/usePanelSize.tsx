@@ -1,3 +1,4 @@
+'use client';
 import { useLayoutEffect, useRef } from 'react';
 
 export const usePanelSize = (

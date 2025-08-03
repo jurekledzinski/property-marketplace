@@ -1,3 +1,4 @@
+'use client';
 import { Button } from '@/components';
 import { FileInputProps } from './types';
 import { forwardRef } from 'react';

@@ -1,3 +1,4 @@
+'use client';
 import { UseClickOutsideProps } from './types';
 import { useEffect } from 'react';
 

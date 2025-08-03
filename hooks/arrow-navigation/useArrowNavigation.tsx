@@ -1,3 +1,4 @@
+'use client';
 import { OnKeyArrow, UseArrowNavigationProps } from './types';
 import { setDefaultActive } from './utils';
 import { useCallback, useEffect, useMemo } from 'react';

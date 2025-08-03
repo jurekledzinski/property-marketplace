@@ -1,3 +1,4 @@
+'use client';
 import { UseControlModalProps } from '../types';
 import { useEffect } from 'react';
 

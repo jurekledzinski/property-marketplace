@@ -1,3 +1,4 @@
+'use client';
 import styles from './PasswordInput.module.css';
 import { forwardRef, Ref } from 'react';
 import { Input, InputWrapper } from '../';

@@ -1,3 +1,4 @@
+'use client';
 import { arrowFlip } from './helpers';
 import { Placement, setPosition } from '@/components';
 import { SizeWindow, UsePositionProps } from './types';

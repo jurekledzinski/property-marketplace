@@ -1,3 +1,4 @@
+'use client';
 import { classNames } from '@/helpers';
 import { dropZoneClassNames } from './utils/classNames';
 import { DropZoneProps } from './types';

@@ -1,3 +1,4 @@
+'use client';
 import { Backdrop } from '@/components';
 import { CSSTransition } from 'react-transition-group';
 import { ModalBody, ModalFooter, ModalHeader } from './components';

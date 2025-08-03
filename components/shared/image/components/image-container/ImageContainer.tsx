@@ -1,3 +1,4 @@
+'use client';
 import { getClassNamesImage } from '../utils';
 import { ImageContainerProps } from './types';
 import { useState } from 'react';
