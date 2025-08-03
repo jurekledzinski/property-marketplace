@@ -9,7 +9,7 @@ export const Box = ({
   ...props
 }: BoxProps) => {
   const classes = getClassesBox({ className, margin, padding });
-  console.log('Box', classes);
+
   return (
     <div {...props} className={classes}>
       {children}
