@@ -13,7 +13,7 @@
   max-width: 800px;
   height: 500px;
   /* background-color: lightcoral; */
-  background-color: var(--color-surface-elevated-base);
+  /* background-color: var(--color-surface-elevated-base); */
 }
 
 .left {
@@ -26,24 +26,30 @@
 }
 
 .right {
-  width: 50%;
+  width: 100%;
   height: inherit;
-  padding: 2rem;
+  padding: 1rem 2rem;
+  overflow-y: auto;
 }
 
 .title {
+  margin-bottom: 1rem;
   color: var(--color-text-primary);
 }
 
 @media (min-width: 575px) {
   .wrapper {
     flex-direction: row;
-    height: 400px;
+    /* height: 500px; */
   }
 
   .left {
     width: 50%;
     height: inherit;
     background-position: center;
+  }
+
+  .right {
+    width: 50%;
   }
 }
