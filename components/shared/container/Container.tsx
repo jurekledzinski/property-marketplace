@@ -8,7 +8,7 @@ export const Container = ({
   children,
   margin,
   padding,
-  maxWidth = 'max-md',
+  maxWidth = 'mw-md',
 }: ContainerProps) => {
   const Tag = `${as}` as keyof JSX.IntrinsicElements;
   const classes = getClassesContainer({ className, margin, maxWidth, padding });

@@ -1,12 +1,12 @@
 .container {
   width: 100%;
-  --max-w-sm: 1000px;
+  /* --max-w-sm: 1000px;
   --max-w-md: 1100px;
   --max-w-lg: 1200px;
-  --max-w-xl: 1300px;
+  --max-w-xl: 1300px; */
 }
 
-.max-sm {
+/* .max-sm {
   max-width: var(--max-w-sm);
 }
 
@@ -20,11 +20,11 @@
 
 .max-xl {
   max-width: var(--max-w-xl);
-}
+} */
 
 /* Margin */
 
-.m-center {
+/* .m-center {
   margin: 0 auto;
 }
 
@@ -50,11 +50,11 @@
 
 .m-lg {
   margin: var(--space-lg);
-}
+} */
 
 /* Padding */
 
-.p-initial {
+/* .p-initial {
   padding: var(--space-initial);
 }
 
@@ -76,4 +76,4 @@
 
 .p-lg {
   padding: var(--space-lg);
-}
+} */
