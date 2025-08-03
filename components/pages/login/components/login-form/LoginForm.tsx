@@ -23,7 +23,7 @@ export const LoginForm = () => {
         <Message>Email is required</Message>
       </Field>
       <ButtonGroup marginTop={16} fullWidth>
-        <Button type="submit" label="Sign In" fullWidth />
+        <Button type="submit" label="Sign In" fullWidth size="size-lg" />
       </ButtonGroup>
     </Form>
   );
