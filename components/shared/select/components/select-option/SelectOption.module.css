@@ -1,0 +1,40 @@
+.select-option {
+  width: 100%;
+  padding: 6px;
+  list-style: none;
+  will-change: background-color, opacity;
+  font-size: 14px;
+}
+
+.select-option:last-child {
+  border-bottom: initial;
+}
+
+.active {
+  background-color: var(--color-hover-option);
+}
+
+.select-option:focus {
+  background-color: var(--color-hover-option);
+  outline: none;
+}
+
+.select-option:hover {
+  background-color: var(--color-hover-option);
+}
+
+.size-xs {
+  font-size: 14px;
+}
+
+.size-sm {
+  font-size: 14px;
+}
+
+.size-md {
+  font-size: 15px;
+}
+
+.size-lg {
+  font-size: 16px;
+}
