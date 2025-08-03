@@ -1,8 +1,10 @@
 'use client';
 import styles from './Register.module.css';
+import stylesCommon from '@/components/pages/login/Common.module.css';
 import { Box, Heading, RegisterForm } from '@/components';
+import { classNames } from '@/helpers';
+import { InputsRegister, usePasswordRules, useRegisterForm } from './hooks';
 import { SubmitHandler } from 'react-hook-form';
-import { InputsRegister, useRegisterForm, usePasswordRules } from './hooks';
 
 export const RegisterPage = () => {
   const controls = useRegisterForm();
@@ -12,11 +14,13 @@ export const RegisterPage = () => {
   };
 
   return (
-    <Box className={styles.container}>
-      <Box className={styles.wrapper}>
-        <Box className={styles.left}></Box>
-        <Box className={styles.right}>
-          <Heading className={styles.title} level={4}>
+    <Box className={stylesCommon.container}>
+      <Box className={stylesCommon.wrapper}>
+        <Box
+          className={classNames(stylesCommon.left, styles.leftBackground)}
+        ></Box>
+        <Box className={stylesCommon.right}>
+          <Heading className={stylesCommon.title} level={4}>
             Sign up
           </Heading>
           <RegisterForm
