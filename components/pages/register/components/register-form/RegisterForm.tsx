@@ -1,6 +1,4 @@
-import { InputsRegisterForm } from '../../hooks';
 import { RegisterFormProps } from './types';
-import { SubmitHandler } from 'react-hook-form';
 import {
   Button,
   ButtonGroup,
@@ -15,11 +13,8 @@ import {
 export const RegisterForm = ({
   controls,
   passwordRules,
+  onSubmit,
 }: RegisterFormProps) => {
-  const onSubmit: SubmitHandler<InputsRegisterForm> = (data) => {
-    console.log('Submit', data);
-  };
-
   return (
     <Form onSubmit={controls.handleSubmit(onSubmit)} noValidate>
       <Field>
@@ -43,7 +38,7 @@ export const RegisterForm = ({
         <Message>Confirm password is required</Message>
       </Field>
       <ButtonGroup marginTop={16} fullWidth>
-        <Button type="submit" label="Sign In" fullWidth />
+        <Button type="submit" label="Sign In" fullWidth size="size-lg" />
       </ButtonGroup>
     </Form>
   );
