@@ -1,6 +1,6 @@
-import { InputsRegisterForm } from '../control-register-form/types';
+import { InputsRegister } from '../control-register-form/types';
 import { UseFormWatch } from 'react-hook-form';
 
 export type UsePasswordRulesProps = {
-  watch: UseFormWatch<InputsRegisterForm>;
+  watch: UseFormWatch<InputsRegister>;
 };
