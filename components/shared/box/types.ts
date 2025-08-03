@@ -1,3 +1,7 @@
 import { HTMLAttributes } from 'react';
+import { MarginToken, PaddingToken } from '@/types';
 
-export type BoxProps = HTMLAttributes<HTMLDivElement>;
+export interface BoxProps extends HTMLAttributes<HTMLDivElement> {
+  padding?: PaddingToken;
+  margin?: MarginToken;
+}
