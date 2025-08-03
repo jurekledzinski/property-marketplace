@@ -1,9 +1,6 @@
-import { FontWeightClass, HeadingProps } from '../types';
+import { HeadingProps } from '../types';
 
-type Params = {
-  className?: string;
-  fw?: FontWeightClass;
-  level?: HeadingProps['level'];
-};
+type Props = 'className' | 'fw' | 'level' | 'margin' | 'padding';
+type Params = Pick<HeadingProps, Props>;
 
 export type ClassesHeading = (params: Params) => string;
