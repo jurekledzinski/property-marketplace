@@ -1,7 +1,8 @@
-import { InputsRegisterForm, usePasswordRules } from '../../hooks';
-import { UseFormReturn } from 'react-hook-form';
+import { InputsRegister, usePasswordRules } from '../../hooks';
+import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 export type RegisterFormProps = {
-  controls: UseFormReturn<InputsRegisterForm, unknown, InputsRegisterForm>;
+  controls: UseFormReturn<InputsRegister, unknown, InputsRegister>;
   passwordRules: ReturnType<typeof usePasswordRules>;
+  onSubmit: SubmitHandler<InputsRegister>;
 };

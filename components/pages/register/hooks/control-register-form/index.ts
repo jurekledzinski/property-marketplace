@@ -1,2 +1,2 @@
 export * from './types';
-export * from './useControlRegisterForm';
+export * from './useRegisterForm';
