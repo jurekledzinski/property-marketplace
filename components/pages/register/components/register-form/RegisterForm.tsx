@@ -8,6 +8,7 @@ import {
   Message,
   PasswordInput,
   TextInput,
+  RegisterValidation,
 } from '@/components';
 
 export const RegisterForm = ({
@@ -37,6 +38,7 @@ export const RegisterForm = ({
         <PasswordInput />
         <Message>Confirm password is required</Message>
       </Field>
+      <RegisterValidation passwordRules={passwordRules} />
       <ButtonGroup marginTop={16} fullWidth>
         <Button type="submit" label="Sign In" fullWidth size="size-lg" />
       </ButtonGroup>
