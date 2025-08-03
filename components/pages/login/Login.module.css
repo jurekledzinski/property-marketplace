@@ -1,34 +1,29 @@
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   min-height: 100vh;
+  overflow-y: auto;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 1rem);
+  margin: 0 auto;
+  width: 100%;
   max-width: 800px;
-  height: 500px;
-  /* background-color: lightcoral; */
-  /* background-color: var(--color-surface-elevated-base); */
 }
 
 .left {
   width: 100%;
-  height: 50%;
   background-image: url('/images/House-login.png');
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
+  aspect-ratio: 3 / 2;
 }
 
 .right {
   width: 100%;
-  height: inherit;
-  padding: 1rem 2rem;
+  padding: 1rem;
 }
 
 .title {
@@ -37,18 +32,26 @@
 }
 
 @media (min-width: 575px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .wrapper {
     flex-direction: row;
-    /* height: 400px; */
+    height: 500px;
+    padding: 0.5rem;
   }
 
   .left {
     width: 50%;
-    height: inherit;
     background-position: center;
+    aspect-ratio: initial;
   }
 
   .right {
     width: 50%;
+    padding: 1rem 2rem;
   }
 }
