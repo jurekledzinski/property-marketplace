@@ -1,3 +1,4 @@
+import { LoginFormProps } from './types';
 import {
   Button,
   ButtonGroup,
@@ -9,9 +10,9 @@ import {
   TextInput,
 } from '@/components';
 
-export const LoginForm = () => {
+export const LoginForm = ({ controls, onSubmit }: LoginFormProps) => {
   return (
-    <Form noValidate>
+    <Form onSubmit={controls.handleSubmit(onSubmit)} noValidate>
       <Field>
         <Label>Email</Label>
         <TextInput />
