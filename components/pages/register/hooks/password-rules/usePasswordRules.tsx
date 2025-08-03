@@ -1,9 +1,9 @@
-import { InputsRegisterForm } from '../control-register-form';
+import { InputsRegister } from '../control-register-form';
 import { UsePasswordRulesProps } from './types';
 import { useValidateCheckList } from '@/components';
 import { Validate } from 'react-hook-form';
 
-const mapRules: Record<string, Validate<string, InputsRegisterForm>> = {
+const mapRules: Record<string, Validate<string, InputsRegister>> = {
   minLength: (v) => v.length >= 8 || '',
   hasNumber: (v) => /\d/.test(v) || '',
   hasUppercase: (v) => /[A-Z]/.test(v) || '',
@@ -12,7 +12,7 @@ const mapRules: Record<string, Validate<string, InputsRegisterForm>> = {
   hasNoSpace: (v) => /^\S*$/.test(v) || '',
 };
 
-const confirmRules: Record<string, Validate<string, InputsRegisterForm>> = {
+const confirmRules: Record<string, Validate<string, InputsRegister>> = {
   sameValues: (_, rest) => rest.password === rest.confirm,
 };
 
