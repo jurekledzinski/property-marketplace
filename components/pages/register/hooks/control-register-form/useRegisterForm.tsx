@@ -1,4 +1,4 @@
-import { InputsRegisterForm } from './types';
+import { InputsRegister } from './types';
 import { useForm } from 'react-hook-form';
 
 const defaultValues = {
@@ -8,8 +8,8 @@ const defaultValues = {
   password: '',
 };
 
-export const useControlRegisterForm = () => {
-  const formControl = useForm<InputsRegisterForm>({
+export const useRegisterForm = () => {
+  const formControl = useForm<InputsRegister>({
     defaultValues,
   });
 
