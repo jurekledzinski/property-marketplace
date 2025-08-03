@@ -1,0 +1,52 @@
+import { Alert, IconButton, Image, ImageContainer } from '@/components';
+import { CardFilePreviewProps } from './types';
+import { getClassNamesCardFilePreview } from '../../utils';
+import { useObjectUrl } from './hooks';
+import {
+  faTriangleExclamation,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
+
+export const CardFilePreview = ({
+  file,
+  index,
+  onRemove,
+  gridPlacement,
+}: CardFilePreviewProps) => {
+  const classes = getClassNamesCardFilePreview(gridPlacement);
+  const objectUrl = useObjectUrl(file);
+
+  return (
+    <div className={classes.card}>
+      <ImageContainer loader="skeleton">
+        {({ onLoad, onError, isError, isLoading }) => (
+          <>
+            {isError && !isLoading ? (
+              <Alert
+                color="negative"
+                icon={faTriangleExclamation}
+                message="Failed to load image"
+                fullWidth
+                size="size-xs"
+              />
+            ) : (
+              <Image
+                src={objectUrl}
+                onLoad={() => setTimeout(() => onLoad && onLoad(), 1000)}
+                onError={onError}
+                alt="image"
+              />
+            )}
+          </>
+        )}
+      </ImageContainer>
+      <p className={classes.title}>{file.name}</p>
+      <IconButton
+        icon={[faXmark]}
+        style={{ position: 'absolute', top: 0, right: 0 }}
+        onClick={() => onRemove(index)}
+        size="size-xxs"
+      />
+    </div>
+  );
+};
