@@ -68,4 +68,4 @@ export type MarginToken =
   | 'm-lg'
   | number;
 
-export type MaxWidthToken = 'max-sm' | 'max-md' | 'max-lg' | 'max-xl' | number;
+export type MaxWidthToken = 'mw-sm' | 'mw-md' | 'mw-lg' | 'mw-xl' | number;
