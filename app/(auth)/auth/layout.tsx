@@ -29,7 +29,7 @@ export default function AuthLayout({
       lang="en"
       className={[montserrat.variable, roboto.variable].join(' ')}
     >
-      <body data-theme="dark">{children}</body>
+      <body data-theme="light">{children}</body>
     </html>
   );
 }
