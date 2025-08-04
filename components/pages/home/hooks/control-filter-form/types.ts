@@ -5,7 +5,8 @@ export type InputsAdvertsFilter = {
   condition: string;
   advertisement: string;
   year: string;
-  price: string;
+  priceFrom: string;
+  priceTo: string;
   area: string;
   rooms: string;
   amenities: string[];
