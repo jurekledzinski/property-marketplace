@@ -1,5 +1,4 @@
 import { Controller } from 'react-hook-form';
-import { hasError } from '@/helpers';
 import { LocationSectionProps } from './types';
 import {
   Field,
@@ -16,7 +15,7 @@ const cities = ['Szczecin', 'Wroclaw', 'Krakow'];
 
 export const LocationSection = ({ controls }: LocationSectionProps) => {
   const { control, formState } = controls;
-  const { errors, dirtyFields } = formState;
+  const { errors } = formState;
 
   return (
     <>
@@ -26,11 +25,7 @@ export const LocationSection = ({ controls }: LocationSectionProps) => {
           control={control}
           rules={{ required: { message: 'Country is requird', value: true } }}
           render={({ field: { onChange, ...rest } }) => (
-            <Select
-              isError={hasError('country', errors, dirtyFields.country)}
-              onChange={(id) => onChange(id)}
-              {...rest}
-            >
+            <Select onChange={(id) => onChange(id)} {...rest}>
               <SelectTrigger placeholder="Select country" />
               <SelectPanel>
                 <SelectList>
@@ -52,11 +47,7 @@ export const LocationSection = ({ controls }: LocationSectionProps) => {
           control={control}
           rules={{ required: { message: 'City is requird', value: true } }}
           render={({ field: { onChange, ...rest } }) => (
-            <Select
-              isError={hasError('city', errors, dirtyFields.city)}
-              onChange={(id) => onChange(id)}
-              {...rest}
-            >
+            <Select onChange={(id) => onChange(id)} {...rest}>
               <SelectTrigger placeholder="Select city" />
               <SelectPanel>
                 <SelectList>
