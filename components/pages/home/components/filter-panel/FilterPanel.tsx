@@ -14,20 +14,3 @@ export const FilterPanel = ({ children }: FilterPanelProps) => {
     </div>
   );
 };
-
-/* <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input</p>
-        <p style={{ padding: 8, border: '1px solid black' }}>input a</p> */
