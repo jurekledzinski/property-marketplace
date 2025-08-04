@@ -1,3 +1,4 @@
+export * from './hasError';
 export * from './classNames';
 export * from './filterProps';
 export * from './formatFile';
