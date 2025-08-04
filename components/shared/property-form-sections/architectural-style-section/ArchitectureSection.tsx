@@ -1,5 +1,5 @@
 import { ArchitectureProps } from './types';
-import { Field, Radio, RadioGroup } from '@/components';
+import { Field, Label, Radio, RadioGroup } from '@/components';
 
 const architectureStyles = ['Modern', 'Traditional', 'Minimalist', 'Other'];
 
@@ -9,6 +9,7 @@ export const ArchitectureSection = ({ controls }: ArchitectureProps) => {
   return (
     <>
       <Field>
+        <Label>Architectural style</Label>
         <RadioGroup orientation="column" spacing="normal">
           {architectureStyles.map((style) => (
             <Radio
