@@ -1,8 +1,15 @@
 import Image from 'next/image';
 import styles from './AdvertsLayout.module.css';
-import { Backdrop, Drawer, FilterPanel } from '@/components';
+import { Backdrop, Drawer, FilterForm, FilterPanel } from '@/components';
+import { InputsAdvertsFilter, useFilterForm } from '../../hooks';
+import { SubmitHandler } from 'react-hook-form';
 
 export const AdvertsLayout = () => {
+  const controls = useFilterForm();
+  const onSubmit: SubmitHandler<InputsAdvertsFilter> = (data) => {
+    console.log('Submit', data);
+  };
+
   return (
     <div className={styles.layout}>
       <div className={styles.wrapper}>
@@ -28,7 +35,9 @@ export const AdvertsLayout = () => {
       </div>
       <Backdrop open={false} />
       <Drawer variant="pinned" direction="right">
-        <FilterPanel />
+        <FilterPanel>
+          <FilterForm controls={controls} onSubmit={onSubmit} />
+        </FilterPanel>
       </Drawer>
     </div>
   );
