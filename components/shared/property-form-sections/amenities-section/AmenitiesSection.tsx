@@ -1,5 +1,5 @@
 import { AmenitiesSectionProps } from './types';
-import { Checkbox, CheckboxGroup, Field } from '@/components';
+import { Checkbox, CheckboxGroup, Field, Label } from '@/components';
 
 const amenities = [
   'Air Conditioning',
@@ -26,6 +26,7 @@ export const AmenitiesSection = ({ controls }: AmenitiesSectionProps) => {
   return (
     <>
       <Field>
+        <Label>Amenities</Label>
         <CheckboxGroup orientation="column" spacing="tight">
           {amenities.map((amenity) => (
             <Checkbox
