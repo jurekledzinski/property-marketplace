@@ -128,7 +128,7 @@
   --focus-offset: 1px;
 
   /* Hover */
-  --color-surface-hover: var(--color-black-50);
+  --color-surface-hover: var(--color-black-100);
 
   /* Loader */
   --color-track: #eeeeee;
