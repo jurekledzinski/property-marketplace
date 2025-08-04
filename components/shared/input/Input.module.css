@@ -109,7 +109,7 @@
   position: absolute;
   top: 50%;
   left: 0.35rem;
-  z-index: -1;
+  z-index: var(--z-negative);
   font-size: 14px;
   transition-property: color, top, left, font-size;
   transition-duration: 200ms;
@@ -149,7 +149,7 @@
 .textarea:not(:placeholder-shown) + .legend,
 .textarea:focus + .legend {
   top: -1px;
-  z-index: 1;
+  z-index: var(--z-default);
   background-color: var(--color-surface);
   color: var(--color-focus-primary);
   font-size: 12px;
@@ -266,7 +266,7 @@
   right: 0;
   bottom: 0;
   background-color: var(--color-surface-10);
-  z-index: -1;
+  z-index: var(--z-negative);
 }
 
 .fieldset-contained {
@@ -307,7 +307,7 @@
   position: absolute;
   top: 50%;
   left: 0.4rem;
-  z-index: -1;
+  z-index: var(--z-negative);
   transform: translateY(-50%);
 }
 
@@ -328,7 +328,7 @@
   position: absolute;
   top: 50%;
   left: 0.3rem;
-  z-index: -1;
+  z-index: var(--z-negative);
   transform: translateY(-50%);
 }
 
@@ -546,7 +546,7 @@
 }
 
 .wrapper-contained {
-  z-index: 0;
+  z-index: var(--z-base);
   background-color: var(--color-surface-10);
 }
 
@@ -566,7 +566,7 @@
 .wrapper-contained > .endIcon {
   align-items: center;
   margin-top: 1rem;
-  z-index: -1;
+  z-index: var(--z-negative);
 }
 
 .wrapper-contained > .startIcon,
@@ -580,7 +580,7 @@
 .wrapper-area.wrapper-contained > .endIcon {
   align-items: flex-start;
   margin-top: 15px;
-  z-index: -1;
+  z-index: var(--z-negative);
 }
 
 /* --- Variant outlined --- */

@@ -35,5 +35,5 @@
 .heading {
   color: var(--color-primary-400);
   text-transform: uppercase;
-  z-index: 1;
+  z-index: var(--z-default);
 }
