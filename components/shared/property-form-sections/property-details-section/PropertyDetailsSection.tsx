@@ -3,7 +3,6 @@ import { Controller } from 'react-hook-form';
 import { Field, Message, TextInput } from '@/components';
 import { PropertyDetailsSectionProps } from './types';
 import { useRef } from 'react';
-// import { hasError } from '@/helpers';
 
 export const PropertyDetailsSection = ({
   controls,
@@ -93,6 +92,7 @@ export const PropertyDetailsSection = ({
       <Field>
         <TextInput
           {...control.register('rooms')}
+          placeholder="Number of rooms"
           type="number"
           min={0}
           step={1}
