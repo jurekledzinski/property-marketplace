@@ -11,7 +11,7 @@ export const getClassNamesInputWrapper: GetClassNamesInputWrapper = (
     divider,
     endIcon,
     isError,
-    size = 'size-sm',
+    size = 'size-md',
     readOnly,
     startIcon,
     variant = 'basic',
@@ -63,7 +63,7 @@ export const getClassNamesInputWrapper: GetClassNamesInputWrapper = (
 };
 
 export const getClassNamesInput: GetClassNamesInput = (params) => {
-  const { size = 'size-sm', isError, variant = 'basic', disabled } = params;
+  const { size = 'size-md', isError, variant = 'basic', disabled } = params;
   return {
     fieldset: generateClassNames(styles, {
       fieldset: true,
