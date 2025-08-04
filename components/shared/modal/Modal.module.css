@@ -5,8 +5,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   transform-origin: center;
-  z-index: 2;
-  background-color: white;
+  z-index: 100;
+  background-color: var(--color-surface-elevated-0);
   will-change: opacity, transform;
 }
 
