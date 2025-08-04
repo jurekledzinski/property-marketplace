@@ -2,8 +2,15 @@
 import styles from './PopOver.module.css';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
-import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { PopOverProps } from './types';
+
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 
 export const PopOver = forwardRef<HTMLDivElement, PopOverProps>(
   ({ children, open, ...props }, ref) => {
@@ -17,8 +24,13 @@ export const PopOver = forwardRef<HTMLDivElement, PopOverProps>(
       ...rest
     } = props;
 
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
+
     const nodeRef = useRef<HTMLDivElement>(null);
     useImperativeHandle(ref, () => nodeRef.current as HTMLDivElement);
+
+    if (!mounted) return null;
 
     return createPortal(
       <CSSTransition
