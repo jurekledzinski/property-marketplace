@@ -7,7 +7,7 @@
 .horizontal,
 .vertical {
   position: fixed;
-  background-color: var(--color-surface-elevated-1);
+  background-color: var(--color-surface);
   z-index: var(--z-drawer);
 }
 
@@ -52,7 +52,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  transform: translateX(100%);
+  transform: translateX(0%);
   transition: 300ms ease;
 }
 
@@ -88,7 +88,7 @@
     transform: unset;
 
     position: sticky;
-    top: 0px;
+    /* top: 0px; */
   }
 
   .horizontal.bottom.push,
