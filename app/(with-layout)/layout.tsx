@@ -6,12 +6,14 @@ const roboto = Roboto({
   variable: '--font-roboto',
   weight: ['300', '400', '700', '500', '600'],
   subsets: ['latin'],
+  display: 'swap',
 });
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
