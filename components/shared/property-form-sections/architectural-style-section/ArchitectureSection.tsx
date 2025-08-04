@@ -10,7 +10,7 @@ export const ArchitectureSection = ({ controls }: ArchitectureProps) => {
     <>
       <Field>
         <Label>Architectural style</Label>
-        <RadioGroup orientation="column" spacing="normal">
+        <RadioGroup orientation="column" spacing="tight">
           {architectureStyles.map((style) => (
             <Radio
               key={style}
