@@ -1,4 +1,9 @@
-import { Form, LocationSection, PropertyTypeSection } from '@/components';
+import {
+  Form,
+  LocationSection,
+  PropertyDetailsSection,
+  PropertyTypeSection,
+} from '@/components';
 import { FilterFormProps } from './types';
 
 export const FilterForm = ({ controls, onSubmit }: FilterFormProps) => {
@@ -6,6 +11,7 @@ export const FilterForm = ({ controls, onSubmit }: FilterFormProps) => {
     <Form onSubmit={controls.handleSubmit(onSubmit)} noValidate>
       <LocationSection controls={controls} />
       <PropertyTypeSection controls={controls} />
+      <PropertyDetailsSection controls={controls} />
     </Form>
   );
 };
