@@ -29,6 +29,7 @@ export * from './pagination';
 export * from './password-input';
 export * from './pop-over';
 export * from './preview-files';
+export * from './property-form-sections';
 export * from './radio-group';
 export * from './select';
 export * from './text-input';
