@@ -1,13 +1,6 @@
+import { InputsAdvertsFilter } from '@/components/pages/home/hooks';
 import { UseFormReturn } from 'react-hook-form';
 
-type DetailsInputs = {
-  area: string;
-  priceFrom: string;
-  priceTo: string;
-  rooms: string;
-  year: string;
-};
-
 export type PropertyDetailsSectionProps = {
-  controls: UseFormReturn<DetailsInputs, unknown, DetailsInputs>;
+  controls: UseFormReturn<InputsAdvertsFilter, unknown, InputsAdvertsFilter>;
 };
