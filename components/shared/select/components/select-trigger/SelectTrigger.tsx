@@ -5,7 +5,7 @@ import { useAriaAttributes } from '@/hooks';
 import { useSelect } from '../../store';
 import { useTriggerEvents } from './hooks/trigger-events';
 
-export const SelectTrigger = ({ endIcon }: SelectTriggerProps) => {
+export const SelectTrigger = ({ endIcon, ...props }: SelectTriggerProps) => {
   const { onToggle, open, registerTriggerRef } = usePopOver();
   const { isError, label, size, value, variant } = useSelect();
   const { onClick, onKeyDown } = useTriggerEvents({ onToggle });
@@ -28,8 +28,8 @@ export const SelectTrigger = ({ endIcon }: SelectTriggerProps) => {
     >
       <fieldset className={classes.fieldset} onClick={onClick}>
         <input
+          {...props}
           className={classes.input}
-          type="text"
           readOnly
           value={capitalizeFirstLetter(value)}
           onKeyDown={onKeyDown}

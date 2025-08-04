@@ -1,5 +1,7 @@
 import { Icons } from '@/types';
+import { InputHTMLAttributes } from 'react';
 
-export type SelectTriggerProps = {
+export interface SelectTriggerProps
+  extends InputHTMLAttributes<HTMLInputElement> {
   endIcon: Icons;
-};
+}
