@@ -1,11 +1,12 @@
+import { FilterFormProps } from './types';
 import {
   AmenitiesSection,
+  ArchitectureSection,
   Form,
   LocationSection,
   PropertyDetailsSection,
   PropertyTypeSection,
 } from '@/components';
-import { FilterFormProps } from './types';
 
 export const FilterForm = ({ controls, onSubmit }: FilterFormProps) => {
   return (
@@ -14,6 +15,7 @@ export const FilterForm = ({ controls, onSubmit }: FilterFormProps) => {
       <PropertyTypeSection controls={controls} />
       <PropertyDetailsSection controls={controls} />
       <AmenitiesSection controls={controls} />
+      <ArchitectureSection controls={controls} />
     </Form>
   );
 };
