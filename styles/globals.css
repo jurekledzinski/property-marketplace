@@ -160,6 +160,18 @@
   --max-w-md: 1100px;
   --max-w-lg: 1200px;
   --max-w-xl: 1300px;
+
+  /* Z-index */
+  --z-negative: -1;
+  --z-base: 0;
+  --z-default: 1;
+  --z-adverts-layout: 2;
+  --z-backdrop: 30;
+  --z-drawer: 40;
+  --z-header: 50;
+  --z-popover: 100;
+  --z-modal: 1000;
+  --z-toast: 1100;
 }
 
 [data-theme='dark'] {
