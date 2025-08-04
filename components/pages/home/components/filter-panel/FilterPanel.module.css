@@ -26,10 +26,5 @@
   background-color: var(--color-surface-elevated-1);
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-}
-
-.group button {
-  width: calc(50% - 12px);
-  padding: 0.25rem;
-  cursor: pointer;
+  z-index: var(--z-drawer);
 }
