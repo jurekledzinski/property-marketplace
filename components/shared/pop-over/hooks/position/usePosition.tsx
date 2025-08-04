@@ -2,9 +2,10 @@
 import { arrowFlip } from './helpers';
 import { Placement, setPosition } from '@/components';
 import { SizeWindow, UsePositionProps } from './types';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePanelSize } from '../panel-size';
 import { useWindowResize } from '@/hooks';
+
 import {
   checkHorizontalSpace,
   checkVerticalSpace,
@@ -25,9 +26,7 @@ export const usePosition = ({
   open,
   type = 'floating',
 }: UsePositionProps) => {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  const sizeWindow = useRef({ width, height });
+  const sizeWindow = useRef({ width: 0, height: 0 });
   const [arrowPlacement, setArrowPlacement] = useState<Placement>(placement);
 
   const { heightPanel, widthPanel } = usePanelSize(panelRef, open);
@@ -121,6 +120,13 @@ export const usePosition = ({
       onFlip,
     ]
   );
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      sizeWindow.current.width = window.innerWidth;
+      sizeWindow.current.height = window.innerHeight;
+    }
+  }, []);
 
   useWindowResize({
     onResize: useCallback(
