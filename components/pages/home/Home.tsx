@@ -1,3 +1,4 @@
+'use client';
 import styles from './Home.module.css';
 import { Box, Container } from '@/components';
 import { AdvertsLayout, HeroSection } from './components';
@@ -12,8 +13,8 @@ export const HomePage = () => {
       </Box>
       <Box className={styles.layerMain}>
         <Container
-          className={styles.containerLayout}
           as="main"
+          className={styles.containerLayout}
           margin="m-center"
         >
           <AdvertsLayout />
