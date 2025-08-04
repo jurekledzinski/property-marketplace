@@ -1,6 +1,5 @@
 .layout {
   display: flex;
-  gap: 0.5rem;
   min-height: inherit;
 }
 
@@ -9,6 +8,7 @@
   flex-grow: 1;
   flex-direction: column;
   width: 100%;
+  background-color: var(--color-surface);
 }
 
 .header {
@@ -19,7 +19,7 @@
   justify-content: flex-end;
   gap: 0.5rem;
   z-index: var(--z-adverts-layout);
-  background-color: var(--color-surface-elevated-1);
+  background-color: var(--color-surface);
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   width: 100%;
