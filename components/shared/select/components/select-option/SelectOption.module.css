@@ -11,16 +11,16 @@
 }
 
 .active {
-  background-color: var(--color-hover-option);
+  background-color: var(--color-surface-hover);
 }
 
 .select-option:focus {
-  background-color: var(--color-hover-option);
+  background-color: var(--color-surface-hover);
   outline: none;
 }
 
 .select-option:hover {
-  background-color: var(--color-hover-option);
+  background-color: var(--color-surface-hover);
 }
 
 .size-xs {
