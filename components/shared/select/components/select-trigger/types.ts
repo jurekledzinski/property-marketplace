@@ -3,5 +3,5 @@ import { InputHTMLAttributes } from 'react';
 
 export interface SelectTriggerProps
   extends InputHTMLAttributes<HTMLInputElement> {
-  endIcon: Icons;
+  endIcon?: Icons;
 }
