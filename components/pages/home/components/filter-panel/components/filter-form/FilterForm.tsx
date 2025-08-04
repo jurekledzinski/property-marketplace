@@ -1,4 +1,5 @@
 import {
+  AmenitiesSection,
   Form,
   LocationSection,
   PropertyDetailsSection,
@@ -12,6 +13,7 @@ export const FilterForm = ({ controls, onSubmit }: FilterFormProps) => {
       <LocationSection controls={controls} />
       <PropertyTypeSection controls={controls} />
       <PropertyDetailsSection controls={controls} />
+      <AmenitiesSection controls={controls} />
     </Form>
   );
 };
