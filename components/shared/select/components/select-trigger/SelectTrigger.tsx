@@ -1,11 +1,15 @@
 import { capitalizeFirstLetter } from '@/helpers';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { getClassNamesInput, InputWrapper, usePopOver } from '@/components';
 import { SelectTriggerProps } from './types';
 import { useAriaAttributes } from '@/hooks';
 import { useSelect } from '../../store';
 import { useTriggerEvents } from './hooks/trigger-events';
 
-export const SelectTrigger = ({ endIcon, ...props }: SelectTriggerProps) => {
+export const SelectTrigger = ({
+  endIcon = [faChevronUp, faChevronDown],
+  ...props
+}: SelectTriggerProps) => {
   const { onToggle, open, registerTriggerRef } = usePopOver();
   const { isError, label, size, value, variant } = useSelect();
   const { onClick, onKeyDown } = useTriggerEvents({ onToggle });
