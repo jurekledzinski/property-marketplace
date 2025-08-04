@@ -1,14 +1,13 @@
 'use client';
 import { Controller } from 'react-hook-form';
-import { Field, Message, TextInput } from '@/components';
+import { Field, TextInput } from '@/components';
 import { PropertyDetailsSectionProps } from './types';
 import { useRef } from 'react';
 
 export const PropertyDetailsSection = ({
   controls,
 }: PropertyDetailsSectionProps) => {
-  const { control, formState, setValue } = controls;
-  const { errors } = formState;
+  const { control, setValue } = controls;
   const type = useRef<'number' | 'text'>('number');
 
   return (
@@ -21,7 +20,6 @@ export const PropertyDetailsSection = ({
           max={new Date().getFullYear()}
           placeholder="Year of construciton"
         />
-        <Message variant="error">{errors.year?.message}</Message>
       </Field>
 
       <Field>
@@ -48,7 +46,6 @@ export const PropertyDetailsSection = ({
             />
           )}
         />
-        <Message variant="error">{errors.priceFrom?.message}</Message>
       </Field>
 
       <Field>
@@ -75,7 +72,6 @@ export const PropertyDetailsSection = ({
             />
           )}
         />
-        <Message variant="error">{errors.priceTo?.message}</Message>
       </Field>
 
       <Field>
@@ -86,7 +82,6 @@ export const PropertyDetailsSection = ({
           endIcon={['m²']}
           min={0}
         />
-        <Message variant="error">{errors.area?.message}</Message>
       </Field>
 
       <Field>
@@ -97,7 +92,6 @@ export const PropertyDetailsSection = ({
           min={0}
           step={1}
         />
-        <Message variant="error">{errors.rooms?.message}</Message>
       </Field>
     </>
   );
