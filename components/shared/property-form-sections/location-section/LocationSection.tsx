@@ -39,7 +39,9 @@ export const LocationSection = ({ controls }: LocationSectionProps) => {
             </Select>
           )}
         />
-        <Message variant="error">{errors.country?.message}</Message>
+        {errors.country ? (
+          <Message variant="error">{errors.country?.message}</Message>
+        ) : null}
       </Field>
       <Field>
         <Controller
@@ -61,7 +63,9 @@ export const LocationSection = ({ controls }: LocationSectionProps) => {
             </Select>
           )}
         />
-        <Message variant="error">{errors.country?.message}</Message>
+        {errors.city ? (
+          <Message variant="error">{errors.city?.message}</Message>
+        ) : null}
       </Field>
     </>
   );
