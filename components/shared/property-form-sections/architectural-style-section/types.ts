@@ -1,9 +1,6 @@
+import { InputsAdvertsFilter } from '@/components/pages/home/hooks';
 import { UseFormReturn } from 'react-hook-form';
 
-type ArchitectureInputs = {
-  style: string;
-};
-
 export type ArchitectureProps = {
-  controls: UseFormReturn<ArchitectureInputs, unknown, ArchitectureInputs>;
+  controls: UseFormReturn<InputsAdvertsFilter, unknown, InputsAdvertsFilter>;
 };
