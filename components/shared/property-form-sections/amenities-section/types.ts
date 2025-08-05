@@ -1,4 +1,4 @@
-import { InputsAdvertsFilter } from '@/components/pages/home/hooks';
+import { InputsAdvertsFilter } from '@/components';
 import { UseFormReturn } from 'react-hook-form';
 
 export type AmenitiesSectionProps = {
