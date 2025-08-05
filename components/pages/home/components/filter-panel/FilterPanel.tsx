@@ -13,7 +13,13 @@ export const FilterPanel = ({ children }: FilterPanelProps) => {
           variant="outlined"
           fullWidth
         />
-        <Button label="Apply" color="success" fullWidth />
+        <Button
+          color="success"
+          fullWidth
+          form="filterForm"
+          label="Apply"
+          type="submit"
+        />
       </div>
       <div className={styles.filters}>{children}</div>
     </div>
