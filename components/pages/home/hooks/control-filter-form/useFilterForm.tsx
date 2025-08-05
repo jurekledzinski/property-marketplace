@@ -1,3 +1,4 @@
+'use client';
 import { InputsAdvertsFilter } from './types';
 import { useForm } from 'react-hook-form';
 
@@ -8,7 +9,8 @@ const defaultValues = {
   condition: '',
   advertisement: '',
   year: '',
-  price: '',
+  priceFrom: '',
+  priceTo: '',
   area: '',
   rooms: '',
   amenities: [],
