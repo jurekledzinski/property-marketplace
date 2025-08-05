@@ -1,10 +1,14 @@
 import { ArchitectureProps } from './types';
-import { Field, Label, Radio, RadioGroup } from '@/components';
+import { Field, Label, Message, Radio, RadioGroup } from '@/components';
 
 const architectureStyles = ['Modern', 'Traditional', 'Minimalist', 'Other'];
 
-export const ArchitectureSection = ({ controls }: ArchitectureProps) => {
-  const { register } = controls;
+export const ArchitectureSection = ({
+  controls,
+  rulesArchitecture,
+}: ArchitectureProps) => {
+  const { formState, register } = controls;
+  const { errors } = formState;
 
   return (
     <>
@@ -14,7 +18,7 @@ export const ArchitectureSection = ({ controls }: ArchitectureProps) => {
           {architectureStyles.map((style) => (
             <Radio
               key={style}
-              {...register('style')}
+              {...register('style', rulesArchitecture)}
               id={style.toLowerCase()}
               value={style.toLowerCase()}
               color={'primary'}
@@ -25,6 +29,9 @@ export const ArchitectureSection = ({ controls }: ArchitectureProps) => {
             </Radio>
           ))}
         </RadioGroup>
+        {errors.style ? (
+          <Message variant="error">{errors.style.message}</Message>
+        ) : null}
       </Field>
     </>
   );
