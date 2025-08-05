@@ -1,11 +1,11 @@
-import React from 'react';
+import { Ref } from 'react';
 import { InputVariant, Size } from '@/types';
 
 export type BaseInputProps<T> = {
   disabled?: boolean;
   isError?: boolean;
   name?: string;
-  ref?: React.LegacyRef<T>;
+  ref?: Ref<T>;
   placeholder?: string;
   readOnly?: boolean;
   size?: Size;

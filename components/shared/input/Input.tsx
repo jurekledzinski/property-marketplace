@@ -13,7 +13,7 @@ export const Input = forwardRef<UnionElements, MergeProps>(
       placeholder = '',
       ...props
     },
-    ref: Ref<UnionElements>
+    ref
   ) => {
     const classes = getClassNamesInput({ variant, size, isError, disabled });
 
@@ -22,6 +22,7 @@ export const Input = forwardRef<UnionElements, MergeProps>(
         <fieldset className={classes.fieldset}>
           <textarea
             {...props}
+            autoComplete="off"
             ref={ref as Ref<HTMLTextAreaElement>}
             aria-label={props.label}
             className={classes.textarea}
@@ -44,6 +45,7 @@ export const Input = forwardRef<UnionElements, MergeProps>(
             type: 'text',
             ...props,
           }}
+          autoComplete="off"
           ref={ref as Ref<HTMLInputElement>}
           aria-label={props.label}
           className={classes.input}
