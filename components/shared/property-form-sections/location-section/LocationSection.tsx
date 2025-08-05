@@ -14,7 +14,7 @@ const countries = ['Poland', 'Slovakia', 'Croatia'];
 const cities = ['Szczecin', 'Wroclaw', 'Krakow'];
 
 export const LocationSection = ({ controls }: LocationSectionProps) => {
-  const { control, formState } = controls;
+  const { control, formState, watch } = controls;
   const { errors } = formState;
 
   return (
@@ -50,7 +50,10 @@ export const LocationSection = ({ controls }: LocationSectionProps) => {
           rules={{ required: { message: 'City is requird', value: true } }}
           render={({ field: { onChange, ...rest } }) => (
             <Select onChange={(id) => onChange(id)} {...rest}>
-              <SelectTrigger placeholder="Select city" />
+              <SelectTrigger
+                placeholder="Select city"
+                disabled={watch('country') === ''}
+              />
               <SelectPanel>
                 <SelectList>
                   {cities.map((city) => (
