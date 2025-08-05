@@ -1,3 +1,4 @@
+'use client';
 import { InputsLogin } from './types';
 import { useForm } from 'react-hook-form';
 
