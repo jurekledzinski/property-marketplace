@@ -1,4 +1,4 @@
-import { InputsAdvertsFilter } from '../../../../hooks';
+import { InputsAdvertsFilter } from '@/components';
 import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 export type FilterFormProps = {
