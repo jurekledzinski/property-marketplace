@@ -14,12 +14,12 @@ export const ArchitectureSection = ({ controls }: ArchitectureProps) => {
           {architectureStyles.map((style) => (
             <Radio
               key={style}
+              {...register('style')}
               id={style.toLowerCase()}
               value={style.toLowerCase()}
               color={'primary'}
               size={'size-xs'}
               variant={'filled'}
-              {...register('style')}
             >
               {style}
             </Radio>
