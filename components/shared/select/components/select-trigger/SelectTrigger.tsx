@@ -20,6 +20,7 @@ export const SelectTrigger = ({
 
   return (
     <InputWrapper
+      disabled={props.disabled}
       divider={true}
       endIcon={isOpen ? endIcon[0] : endIcon[1]}
       isError={isError}
