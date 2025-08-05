@@ -1,4 +1,5 @@
-import { Controller } from 'react-hook-form';
+'use client';
+import { Controller, useWatch } from 'react-hook-form';
 import { LocationSectionProps } from './types';
 import {
   Field,
@@ -13,9 +14,14 @@ import {
 const countries = ['Poland', 'Slovakia', 'Croatia'];
 const cities = ['Szczecin', 'Wroclaw', 'Krakow'];
 
-export const LocationSection = ({ controls }: LocationSectionProps) => {
-  const { control, formState, watch } = controls;
+export const LocationSection = ({
+  controls,
+  rulesCountry,
+  rulesCity,
+}: LocationSectionProps) => {
+  const { control, formState } = controls;
   const { errors } = formState;
+  const country = useWatch({ name: 'country', control });
 
   return (
     <>
@@ -23,7 +29,7 @@ export const LocationSection = ({ controls }: LocationSectionProps) => {
         <Controller
           name={'country'}
           control={control}
-          rules={{ required: { message: 'Country is requird', value: true } }}
+          rules={rulesCountry}
           render={({ field: { onChange, ...rest } }) => (
             <Select onChange={(id) => onChange(id)} {...rest}>
               <SelectTrigger placeholder="Select country" />
@@ -47,12 +53,12 @@ export const LocationSection = ({ controls }: LocationSectionProps) => {
         <Controller
           name={'city'}
           control={control}
-          rules={{ required: { message: 'City is requird', value: true } }}
+          rules={rulesCity}
           render={({ field: { onChange, ...rest } }) => (
             <Select onChange={(id) => onChange(id)} {...rest}>
               <SelectTrigger
                 placeholder="Select city"
-                disabled={watch('country') === ''}
+                disabled={country === ''}
               />
               <SelectPanel>
                 <SelectList>
