@@ -1,10 +1,6 @@
 import { InputsAdvertsFilter } from '@/components';
-import { UseControllerProps, UseFormReturn } from 'react-hook-form';
-
-type Rule<K extends keyof InputsAdvertsFilter> = UseControllerProps<
-  InputsAdvertsFilter,
-  K
->['rules'];
+import { Rule } from '../types';
+import { UseFormReturn } from 'react-hook-form';
 
 export type PropertyTypeSectionProps = {
   controls: UseFormReturn<InputsAdvertsFilter, unknown, InputsAdvertsFilter>;

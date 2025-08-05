@@ -51,7 +51,7 @@ export const PropertyTypeSection = ({
           )}
         />
         {errors.property ? (
-          <Message variant="error">{errors.property?.message}</Message>
+          <Message variant="error">{errors.property.message}</Message>
         ) : null}
       </Field>
       <Field>
@@ -75,7 +75,7 @@ export const PropertyTypeSection = ({
           )}
         />
         {errors.condition ? (
-          <Message variant="error">{errors.condition?.message}</Message>
+          <Message variant="error">{errors.condition.message}</Message>
         ) : null}
       </Field>
       <Field>
@@ -96,7 +96,7 @@ export const PropertyTypeSection = ({
           )}
         />
         {errors.advertisement ? (
-          <Message variant="error">{errors.advertisement?.message}</Message>
+          <Message variant="error">{errors.advertisement.message}</Message>
         ) : null}
       </Field>
     </>
