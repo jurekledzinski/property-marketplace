@@ -46,7 +46,7 @@ export const LocationSection = ({
           )}
         />
         {errors.country ? (
-          <Message variant="error">{errors.country?.message}</Message>
+          <Message variant="error">{errors.country.message}</Message>
         ) : null}
       </Field>
       <Field>
@@ -73,7 +73,7 @@ export const LocationSection = ({
           )}
         />
         {errors.city ? (
-          <Message variant="error">{errors.city?.message}</Message>
+          <Message variant="error">{errors.city.message}</Message>
         ) : null}
       </Field>
     </>
