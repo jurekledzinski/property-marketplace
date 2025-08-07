@@ -31,6 +31,7 @@ export * from './pop-over';
 export * from './preview-files';
 export * from './property-form-sections';
 export * from './radio-group';
+export * from './search-input';
 export * from './select';
 export * from './text-input';
 export * from './validation-checklist';

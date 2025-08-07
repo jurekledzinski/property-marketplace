@@ -2,15 +2,17 @@
 import { getClassNamesImage } from '../utils';
 import { ImageContainerProps } from './types';
 import { useState } from 'react';
+import { classNames } from '@/helpers';
 
 export const ImageContainer = ({
   children,
+  className,
   loader,
   ...props
 }: ImageContainerProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const classNames = getClassNamesImage(isLoading, loader);
+  const classes = getClassNamesImage(isLoading, loader);
 
   const onLoad = () => {
     setIsLoading(false);
@@ -22,7 +24,7 @@ export const ImageContainer = ({
   };
 
   return (
-    <div {...props} className={classNames}>
+    <div {...props} className={classNames(className, classes)}>
       {children ? children({ isError, isLoading, onLoad, onError }) : null}
     </div>
   );
