@@ -1,9 +1,10 @@
 'use client';
 import styles from './Home.module.css';
 import { Box, Container } from '@/components';
+import { HomeProps } from './types';
 import { AdvertsLayout, HeroSection } from './components';
 
-export const HomePage = () => {
+export const HomePage = ({ searchValue, sortValue }: HomeProps) => {
   return (
     <>
       <Box className={styles.layerHero}>
@@ -17,7 +18,7 @@ export const HomePage = () => {
           className={styles.containerLayout}
           margin="m-center"
         >
-          <AdvertsLayout />
+          <AdvertsLayout searchValue={searchValue} sortValue={sortValue} />
         </Container>
       </Box>
     </>
