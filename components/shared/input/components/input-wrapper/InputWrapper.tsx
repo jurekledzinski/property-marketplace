@@ -10,7 +10,13 @@ import {
 
 export const InputWrapper = forwardRef<HTMLDivElement, InputWrapperProps>(
   (
-    { children, size = 'size-sm', variant = 'basic', statusVisible, ...props },
+    {
+      children,
+      size = 'size-sm',
+      variant = 'basic',
+      statusVisible = true,
+      ...props
+    },
     ref
   ) => {
     const classes = getClassNamesInputWrapper({ ...props, size, variant });
@@ -20,23 +26,24 @@ export const InputWrapper = forwardRef<HTMLDivElement, InputWrapperProps>(
       isError,
       isPending,
       startIcon,
-      divider,
+      dividerStart,
+      dividerEnd,
       endIcon,
       onClickStartIcon,
       onClickEndIcon,
-
       ...rest
     } = props;
 
     return (
       <div {...rest} className={classes.inputWrapper} ref={ref}>
-        {as === 'input' && startIcon && (
+        {(as === 'input' && startIcon) ||
+        (as === 'input' && dividerStart && startIcon) ? (
           <ButtonIcon
             className={classes.startIcon}
             icon={startIcon}
             onClick={onClickStartIcon}
           />
-        )}
+        ) : null}
 
         {children}
 
@@ -55,7 +62,7 @@ export const InputWrapper = forwardRef<HTMLDivElement, InputWrapperProps>(
           <div className={classes.endIcon}>
             <Loader size={size} />
           </div>
-        ) : (endIcon && isError === undefined) || (divider && endIcon) ? (
+        ) : (endIcon && isError === undefined) || (dividerEnd && endIcon) ? (
           <ButtonIcon
             className={classes.endIcon}
             icon={endIcon}

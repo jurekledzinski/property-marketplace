@@ -422,16 +422,23 @@
 }
 
 /* --- Styled elements inside --- */
-
-.wrapper-divider > button.endIcon::before {
+.wrapper-divider-start > button.startIcon::after,
+.wrapper-divider-end > button.endIcon::before {
   content: '';
   display: block;
   position: absolute;
   top: 4px;
   bottom: 4px;
-  left: 0;
   width: 1px;
   background-color: var(--color-black-500);
+}
+
+.wrapper-divider-start > button.startIcon::after {
+  right: 0;
+}
+
+.wrapper-divider-end > button.endIcon::before {
+  left: 0;
 }
 
 .wrapper > .endIcon,
@@ -445,6 +452,7 @@
   color: var(--color-black-600);
   padding: 6px 8px;
   width: 38px;
+  min-width: 38px;
   box-shadow: none;
   outline: none;
 }
@@ -458,13 +466,13 @@
   outline: none;
 }
 
-.wrapper-startIcon .input {
+.wrapper-startIcon:not(.wrapper-divider-start) .input {
   padding-left: 0;
 }
 
 .wrapper-inValid .input,
 .wrapper-valid .input,
-.wrapper-endIcon:not(.wrapper-divider) .input {
+.wrapper-endIcon:not(.wrapper-divider-end) .input {
   padding-right: 0;
 }
 
@@ -688,7 +696,8 @@
   color: var(--color-disabled-200);
 }
 
-.wrapper-disabled.wrapper-divider button.endIcon::before {
+.wrapper-disabled.wrapper-divider-end button.endIcon::before,
+.wrapper-disabled.wrapper-divider-start button.startIcon::after {
   background-color: var(--color-disabled-100);
 }
 

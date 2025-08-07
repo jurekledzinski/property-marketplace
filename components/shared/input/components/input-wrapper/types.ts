@@ -2,7 +2,8 @@ import { Icon, InputVariant, Size } from '@/types';
 
 export interface InputWrapperProps {
   as?: 'input' | 'textarea';
-  divider?: boolean;
+  dividerStart?: boolean;
+  dividerEnd?: boolean;
   disabled?: boolean;
   children: React.ReactNode;
   endIcon?: Icon | string;

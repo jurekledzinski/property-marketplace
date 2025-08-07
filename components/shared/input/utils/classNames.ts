@@ -8,7 +8,8 @@ export const getClassNamesInputWrapper: GetClassNamesInputWrapper = (
   const {
     as,
     disabled,
-    divider,
+    dividerStart,
+    dividerEnd,
     endIcon,
     isError,
     size = 'size-md',
@@ -29,9 +30,12 @@ export const getClassNamesInputWrapper: GetClassNamesInputWrapper = (
       'wrapper-valid': isError === false,
       'wrapper-startIcon': Boolean(startIcon),
       'wrapper-endIcon': Boolean(endIcon) || Boolean(isPending),
-      'wrapper-divider':
-        (Boolean(divider) && variant === 'basic') ||
-        (Boolean(divider) && variant === 'outlined'),
+      'wrapper-divider-end':
+        (Boolean(dividerEnd) && variant === 'basic') ||
+        (Boolean(dividerEnd) && variant === 'outlined'),
+      'wrapper-divider-start':
+        (Boolean(dividerStart) && variant === 'basic') ||
+        (Boolean(dividerStart) && variant === 'outlined'),
       'wrapper-text': as === 'input',
       'wrapper-area': as === 'textarea',
     }),
