@@ -58,6 +58,42 @@ export type PaddingToken =
   | 'p-lg'
   | number;
 
+export type PaddingTopToken =
+  | 'pt-initial'
+  | 'pt-xxs'
+  | 'pt-xs'
+  | 'pt-sm'
+  | 'pt-md'
+  | 'pt-lg'
+  | number;
+
+export type PaddingBottomToken =
+  | 'pb-initial'
+  | 'pb-xxs'
+  | 'pb-xs'
+  | 'pb-sm'
+  | 'pb-md'
+  | 'pb-lg'
+  | number;
+
+export type PaddingRightToken =
+  | 'pr-initial'
+  | 'pr-xxs'
+  | 'pr-xs'
+  | 'pr-sm'
+  | 'pr-md'
+  | 'pr-lg'
+  | number;
+
+export type PaddingLeftToken =
+  | 'pl-initial'
+  | 'pl-xxs'
+  | 'pl-xs'
+  | 'pl-sm'
+  | 'pl-md'
+  | 'pl-lg'
+  | number;
+
 export type MarginToken =
   | 'm-center'
   | 'm-initial'
@@ -66,6 +102,42 @@ export type MarginToken =
   | 'm-sm'
   | 'm-md'
   | 'm-lg'
+  | number;
+
+export type MarginTopToken =
+  | 'mt-initial'
+  | 'mt-xxs'
+  | 'mt-xs'
+  | 'mt-sm'
+  | 'mt-md'
+  | 'mt-lg'
+  | number;
+
+export type MarginBottomToken =
+  | 'mb-initial'
+  | 'mb-xxs'
+  | 'mb-xs'
+  | 'mb-sm'
+  | 'mb-md'
+  | 'mb-lg'
+  | number;
+
+export type MarginRightToken =
+  | 'mr-initial'
+  | 'mr-xxs'
+  | 'mr-xs'
+  | 'mr-sm'
+  | 'mr-md'
+  | 'mr-lg'
+  | number;
+
+export type MarginLeftToken =
+  | 'ml-initial'
+  | 'ml-xxs'
+  | 'ml-xs'
+  | 'ml-sm'
+  | 'ml-md'
+  | 'ml-lg'
   | number;
 
 export type MaxWidthToken = 'mw-sm' | 'mw-md' | 'mw-lg' | 'mw-xl' | number;
