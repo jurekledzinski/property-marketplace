@@ -128,33 +128,6 @@
   color: var(--color-warning-900);
 }
 
-/* Outline text color icon */
-
-/* .outlined.primary svg,
-.text.primary svg {
-  fill: var(--color-primary-700);
-}
-
-.outlined.secondary svg,
-.text.secondary svg {
-  fill: var(--color-secondary-400);
-}
-
-.outlined.success svg,
-.text.success svg {
-  fill: var(--color-success-400);
-}
-
-.outlined.negative svg,
-.text.negative svg {
-  fill: var(--color-negative-500);
-}
-
-.outlined.warning svg,
-.text.warning svg {
-  fill: var(--color-warning-900);
-} */
-
 /* --- Hover outline variant --- */
 
 .outlined.primary:hover,
