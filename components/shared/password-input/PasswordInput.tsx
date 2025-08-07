@@ -18,7 +18,7 @@ export const PasswordInput = forwardRef<
     return (
       <div className={styles.passwordInput}>
         <InputWrapper
-          divider={true}
+          dividerEnd={true}
           isPending={isPending}
           onClickEndIcon={(e) => {
             e.preventDefault();
