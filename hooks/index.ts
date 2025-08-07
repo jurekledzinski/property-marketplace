@@ -6,3 +6,4 @@ export * from './key-press';
 export * from './resize-observer';
 export * from './window-resize';
 export * from './window-scroll';
+export * from './set-queries';
