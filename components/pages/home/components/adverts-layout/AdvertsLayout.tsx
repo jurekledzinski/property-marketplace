@@ -1,7 +1,7 @@
+'use clien';
 import styles from './AdvertsLayout.module.css';
-import { InputsAdvertsFilter, useFilterForm } from '@/components';
-import { SubmitHandler } from 'react-hook-form';
-import { useCallback } from 'react';
+import { AdvertsLayoutProps } from './types';
+
 import {
   Backdrop,
   Drawer,
@@ -9,24 +9,30 @@ import {
   FilterPanel,
   HeaderPanel,
   CardsSection,
+  useFilterForm,
 } from '@/components';
 
-export const AdvertsLayout = () => {
-  const controls = useFilterForm();
-  const onSubmit: SubmitHandler<InputsAdvertsFilter> = useCallback((data) => {
-    console.log('Submit', data);
-  }, []);
+export const AdvertsLayout = ({
+  searchValue,
+  sortValue,
+}: AdvertsLayoutProps) => {
+  const { formControl, onSubmit, onResetAllFilters } = useFilterForm();
+
+  console.log('Filters', formControl.watch());
 
   return (
     <div className={styles.layout}>
       <div className={styles.wrapper}>
-        <HeaderPanel />
+        <HeaderPanel
+          searchValue={decodeURIComponent(searchValue ?? '')}
+          sortValue={decodeURIComponent(sortValue ?? '')}
+        />
         <CardsSection />
       </div>
       <Backdrop open={false} />
       <Drawer variant="pinned" direction="right">
-        <FilterPanel>
-          <FilterForm controls={controls} onSubmit={onSubmit} />
+        <FilterPanel onResetAllFilters={onResetAllFilters}>
+          <FilterForm controls={formControl} onSubmit={onSubmit} />
         </FilterPanel>
       </Drawer>
     </div>
