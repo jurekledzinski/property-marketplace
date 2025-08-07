@@ -4,5 +4,5 @@ import { Rule } from '../types';
 
 export type ArchitectureProps = {
   controls: UseFormReturn<InputsAdvertsFilter, unknown, InputsAdvertsFilter>;
-  rulesArchitecture: Rule<'style'>;
+  rulesArchitecture?: Rule<'style'>;
 };
