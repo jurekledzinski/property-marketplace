@@ -1,5 +1,6 @@
 import styles from './CardAdvert.module.css';
 import { CardAdvertProps } from './types';
+import { formatNumber } from '@/helpers';
 import {
   faBath,
   faBed,
@@ -9,6 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Alert,
+  Box,
   Button,
   ButtonGroup,
   Card,
@@ -18,6 +20,7 @@ import {
   Icon,
   Image,
   ImageContainer,
+  optionsFormat,
 } from '@/components';
 
 export const CardAdvert = ({ dataAdvert }: CardAdvertProps) => {
@@ -34,6 +37,8 @@ export const CardAdvert = ({ dataAdvert }: CardAdvertProps) => {
     title,
     typeAdvert,
   } = dataAdvert;
+
+  const format = formatNumber(price.toString(), 'nl-NL', optionsFormat);
 
   return (
     <Card className={styles.card}>
@@ -65,19 +70,31 @@ export const CardAdvert = ({ dataAdvert }: CardAdvertProps) => {
         </ImageContainer>
       </CardHeader>
       <CardContent className={styles.content}>
-        <Heading className={styles.title} level={4}>
+        <Heading className={styles.title} level={3}>
           {title}
         </Heading>
+
         <p className={styles.location}>
           <Icon icon={faLocationDot} /> {street} {postalCode} {city} {country}
         </p>
-        <p className={styles.price}>
+
+        <Box className={styles.amenities}>
+          <Icon icon={faBed} />
+          {rooms > 1 ? `${rooms} rooms` : `${rooms} room`}
+          <Icon icon={faBath} />
+          {bathrooms > 1 ? `${bathrooms} baths` : `${bathrooms} bath`}
+          <Icon icon={faRulerCombined} />
+          {area} m²
+        </Box>
+
+        <Heading className={styles.price} level={4}>
           {typeAdvert.toLowerCase() === 'sale'
-            ? `${price}€`
-            : `${price}€/month`}
-        </p>
+            ? `${format.format}`
+            : `${format.format}/month`}
+        </Heading>
+
         <ButtonGroup orientation="row" justify="justify-end" fullWidth p="p-md">
-          <Button label="Read more ..." variant="outlined" color="success" />
+          <Button label="Read more ..." variant="contained" color="primary" />
         </ButtonGroup>
       </CardContent>
     </Card>
