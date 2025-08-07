@@ -39,7 +39,7 @@ export const RegisterForm = ({
         <Message>Confirm password is required</Message>
       </Field>
       <RegisterValidation passwordRules={passwordRules} />
-      <ButtonGroup marginTop={16} fullWidth>
+      <ButtonGroup mt="mt-md" fullWidth>
         <Button type="submit" label="Sign In" fullWidth size="size-lg" />
       </ButtonGroup>
     </Form>

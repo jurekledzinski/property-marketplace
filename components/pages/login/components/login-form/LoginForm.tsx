@@ -23,7 +23,7 @@ export const LoginForm = ({ controls, onSubmit }: LoginFormProps) => {
         <PasswordInput />
         <Message>Email is required</Message>
       </Field>
-      <ButtonGroup marginTop={16} fullWidth>
+      <ButtonGroup mt="mt-md" fullWidth>
         <Button type="submit" label="Sign In" fullWidth size="size-lg" />
       </ButtonGroup>
     </Form>
