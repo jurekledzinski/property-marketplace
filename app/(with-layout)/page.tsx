@@ -1,7 +1,12 @@
 import { HomePage } from '@/components';
 
-const Home = () => {
-  return <HomePage />;
+type HomePageProps = {
+  searchParams: Promise<{ search?: string; sort?: string }>;
+};
+
+const Home = async ({ searchParams }: HomePageProps) => {
+  const filters = await searchParams;
+  return <HomePage searchValue={filters?.search} sortValue={filters?.sort} />;
 };
 
 export default Home;
