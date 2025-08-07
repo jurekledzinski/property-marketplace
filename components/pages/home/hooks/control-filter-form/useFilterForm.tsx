@@ -1,6 +1,7 @@
 'use client';
+import { useCallback } from 'react';
 import { InputsAdvertsFilter } from './types';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 const defaultValues = {
   country: '',
@@ -22,5 +23,14 @@ export const useFilterForm = () => {
     defaultValues,
   });
 
-  return formControl;
+  const onResetAllFilters = () => formControl.reset();
+
+  const onResetFilter = <K extends keyof InputsAdvertsFilter>(key: K) =>
+    formControl.reset({ [key]: undefined });
+
+  const onSubmit: SubmitHandler<InputsAdvertsFilter> = useCallback((data) => {
+    console.log('Submit', data);
+  }, []);
+
+  return { formControl, onSubmit, onResetFilter, onResetAllFilters };
 };
