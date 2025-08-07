@@ -11,9 +11,10 @@
   padding: 1px 0.5rem 0.5rem 0.5rem;
   max-height: calc(100vh - 6.5rem);
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
   overflow-x: clip;
   overflow-y: auto;
+  overscroll-behavior-y: none;
+  overscroll-behavior-block: contain;
 }
 
 .group {
