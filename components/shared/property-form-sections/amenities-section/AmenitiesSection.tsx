@@ -21,7 +21,7 @@ const amenities = [
 ];
 
 export const AmenitiesSection = ({ controls }: AmenitiesSectionProps) => {
-  const { control } = controls;
+  const { register } = controls;
 
   return (
     <>
@@ -31,7 +31,7 @@ export const AmenitiesSection = ({ controls }: AmenitiesSectionProps) => {
           {amenities.map((amenity) => (
             <Checkbox
               key={amenity}
-              {...control.register('amenities')}
+              {...register('amenities')}
               id={amenity.toLowerCase()}
               value={amenity.toLowerCase()}
               size="size-xs"
