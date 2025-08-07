@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.pixabay.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+        port: '',
+      },
     ],
   },
 };
