@@ -5,7 +5,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 export const Header = () => {
   return (
     <AppBar className={styles.bar}>
-      <Container margin="m-center">
+      <Container m="m-center">
         <nav className={styles.nav}>
           <Heading level={4}>PlaceQuest</Heading>
           <ButtonGroup spacing="normal">

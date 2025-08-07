@@ -8,16 +8,12 @@ export const HomePage = ({ searchValue, sortValue }: HomeProps) => {
   return (
     <>
       <Box className={styles.layerHero}>
-        <Container margin="m-center">
+        <Container m="m-center">
           <HeroSection />
         </Container>
       </Box>
       <Box className={styles.layerMain}>
-        <Container
-          as="main"
-          className={styles.containerLayout}
-          margin="m-center"
-        >
+        <Container as="main" className={styles.containerLayout} m="m-center">
           <AdvertsLayout searchValue={searchValue} sortValue={sortValue} />
         </Container>
       </Box>
