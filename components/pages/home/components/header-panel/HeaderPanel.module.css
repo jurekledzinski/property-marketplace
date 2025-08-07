@@ -12,6 +12,12 @@
   width: 100%;
 }
 
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 @media (min-width: 575px) {
   .header {
     flex-direction: row;
