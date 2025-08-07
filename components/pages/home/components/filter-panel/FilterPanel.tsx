@@ -3,7 +3,10 @@ import styles from './FilterPanel.module.css';
 import { FilterPanelProps } from './types';
 import { Button } from '@/components';
 
-export const FilterPanel = ({ children }: FilterPanelProps) => {
+export const FilterPanel = ({
+  children,
+  onResetAllFilters,
+}: FilterPanelProps) => {
   return (
     <div className={styles.panel}>
       <div className={styles.group}>
@@ -12,6 +15,7 @@ export const FilterPanel = ({ children }: FilterPanelProps) => {
           color="secondary"
           variant="outlined"
           fullWidth
+          onClick={onResetAllFilters}
         />
         <Button
           color="success"
