@@ -10,7 +10,6 @@ import {
 } from '@/components';
 
 export const FilterForm = ({ controls, onSubmit, reset }: FilterFormProps) => {
-  console.log('FilterForm ------------');
   return (
     <Form id="filterForm" onSubmit={controls.handleSubmit(onSubmit)} noValidate>
       <LocationSection key={reset.location} controls={controls} />

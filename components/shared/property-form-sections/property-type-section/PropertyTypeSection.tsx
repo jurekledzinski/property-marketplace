@@ -32,7 +32,6 @@ export const PropertyTypeSection = memo(
   }: PropertyTypeSectionProps) => {
     const { control, formState } = controls;
     const { errors } = formState;
-    console.log('PropertyTypeSection 2');
 
     return (
       <>

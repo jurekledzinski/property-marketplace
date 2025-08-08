@@ -9,8 +9,6 @@ export const ArchitectureSection = memo(
     const { formState, register } = controls;
     const { errors } = formState;
 
-    console.log('ArchitectureSection 6');
-
     return (
       <>
         <Field>

@@ -21,8 +21,6 @@ export const LocationSection = memo(
     const { errors } = formState;
     const country = useWatch({ name: 'country', control });
 
-    console.log('LocationSection 1');
-
     return (
       <>
         <Field>

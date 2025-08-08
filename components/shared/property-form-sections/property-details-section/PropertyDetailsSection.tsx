@@ -12,7 +12,6 @@ export const PropertyDetailsSection = memo(
   }: PropertyDetailsSectionProps) => {
     const { formState, register } = controls;
     const { errors } = formState;
-    console.log('PropertyDetailsSection 3');
 
     return (
       <>

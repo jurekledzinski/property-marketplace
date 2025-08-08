@@ -25,8 +25,6 @@ const amenities = [
 export const AmenitiesSection = memo(({ controls }: AmenitiesSectionProps) => {
   const { register } = controls;
 
-  console.log('AmenitiesSection 5');
-
   return (
     <>
       <Field>

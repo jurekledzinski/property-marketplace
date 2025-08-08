@@ -22,8 +22,6 @@ export const PriceSection = memo(({ controls }: PriceSectionProps) => {
     },
   });
 
-  console.log('PriceSection 4');
-
   return (
     <>
       <Field>

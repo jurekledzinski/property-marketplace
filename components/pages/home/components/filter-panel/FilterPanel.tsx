@@ -8,7 +8,6 @@ export const FilterPanel = ({
   onResetAllFilters,
   isFormEmpty,
 }: FilterPanelProps) => {
-  console.log('FilterPanel ------------');
   return (
     <div className={styles.panel}>
       <div className={styles.group}>
@@ -19,6 +18,7 @@ export const FilterPanel = ({
           fullWidth
           onClick={onResetAllFilters}
           disabled={!isFormEmpty}
+          type="button"
         />
         <Button
           color="success"
