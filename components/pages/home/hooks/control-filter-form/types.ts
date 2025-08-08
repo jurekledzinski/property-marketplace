@@ -1,3 +1,5 @@
+import { useSetQuries } from '@/hooks';
+
 export type InputsAdvertsFilter = {
   country: string;
   city: string;
@@ -12,3 +14,5 @@ export type InputsAdvertsFilter = {
   amenities: string[];
   style: string;
 };
+
+export type UseFilterFormProps = ReturnType<typeof useSetQuries>;
