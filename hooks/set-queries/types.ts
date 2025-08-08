@@ -1,10 +1,18 @@
 import { ChangeEvent } from 'react';
 
-export type OnChangeQuery = (
-  e: ChangeEvent<HTMLInputElement> | string,
-  key?: string
-) => string | ChangeEvent<HTMLInputElement>;
+export type UpdateQuery = (
+  query: URLSearchParams,
+  e: ChangeEvent<HTMLInputElement> | string | string[],
+  key: string
+) => URLSearchParams;
 
 export type OnClearQuery = (key: string) => void;
 
 export type OnClearQueryAll = (keys: string[]) => void;
+
+export type SetQuery = (
+  value: string | string[],
+  key: string,
+  query: URLSearchParams,
+  encoded: string
+) => URLSearchParams;
