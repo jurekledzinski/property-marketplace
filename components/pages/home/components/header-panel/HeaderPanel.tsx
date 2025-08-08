@@ -6,19 +6,20 @@ import { useSetQuries } from '@/hooks';
 
 export const HeaderPanel = memo(
   ({ searchValue, sortValue }: HeaderPanelProps) => {
-    const { onChange: onChangeSearch, onClear: onClearSearch } = useSetQuries();
-    const { onChange: onChangeSort } = useSetQuries();
+    const { setQueryString: onSearchQuery, onClear: onClearQuerySearch } =
+      useSetQuries();
+    const { setQueryString: onSortQuery } = useSetQuries();
 
     return (
       <header className={styles.header}>
         <SearchBar
           searchValue={searchValue}
-          onClickEndIcon={() => onClearSearch('search')}
-          onChange={(e) => onChangeSearch(e, 'search')}
+          onClickEndIcon={() => onClearQuerySearch('search')}
+          onChange={(e) => onSearchQuery(e, 'search')}
         />
         <SortSelector
           sortValue={sortValue}
-          onChange={(e) => onChangeSort(e, 'sort')}
+          onChange={(e) => onSortQuery(e, 'sort')}
         />
       </header>
     );
