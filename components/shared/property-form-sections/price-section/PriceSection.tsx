@@ -1,11 +1,12 @@
 'use client';
 import { Controller, useFormState } from 'react-hook-form';
 import { Field, Message, TextInput, usePriceInputFormat } from '@/components';
+import { memo } from 'react';
 import { PriceSectionProps } from './types';
 import { useRef } from 'react';
 import { validate } from './utils';
 
-export const PriceSection = ({ controls }: PriceSectionProps) => {
+export const PriceSection = memo(({ controls }: PriceSectionProps) => {
   const typePriceFrom = useRef<'number' | 'text'>('number');
   const typePriceTo = useRef<'number' | 'text'>('number');
   const { control, setValue } = controls;
@@ -20,6 +21,8 @@ export const PriceSection = ({ controls }: PriceSectionProps) => {
       setValue(name, value, { shouldValidate: true });
     },
   });
+
+  console.log('PriceSection 4');
 
   return (
     <>
@@ -65,4 +68,6 @@ export const PriceSection = ({ controls }: PriceSectionProps) => {
       </Field>
     </>
   );
-};
+});
+
+PriceSection.displayName = 'PriceSection';
