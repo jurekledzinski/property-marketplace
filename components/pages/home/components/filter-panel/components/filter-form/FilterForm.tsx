@@ -1,5 +1,4 @@
 import { FilterFormProps } from './types';
-import { memo } from 'react';
 import {
   AmenitiesSection,
   ArchitectureSection,
@@ -10,17 +9,16 @@ import {
   PropertyTypeSection,
 } from '@/components';
 
-export const FilterForm = memo(({ controls, onSubmit }: FilterFormProps) => {
+export const FilterForm = ({ controls, onSubmit, reset }: FilterFormProps) => {
+  console.log('FilterForm ------------');
   return (
     <Form id="filterForm" onSubmit={controls.handleSubmit(onSubmit)} noValidate>
-      <LocationSection controls={controls} />
-      <PropertyTypeSection controls={controls} />
-      <PropertyDetailsSection controls={controls} />
-      <PriceSection controls={controls} />
-      <AmenitiesSection controls={controls} />
-      <ArchitectureSection controls={controls} />
+      <LocationSection key={reset.location} controls={controls} />
+      <PropertyTypeSection key={reset.type} controls={controls} />
+      <PropertyDetailsSection key={reset.details} controls={controls} />
+      <PriceSection key={reset.price} controls={controls} />
+      <AmenitiesSection key={reset.amenities} controls={controls} />
+      <ArchitectureSection key={reset.architecture} controls={controls} />
     </Form>
   );
-});
-
-FilterForm.displayName = 'FilterForm';
+};
