@@ -13,8 +13,7 @@
   -webkit-overflow-scrolling: touch;
   overflow-x: clip;
   overflow-y: auto;
-  overscroll-behavior-y: none;
-  overscroll-behavior-block: contain;
+  overscroll-behavior: none;
 }
 
 .group {
