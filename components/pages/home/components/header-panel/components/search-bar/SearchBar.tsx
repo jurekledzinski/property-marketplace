@@ -17,7 +17,7 @@ export const SearchBar = ({
       {...(state === '' ? {} : { endIcon: [faXmark] })}
       startIcon={[faMagnifyingGlass]}
       onChange={(e) => {
-        onChange(e);
+        onChange(e.target.value);
         setState(e.target.value);
       }}
       placeholder="Search"
