@@ -7,6 +7,7 @@ export const FilterPanel = ({
   children,
   onResetAllFilters,
 }: FilterPanelProps) => {
+  console.log('FilterPanel ------------');
   return (
     <div className={styles.panel}>
       <div className={styles.group}>
