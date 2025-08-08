@@ -12,6 +12,8 @@ export const usePriceInputFormat = ({
 }: UsePriceInputFormatProps) => {
   const onFocus = useCallback(
     (name: PriceFields, e: EventFocus) => {
+      e.preventDefault();
+      e.stopPropagation();
       const value = e.target.value;
       if (name === 'priceFrom') onFocusFrom();
       if (name === 'priceTo') onFocusTo();
@@ -22,6 +24,8 @@ export const usePriceInputFormat = ({
 
   const onBlur = useCallback(
     (name: PriceFields, e: EventFocus) => {
+      e.preventDefault();
+      e.stopPropagation();
       const value = e.target.value;
       if (name === 'priceFrom') onBlurFrom();
       if (name === 'priceTo') onBlurTo();
