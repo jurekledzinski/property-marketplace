@@ -1,7 +1,8 @@
 'use client';
-import { useCallback } from 'react';
 import { InputsAdvertsFilter } from './types';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useCallback, useMemo, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const defaultValues = {
   country: '',
@@ -18,19 +19,49 @@ const defaultValues = {
   style: '',
 };
 
+const resetState = {
+  amenities: uuidv4(),
+  architecture: uuidv4(),
+  details: uuidv4(),
+  location: uuidv4(),
+  price: uuidv4(),
+  type: uuidv4(),
+};
+
 export const useFilterForm = () => {
-  const formControl = useForm<InputsAdvertsFilter>({
+  const [reset, setReset] = useState(resetState);
+  const stableControls = useForm<InputsAdvertsFilter>({
     defaultValues,
   });
 
-  const onResetAllFilters = () => formControl.reset();
+  const formControl = useMemo(() => stableControls, [stableControls]);
 
-  const onResetFilter = <K extends keyof InputsAdvertsFilter>(key: K) =>
+  const onResetAllFilters = () => {
+    formControl.reset(defaultValues, { keepValues: false });
+    setReset({
+      amenities: uuidv4(),
+      architecture: uuidv4(),
+      details: uuidv4(),
+      location: uuidv4(),
+      price: uuidv4(),
+      type: uuidv4(),
+    });
+  };
+
+  const onResetFilter = <K extends keyof InputsAdvertsFilter>(key: K) => {
     formControl.reset({ [key]: undefined });
+    setReset((prev) => ({ ...prev, [key]: uuidv4() }));
+  };
 
   const onSubmit: SubmitHandler<InputsAdvertsFilter> = useCallback((data) => {
     console.log('Submit', data);
   }, []);
 
-  return { formControl, onSubmit, onResetFilter, onResetAllFilters };
+  return {
+    formControl,
+    onResetFilter,
+    onResetAllFilters,
+    reset,
+    onSubmit,
+  };
 };
