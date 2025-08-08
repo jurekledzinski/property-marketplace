@@ -1,6 +1,7 @@
 'use clien';
 import styles from './AdvertsLayout.module.css';
 import { AdvertsLayoutProps } from './types';
+import { useSetQuries } from '@/hooks';
 
 import {
   Backdrop,
@@ -16,7 +17,10 @@ export const AdvertsLayout = ({
   searchValue,
   sortValue,
 }: AdvertsLayoutProps) => {
-  const { formControl, onSubmit, onResetAllFilters, reset } = useFilterForm();
+  const controlQueries = useSetQuries();
+  const { formControl, onSubmit, onResetAllFilters, reset } =
+    useFilterForm(controlQueries);
+
   const empty = Object.values(formControl.watch()).some((item) => item.length);
 
   return (
