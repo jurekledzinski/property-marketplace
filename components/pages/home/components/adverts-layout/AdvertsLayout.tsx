@@ -16,9 +16,11 @@ export const AdvertsLayout = ({
   searchValue,
   sortValue,
 }: AdvertsLayoutProps) => {
-  const { formControl, onSubmit, onResetAllFilters } = useFilterForm();
+  const { formControl, onSubmit, onResetAllFilters, reset } = useFilterForm();
 
-  console.log('Filters', formControl.watch());
+  //   console.log('Filters', formControl.watch());
+
+  console.log('reset', reset);
 
   return (
     <div className={styles.layout}>
@@ -32,7 +34,11 @@ export const AdvertsLayout = ({
       <Backdrop open={false} />
       <Drawer variant="pinned" direction="right">
         <FilterPanel onResetAllFilters={onResetAllFilters}>
-          <FilterForm controls={formControl} onSubmit={onSubmit} />
+          <FilterForm
+            controls={formControl}
+            onSubmit={onSubmit}
+            reset={reset}
+          />
         </FilterPanel>
       </Drawer>
     </div>
