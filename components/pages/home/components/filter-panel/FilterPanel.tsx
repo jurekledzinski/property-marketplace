@@ -6,6 +6,7 @@ import { Button } from '@/components';
 export const FilterPanel = ({
   children,
   onResetAllFilters,
+  isFormEmpty,
 }: FilterPanelProps) => {
   console.log('FilterPanel ------------');
   return (
@@ -17,6 +18,7 @@ export const FilterPanel = ({
           variant="outlined"
           fullWidth
           onClick={onResetAllFilters}
+          disabled={!isFormEmpty}
         />
         <Button
           color="success"
@@ -24,6 +26,7 @@ export const FilterPanel = ({
           form="filterForm"
           label="Apply"
           type="submit"
+          disabled={!isFormEmpty}
         />
       </div>
       <div className={styles.filters}>{children}</div>
