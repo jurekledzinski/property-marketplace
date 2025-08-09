@@ -90,8 +90,6 @@
   border-color: var(--color-warning-1100);
 }
 
-/* ---- */
-
 /* --- variants --- */
 
 .outlined.primary,
@@ -165,8 +163,6 @@
   border-color: transparent;
 }
 
-/* ----- */
-
 /* sizes */
 
 /* 28px; */
@@ -200,31 +196,34 @@ button.fullWidth {
   width: 100%;
 }
 
-/* ---- */
-
 /* --- Disabled --- */
 
+.iconButton:disabled,
 .button:disabled,
 a.disabled {
-  display: flex;
+  position: relative;
   background-color: var(--color-disabled-100);
   border-color: var(--color-disabled-100);
   cursor: not-allowed;
 }
 
-.button.outlined:disabled,
-a.outlined.disabled {
-  border-color: var(--color-disabled-100);
+a.disabled {
+  pointer-events: none;
 }
 
+.iconButton.outlined:disabled,
 .button.outlined:disabled,
-.button.outlined:disabled svg,
+a.outlined.disabled {
+  background-color: transparent;
+  border-color: var(--color-disabled-100);
+  color: var(--color-text-disabled);
+}
+
+.iconButton.text:disabled,
 .button.text:disabled,
-.button.text:disabled svg,
-a.outlined.disabled,
-a.outlined.disabled svg,
-a.text.disabled,
-a.text.disabled svg {
+a.text.disabled {
+  background-color: transparent;
+  border-color: transparent;
   color: var(--color-text-disabled);
 }
 
@@ -235,25 +234,27 @@ a:focus-visible.disabled svg {
 
 /* --- Clear hover on disable --- */
 
-.button.text:disabled:hover,
-a.text.disabled:hover {
-  border-color: transparent;
-}
-
-.button.outlined:disabled:hover,
-.button.text:disabled:hover,
-a.outlined.disabled:hover,
-a.text.disabled:hover {
-  background-color: transparent;
-}
-
 .button:disabled:hover,
+.iconButton:disabled:hover,
 a.disabled:hover {
   background-color: var(--color-disabled-100);
   border-color: var(--color-disabled-100);
 }
 
-/* ---- */
+.button.outlined:disabled:hover,
+.button.text:disabled:hover,
+.iconButton.outlined:disabled:hover,
+.iconButton.text:disabled:hover,
+a.outlined.disabled:hover,
+a.text.disabled:hover {
+  background-color: transparent;
+}
+
+.button.text:disabled:hover,
+.iconButton.text:disabled:hover,
+a.text.disabled:hover {
+  border-color: transparent;
+}
 
 /* border */
 
@@ -297,7 +298,7 @@ a.disabled:hover {
   border-radius: 100vh;
 }
 
-/* ---- */
+/* Extra */
 
 .button {
   display: flex;
