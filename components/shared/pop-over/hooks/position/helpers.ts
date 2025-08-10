@@ -142,12 +142,14 @@ export const getCheckSpace = ({
   panelHeight,
   gap,
   width,
+  height,
 }: {
   triggerPosition: DOMRect;
   panelWidth: number;
   panelHeight: number;
   gap: number;
   width: number;
+  height: number;
 }) => {
   const panelRightEdgeIfOnRight = triggerPosition.right + panelWidth + 2 * gap;
   const panelLeftEdgeIfOnLeft = triggerPosition.left - panelWidth - 2 * gap;
@@ -155,11 +157,11 @@ export const getCheckSpace = ({
   const canPlaceRight = panelRightEdgeIfOnRight <= width;
   const canPlaceLeft = panelLeftEdgeIfOnLeft >= 0;
 
-  const panelBottomEdge = triggerPosition.bottom + panelHeight + 2 * gap;
-  const panelTopEdge = triggerPosition.y - panelHeight - 2 * gap;
+  const panelBottomEdge = triggerPosition.bottom + gap;
+  const panelTopEdge = triggerPosition.y - gap;
 
-  const canPlaceTop = panelTopEdge >= 0;
-  const canPlaceBottom = panelBottomEdge <= width;
+  const canPlaceTop = panelTopEdge > panelHeight;
+  const canPlaceBottom = height - panelBottomEdge > panelHeight;
 
   return { canPlaceRight, canPlaceLeft, canPlaceTop, canPlaceBottom };
 };
