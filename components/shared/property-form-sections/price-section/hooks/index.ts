@@ -1,1 +1,1 @@
-export * from './price-input-format';
+export * from './price-input-type';

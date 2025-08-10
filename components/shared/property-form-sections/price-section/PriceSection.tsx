@@ -1,26 +1,16 @@
 'use client';
 import { Controller, useFormState } from 'react-hook-form';
-import { Field, Message, TextInput, usePriceInputFormat } from '@/components';
+import { Field, Message, TextInput, usePriceInputType } from '@/components';
+import { formatNumber } from '@/helpers';
 import { memo } from 'react';
+import { optionsFormat, validate } from './utils';
 import { PriceSectionProps } from './types';
-import { useRef } from 'react';
-import { validate } from './utils';
 
 export const PriceSection = memo(({ controls }: PriceSectionProps) => {
-  const typePriceFrom = useRef<'number' | 'text'>('number');
-  const typePriceTo = useRef<'number' | 'text'>('number');
-  const { control, setValue } = controls;
+  const { control } = controls;
   const { errors } = useFormState({ control });
 
-  const { onBlur, onFocus } = usePriceInputFormat({
-    onBlurFrom: () => (typePriceFrom.current = 'text'),
-    onBlurTo: () => (typePriceTo.current = 'text'),
-    onFocusFrom: () => (typePriceFrom.current = 'number'),
-    onFocusTo: () => (typePriceTo.current = 'number'),
-    onSetValue: ({ name, value }) => {
-      setValue(name, value, { shouldValidate: true });
-    },
-  });
+  const { typePriceFrom, typePriceTo, onBlur, onFocus } = usePriceInputType();
 
   return (
     <>
@@ -28,14 +18,23 @@ export const PriceSection = memo(({ controls }: PriceSectionProps) => {
         <Controller
           name="priceFrom"
           control={control}
-          render={({ field: { ...rest } }) => (
+          render={({ field }) => (
             <TextInput
-              {...rest}
+              {...field}
               placeholder="Price from"
-              type={typePriceFrom.current}
-              onFocus={(e) => onFocus('priceFrom', e)}
-              onBlur={(e) => onBlur('priceFrom', e)}
+              type={typePriceFrom}
+              onFocus={onFocus.from}
+              onBlur={onBlur.from}
               min={0}
+              onChange={(e) => {
+                const numeric = e.target.value.replace(/\D/g, '');
+                field.onChange(numeric);
+              }}
+              value={
+                typePriceFrom === 'number'
+                  ? field.value
+                  : formatNumber(field.value, 'nl-NL', optionsFormat).format
+              }
             />
           )}
         />
@@ -49,14 +48,23 @@ export const PriceSection = memo(({ controls }: PriceSectionProps) => {
           name="priceTo"
           rules={{ validate }}
           control={control}
-          render={({ field: { ...rest } }) => (
+          render={({ field }) => (
             <TextInput
-              {...rest}
+              {...field}
               placeholder="Price to"
-              type={typePriceTo.current}
-              onFocus={(e) => onFocus('priceTo', e)}
-              onBlur={(e) => onBlur('priceTo', e)}
+              type={typePriceTo}
+              onFocus={onFocus.to}
+              onBlur={onBlur.to}
               min={0}
+              onChange={(e) => {
+                const numeric = e.target.value.replace(/\D/g, '');
+                field.onChange(numeric);
+              }}
+              value={
+                typePriceTo === 'number'
+                  ? field.value
+                  : formatNumber(field.value, 'nl-NL', optionsFormat).format
+              }
             />
           )}
         />
