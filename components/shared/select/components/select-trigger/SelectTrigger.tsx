@@ -5,6 +5,7 @@ import { SelectTriggerProps } from './types';
 import { useAriaAttributes } from '@/hooks';
 import { useSelect } from '../../store';
 import { useTriggerEvents } from './hooks/trigger-events';
+import { useCallback } from 'react';
 
 export const SelectTrigger = ({
   endIcon = [faChevronUp, faChevronDown],
@@ -15,8 +16,13 @@ export const SelectTrigger = ({
   const { onClick, onKeyDown } = useTriggerEvents({ onToggle });
 
   const isOpen = open['root'];
-  const a11y = useAriaAttributes().selectTriggerA11y(isOpen, `Choose ${label}`);
+  const a11y = useAriaAttributes().selectTriggerA11y(isOpen, label);
   const classes = getClassNamesInput({ variant, size, isError });
+
+  const setTriggerRef = useCallback(
+    (node: HTMLDivElement) => node && registerTriggerRef(node, 'root'),
+    [registerTriggerRef]
+  );
 
   return (
     <InputWrapper
@@ -25,7 +31,7 @@ export const SelectTrigger = ({
       endIcon={isOpen ? endIcon[0] : endIcon[1]}
       isError={isError}
       onClickEndIcon={onClick}
-      ref={(node) => registerTriggerRef(node, 'root')}
+      ref={setTriggerRef}
       size={size}
       variant={variant}
       {...(isOpen && { className: 'focused' })}
