@@ -14,12 +14,15 @@ import {
 } from '@/components';
 
 export const AdvertsLayout = ({
+  filters,
   searchValue,
   sortValue,
 }: AdvertsLayoutProps) => {
   const controlQueries = useSetQuries();
-  const { formControl, onSubmit, onResetAllFilters, reset } =
-    useFilterForm(controlQueries);
+  const { formControl, onSubmit, onResetAllFilters, reset } = useFilterForm({
+    ...controlQueries,
+    filters,
+  });
 
   const empty = Object.values(formControl.watch()).some((item) => item.length);
 
