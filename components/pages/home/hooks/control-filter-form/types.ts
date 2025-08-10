@@ -1,4 +1,5 @@
 import { useSetQuries } from '@/hooks';
+import { PartialAdvertsFilters } from '../../types';
 
 export type InputsAdvertsFilter = {
   country: string;
@@ -15,4 +16,6 @@ export type InputsAdvertsFilter = {
   style: string;
 };
 
-export type UseFilterFormProps = ReturnType<typeof useSetQuries>;
+export interface UseFilterFormProps extends ReturnType<typeof useSetQuries> {
+  filters: PartialAdvertsFilters;
+}

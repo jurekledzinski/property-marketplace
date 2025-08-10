@@ -3,6 +3,7 @@ import { InputsAdvertsFilter, UseFilterFormProps } from './types';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useCallback, useMemo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { removeNonDigitsObj } from '@/helpers';
 
 const defaultValues = {
   country: '',
@@ -29,12 +30,28 @@ const resetState = {
 };
 
 export const useFilterForm = ({
+  filters,
   onClear,
   onClearAll,
   setQueryObject,
 }: UseFilterFormProps) => {
   const [reset, setReset] = useState(resetState);
-  const stableControls = useForm<InputsAdvertsFilter>({ defaultValues });
+  const stableControls = useForm<InputsAdvertsFilter>({
+    defaultValues: {
+      advertisement: filters.advertisement ?? defaultValues.advertisement,
+      amenities: filters.amenities ?? defaultValues.amenities,
+      area: filters.area ?? defaultValues.area,
+      city: filters.city ?? defaultValues.city,
+      condition: filters.condition ?? defaultValues.condition,
+      country: filters.country ?? defaultValues.country,
+      priceFrom: filters.priceFrom ?? defaultValues.priceFrom,
+      priceTo: filters.priceTo ?? defaultValues.priceTo,
+      property: filters.property ?? defaultValues.property,
+      rooms: filters.rooms ?? defaultValues.rooms,
+      style: filters.style ?? defaultValues.style,
+      year: filters.year ?? defaultValues.year,
+    },
+  });
 
   const formControl = useMemo(() => stableControls, [stableControls]);
 
@@ -52,13 +69,16 @@ export const useFilterForm = ({
   };
 
   const onResetFilter = <K extends keyof InputsAdvertsFilter>(key: K) => {
-    formControl.reset({ [key]: undefined });
+    formControl.reset({ [key]: undefined }, { keepValues: false });
     setReset((prev) => ({ ...prev, [key]: uuidv4() }));
     onClear(key);
   };
 
   const onSubmit: SubmitHandler<InputsAdvertsFilter> = useCallback(
-    (data) => setQueryObject(data),
+    (data) => {
+      const formatedData = removeNonDigitsObj(data, ['priceFrom', 'priceTo']);
+      setQueryObject(formatedData);
+    },
     [setQueryObject]
   );
 
