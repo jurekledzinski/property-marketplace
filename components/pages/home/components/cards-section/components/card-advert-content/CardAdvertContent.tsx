@@ -53,7 +53,12 @@ export const CardAdvertContent = ({ dataContent }: CardAdvertContentProps) => {
       </Heading>
 
       <ButtonGroup orientation="row" justify="justify-end" fullWidth p="p-md">
-        <Button label="Read more ..." variant="contained" color="primary" />
+        <Button
+          href={`adverts/${encodeURIComponent(title)}/123`}
+          label="Read more ..."
+          variant="contained"
+          color="primary"
+        />
       </ButtonGroup>
     </CardContent>
   );
