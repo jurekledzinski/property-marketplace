@@ -4,7 +4,7 @@ import { Placement, setPosition } from '@/components';
 import { SizeWindow, UsePositionProps } from './types';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePanelSize } from '../panel-size';
-import { useWindowResize } from '@/hooks';
+import { useWindowResize, useWindowScroll } from '@/hooks';
 
 import {
   checkHorizontalSpace,
@@ -17,16 +17,18 @@ import {
 } from './helpers';
 
 export const usePosition = ({
-  autoWidth = false,
+  autoWidth = true,
   gap = 8,
   id,
   panelRef,
   placement = 'bottom',
-  triggerRefs,
   open,
   type = 'floating',
+  getTriggerRect,
+  refreshTriggerRect,
 }: UsePositionProps) => {
   const sizeWindow = useRef({ width: 0, height: 0 });
+
   const [arrowPlacement, setArrowPlacement] = useState<Placement>(placement);
 
   const { heightPanel, widthPanel } = usePanelSize(panelRef, open);
@@ -37,17 +39,12 @@ export const usePosition = ({
   }, []);
 
   const onSetPosition = useCallback(
-    (dynamic?: Placement, el?: SizeWindow) => {
-      if (type !== 'floating') return;
-      if (!panelRef.current || !triggerRefs.current || !triggerRefs.current[id])
-        return;
+    (dynamic?: Placement, el?: SizeWindow, triggerPosition?: DOMRect) => {
+      if (type !== 'floating' || !panelRef.current || !triggerPosition) return;
 
       const size = updateSizeWindow(el, sizeWindow);
 
       const panelDirection = getPanelDirection(placement, dynamic);
-
-      const triggerRef = triggerRefs.current[id];
-      const triggerPosition = triggerRef.getBoundingClientRect();
 
       const panelRect = getPanelRect(panelRef.current, widthPanel, heightPanel);
 
@@ -57,6 +54,7 @@ export const usePosition = ({
         panelHeight: panelRect.panelHeight,
         gap,
         width: size.width,
+        height: size.height,
       });
 
       const updatedPosition = setPosition({
@@ -81,7 +79,7 @@ export const usePosition = ({
 
       if (horiontalFlip) {
         onFlip(horiontalFlip);
-        return onSetPosition(horiontalFlip);
+        return onSetPosition(horiontalFlip, el, triggerPosition);
       }
 
       const verticalFlip = checkVerticalSpace({
@@ -95,7 +93,7 @@ export const usePosition = ({
 
       if (verticalFlip) {
         onFlip(verticalFlip);
-        return onSetPosition(verticalFlip);
+        return onSetPosition(verticalFlip, el, triggerPosition);
       }
 
       setNewPosition({
@@ -107,18 +105,7 @@ export const usePosition = ({
       });
       onFlip(panelDirection.currentPlacement);
     },
-    [
-      autoWidth,
-      gap,
-      id,
-      panelRef,
-      placement,
-      triggerRefs,
-      widthPanel,
-      heightPanel,
-      type,
-      onFlip,
-    ]
+    [autoWidth, gap, panelRef, placement, widthPanel, heightPanel, type, onFlip]
   );
 
   useEffect(() => {
@@ -129,17 +116,27 @@ export const usePosition = ({
   }, []);
 
   useWindowResize({
-    onResize: useCallback(
-      (el) => {
-        if (open) {
-          onSetPosition(placement, {
-            h: el.scrollHeight,
-            w: el.offsetWidth,
-          });
-        }
-      },
-      [open, onSetPosition, placement]
-    ),
+    onResize: useCallback(() => {
+      if (open) {
+        refreshTriggerRect(id);
+        const rect = getTriggerRect(id);
+        const size = { h: window.innerHeight, w: window.innerWidth };
+        onSetPosition(placement, size, rect);
+      } else {
+        refreshTriggerRect(id);
+      }
+    }, [
+      getTriggerRect,
+      id,
+      open,
+      onSetPosition,
+      placement,
+      refreshTriggerRect,
+    ]),
+  });
+
+  useWindowScroll({
+    onScroll: () => refreshTriggerRect(id),
   });
 
   return { arrowPlacement, onSetPosition };
