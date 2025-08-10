@@ -7,18 +7,18 @@ import { PopOver, usePopOver, usePosition } from '@/components';
 
 export const SelectPanel = ({ children }: SelectPanelProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
-  const { open, triggerRefs, onCloseAll } = usePopOver();
+  const { getTriggerRect, refreshTriggerRect, open, onCloseAll } = usePopOver();
   const { onKeyArrow, onKeyPress } = useSelect();
 
   const a11y = useAriaAttributes().selectPanelA11y();
 
   const { onSetPosition } = usePosition({
-    autoWidth: true,
     id: 'root',
     open: open['root'],
     panelRef,
     placement: 'bottom start',
-    triggerRefs,
+    getTriggerRect,
+    refreshTriggerRect,
   });
 
   const onKeyboardNavigation = () => {
@@ -31,7 +31,9 @@ export const SelectPanel = ({ children }: SelectPanelProps) => {
     <PopOver
       ref={panelRef}
       open={open['root']}
-      onEntering={() => onSetPosition()}
+      onEntering={() => {
+        onSetPosition(undefined, undefined, getTriggerRect('root'));
+      }}
       onEntered={onKeyboardNavigation}
       onExited={onKeyboardNavigation}
       {...a11y}
