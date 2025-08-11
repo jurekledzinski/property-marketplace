@@ -2,14 +2,15 @@ import styles from './HeaderPanel.module.css';
 import { HeaderPanelProps } from './types';
 import { memo } from 'react';
 import { SearchBar, SortSelector } from './components';
-import { useSetQuries } from '@/hooks';
 
 export const HeaderPanel = memo(
-  ({ searchValue, sortValue }: HeaderPanelProps) => {
-    const { setQueryString: onSearchQuery, onClear: onClearQuerySearch } =
-      useSetQuries();
-    const { setQueryString: onSortQuery } = useSetQuries();
-
+  ({
+    onClearQuerySearch,
+    onSearchQuery,
+    onSortQuery,
+    searchValue,
+    sortValue,
+  }: HeaderPanelProps) => {
     return (
       <header className={styles.header}>
         <SearchBar
