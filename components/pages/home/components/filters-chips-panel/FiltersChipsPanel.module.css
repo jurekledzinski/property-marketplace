@@ -5,7 +5,7 @@
   gap: 0.25rem;
   flex-wrap: wrap;
   width: 100%;
-  background-color: orangered;
-  padding: 1rem;
+  background-color: var(--color-surface);
+  padding: 0 0 0.5rem;
   z-index: var(--z-adverts-layout);
 }
