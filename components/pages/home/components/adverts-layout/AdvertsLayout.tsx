@@ -11,6 +11,7 @@ import {
   HeaderPanel,
   CardsSection,
   useFilterForm,
+  FiltersChipsPanel,
 } from '@/components';
 
 export const AdvertsLayout = ({
@@ -33,6 +34,7 @@ export const AdvertsLayout = ({
           searchValue={decodeURIComponent(searchValue ?? '')}
           sortValue={decodeURIComponent(sortValue ?? '')}
         />
+        <FiltersChipsPanel>Hello</FiltersChipsPanel>
         <CardsSection />
       </div>
       <Backdrop open={false} />
