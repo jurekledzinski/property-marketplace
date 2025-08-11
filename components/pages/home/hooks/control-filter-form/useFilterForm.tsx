@@ -68,17 +68,15 @@ export const useFilterForm = ({
     onClearAll(Object.keys(defaultValues));
   };
 
-  const onResetFilter = <K extends keyof InputsAdvertsFilter>(
-    key: K,
-    value: string
-  ) => {
-    const currentValue = formControl.getValues(key);
+  const onResetFilter = (key: string, value: string) => {
+    const keyInput = key as keyof InputsAdvertsFilter;
+    const currentValue = formControl.getValues(keyInput);
 
     if (Array.isArray(currentValue)) {
       const updated = currentValue.filter((item) => item !== value);
-      formControl.setValue(key, updated, { shouldDirty: false });
+      formControl.setValue(keyInput, updated, { shouldDirty: false });
     } else {
-      formControl.resetField(key);
+      formControl.resetField(keyInput);
     }
 
     setReset((prev) => ({ ...prev, [key]: uuidv4() }));
