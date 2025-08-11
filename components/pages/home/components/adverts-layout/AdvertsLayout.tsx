@@ -26,6 +26,7 @@ export const AdvertsLayout = ({
   });
 
   const empty = Object.values(formControl.watch()).some((item) => item.length);
+  const isFiltersEmpty = Object.values(filters).some((item) => item.length);
 
   return (
     <div className={styles.layout}>
@@ -34,7 +35,7 @@ export const AdvertsLayout = ({
           searchValue={decodeURIComponent(searchValue ?? '')}
           sortValue={decodeURIComponent(sortValue ?? '')}
         />
-        <FiltersChipsPanel>Hello</FiltersChipsPanel>
+        {isFiltersEmpty && <FiltersChipsPanel filters={filters} />}
         <CardsSection />
       </div>
       <Backdrop open={false} />
