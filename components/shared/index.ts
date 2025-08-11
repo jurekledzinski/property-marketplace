@@ -8,6 +8,7 @@ export * from './button';
 export * from './card';
 export * from './checkbox-group';
 export * from './checkbox';
+export * from './chip';
 export * from './container';
 export * from './drawer';
 export * from './drop-zone';
