@@ -56,7 +56,7 @@ export const useFilterForm = ({
   const formControl = useMemo(() => stableControls, [stableControls]);
 
   const onResetAllFilters = () => {
-    formControl.reset(defaultValues, { keepValues: false });
+    formControl.reset(defaultValues);
     setReset({
       amenities: uuidv4(),
       architecture: uuidv4(),
@@ -68,10 +68,21 @@ export const useFilterForm = ({
     onClearAll(Object.keys(defaultValues));
   };
 
-  const onResetFilter = <K extends keyof InputsAdvertsFilter>(key: K) => {
-    formControl.reset({ [key]: undefined }, { keepValues: false });
+  const onResetFilter = <K extends keyof InputsAdvertsFilter>(
+    key: K,
+    value: string
+  ) => {
+    const currentValue = formControl.getValues(key);
+
+    if (Array.isArray(currentValue)) {
+      const updated = currentValue.filter((item) => item !== value);
+      formControl.setValue(key, updated, { shouldDirty: false });
+    } else {
+      formControl.resetField(key);
+    }
+
     setReset((prev) => ({ ...prev, [key]: uuidv4() }));
-    onClear(key);
+    onClear(key, value);
   };
 
   const onSubmit: SubmitHandler<InputsAdvertsFilter> = useCallback(
