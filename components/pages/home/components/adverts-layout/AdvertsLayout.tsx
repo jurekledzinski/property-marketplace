@@ -31,8 +31,6 @@ export const AdvertsLayout = ({
   const empty = Object.values(formControl.watch()).some((item) => item?.length);
   const isFiltersEmpty = Object.values(filters).some((item) => item?.length);
 
-  console.log('Watch', formControl.watch());
-
   const onDelete = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
       const target = e.currentTarget as HTMLButtonElement;
