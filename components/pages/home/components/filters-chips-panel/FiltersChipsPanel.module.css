@@ -1,0 +1,11 @@
+.chipBar {
+  position: sticky;
+  top: 103px;
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: orangered;
+  padding: 1rem;
+  z-index: var(--z-adverts-layout);
+}
