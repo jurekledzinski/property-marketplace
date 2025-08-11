@@ -1,3 +1,6 @@
 import { HTMLAttributes } from 'react';
+import { PartialAdvertsFilters } from '../../types';
 
-export type FiltersChipsPanelProps = HTMLAttributes<HTMLDivElement>;
+export interface FiltersChipsPanelProps extends HTMLAttributes<HTMLDivElement> {
+  filters: PartialAdvertsFilters;
+}
