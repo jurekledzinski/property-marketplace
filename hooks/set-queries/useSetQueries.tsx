@@ -50,10 +50,23 @@ export const useSetQuries = () => {
     router.push(`${pathname}?${query.toString()}`, { scroll: false });
   };
 
+  //name = key, value = id
   const onClear = useCallback(
-    (key: string) => {
+    (key: string, value?: string) => {
       const query = new URLSearchParams(window.location.search);
-      query.delete(key);
+
+      const single = query.get(key);
+      const convert = decodeURIComponent(single ?? '');
+      const arrQuery = convert.split(',');
+
+      if (arrQuery.length > 1 && value) {
+        const rest = arrQuery.filter((queryValue) => queryValue !== value);
+        const encoded = encodeURIComponent(rest.join(','));
+        query.set(key, encoded);
+      } else {
+        query.delete(key);
+      }
+
       router.push(`${pathname}?${query.toString()}`, { scroll: false });
     },
     [pathname, router]
