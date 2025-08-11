@@ -1,7 +1,6 @@
-'use clien';
+'use client';
 import styles from './AdvertsLayout.module.css';
 import { AdvertsLayoutProps } from './types';
-import { MouseEvent, useCallback } from 'react';
 import { useSetQuries } from '@/hooks';
 
 import {
@@ -13,7 +12,7 @@ import {
   CardsSection,
   useFilterForm,
   FiltersChipsPanel,
-  InputsAdvertsFilter,
+  useAdvertsFilterUtils,
 } from '@/components';
 
 export const AdvertsLayout = ({
@@ -22,24 +21,9 @@ export const AdvertsLayout = ({
   sortValue,
 }: AdvertsLayoutProps) => {
   const controlQueries = useSetQuries();
-  const { formControl, onSubmit, onResetFilter, onResetAllFilters, reset } =
-    useFilterForm({
-      ...controlQueries,
-      filters,
-    });
 
-  const empty = Object.values(formControl.watch()).some((item) => item?.length);
-  const isFiltersEmpty = Object.values(filters).some((item) => item?.length);
-
-  const onDelete = useCallback(
-    (e: MouseEvent<HTMLButtonElement>) => {
-      const target = e.currentTarget as HTMLButtonElement;
-      const name = target.name as keyof InputsAdvertsFilter;
-      const value = target.id;
-      onResetFilter(name, value);
-    },
-    [onResetFilter]
-  );
+  const form = useFilterForm({ ...controlQueries, filters });
+  const utilsFilter = useAdvertsFilterUtils({ filters, form });
 
   return (
     <div className={styles.layout}>
@@ -47,19 +31,28 @@ export const AdvertsLayout = ({
         <HeaderPanel
           searchValue={decodeURIComponent(searchValue ?? '')}
           sortValue={decodeURIComponent(sortValue ?? '')}
+          onClearQuerySearch={controlQueries.onClear}
+          onSearchQuery={controlQueries.setQueryString}
+          onSortQuery={controlQueries.setQueryString}
         />
-        {isFiltersEmpty && (
-          <FiltersChipsPanel filters={filters} onDelete={onDelete} />
+        {utilsFilter.areFiltersEmpty && (
+          <FiltersChipsPanel
+            filters={filters}
+            onDelete={utilsFilter.onDelete}
+          />
         )}
         <CardsSection />
       </div>
       <Backdrop open={false} />
       <Drawer variant="pinned" direction="right">
-        <FilterPanel isFormEmpty={empty} onResetAllFilters={onResetAllFilters}>
+        <FilterPanel
+          isFormEmpty={utilsFilter.isFormFilled}
+          onResetAllFilters={form.onResetAllFilters}
+        >
           <FilterForm
-            controls={formControl}
-            onSubmit={onSubmit}
-            reset={reset}
+            controls={form.formControl}
+            onSubmit={form.onSubmit}
+            reset={form.reset}
           />
         </FilterPanel>
       </Drawer>
