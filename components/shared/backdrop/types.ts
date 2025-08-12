@@ -1,6 +1,5 @@
-import { MouseEventHandler } from 'react';
+import { HTMLAttributes } from 'react';
 
-export type BackdropProps = {
-  onClick?: MouseEventHandler<HTMLDivElement>;
+export interface BackdropProps extends HTMLAttributes<HTMLDivElement> {
   open: boolean;
-};
+}
