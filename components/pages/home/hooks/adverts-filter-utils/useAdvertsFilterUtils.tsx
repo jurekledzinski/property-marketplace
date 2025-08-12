@@ -5,9 +5,11 @@ export const useAdvertsFilterUtils = ({
   filters,
   form,
 }: UseAdvertsFilterUtilsProps) => {
+  const watchForm = form.formControl.watch();
+
   const isFormFilled = useMemo(() => {
-    return Object.values(form.formControl.watch()).some((item) => item?.length);
-  }, [form.formControl]);
+    return Object.values(watchForm).some((item) => item?.length);
+  }, [watchForm]);
 
   const areFiltersEmpty = useMemo(() => {
     return Object.values(filters).some((item) => item?.length);
