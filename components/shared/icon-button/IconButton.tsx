@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { formatProps } from './utils/helpers';
 import { getClassIconButton } from './utils';
 import { IconButtonContent } from './components';
@@ -12,7 +13,7 @@ export const IconButton = ({
 
   if ('href' in rest) {
     return (
-      <a
+      <Link
         aria-label="Icon link button"
         role="link"
         className={classes}
@@ -24,7 +25,7 @@ export const IconButton = ({
           isLoading={button.isLoading}
           size={button.size}
         />
-      </a>
+      </Link>
     );
   }
 
