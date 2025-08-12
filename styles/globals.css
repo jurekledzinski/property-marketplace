@@ -171,6 +171,10 @@
 }
 
 html[data-theme='dark'] {
+  --color-disabled-50: #1f1f1f;
+  --color-disabled-100: #2d2d30;
+  --color-disabled-200: #6b7280;
+
   /* Backgrounds */
   --color-surface: #121212;
   --color-surface-0: #202020;
