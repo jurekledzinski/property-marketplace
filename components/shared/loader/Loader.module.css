@@ -3,8 +3,8 @@
   width: 16px;
   height: 16px;
   animation: spin 1s linear infinite;
-  border: 1px solid var(--color-track);
-  border-top: 1px solid var(--color-spin);
+  border: 1px solid var(--loader-track-color);
+  border-top: 1px solid var(--loader-spin-color);
   border-radius: 50%;
 
   --size: 16px;
