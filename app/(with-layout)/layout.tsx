@@ -1,5 +1,8 @@
-import { Montserrat, Roboto } from 'next/font/google';
 import '@styles/globals.css';
+import DrawerProvider from '@/store/drawer';
+import ThemeProvider from '@/store/theme';
+import { cookies } from 'next/headers';
+import { Montserrat, Roboto } from 'next/font/google';
 import type { Metadata } from 'next';
 
 const roboto = Roboto({
@@ -21,7 +24,7 @@ export const metadata: Metadata = {
   description: 'Sell and rent houses, apartments',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   footer,
   header,
@@ -30,16 +33,24 @@ export default function RootLayout({
   header: React.ReactNode;
   footer: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const mode = cookieStore.get('mode');
+
   return (
     <html
       lang="en"
       className={[montserrat.variable, roboto.variable].join(' ')}
+      data-theme={`${mode?.value ?? 'light'}`}
     >
-      <body data-theme="light">
-        {header}
-        {children}
-        {footer}
-      </body>
+      <ThemeProvider>
+        <DrawerProvider>
+          <body>
+            {header}
+            {children}
+            {footer}
+          </body>
+        </DrawerProvider>
+      </ThemeProvider>
     </html>
   );
 }
