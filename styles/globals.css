@@ -22,17 +22,6 @@
   --color-primary-900: #052d0a;
   --color-primary-1000: #010a02;
 
-  /* --color-primary-50: #e3f2fd;
-  --color-primary-100: #bbdefb;
-  --color-primary-200: #90caf9;
-  --color-primary-300: #64b5f6;
-  --color-primary-400: #42a5f5;
-  --color-primary-500: #2095f3;
-  --color-primary-600: #1e87e5;
-  --color-primary-700: #1976d2;
-  --color-primary-800: #1564c0;
-  --color-primary-900: #0d46a1; */
-
   --color-secondary-50: #f9f9f9;
   --color-secondary-100: #f3f3f3;
   --color-secondary-200: #eaeaea;
@@ -129,10 +118,6 @@
   /* Hover */
   --color-surface-hover: var(--color-black-100);
 
-  /* Loader */
-  --color-track: #eeeeee;
-  --color-spin: var(--color-primary-700);
-
   /* Backgrounds */
   --color-surface: #ffffff;
   --color-surface-0: #fcfcfc;
@@ -171,9 +156,21 @@
   --z-popover: 100;
   --z-modal: 1000;
   --z-toast: 1100;
+
+  /* Specific colors */
+
+  /* Loader */
+  --loader-track-color: #eeeeee;
+  --loader-spin-color: var(--color-primary-700);
+
+  /* Icon */
+  --icon-color-default: #555555;
+  --icon-color-muted: #bbbbbb;
+  --icon-color-hover: #333333;
+  --icon-color-active: #111111;
 }
 
-[data-theme='dark'] {
+html[data-theme='dark'] {
   /* Backgrounds */
   --color-surface: #121212;
   --color-surface-0: #202020;
@@ -196,6 +193,13 @@
 
   /* Hover */
   --color-surface-hover: var(--color-black-800);
+
+  /* Icon */
+
+  --icon-color-default: #ffffff;
+  --icon-color-muted: #777777;
+  --icon-color-hover: #cccccc;
+  --icon-color-active: #dddddd;
 }
 
 body {
