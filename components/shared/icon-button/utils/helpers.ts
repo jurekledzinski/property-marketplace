@@ -12,6 +12,7 @@ export const getBackgroundConstrast = (color: Color) => {
 
 export const formatProps = ({
   border,
+  className,
   color,
   disabled,
   fullWidth,
@@ -24,6 +25,7 @@ export const formatProps = ({
 }: Omit<IconButtonProps, 'icon'> | Omit<IconLinkButtonProps, 'icon'>) => {
   const button = {
     border,
+    className,
     color,
     contrast,
     disabled,

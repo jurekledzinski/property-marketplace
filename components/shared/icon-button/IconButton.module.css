@@ -128,33 +128,6 @@
   color: var(--color-warning-900);
 }
 
-/* Outline text color icon */
-
-/* .outlined.primary svg,
-.text.primary svg {
-  fill: var(--color-primary-700);
-}
-
-.outlined.secondary svg,
-.text.secondary svg {
-  fill: var(--color-secondary-400);
-}
-
-.outlined.success svg,
-.text.success svg {
-  fill: var(--color-success-400);
-}
-
-.outlined.negative svg,
-.text.negative svg {
-  fill: var(--color-negative-500);
-}
-
-.outlined.warning svg,
-.text.warning svg {
-  fill: var(--color-warning-900);
-} */
-
 /* --- Hover outline variant --- */
 
 .outlined.primary:hover,
@@ -245,8 +218,6 @@ a.disabled:hover {
   border-color: var(--color-disabled-100);
 }
 
-/* ---- */
-
 /* border */
 
 .border-xs {
@@ -288,8 +259,6 @@ a.disabled:hover {
 .radius-xl {
   border-radius: 100vh;
 }
-
-/* ---- */
 
 .iconButton {
   position: relative;
@@ -358,51 +327,51 @@ a.disabled:hover {
   min-width: initial;
 }
 
-.iconButton.minimal > span > svg {
-  fill: #555555;
+.iconButton.minimal {
+  color: var(--icon-color-default);
   transition: 300ms linear;
 }
 
-.iconButton.minimal:hover > span > svg {
-  fill: #444444;
+.iconButton.minimal:hover {
+  color: var(--icon-color-hover);
 }
 
-.iconButton.minimal.primary > span > svg {
-  fill: var(--color-primary-700);
+.iconButton.minimal.primary {
+  color: var(--color-primary-700);
 }
 
-.iconButton.minimal.primary:hover > span > svg {
-  fill: var(--color-primary-800);
+.iconButton.minimal.primary:hover {
+  color: var(--color-primary-800);
 }
 
-.iconButton.minimal.secondary > span > svg {
-  fill: var(--color-secondary-400);
+.iconButton.minimal.secondary {
+  color: var(--color-secondary-400);
 }
 
-.iconButton.minimal.secondary:hover > span > svg {
-  fill: var(--color-secondary-500);
+.iconButton.minimal.secondary:hover {
+  color: var(--color-secondary-500);
 }
 
-.iconButton.minimal.success > span > svg {
-  fill: var(--color-success-400);
+.iconButton.minimal.success {
+  color: var(--color-success-400);
 }
 
-.iconButton.minimal.success:hover > span > svg {
-  fill: var(--color-success-500);
+.iconButton.minimal.success:hover {
+  color: var(--color-success-500);
 }
 
-.iconButton.minimal.negative > span > svg {
-  fill: var(--color-negative-500);
+.iconButton.minimal.negative {
+  color: var(--color-negative-500);
 }
 
-.iconButton.minimal.negative:hover > span > svg {
-  fill: var(--color-negative-600);
+.iconButton.minimal.negative:hover {
+  color: var(--color-negative-600);
 }
 
-.iconButton.minimal.warning > span > svg {
-  fill: var(--color-warning-900);
+.iconButton.minimal.warning {
+  color: var(--color-warning-900);
 }
 
-.iconButton.minimal.warning:hover > span > svg {
-  fill: var(--color-warning-1000);
+.iconButton.minimal.warning:hover {
+  color: var(--color-warning-1000);
 }

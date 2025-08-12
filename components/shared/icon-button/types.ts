@@ -2,6 +2,7 @@ import { Border, Color, Icons, Radius, Size, Variant } from '@/types';
 
 export type IconBaseButtonProps = {
   border?: Border;
+  className?: string;
   contrast?: boolean;
   icon: Icons;
   isLoading?: boolean;
@@ -10,7 +11,7 @@ export type IconBaseButtonProps = {
   radius?: Radius;
   size?: Size | 'size-xxs';
   color?: Color;
-  variant?: Variant;
+  variant?: Variant | 'minimal';
 };
 
 export interface IconButtonProps

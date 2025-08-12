@@ -5,7 +5,8 @@ import { IconBaseButtonProps } from '../types';
 
 export const getClassIconButton = ({
   border = 'border-xs',
-  color = 'primary',
+  className,
+  color,
   size = 'size-md',
   variant = 'contained',
   ...params
@@ -18,9 +19,10 @@ export const getClassIconButton = ({
 
   return classNames(
     styles.iconButton,
-    ...stylesValues.map((key) => styles[key as keyof typeof styles]),
+    ...stylesValues.map((key) => styles[(key as keyof typeof styles) ?? '']),
     params.contrast ? styles[getBackgroundConstrast(color)] : '',
     params.disabled || params.isLoading ? styles.disabled : '',
-    params.fullWidth ? styles.fullWidth : ''
+    params.fullWidth ? styles.fullWidth : '',
+    className ?? ''
   );
 };
