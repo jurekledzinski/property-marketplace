@@ -10,3 +10,9 @@
   width: 100%;
   background-color: var(--color-surface);
 }
+
+@media (min-width: 575px) {
+  .backdropFilters {
+    display: none;
+  }
+}
