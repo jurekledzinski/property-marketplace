@@ -10,3 +10,9 @@
   height: 54px;
   z-index: var(--z-header);
 }
+
+@media (min-width: 575px) {
+  button.iconFilter {
+    display: none;
+  }
+}
