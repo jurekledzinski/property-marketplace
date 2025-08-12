@@ -1,6 +1,7 @@
 'use client';
 import styles from './AdvertsLayout.module.css';
 import { AdvertsLayoutProps } from './types';
+import { useDrawer } from '@/store';
 import { useSetQuries } from '@/hooks';
 
 import {
@@ -20,6 +21,7 @@ export const AdvertsLayout = ({
   searchValue,
   sortValue,
 }: AdvertsLayoutProps) => {
+  const { openFiltersPanel } = useDrawer();
   const controlQueries = useSetQuries();
 
   const form = useFilterForm({ ...controlQueries, filters });
@@ -43,8 +45,11 @@ export const AdvertsLayout = ({
         )}
         <CardsSection />
       </div>
-      <Backdrop open={false} />
-      <Drawer variant="pinned" direction="right">
+      <Backdrop
+        className={styles.backdropFilters}
+        open={Boolean(openFiltersPanel)}
+      />
+      <Drawer direction="right" open={openFiltersPanel} variant="pinned">
         <FilterPanel
           isFormEmpty={utilsFilter.isFormFilled}
           onResetAllFilters={form.onResetAllFilters}
