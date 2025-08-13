@@ -12,7 +12,7 @@ const PopOverProvider = ({ children }: PopOverProviderProps) => {
   useClickOutside({
     onClick: () => controlPopOver.onCloseAll(),
     onLoadRefs: () => [
-      ...Object.entries(registerTriggers.triggerRefs.current)
+      ...Object.entries(registerTriggers.triggers.current)
         .filter(([key]) => key.includes('root'))
         .map((i) => i[1]),
       ...Array.from(mapRefs.current.values()),

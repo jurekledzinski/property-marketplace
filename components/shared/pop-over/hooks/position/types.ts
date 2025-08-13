@@ -17,7 +17,7 @@ export interface UsePositionProps extends CommonPanelProps {
   open: boolean;
   panelRef: React.RefObject<HTMLDivElement | null>;
   getTriggerRect: (id: string) => DOMRect;
-  refreshTriggerRect: (id: string) => void;
+  updateTriggerRect: (id: string) => void;
   type?: 'floating' | 'expand' | 'slide';
 }
 

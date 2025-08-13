@@ -11,7 +11,7 @@ export const SelectTrigger = ({
   endIcon = [faChevronUp, faChevronDown],
   ...props
 }: SelectTriggerProps) => {
-  const { onToggle, open, registerTriggerRef } = usePopOver();
+  const { onToggle, open, setTrigger } = usePopOver();
   const { isError, label, size, value, variant } = useSelect();
   const { onClick, onKeyDown } = useTriggerEvents({ onToggle });
 
@@ -20,8 +20,8 @@ export const SelectTrigger = ({
   const classes = getClassNamesInput({ variant, size, isError });
 
   const setTriggerRef = useCallback(
-    (node: HTMLDivElement) => node && registerTriggerRef(node, 'root'),
-    [registerTriggerRef]
+    (node: HTMLDivElement) => node && setTrigger(node, 'root'),
+    [setTrigger]
   );
 
   return (

@@ -25,7 +25,7 @@ export const usePosition = ({
   open,
   type = 'floating',
   getTriggerRect,
-  refreshTriggerRect,
+  updateTriggerRect,
 }: UsePositionProps) => {
   const sizeWindow = useRef({ width: 0, height: 0 });
 
@@ -118,25 +118,18 @@ export const usePosition = ({
   useWindowResize({
     onResize: useCallback(() => {
       if (open) {
-        refreshTriggerRect(id);
+        updateTriggerRect(id);
         const rect = getTriggerRect(id);
         const size = { h: window.innerHeight, w: window.innerWidth };
         onSetPosition(placement, size, rect);
       } else {
-        refreshTriggerRect(id);
+        updateTriggerRect(id);
       }
-    }, [
-      getTriggerRect,
-      id,
-      open,
-      onSetPosition,
-      placement,
-      refreshTriggerRect,
-    ]),
+    }, [getTriggerRect, id, open, onSetPosition, placement, updateTriggerRect]),
   });
 
   useWindowScroll({
-    onScroll: () => refreshTriggerRect(id),
+    onScroll: () => updateTriggerRect(id),
   });
 
   return { arrowPlacement, onSetPosition };
