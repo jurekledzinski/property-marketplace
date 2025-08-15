@@ -25,7 +25,9 @@ export const ImageContainer = ({
 
   return (
     <div {...props} className={classNames(className, classes)}>
-      {children ? children({ isError, isLoading, onLoad, onError }) : null}
+      {children && typeof children === 'function'
+        ? children({ isError, isLoading, onLoad, onError })
+        : null}
     </div>
   );
 };
