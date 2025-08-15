@@ -1,0 +1,18 @@
+.details {
+  background-color: red;
+  padding: 0.5rem;
+  grid-area: details;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style-type: none;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 0.5rem;
+}
