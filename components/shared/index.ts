@@ -6,6 +6,7 @@ export * from './box';
 export * from './button-group';
 export * from './button';
 export * from './card';
+export * from './carousel-thumbnails';
 export * from './checkbox-group';
 export * from './checkbox';
 export * from './chip';
