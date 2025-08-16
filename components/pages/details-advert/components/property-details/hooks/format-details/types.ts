@@ -1,5 +1,5 @@
 import { Advert } from '@/models';
 
-export type PropertyDetailsProps = {
+export type UseFormatDetailsProps = {
   details: Advert;
 };

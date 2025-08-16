@@ -1,38 +1,30 @@
 import { PropertyDetailsProps } from './types';
 import styles from './PropertyDetails.module.css';
 import { Box, Heading } from '@/components';
+import { useFormatDetails } from './hooks';
 
-const data = {
-  country: 'France',
-  city: 'Paris',
-};
+export const PropertyDetails = ({ details }: PropertyDetailsProps) => {
+  const formatedDetails = useFormatDetails({ details });
 
-export const PropertyDetails = ({}: PropertyDetailsProps) => {
   return (
     <Box className={styles.details}>
       <Heading level={4}>Property details</Heading>
       <ul className={styles.list}>
-        <li className={styles.item}>
-          <span>Location</span>
-          <span>New york, NY</span>
-        </li>
-        <li className={styles.item}>
-          <span>Location</span>
-          <span>New york, NY</span>
-        </li>
-        <li className={styles.item}>
-          <span>Location</span>
-          <span>New york, NY</span>
-        </li>
-        <li className={styles.item}>
-          <span>Location</span>
-          <span>New york, NY</span>
-        </li>
-        <li className={styles.item}>
-          <span>Location</span>
-          <span>New york, NY</span>
-        </li>
+        {Object.entries(formatedDetails).map((detail) => (
+          <li key={detail[0]} className={styles.item}>
+            <span>{detail[0]}</span>
+            <span>{detail[1]}</span>
+          </li>
+        ))}
       </ul>
+
+      <p>{details.description}</p>
+
+      <Box>
+        <Heading level={4} mb="mb-sm">
+          Amenitis
+        </Heading>
+      </Box>
     </Box>
   );
 };

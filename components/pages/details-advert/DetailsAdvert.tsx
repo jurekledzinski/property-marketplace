@@ -23,11 +23,7 @@ export const DetailsAdvert = ({ advertDetails }: DetailsAdvertProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const slide = searchParams.get('slide');
-  const format = formatNumber(
-    advertDetails.price.toString(),
-    'nl-NL',
-    optionsFormat
-  );
+  const format = formatNumber(`${advertDetails.price}`, 'nl-NL', optionsFormat);
   const carousel = useCarouselThumbnails();
 
   return (
@@ -58,8 +54,12 @@ export const DetailsAdvert = ({ advertDetails }: DetailsAdvertProps) => {
       />
 
       <Box className={styles.layout}>
-        <PropertyDetails />
-        <PropertySidebar />
+        <PropertyDetails details={advertDetails} />
+        <PropertySidebar
+          advertiser={advertDetails.advertiser}
+          email={advertDetails.email}
+          phone={advertDetails.phone}
+        />
       </Box>
     </Container>
   );
