@@ -1,10 +1,26 @@
+import { Advert } from '@/models';
 import { InputsAdvertsFilter } from './hooks';
 
-// export type PartialAdvertsFilters = Partial<InputsAdvertsFilter>;
+type OmitUnion =
+  | 'advertiser'
+  | 'amenities'
+  | 'condition'
+  | 'description'
+  | 'email'
+  | 'images'
+  | 'phone'
+  | 'style'
+  | 'type'
+  | 'year';
+
+export interface AdvertCards extends Omit<Advert, OmitUnion> {
+  src: string;
+}
 
 export type PartialAdvertsFilters = InputsAdvertsFilter;
 
 export type HomeProps = {
+  advertCards: AdvertCards[];
   searchValue?: string;
   sortValue?: string;
   filters: PartialAdvertsFilters;

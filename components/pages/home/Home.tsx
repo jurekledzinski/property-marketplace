@@ -4,7 +4,12 @@ import { Box, Container } from '@/components';
 import { HomeProps } from './types';
 import { AdvertsLayout, HeroSection } from './components';
 
-export const HomePage = ({ filters, searchValue, sortValue }: HomeProps) => {
+export const Home = ({
+  advertCards,
+  filters,
+  searchValue,
+  sortValue,
+}: HomeProps) => {
   return (
     <>
       <Box className={styles.layerHero}>
@@ -15,6 +20,7 @@ export const HomePage = ({ filters, searchValue, sortValue }: HomeProps) => {
       <Box className={styles.layerMain}>
         <Container as="main" className={styles.containerLayout} m="m-center">
           <AdvertsLayout
+            advertCards={advertCards}
             filters={filters}
             searchValue={searchValue}
             sortValue={sortValue}
