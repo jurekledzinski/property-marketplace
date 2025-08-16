@@ -1,6 +1,5 @@
 import { HeadingProps } from '../types';
 
-type Props = 'className' | 'fw' | 'level' | 'margin' | 'padding';
-type Params = Pick<HeadingProps, Props>;
+type Params = Omit<HeadingProps, 'children'>;
 
 export type ClassesHeading = (params: Params) => string;
