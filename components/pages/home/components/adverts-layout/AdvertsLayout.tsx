@@ -6,6 +6,7 @@ import { useSetQuries } from '@/hooks';
 
 import {
   Backdrop,
+  Box,
   Drawer,
   FilterForm,
   FilterPanel,
@@ -17,6 +18,7 @@ import {
 } from '@/components';
 
 export const AdvertsLayout = ({
+  advertCards,
   filters,
   searchValue,
   sortValue,
@@ -28,8 +30,8 @@ export const AdvertsLayout = ({
   const utilsFilter = useAdvertsFilterUtils({ filters, form });
 
   return (
-    <div className={styles.layout}>
-      <div className={styles.wrapper}>
+    <Box className={styles.layout}>
+      <Box className={styles.wrapper}>
         <HeaderPanel
           searchValue={decodeURIComponent(searchValue ?? '')}
           sortValue={decodeURIComponent(sortValue ?? '')}
@@ -43,8 +45,8 @@ export const AdvertsLayout = ({
             onDelete={utilsFilter.onDelete}
           />
         )}
-        <CardsSection />
-      </div>
+        <CardsSection advertCards={advertCards} />
+      </Box>
       <Backdrop
         className={styles.backdropFilters}
         open={Boolean(openFiltersPanel)}
@@ -61,6 +63,6 @@ export const AdvertsLayout = ({
           />
         </FilterPanel>
       </Drawer>
-    </div>
+    </Box>
   );
 };
