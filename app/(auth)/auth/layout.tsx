@@ -1,3 +1,4 @@
+import ThemeProvider from '@/store/theme';
 import { Montserrat, Roboto } from 'next/font/google';
 import '@styles/globals.css';
 import type { Metadata } from 'next';
@@ -29,7 +30,9 @@ export default function AuthLayout({
       lang="en"
       className={[montserrat.variable, roboto.variable].join(' ')}
     >
-      <body data-theme="light">{children}</body>
+      <ThemeProvider>
+        <body data-theme="light">{children}</body>
+      </ThemeProvider>
     </html>
   );
 }
