@@ -9,7 +9,7 @@ export const DetailsHeroImage = ({
   index = 0,
   title,
   price,
-  type,
+  status,
 }: DetailsHeroImageProps) => {
   return (
     <article className={styles.detailsHero}>
@@ -41,7 +41,7 @@ export const DetailsHeroImage = ({
 
       <Box className={styles.headings}>
         <Heading className={styles.price} level={3}>
-          {type === 'rent' ? `${price}/month` : price}
+          {status === 'rent' ? `${price}/month` : price}
         </Heading>
         <Heading className={styles.detailsHeading} level={2}>
           {title}

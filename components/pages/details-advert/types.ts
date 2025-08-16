@@ -1,10 +1,5 @@
-export type DataDetailsAdvert = {
-  images: string[];
-  title: string;
-  type: string;
-  price: string;
-};
+import { Advert } from '@/models';
 
 export type DetailsAdvertProps = {
-  dataDetailsAdvert: DataDetailsAdvert;
+  advertDetails: Advert;
 };

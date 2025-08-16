@@ -15,19 +15,19 @@ export const PropertyDetails = ({}: PropertyDetailsProps) => {
         <li className={styles.item}>
           <span>Location</span>
           <span>New york, NY</span>
-        </li>{' '}
+        </li>
         <li className={styles.item}>
           <span>Location</span>
           <span>New york, NY</span>
-        </li>{' '}
+        </li>
         <li className={styles.item}>
           <span>Location</span>
           <span>New york, NY</span>
-        </li>{' '}
+        </li>
         <li className={styles.item}>
           <span>Location</span>
           <span>New york, NY</span>
-        </li>{' '}
+        </li>
         <li className={styles.item}>
           <span>Location</span>
           <span>New york, NY</span>
