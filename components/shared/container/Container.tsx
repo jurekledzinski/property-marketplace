@@ -1,5 +1,5 @@
 import { ContainerProps } from './types';
-import { getInlineContainerStyles } from './utils';
+import { filterProps, spacingInlineStyles, spacingValues } from '@/helpers';
 import { getClassesContainer } from './utils/classNames';
 import { JSX } from 'react';
 
@@ -10,7 +10,8 @@ export const Container = ({
 }: ContainerProps) => {
   const Tag = `${as}` as keyof JSX.IntrinsicElements;
   const classes = getClassesContainer(props);
-  const inline = getInlineContainerStyles(props);
+  const spacingProps = filterProps(props, spacingValues, true);
+  const inline = spacingInlineStyles(spacingProps);
 
   return (
     <Tag className={classes} style={inline}>
