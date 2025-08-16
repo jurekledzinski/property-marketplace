@@ -1,3 +1,7 @@
+import { Advert } from '@/models';
+
 export type PropertySidebarProps = {
-  details?: null;
+  advertiser: Advert['advertiser'];
+  phone: Advert['phone'];
+  email: Advert['email'];
 };
