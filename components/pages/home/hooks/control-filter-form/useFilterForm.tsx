@@ -8,9 +8,9 @@ import { removeNonDigitsObj } from '@/helpers';
 const defaultValues = {
   country: '',
   city: '',
-  property: '',
+  type: '',
   condition: '',
-  advertisement: '',
+  status: '',
   year: '',
   priceFrom: '',
   priceTo: '',
@@ -38,7 +38,7 @@ export const useFilterForm = ({
   const [reset, setReset] = useState(resetState);
   const stableControls = useForm<InputsAdvertsFilter>({
     defaultValues: {
-      advertisement: filters.advertisement ?? defaultValues.advertisement,
+      status: filters.status ?? defaultValues.status,
       amenities: filters.amenities ?? defaultValues.amenities,
       area: filters.area ?? defaultValues.area,
       city: filters.city ?? defaultValues.city,
@@ -46,7 +46,7 @@ export const useFilterForm = ({
       country: filters.country ?? defaultValues.country,
       priceFrom: filters.priceFrom ?? defaultValues.priceFrom,
       priceTo: filters.priceTo ?? defaultValues.priceTo,
-      property: filters.property ?? defaultValues.property,
+      type: filters.type ?? defaultValues.type,
       rooms: filters.rooms ?? defaultValues.rooms,
       style: filters.style ?? defaultValues.style,
       year: filters.year ?? defaultValues.year,

@@ -15,8 +15,8 @@ import {
   Icon,
 } from '@/components';
 
-export const CardAdvertContent = ({ dataContent }: CardAdvertContentProps) => {
-  const {
+export const CardAdvertContent = ({
+  advertCards: {
     area,
     bathrooms,
     city,
@@ -26,9 +26,9 @@ export const CardAdvertContent = ({ dataContent }: CardAdvertContentProps) => {
     rooms,
     street,
     title,
-    typeAdvert,
-  } = dataContent;
-
+    status,
+  },
+}: CardAdvertContentProps) => {
   return (
     <CardContent className={styles.content}>
       <Heading className={styles.title} level={3}>
@@ -49,7 +49,7 @@ export const CardAdvertContent = ({ dataContent }: CardAdvertContentProps) => {
       </Box>
 
       <Heading className={styles.price} level={4}>
-        {typeAdvert.toLowerCase() === 'sale' ? `${price}` : `${price}/month`}
+        {status.toLowerCase() === 'sale' ? `${price}` : `${price}/month`}
       </Heading>
 
       <ButtonGroup orientation="row" justify="justify-end" fullWidth p="p-md">

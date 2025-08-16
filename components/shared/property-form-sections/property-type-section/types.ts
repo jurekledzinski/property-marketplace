@@ -4,7 +4,7 @@ import { UseFormReturn } from 'react-hook-form';
 
 export type PropertyTypeSectionProps = {
   controls: UseFormReturn<InputsAdvertsFilter, unknown, InputsAdvertsFilter>;
-  rulesProperty?: Rule<'property'>;
+  rulesType?: Rule<'type'>;
   rulesCondition?: Rule<'condition'>;
-  rulesAdvertisment?: Rule<'advertisement'>;
+  rulesStatus?: Rule<'status'>;
 };

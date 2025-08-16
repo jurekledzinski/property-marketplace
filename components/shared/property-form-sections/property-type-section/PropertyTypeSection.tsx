@@ -26,9 +26,9 @@ const conditons = [
 export const PropertyTypeSection = memo(
   ({
     controls,
-    rulesAdvertisment,
+    rulesStatus,
     rulesCondition,
-    rulesProperty,
+    rulesType,
   }: PropertyTypeSectionProps) => {
     const { control, formState } = controls;
     const { errors } = formState;
@@ -37,8 +37,8 @@ export const PropertyTypeSection = memo(
       <>
         <Field>
           <Controller
-            name={'property'}
-            rules={rulesProperty}
+            name={'type'}
+            rules={rulesType}
             control={control}
             render={({ field: { onChange, ...rest } }) => (
               <Select onChange={(id) => onChange(id)} {...rest}>
@@ -52,8 +52,8 @@ export const PropertyTypeSection = memo(
               </Select>
             )}
           />
-          {errors.property ? (
-            <Message variant="error">{errors.property.message}</Message>
+          {errors.type ? (
+            <Message variant="error">{errors.type.message}</Message>
           ) : null}
         </Field>
         <Field>
@@ -85,8 +85,8 @@ export const PropertyTypeSection = memo(
         </Field>
         <Field>
           <Controller
-            name={'advertisement'}
-            rules={rulesAdvertisment}
+            name={'status'}
+            rules={rulesStatus}
             control={control}
             render={({ field: { onChange, ...rest } }) => (
               <Select onChange={(id) => onChange(id)} {...rest}>
@@ -100,8 +100,8 @@ export const PropertyTypeSection = memo(
               </Select>
             )}
           />
-          {errors.advertisement ? (
-            <Message variant="error">{errors.advertisement.message}</Message>
+          {errors.status ? (
+            <Message variant="error">{errors.status.message}</Message>
           ) : null}
         </Field>
       </>

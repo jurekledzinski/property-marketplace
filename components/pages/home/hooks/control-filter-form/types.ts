@@ -4,9 +4,9 @@ import { PartialAdvertsFilters } from '../../types';
 export type InputsAdvertsFilter = {
   country: string;
   city: string;
-  property: string;
+  type: string;
   condition: string;
-  advertisement: string;
+  status: string;
   year: string;
   priceFrom: string;
   priceTo: string;

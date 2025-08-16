@@ -1,7 +1,7 @@
-import { CardAdvertProps } from '../card-advert/types';
+import { AdvertCards } from '@/components';
 
-type DataContent = Omit<CardAdvertProps['dataAdvert'], 'src' | 'price'>;
+type AdvertCardContent = Omit<AdvertCards, 'src' | 'price'>;
 
 export type CardAdvertContentProps = {
-  dataContent: DataContent & { price: string };
+  advertCards: AdvertCardContent & { price: string };
 };
