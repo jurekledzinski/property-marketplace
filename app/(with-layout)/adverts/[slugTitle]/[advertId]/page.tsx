@@ -8,17 +8,55 @@ const images: string[] = [
   'https://cdn.pixabay.com/photo/2017/05/28/18/48/ivy-2351778_960_720.jpg',
 ];
 
+const amenities = [
+  'Air Conditioning',
+  'Balcony',
+  'Basement',
+  'Elevator',
+  'Garage',
+  'Garden',
+  'Fireplace',
+  'Furnished',
+  'Heating',
+  'Internet',
+  'Parking',
+  'Smart Home Features',
+  'Security System',
+  'Storage Room',
+  'Swimming Pool',
+  'Wheelchair Accessible',
+];
+
+const data = {
+  advertiser: 'Joe Doe',
+  email: 'joedoe@gmail.com',
+  phone: '0657123123',
+
+  type: 'house',
+  status: 'sale',
+  images,
+
+  country: 'Netherlands',
+  state: 'Limburg',
+  city: 'Sittard',
+  street: 'Avenue 15',
+  postalCode: '5324 JK',
+  price: 1200,
+
+  title: 'Modern 2-bedroom apartment in downtown',
+  description: 'Hello description',
+
+  condition: 'good condition',
+  style: 'modern',
+  year: 2000,
+  area: 100,
+  rooms: 6,
+  bathrooms: 2,
+  amenities,
+};
+
 const DetailsAdvertPage = () => {
-  return (
-    <DetailsAdvert
-      dataDetailsAdvert={{
-        images,
-        title: 'Modern 2-bedroom apartment in downtown',
-        type: 'rent',
-        price: '1200',
-      }}
-    />
-  );
+  return <DetailsAdvert advertDetails={data} />;
 };
 
 export default DetailsAdvertPage;
