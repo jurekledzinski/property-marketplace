@@ -1,8 +1,15 @@
-export const filterProps = <T extends object, K extends keyof T>(
+export const filterProps = <
+  T extends object,
+  K extends keyof T,
+  PickIt extends boolean = false
+>(
   props: T,
-  keys: K[]
+  keys: K[],
+  pick?: PickIt
 ) => {
   return Object.fromEntries(
-    Object.entries(props).filter(([key]) => !keys.includes(key as K))
-  ) as Omit<T, K>;
+    Object.entries(props).filter(([key]) =>
+      pick ? keys.includes(key as K) : !keys.includes(key as K)
+    )
+  ) as PickIt extends true ? Pick<T, K> : Omit<T, K>;
 };
