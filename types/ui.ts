@@ -141,3 +141,16 @@ export type MarginLeftToken =
   | number;
 
 export type MaxWidthToken = 'mw-sm' | 'mw-md' | 'mw-lg' | 'mw-xl' | number;
+
+export type SpacingToken = {
+  mt?: MarginTopToken;
+  mb?: MarginBottomToken;
+  mr?: MarginRightToken;
+  ml?: MarginLeftToken;
+  m?: MarginToken;
+  p?: PaddingToken;
+  pt?: PaddingTopToken;
+  pb?: PaddingBottomToken;
+  pr?: PaddingRightToken;
+  pl?: PaddingLeftToken;
+};
