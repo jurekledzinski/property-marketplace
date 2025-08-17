@@ -33,8 +33,6 @@ export const getClassesContainer: ClassesContainer = (params) => {
     maxWidth,
   });
 
-  console.log('spacing', spacing);
-
   const mergedClasses = { ...styles, ...stylesSpace };
 
   return classNames(
