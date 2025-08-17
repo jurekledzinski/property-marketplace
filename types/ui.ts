@@ -153,4 +153,5 @@ export type SpacingToken = {
   pb?: PaddingBottomToken;
   pr?: PaddingRightToken;
   pl?: PaddingLeftToken;
+  maxWidth?: MaxWidthToken;
 };

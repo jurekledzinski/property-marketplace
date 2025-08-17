@@ -1,46 +1,25 @@
 import { CSSProperties } from 'react';
-import {
-  MarginBottomToken,
-  MarginLeftToken,
-  MarginRightToken,
-  MarginToken,
-  MarginTopToken,
-  PaddingBottomToken,
-  PaddingLeftToken,
-  PaddingRightToken,
-  PaddingToken,
-  PaddingTopToken,
-} from '../types';
+import { SpacingToken } from '../types';
 
-type Params = {
-  mt?: MarginTopToken;
-  mb?: MarginBottomToken;
-  mr?: MarginRightToken;
-  ml?: MarginLeftToken;
-  m?: MarginToken;
-  p?: PaddingToken;
-  pt?: PaddingTopToken;
-  pb?: PaddingBottomToken;
-  pr?: PaddingRightToken;
-  pl?: PaddingLeftToken;
-};
+type Params = SpacingToken;
 
 export type SpacingStyles = (params: Params) => CSSProperties;
 
 export const spacingClasses = (params: Params) => {
-  const { m, mb, mt, ml, mr, p, pb, pl, pr, pt } = params;
+  const { m, mb, mt, ml, mr, p, pb, pl, pr, pt, maxWidth } = params;
 
   return {
-    [`${m}`]: typeof m === 'string' ? Boolean(m) : false,
-    [`${mb}`]: typeof m === 'string' ? Boolean(mb) : false,
-    [`${ml}`]: typeof m === 'string' ? Boolean(ml) : false,
-    [`${mr}`]: typeof m === 'string' ? Boolean(mr) : false,
-    [`${mt}`]: typeof m === 'string' ? Boolean(mt) : false,
-    [`${p}`]: typeof m === 'string' ? Boolean(p) : false,
-    [`${pb}`]: typeof m === 'string' ? Boolean(pb) : false,
-    [`${pl}`]: typeof m === 'string' ? Boolean(pl) : false,
-    [`${pr}`]: typeof m === 'string' ? Boolean(pr) : false,
-    [`${pt}`]: typeof m === 'string' ? Boolean(pt) : false,
+    ...(Boolean(m) ? { [`${m}`]: true } : {}),
+    ...(Boolean(mb) ? { [`${mb}`]: true } : {}),
+    ...(Boolean(ml) ? { [`${ml}`]: true } : {}),
+    ...(Boolean(mr) ? { [`${mr}`]: true } : {}),
+    ...(Boolean(mt) ? { [`${mt}`]: true } : {}),
+    ...(Boolean(maxWidth) ? { [`${maxWidth}`]: true } : {}),
+    ...(Boolean(p) ? { [`${p}`]: true } : {}),
+    ...(Boolean(pb) ? { [`${pb}`]: true } : {}),
+    ...(Boolean(pl) ? { [`${pl}`]: true } : {}),
+    ...(Boolean(pr) ? { [`${pr}`]: true } : {}),
+    ...(Boolean(pt) ? { [`${pt}`]: true } : {}),
   };
 };
 
@@ -55,6 +34,7 @@ export const spacingInlineStyles: SpacingStyles = (params) => ({
   ...(typeof params.pl === 'number' ? { paddingLeft: params.pl } : {}),
   ...(typeof params.pr === 'number' ? { paddingRight: params.pr } : {}),
   ...(typeof params.pt === 'number' ? { paddingTop: params.pt } : {}),
+  ...(typeof params.maxWidth === 'number' ? { maxWidth: params.maxWidth } : {}),
 });
 
 export const spacingValues: Array<keyof Params> = [
@@ -68,4 +48,5 @@ export const spacingValues: Array<keyof Params> = [
   'pl',
   'pr',
   'pt',
+  'maxWidth',
 ];
