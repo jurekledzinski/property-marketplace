@@ -9,6 +9,7 @@ export const Container = ({
   ...props
 }: ContainerProps) => {
   const Tag = `${as}` as keyof JSX.IntrinsicElements;
+
   const classes = getClassesContainer(props);
   const spacingProps = filterProps(props, spacingValues, true);
   const inline = spacingInlineStyles(spacingProps);

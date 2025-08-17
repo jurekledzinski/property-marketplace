@@ -4,16 +4,42 @@ import { ClassesContainer } from './types';
 import { classNames, generateClassNames, spacingClasses } from '@/helpers';
 
 export const getClassesContainer: ClassesContainer = (params) => {
-  const { className, m, mb, ml, mr, mt, maxWidth, p, pb, pl, pr, pt } = params;
+  const {
+    className,
+    m,
+    mb,
+    ml,
+    mr,
+    mt,
+    maxWidth = 'mw-md',
+    p,
+    pb,
+    pl,
+    pr,
+    pt,
+  } = params;
+
+  const spacing = spacingClasses({
+    m,
+    mb,
+    ml,
+    mr,
+    mt,
+    p,
+    pb,
+    pl,
+    pr,
+    pt,
+    maxWidth,
+  });
+
+  console.log('spacing', spacing);
 
   const mergedClasses = { ...styles, ...stylesSpace };
-
-  const spacing = spacingClasses({ m, mb, ml, mr, mt, p, pb, pl, pr, pt });
 
   return classNames(
     generateClassNames(mergedClasses, {
       container: true,
-      [`${maxWidth}`]: Boolean(maxWidth),
       ...spacing,
     }),
     className ?? ''
