@@ -1,18 +1,24 @@
 .details {
-  background-color: red;
   padding: 0.5rem;
   grid-area: details;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  list-style-type: none;
+.detailsList {
+  margin-bottom: 0.5rem;
 }
 
-.item {
-  display: grid;
+.detailItem {
   grid-template-columns: 150px 1fr;
-  gap: 0.5rem;
+  align-items: center;
+}
+
+.amenitiesList {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.amenityItem {
+  grid-template-columns: 1rem 1fr;
+  align-items: center;
+  text-transform: capitalize;
 }
