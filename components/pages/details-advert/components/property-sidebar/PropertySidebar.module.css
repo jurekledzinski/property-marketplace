@@ -1,5 +1,19 @@
 .sidebar {
-  background-color: orange;
   padding: 0.5rem;
   grid-area: sidebar;
+}
+
+.userList {
+  margin-bottom: 1rem;
+}
+
+.lowerCased {
+  grid-template-columns: 1rem 1fr;
+  align-items: center;
+}
+
+.capitalized {
+  grid-template-columns: 1rem 1fr;
+  align-items: center;
+  text-transform: capitalize;
 }
