@@ -10,6 +10,7 @@ import {
   Container,
   optionsFormat,
   useCarouselThumbnails,
+  useContactForm,
 } from '@/components';
 
 import {
@@ -25,6 +26,7 @@ export const DetailsAdvert = ({ advertDetails }: DetailsAdvertProps) => {
   const slide = searchParams.get('slide');
   const format = formatNumber(`${advertDetails.price}`, 'nl-NL', optionsFormat);
   const carousel = useCarouselThumbnails();
+  const formControls = useContactForm({ advertiserId: '123' });
 
   return (
     <Container
@@ -56,6 +58,7 @@ export const DetailsAdvert = ({ advertDetails }: DetailsAdvertProps) => {
       <Box className={styles.layout}>
         <PropertyDetails details={advertDetails} />
         <PropertySidebar
+          controls={formControls}
           advertiser={advertDetails.advertiser}
           email={advertDetails.email}
           phone={advertDetails.phone}
