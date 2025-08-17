@@ -9,22 +9,22 @@ const images: string[] = [
 ];
 
 const amenities = [
-  'Air Conditioning',
-  'Balcony',
-  'Basement',
-  'Elevator',
-  'Garage',
-  'Garden',
-  'Fireplace',
-  'Furnished',
-  'Heating',
-  'Internet',
-  'Parking',
-  'Smart Home Features',
-  'Security System',
-  'Storage Room',
-  'Swimming Pool',
-  'Wheelchair Accessible',
+  'air conditioning',
+  'balcony',
+  'basement',
+  'elevator',
+  'garage',
+  'garden',
+  'fireplace',
+  'furnished',
+  'heating',
+  'internet',
+  'parking',
+  'smart home features',
+  'security system',
+  'storage room',
+  'swimming pool',
+  'wheelchair accessible',
 ];
 
 const description =
