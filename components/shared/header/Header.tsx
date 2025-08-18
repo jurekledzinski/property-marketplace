@@ -14,11 +14,12 @@ import {
   faFilter,
   faMoon,
   faSun,
+  faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const Header = () => {
   const { mode, onChange } = useTheme();
-  const { onToggleFiltersPanel } = useDrawer();
+  const { onToggleFiltersPanel, onToggleMenuPanel } = useDrawer();
 
   return (
     <AppBar className={styles.bar}>
@@ -26,6 +27,12 @@ export const Header = () => {
         <nav className={styles.nav}>
           <Heading level={4}>PlaceQuest</Heading>
           <ButtonGroup spacing="normal">
+            <IconButton
+              icon={[faEllipsisVertical]}
+              variant="minimal"
+              size="size-md"
+              onClick={() => onToggleMenuPanel && onToggleMenuPanel()}
+            />
             {mode === 'light' ? (
               <IconButton
                 icon={[faMoon]}
