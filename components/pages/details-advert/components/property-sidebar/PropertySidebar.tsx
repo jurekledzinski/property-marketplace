@@ -11,7 +11,7 @@ export const PropertySidebar = ({
 }: PropertySidebarProps) => {
   return (
     <Box className={styles.sidebar}>
-      <Heading level={4} mb="mb-sm">
+      <Heading level={4} mb="mb-md">
         Contact
       </Heading>
       <List className={styles.userList}>

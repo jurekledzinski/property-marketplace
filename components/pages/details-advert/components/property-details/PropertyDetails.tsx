@@ -9,7 +9,7 @@ export const PropertyDetails = ({ details }: PropertyDetailsProps) => {
 
   return (
     <Box className={styles.details}>
-      <Heading level={4} mb="mb-sm">
+      <Heading level={4} mb="mb-md">
         Property details
       </Heading>
 
@@ -22,13 +22,13 @@ export const PropertyDetails = ({ details }: PropertyDetailsProps) => {
         ))}
       </List>
 
-      <Heading level={4} mb="mb-sm" mt="mt-sm">
+      <Heading level={4} mb="mb-md" mt="mt-md">
         Description
       </Heading>
 
       <p>{details.description}</p>
 
-      <Heading level={4} mb="mb-sm" mt="mt-sm">
+      <Heading level={4} mb="mb-md" mt="mt-md">
         Amenitis
       </Heading>
 
