@@ -143,15 +143,26 @@ export type MarginLeftToken =
 export type MaxWidthToken = 'mw-sm' | 'mw-md' | 'mw-lg' | 'mw-xl' | number;
 
 export type SpacingToken = {
+  /** Margin top: xss: 2px, xs: 4px, sm: 8px, md: 16px, lg: 24px  */
   mt?: MarginTopToken;
+  /** Margin bottom: xss: 2px, xs: 4px, sm: 8px, md: 16px, lg: 24px  */
   mb?: MarginBottomToken;
+  /** Margin right: xss: 2px, xs: 4px, sm: 8px, md: 16px, lg: 24px  */
   mr?: MarginRightToken;
+  /** Margin left: xss: 2px, xs: 4px, sm: 8px, md: 16px, lg: 24px  */
   ml?: MarginLeftToken;
+  /** Margin: xss: 2px, xs: 4px, sm: 8px, md: 16px, lg: 24px  */
   m?: MarginToken;
+  /** Padding: xss: 2px, xs: 4px, sm: 8px, md: 16px, lg: 24px  */
   p?: PaddingToken;
+  /** Padding top: xss: 2px, xs: 4px, sm: 8px, md: 16px, lg: 24px  */
   pt?: PaddingTopToken;
+  /** Padding bottom: xss: 2px, xs: 4px, sm: 8px, md: 16px, lg: 24px  */
   pb?: PaddingBottomToken;
+  /** Padding right: xss: 2px, xs: 4px, sm: 8px, md: 16px, lg: 24px  */
   pr?: PaddingRightToken;
+  /** Padding left: xss: 2px, xs: 4px, sm: 8px, md: 16px, lg: 24px  */
   pl?: PaddingLeftToken;
+  /** Max width: sm: 1000px, md: 1100px, lg: 1200px, xl: 1300px  */
   maxWidth?: MaxWidthToken;
 };
