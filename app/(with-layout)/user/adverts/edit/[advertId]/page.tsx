@@ -1,5 +1,5 @@
-const EditAdvert = () => {
+const EditAdvertPage = () => {
   return <div>Edit advert page</div>;
 };
 
-export default EditAdvert;
+export default EditAdvertPage;

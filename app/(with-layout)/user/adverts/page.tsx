@@ -1,5 +1,5 @@
-const UserAdverts = () => {
+const UserAdvertsPage = () => {
   return <div>User adverts page</div>;
 };
 
-export default UserAdverts;
+export default UserAdvertsPage;

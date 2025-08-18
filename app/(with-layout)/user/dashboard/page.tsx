@@ -1,5 +1,7 @@
-const UserDashboard = () => {
-  return <div>User dashboard page</div>;
+import { UserDashboard } from '@/components';
+
+const UserDashboardPage = () => {
+  return <UserDashboard />;
 };
 
-export default UserDashboard;
+export default UserDashboardPage;
