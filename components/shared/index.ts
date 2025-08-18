@@ -39,3 +39,4 @@ export * from './search-input';
 export * from './select';
 export * from './text-input';
 export * from './validation-checklist';
+export * from './drawer';
