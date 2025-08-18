@@ -46,26 +46,32 @@
 
 .totalAdverts {
   grid-area: total-adverts;
+  background-color: #ff4136;
 }
 
 .typeAdverts {
   grid-area: type-adverts;
+  background-color: #ff4136;
 }
 
 .statusAdverts {
   grid-area: status-adverts;
+  background-color: #ff4136;
 }
 
 .viewsAdverts {
   grid-area: views-adverts;
+  background-color: #ff4136;
 }
 
 .topAdvert {
   grid-area: top-advert;
+  background-color: #ff4136;
 }
 
 .latestAdverts {
   grid-area: latest-adverts;
+  background-color: #ff4136;
 }
 
 @media (min-width: 575px) {
