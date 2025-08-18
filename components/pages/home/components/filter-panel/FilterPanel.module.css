@@ -21,7 +21,7 @@
   top: 54px;
   display: flex;
   gap: 0.5rem;
-  background-color: var(--color-surface-elevated-1);
+  background-color: var(--color-surface);
   padding: 0.5rem 0.5rem 7px;
   z-index: var(--z-drawer);
 }
