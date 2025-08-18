@@ -1,3 +1,86 @@
 .dashboard {
   min-height: calc(100vh - 104px);
 }
+
+.container {
+  position: relative;
+  display: flex;
+  gap: 0.5rem;
+  min-height: inherit;
+  overflow: hidden;
+  will-change: overflow;
+}
+
+.container.open {
+  animation: unHide 300ms forwards 300ms;
+}
+
+.content {
+  padding: 0.5rem;
+}
+
+@keyframes unHide {
+  from {
+    overflow: hidden;
+  }
+
+  to {
+    overflow: initial;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  width: 100%;
+  grid-template-areas:
+    'total-adverts'
+    'type-adverts'
+    'status-adverts'
+    'views-adverts'
+    'top-advert'
+    'latest-adverts';
+  padding: 0.5rem;
+}
+
+.totalAdverts {
+  grid-area: total-adverts;
+}
+
+.typeAdverts {
+  grid-area: type-adverts;
+}
+
+.statusAdverts {
+  grid-area: status-adverts;
+}
+
+.viewsAdverts {
+  grid-area: views-adverts;
+}
+
+.topAdvert {
+  grid-area: top-advert;
+}
+
+.latestAdverts {
+  grid-area: latest-adverts;
+}
+
+@media (min-width: 575px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-areas:
+      'total-adverts type-adverts status-adverts'
+      'views-adverts views-adverts status-adverts'
+      'views-adverts views-adverts top-advert'
+      'latest-adverts latest-adverts latest-adverts';
+  }
+}
+
+@media (min-width: 1100px) {
+  .grid {
+    padding: 0.5rem 0;
+  }
+}
