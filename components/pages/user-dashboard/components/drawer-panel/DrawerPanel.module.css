@@ -1,0 +1,6 @@
+.panel {
+  min-height: inherit;
+  padding: 1rem;
+  background-color: #ff4136;
+  color: white;
+}

@@ -1,7 +1,15 @@
+.drawer {
+  --drawer-gap: 8px;
+  --drawer-width: 250px;
+  --drawer-top: 0px;
+}
+
+/* To będzie dynamiczne top ile  */
 .inner {
   position: sticky;
-  top: 54px;
+  top: var(--drawer-top);
   align-self: flex-start;
+  min-height: inherit;
 }
 
 .horizontal,
@@ -16,9 +24,9 @@
 }
 
 .vertical {
-  width: min(250px, 100%);
+  width: min(var(--drawer-width), 100%);
   min-height: inherit;
-  height: 100vh;
+  /* height: 100vh; */
   flex-shrink: 0;
 }
 
@@ -78,17 +86,18 @@
 
 @media (min-width: 575px) {
   .horizontal.top.push,
+  .horizontal.top.pinned,
   .vertical.left.push,
   .vertical.left.pinned,
-  .vertical.right.pinned,
-  .horizontal.top.pinned,
-  .vertical.right.push {
+  .vertical.right.push,
+  .vertical.right.pinned {
     right: unset;
     bottom: unset;
     transform: unset;
 
     position: sticky;
-    /* top: 0px; */
+    /* top: 0; */
+    /* align-self: flex-start; */
   }
 
   .horizontal.bottom.push,
@@ -111,7 +120,7 @@
 
   .vertical.right.pinned,
   .vertical.left.pinned {
-    width: 250px;
+    width: var(--drawer-width);
   }
 
   /* --- Push --- */
@@ -129,19 +138,23 @@
     max-height: 100px;
   }
 
+  /* gap trzeba dodać jako zmienna --drawer-gap: 8px*/
   .vertical.right.push {
-    width: 2rem;
+    position: relative;
+    margin-right: calc((var(--drawer-width) + var(--drawer-gap)) * -1);
   }
 
   .vertical.right.push.open {
-    width: 250px;
+    margin-right: 0;
   }
 
+  /* gap trzeba dodać jako zmienna --drawer-gap: 8px*/
   .vertical.left.push {
-    width: 2rem;
+    position: relative;
+    margin-left: calc((var(--drawer-width) + var(--drawer-gap)) * -1);
   }
 
   .vertical.left.push.open {
-    width: 250px;
+    margin-left: 0;
   }
 }
