@@ -1,5 +1,6 @@
 .dashboard {
   min-height: calc(100vh - 104px);
+  background-color: var(--color-surface-0);
 }
 
 .container {
@@ -36,52 +37,137 @@
   width: 100%;
   grid-template-areas:
     'total-adverts'
-    'type-adverts'
-    'status-adverts'
-    'views-adverts'
     'top-advert'
-    'latest-adverts';
+    'type-adverts'
+    'messages-advert'
+    'views-adverts'
+    'status-adverts';
   padding: 0.5rem;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  grid-area: card-header;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: 0.5rem 1rem;
+  grid-area: card-content;
+}
+
+.cardFooter {
+  grid-area: card-footer;
+  padding: 8px;
+  border-top: 1px solid white;
+}
+
+.cardContentHorizontal {
+  grid-area: card-content;
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .totalAdverts {
   grid-area: total-adverts;
-  background-color: #ff4136;
+  display: grid;
+  grid-template-columns: 1fr 25%;
+  grid-template-areas:
+    'card-content card-header'
+    'card-footer card-footer';
+
+  background: #f7971e;
+  background: -webkit-linear-gradient(to right, #f7971e, #ffd200);
+  background: linear-gradient(to right, #f7971e, #ffd200);
 }
 
 .typeAdverts {
   grid-area: type-adverts;
-  background-color: #ff4136;
-}
+  display: grid;
+  grid-template-columns: 1fr 25%;
+  grid-template-areas:
+    'card-content card-header'
+    'card-footer card-footer';
 
-.statusAdverts {
-  grid-area: status-adverts;
-  background-color: #ff4136;
-}
-
-.viewsAdverts {
-  grid-area: views-adverts;
-  background-color: #ff4136;
+  background: #09d78f;
+  background: -webkit-linear-gradient(to right, #09d78f, #0cec9e);
+  background: linear-gradient(to right, #09d78f, #0cec9e);
 }
 
 .topAdvert {
   grid-area: top-advert;
-  background-color: #ff4136;
+  display: grid;
+  grid-template-columns: 1fr 25%;
+  grid-template-areas:
+    'card-content card-header'
+    'card-footer card-footer';
+
+  background: #ff6a7b;
+  background: -webkit-linear-gradient(to right, #ff6a7b, #fe8795);
+  background: linear-gradient(to right, #ff6a7b, #fe8795);
 }
 
-.latestAdverts {
-  grid-area: latest-adverts;
-  background-color: #ff4136;
+.messagesAdvert {
+  grid-area: messages-advert;
+
+  display: grid;
+  grid-template-columns: 1fr 25%;
+  grid-template-areas:
+    'card-content card-header'
+    'card-footer card-footer';
+
+  background: #01b9bb;
+  background: -webkit-linear-gradient(to right, #01b9bb, #01d6da);
+  background: linear-gradient(to right, #01b9bb, #01d6da);
+}
+
+.statusAdverts {
+  grid-area: status-adverts;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: inset#eee 0px 1px 1px 0px, inset #eee 0px 0px 0px 1px;
+}
+
+.viewsAdverts {
+  grid-area: views-adverts;
+  padding: 1rem 1rem 0;
+  background-color: white;
+  box-shadow: inset#eee 0px 1px 1px 0px, inset #eee 0px 0px 0px 1px;
+}
+
+.heading {
+  color: var(--color-text-dark);
+}
+
+.viewsChart {
+  width: 100%;
+  height: 280px;
+  max-width: calc(100vw - 3rem);
+}
+
+.statusChart {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 280px;
+  max-width: calc(100vw - 3rem);
 }
 
 @media (min-width: 575px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-rows: 80px 351px;
     grid-template-areas:
-      'total-adverts type-adverts status-adverts'
-      'views-adverts views-adverts status-adverts'
-      'views-adverts views-adverts top-advert'
-      'latest-adverts latest-adverts latest-adverts';
+      'total-adverts type-adverts top-advert messages-advert'
+      'views-adverts views-adverts views-adverts status-adverts';
   }
 }
 
