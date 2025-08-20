@@ -1,6 +1,7 @@
 'use client';
 import { getClassNamesUserDashboard } from './utils';
-import { useDrawer } from '@/store';
+import { useDrawer, useTheme } from '@/store';
+import { UserDashboardProps } from './types';
 
 import {
   AdvertsStatusCard,
@@ -9,13 +10,14 @@ import {
   Container,
   Drawer,
   DrawerPanel,
-  LatestAdvertsCard,
   TopAdvertCard,
   TotalAdvertsCard,
-  ViewAdvertsCard,
+  ViewsAdvertsCard,
+  MessagesCard,
 } from '@/components';
 
-export const UserDashboard = () => {
+export const UserDashboard = ({ dashboardAnalytics }: UserDashboardProps) => {
+  const { mode } = useTheme();
   const { openMenuPanel: open } = useDrawer();
   const classes = getClassNamesUserDashboard({ open });
 
@@ -29,10 +31,15 @@ export const UserDashboard = () => {
         <Box className={classes.grid}>
           <TotalAdvertsCard />
           <AdvertsTypeStatsCard />
-          <AdvertsStatusCard />
-          <ViewAdvertsCard />
           <TopAdvertCard />
-          <LatestAdvertsCard />
+          <MessagesCard />
+          <AdvertsStatusCard mode={mode} stats={dashboardAnalytics.stats} />
+          <ViewsAdvertsCard
+            label="Views"
+            mode={mode}
+            title="Views per advert"
+            views={dashboardAnalytics.views}
+          />
         </Box>
       </Container>
     </div>
