@@ -1,1 +1,2 @@
-export * from './ViewAdvertsCard';
+export * from './ViewsAdvertsCard';
+export * from './types';
