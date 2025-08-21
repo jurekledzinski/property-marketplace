@@ -11,10 +11,10 @@ export const UserDashboard = ({ children }: UserDashboardProps) => {
   return (
     <Box className={classes.dashboard}>
       <Container className={classes.container} m="m-center" maxWidth="mw-md">
-        <Drawer direction="left" open={open} variant="push">
+        <Drawer direction="left" top={54} open={open} variant="push">
           <DrawerPanel />
         </Drawer>
-        {children}
+        <Box className={classes.content}>{children}</Box>
       </Container>
     </Box>
   );
