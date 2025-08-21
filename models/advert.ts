@@ -4,27 +4,29 @@ export const AdvertSchema = z.object({
   advertiser: z.string(),
   email: z.email(),
   phone: z.string(),
-
-  type: z.string(), // apartment | house
-  status: z.string(), // rent | sale
-  images: z.array(z.string()),
-
   country: z.string(),
-  state: z.string(),
+  state: z.string().optional(),
   city: z.string(),
   street: z.string(),
   postalCode: z.string(),
-  price: z.number(),
 
   title: z.string(),
   description: z.string(),
 
+  images: z.array(z.string()),
+
+  type: z.string(), // apartment | house
+  status: z.string(), // rent | sale
+
+  price: z.number(),
+
   condition: z.string(),
-  style: z.string(),
   year: z.number(),
   area: z.number(),
   rooms: z.number(),
   bathrooms: z.number(),
+
+  style: z.string(),
   amenities: z.array(z.string()),
 });
 
