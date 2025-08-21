@@ -1,5 +1,7 @@
+import { UserNewAdvert } from '@/components';
+
 const NewAdvertPage = () => {
-  return <div>Add advert page</div>;
+  return <UserNewAdvert />;
 };
 
 export default NewAdvertPage;
