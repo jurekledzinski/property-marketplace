@@ -11,5 +11,9 @@ export const getClassNamesUserDashboard: ClassNamesUserDashboard = (params) => {
       container: true,
       open: Boolean(open),
     }),
+    content: generateClassNames(styles, {
+      content: true,
+      open: Boolean(open),
+    }),
   };
 };
