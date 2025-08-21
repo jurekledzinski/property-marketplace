@@ -1,5 +1,5 @@
 export const getDrawerInlineStyles = ({
-  gap = 8,
+  gap = 0,
   width = 250,
   top = 0,
 }: {
