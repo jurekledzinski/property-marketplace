@@ -7,12 +7,12 @@ export const AdvertsTypeStatsCard = () => {
     <Card className={styles.typeAdverts}>
       <CardContent className={styles.cardContentHorizontal}>
         <div>
-          <p style={{ fontSize: 20, fontWeight: 500 }}>1</p>
-          <p style={{ fontSize: 14 }}>Total rent</p>
+          <p className={styles.text}>1</p>
+          <p className={styles.subText}>Total rent</p>
         </div>
         <div>
-          <p style={{ fontSize: 20, fontWeight: 500 }}>2</p>
-          <p style={{ fontSize: 14 }}>Total sale</p>
+          <p className={styles.text}>2</p>
+          <p className={styles.subText}>Total sale</p>
         </div>
       </CardContent>
       <CardHeader className={styles.cardHeader}>
