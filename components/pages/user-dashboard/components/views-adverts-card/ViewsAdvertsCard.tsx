@@ -1,13 +1,14 @@
 import styles from '../../UserDashboard.module.css';
 import { AdvertsViewsChart } from '../adverts-views-chart';
+import { ViewAdvertsCardProps } from './types';
 import {
   Heading,
   useChartBarControl,
   useChartBarOptions,
   Card,
   bgColors,
+  useChartBgFormat,
 } from '@/components';
-import { ViewAdvertsCardProps } from './types';
 
 export const ViewsAdvertsCard = ({
   mode,
@@ -15,13 +16,12 @@ export const ViewsAdvertsCard = ({
   title,
   views,
 }: ViewAdvertsCardProps) => {
+  const backgroundColor = useChartBgFormat({ bgColors, mode });
+
   const formattedViews = useChartBarControl({
     chartData: views,
     label,
-    backgroundColor:
-      mode === 'light'
-        ? bgColors
-        : bgColors.map((c) => c.replace('0.4', '0.8')),
+    backgroundColor,
   });
   const options = useChartBarOptions({ chartData: views });
 
