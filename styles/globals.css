@@ -116,7 +116,8 @@
   --focus-offset: 1px;
 
   /* Hover */
-  --color-surface-hover: var(--color-black-100);
+  --color-surface-default-hover: var(--color-black-100);
+  --color-surface-primary-hover: var(--color-primary-100);
 
   /* Backgrounds */
   --color-surface: #ffffff;
@@ -196,7 +197,8 @@ html[data-theme='dark'] {
   --color-text-disabled: #c0c0c0;
 
   /* Hover */
-  --color-surface-hover: var(--color-black-800);
+  --color-surface-default-hover: var(--color-black-800);
+  --color-surface-primary-hover: var(--color-primary-800);
 
   /* Icon */
 
