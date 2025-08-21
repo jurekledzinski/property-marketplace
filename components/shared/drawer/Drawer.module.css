@@ -1,5 +1,5 @@
 .drawer {
-  --drawer-gap: 8px;
+  --drawer-gap: 0px;
   --drawer-width: 250px;
   --drawer-top: 0px;
 }
@@ -26,7 +26,6 @@
 .vertical {
   width: min(var(--drawer-width), 100%);
   min-height: inherit;
-  /* height: 100vh; */
   flex-shrink: 0;
 }
 
@@ -62,6 +61,28 @@
   bottom: 0;
   transform: translateX(100%);
   transition: 300ms ease;
+}
+
+/* Gap */
+
+.push.top,
+.pinned.top {
+  margin-bottom: var(--drawer-gap);
+}
+
+.push.bottom,
+.pinned.bottom {
+  margin-top: var(--drawer-gap);
+}
+
+.push.right,
+.pinned.right {
+  margin-left: var(--drawer-gap);
+}
+
+.push.left,
+.pinned.left {
+  margin-right: var(--drawer-gap);
 }
 
 /* --- Status Open --- */
