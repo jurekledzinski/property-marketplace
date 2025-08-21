@@ -1,4 +1,4 @@
-import { UserDashboard } from '@/components';
+import { DashboardGrid } from '@/components';
 
 const serverData = {
   topAdvert: 'Advert 1',
@@ -15,7 +15,7 @@ const serverData = {
 };
 
 const UserDashboardPage = () => {
-  return <UserDashboard dashboardAnalytics={serverData} />;
+  return <DashboardGrid dashboardAnalytics={serverData} />;
 };
 
 export default UserDashboardPage;
