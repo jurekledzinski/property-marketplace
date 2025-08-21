@@ -76,6 +76,22 @@
   padding: 0.5rem 1rem;
 }
 
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.subText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  /* width: 70px; */
+}
+
 .totalAdverts {
   grid-area: total-adverts;
   display: grid;

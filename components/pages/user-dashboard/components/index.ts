@@ -2,6 +2,7 @@ export * from './adverts-status-card';
 export * from './adverts-status-chart';
 export * from './adverts-type-stats-card';
 export * from './adverts-views-chart';
+export * from './dashboard-grid';
 export * from './drawer-panel';
 export * from './messages-card';
 export * from './top-advert-card';

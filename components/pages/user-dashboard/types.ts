@@ -1,5 +1,5 @@
-import { DashboardAnalytics } from '@/models';
+import React from 'react';
 
 export type UserDashboardProps = {
-  dashboardAnalytics: DashboardAnalytics;
+  children?: React.ReactNode;
 };
