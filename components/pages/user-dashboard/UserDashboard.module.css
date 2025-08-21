@@ -6,7 +6,6 @@
 .container {
   position: relative;
   display: flex;
-  gap: 0.5rem;
   min-height: inherit;
   overflow: hidden;
   will-change: overflow;
@@ -17,6 +16,7 @@
 }
 
 .content {
+  width: 100%;
   padding: 0.5rem;
 }
 
@@ -42,7 +42,6 @@
     'messages-advert'
     'views-adverts'
     'status-adverts';
-  padding: 0.5rem;
 }
 
 .cardHeader {
@@ -188,7 +187,11 @@
 }
 
 @media (min-width: 1100px) {
-  .grid {
+  .content {
     padding: 0.5rem 0;
+  }
+
+  .content.open {
+    margin-left: 0.5rem;
   }
 }
