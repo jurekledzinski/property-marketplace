@@ -14,7 +14,6 @@ export const useChartBarOptions = ({ chartData }: UseChartBarOptionsProps) => {
         legend: { display: false },
         tooltip: {
           cornerRadius: 0,
-          backgroundColor: 'black',
           callbacks: {
             title: (tooltipItems) => {
               const i = tooltipItems[0].dataIndex;
