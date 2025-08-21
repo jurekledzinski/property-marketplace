@@ -1,6 +1,8 @@
-import { InputsAdvertsFilter } from '@/components';
+// import { InputsAdvertsFilter } from '@/components';
 import { UseFormReturn } from 'react-hook-form';
 
+type AmenitiesPart = { amenities: string[] };
+
 export type AmenitiesSectionProps = {
-  controls: UseFormReturn<InputsAdvertsFilter, unknown, InputsAdvertsFilter>;
+  controls: UseFormReturn<AmenitiesPart, unknown, AmenitiesPart>;
 };
