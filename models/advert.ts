@@ -9,18 +9,13 @@ export const AdvertSchema = z.object({
   city: z.string(),
   street: z.string(),
   postalCode: z.string(),
-
   title: z.string(),
   description: z.string(),
-
   images: z.array(z.string()),
-
   type: z.string(), // apartment | house
   status: z.string(), // rent | sale
-
-  price: z.number(),
-
   condition: z.string(),
+  price: z.number(),
   year: z.number(),
   area: z.number(),
   rooms: z.number(),
