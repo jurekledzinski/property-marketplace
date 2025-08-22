@@ -17,11 +17,9 @@ export interface AdvertCards extends Omit<Advert, OmitUnion> {
   src: string;
 }
 
-export type PartialAdvertsFilters = InputsAdvertsFilter;
-
 export type HomeProps = {
   advertCards: AdvertCards[];
   searchValue?: string;
   sortValue?: string;
-  filters: PartialAdvertsFilters;
+  filters: InputsAdvertsFilter;
 };
