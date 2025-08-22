@@ -1,8 +1,14 @@
-import { InputsAdvertsFilter } from '@/components';
-import { UseFormReturn } from 'react-hook-form';
-import { Rule } from '../types';
+import { PropertyStylesFields } from '@/components';
+import {
+  FieldErrors,
+  Path,
+  UseControllerProps,
+  UseFormReturn,
+} from 'react-hook-form';
 
-export type ArchitectureProps = {
-  controls: UseFormReturn<InputsAdvertsFilter, unknown, InputsAdvertsFilter>;
-  rulesArchitecture?: Rule<'style'>;
+export type ArchitectureProps<T extends PropertyStylesFields> = {
+  controls: UseFormReturn<T>;
+  errors: FieldErrors<PropertyStylesFields>;
+  nameStyle: Path<T>;
+  rulesArchitecture?: UseControllerProps<T, Path<T>>['rules'];
 };

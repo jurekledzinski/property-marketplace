@@ -1,40 +1,51 @@
 import { ArchitectureProps } from './types';
-import { Field, Label, Message, Radio, RadioGroup } from '@/components';
 import { memo } from 'react';
+import {
+  Field,
+  Label,
+  Message,
+  PropertyStylesFields,
+  Radio,
+  RadioGroup,
+} from '@/components';
 
 const architectureStyles = ['Modern', 'Traditional', 'Minimalist', 'Other'];
 
-export const ArchitectureSection = memo(
-  ({ controls, rulesArchitecture }: ArchitectureProps) => {
-    const { formState, register } = controls;
-    const { errors } = formState;
+const StylePart = <T extends PropertyStylesFields>({
+  controls,
+  errors,
+  nameStyle,
+  rulesArchitecture,
+}: ArchitectureProps<T>) => {
+  const { register } = controls;
 
-    return (
-      <>
-        <Field>
-          <Label>Architectural style</Label>
-          <RadioGroup orientation="column" spacing="tight">
-            {architectureStyles.map((style) => (
-              <Radio
-                key={style}
-                {...register('style', rulesArchitecture)}
-                id={style.toLowerCase()}
-                value={style.toLowerCase()}
-                color={'primary'}
-                size={'size-xs'}
-                variant={'filled'}
-              >
-                {style}
-              </Radio>
-            ))}
-          </RadioGroup>
-          {errors.style ? (
-            <Message variant="error">{errors.style.message}</Message>
-          ) : null}
-        </Field>
-      </>
-    );
-  }
-);
+  return (
+    <>
+      <Field>
+        <Label>Style</Label>
+        <RadioGroup orientation="column" spacing="tight">
+          {architectureStyles.map((style) => (
+            <Radio
+              key={style}
+              {...register(nameStyle, rulesArchitecture)}
+              id={style.toLowerCase()}
+              value={style.toLowerCase()}
+              color={'primary'}
+              size={'size-xs'}
+              variant={'filled'}
+            >
+              {style}
+            </Radio>
+          ))}
+        </RadioGroup>
+        {errors.style ? (
+          <Message variant="error">{errors.style.message}</Message>
+        ) : null}
+      </Field>
+    </>
+  );
+};
 
-ArchitectureSection.displayName = 'ArchitectureSection';
+export const ArchitectureSection = memo(StylePart) as typeof StylePart;
+
+StylePart.displayName = 'ArchitectureSection';
