@@ -1,7 +1,7 @@
 import { FormHTMLAttributes } from 'react';
-import { Orientation } from '@/types';
+import { GapToken, Orientation } from '@/types';
 
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
-  children?: React.ReactNode;
+  gap?: GapToken;
   orientation?: Orientation;
 }
