@@ -1,3 +1,5 @@
 export * from './advert-form';
-export * from './personal-section';
+export * from './bathrooms-section';
 export * from './description-section';
+export * from './images-section';
+export * from './personal-section';
