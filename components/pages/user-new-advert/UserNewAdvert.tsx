@@ -1,6 +1,6 @@
 'use client';
 import { AdvertForm } from './components';
-import { Box } from '@/components';
+import { Box, Heading } from '@/components';
 import { useAdvertForm } from './hooks';
 
 export const UserNewAdvert = () => {
@@ -8,6 +8,9 @@ export const UserNewAdvert = () => {
 
   return (
     <Box>
+      <Heading level={4} mb="mb-md" mt="mt-sm">
+        Add New Advert
+      </Heading>
       <AdvertForm controls={form.formControl} onSubmit={form.onSubmit} />
     </Box>
   );
