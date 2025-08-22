@@ -1,7 +1,7 @@
 import { HTMLAttributes, MouseEventHandler } from 'react';
-import { PartialAdvertsFilters } from '../../types';
+import { InputsAdvertsFilter } from '../../hooks';
 
 export interface FiltersChipsPanelProps extends HTMLAttributes<HTMLDivElement> {
-  filters: PartialAdvertsFilters;
+  filters: InputsAdvertsFilter;
   onDelete?: MouseEventHandler<HTMLButtonElement>;
 }
