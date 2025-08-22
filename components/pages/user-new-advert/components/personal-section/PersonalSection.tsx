@@ -13,6 +13,7 @@ export const PersonalSection = ({ controls }: PersonalSectionProps) => {
           {...register('advertiser', {
             required: { message: 'Advertiser is required', value: true },
           })}
+          placeholder="Advertiser"
         />
         {errors.advertiser ? (
           <Message variant="error">{errors.advertiser.message}</Message>
@@ -25,6 +26,7 @@ export const PersonalSection = ({ controls }: PersonalSectionProps) => {
           {...register('email', {
             required: { message: 'Email is required', value: true },
           })}
+          placeholder="Email"
         />
         {errors.email ? (
           <Message variant="error">{errors.email.message}</Message>
@@ -37,6 +39,7 @@ export const PersonalSection = ({ controls }: PersonalSectionProps) => {
           {...register('phone', {
             required: { message: 'Phone is required', value: true },
           })}
+          placeholder="Phone number"
         />
         {errors.phone ? (
           <Message variant="error">{errors.phone.message}</Message>
@@ -49,6 +52,7 @@ export const PersonalSection = ({ controls }: PersonalSectionProps) => {
           {...register('street', {
             required: { message: 'Street is required', value: true },
           })}
+          placeholder="Street"
         />
         {errors.street ? (
           <Message variant="error">{errors.street.message}</Message>
@@ -61,6 +65,7 @@ export const PersonalSection = ({ controls }: PersonalSectionProps) => {
           {...register('postalCode', {
             required: { message: 'Post code is required', value: true },
           })}
+          placeholder="Post code"
         />
         {errors.postalCode ? (
           <Message variant="error">{errors.postalCode.message}</Message>
