@@ -1,7 +1,14 @@
 'use client';
 import { AmenitiesSectionProps } from './types';
-import { Checkbox, CheckboxGroup, Field, Label } from '@/components';
 import { memo } from 'react';
+
+import {
+  Checkbox,
+  CheckboxGroup,
+  Field,
+  Label,
+  PropertyAmenitiesFields,
+} from '@/components';
 
 const amenities = [
   'Air Conditioning',
@@ -22,7 +29,10 @@ const amenities = [
   'Wheelchair Accessible',
 ];
 
-export const AmenitiesSection = memo(({ controls }: AmenitiesSectionProps) => {
+export const AmenitiesPart = <T extends PropertyAmenitiesFields>({
+  controls,
+  nameAmenities,
+}: AmenitiesSectionProps<T>) => {
   const { register } = controls;
 
   return (
@@ -34,7 +44,7 @@ export const AmenitiesSection = memo(({ controls }: AmenitiesSectionProps) => {
             return (
               <Checkbox
                 key={amenity}
-                {...register('amenities')}
+                {...register(nameAmenities)}
                 id={amenity.toLowerCase()}
                 value={amenity.toLowerCase()}
                 size="size-xs"
@@ -47,6 +57,8 @@ export const AmenitiesSection = memo(({ controls }: AmenitiesSectionProps) => {
       </Field>
     </>
   );
-});
+};
 
-AmenitiesSection.displayName = 'AmenitiesSection';
+export const AmenitiesSection = memo(AmenitiesPart) as typeof AmenitiesPart;
+
+AmenitiesPart.displayName = 'AmenitiesSection';

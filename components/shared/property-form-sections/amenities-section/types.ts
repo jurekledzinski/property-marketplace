@@ -1,8 +1,7 @@
-// import { InputsAdvertsFilter } from '@/components';
-import { UseFormReturn } from 'react-hook-form';
+import { Path, UseFormReturn } from 'react-hook-form';
+import { PropertyAmenitiesFields } from '@/components';
 
-type AmenitiesPart = { amenities: string[] };
-
-export type AmenitiesSectionProps = {
-  controls: UseFormReturn<AmenitiesPart, unknown, AmenitiesPart>;
+export type AmenitiesSectionProps<T extends PropertyAmenitiesFields> = {
+  controls: UseFormReturn<T>;
+  nameAmenities: Path<T>;
 };
