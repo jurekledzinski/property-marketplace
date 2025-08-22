@@ -1,3 +1,6 @@
+import { GapToken } from '@/types';
 import { HTMLAttributes } from 'react';
 
-export type FiledProps = HTMLAttributes<HTMLFieldSetElement>;
+export interface FiledProps extends HTMLAttributes<HTMLFieldSetElement> {
+  gap?: GapToken;
+}
