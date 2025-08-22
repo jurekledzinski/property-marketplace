@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useRef } from 'react';
 
-export const useObjectUrl = (file: File) => {
+export const useObjectUrl = (file: File | string) => {
   const previousUrlRef = useRef<string | null>(null);
 
-  const objectUrl = useMemo(() => URL.createObjectURL(file), [file]);
+  const objectUrl = useMemo(() => {
+    return typeof file === 'string' ? null : URL.createObjectURL(file);
+  }, [file]);
 
   useEffect(() => {
     if (previousUrlRef.current !== objectUrl) {

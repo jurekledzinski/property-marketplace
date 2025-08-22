@@ -1,6 +1,6 @@
 export type PreviewFileProps = {
   children?: React.ReactNode;
-  images: File[];
+  images: File[] | string[];
   gridPlacement?: 'column' | 'grid' | 'row';
   onRemove: (index: number) => void;
 };
