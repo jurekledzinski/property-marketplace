@@ -237,3 +237,25 @@
 .pl-lg {
   padding-left: var(--space-lg);
 }
+
+/* Gap */
+
+.g-xxs {
+  gap: var(--space-xxs);
+}
+
+.g-xs {
+  gap: var(--space-xs);
+}
+
+.g-sm {
+  gap: var(--space-sm);
+}
+
+.g-md {
+  gap: var(--space-md);
+}
+
+.g-lg {
+  gap: var(--space-lg);
+}
