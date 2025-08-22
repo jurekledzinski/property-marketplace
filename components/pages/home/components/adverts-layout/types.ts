@@ -1,9 +1,9 @@
+import { InputsAdvertsFilter } from '../../hooks';
 import { HomeProps } from '../../types';
-import { PartialAdvertsFilters } from '../../types';
 
 export type AdvertsLayoutProps = {
   advertCards: HomeProps['advertCards'];
-  filters: PartialAdvertsFilters;
+  filters: InputsAdvertsFilter;
   searchValue?: string;
   sortValue?: string;
 };
