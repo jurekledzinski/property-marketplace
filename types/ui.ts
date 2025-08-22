@@ -166,3 +166,6 @@ export type SpacingToken = {
   /** Max width: sm: 1000px, md: 1100px, lg: 1200px, xl: 1300px  */
   maxWidth?: MaxWidthToken;
 };
+
+/** Gap: xss: 2px, xs: 4px, sm: 8px, md: 16px, lg: 24px  */
+export type GapToken = 'g-xxs' | 'g-xs' | 'g-sm' | 'g-md' | 'g-lg';
