@@ -9,6 +9,14 @@
   gap: 0.25rem;
 }
 
+.form .form-group {
+  gap: 0.25rem;
+}
+
+.form[data-group='true'] {
+  gap: 0.5rem;
+}
+
 .form-group {
   width: 100%;
 }
