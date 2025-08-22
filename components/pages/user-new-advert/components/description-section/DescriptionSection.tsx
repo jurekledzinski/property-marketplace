@@ -13,6 +13,7 @@ export const DescriptionSection = ({ controls }: DescriptionSectionProps) => {
           {...register('title', {
             required: { message: 'Title is required', value: true },
           })}
+          placeholder="Title"
         />
         {errors.title ? (
           <Message variant="error">{errors.title.message}</Message>
@@ -24,6 +25,7 @@ export const DescriptionSection = ({ controls }: DescriptionSectionProps) => {
           {...register('description', {
             required: { message: 'Description is required', value: true },
           })}
+          placeholder="Description"
         />
         {errors.description ? (
           <Message variant="error">{errors.description.message}</Message>
