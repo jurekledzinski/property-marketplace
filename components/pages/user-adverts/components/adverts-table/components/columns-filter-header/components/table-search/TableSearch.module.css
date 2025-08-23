@@ -1,0 +1,17 @@
+.input {
+  width: 100%;
+  padding: 0.25rem;
+  color: var(--color-text-primary);
+  font-size: 14px;
+  border: 1px solid var(--color-surface-30);
+  background-color: var(--color-surface-elevated-1);
+}
+
+.input::placeholder {
+  color: var(--color-surface-50);
+  font-size: 14px;
+}
+
+.input:focus {
+  outline: 1px solid var(--color-focus-primary);
+}
