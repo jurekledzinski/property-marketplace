@@ -40,5 +40,6 @@ export * from './property-form-sections';
 export * from './radio-group';
 export * from './search-input';
 export * from './select';
+export * from './table';
 export * from './text-input';
 export * from './validation-checklist';
