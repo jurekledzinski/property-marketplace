@@ -1,7 +1,8 @@
+import { FieldValues } from 'react-hook-form';
 import { CheckListProps } from './types';
 import { useMemo } from 'react';
 
-export const useValidateCheckList = <T,>({
+export const useValidateCheckList = <T extends FieldValues>({
   mapRules,
   value,
   formValues,
