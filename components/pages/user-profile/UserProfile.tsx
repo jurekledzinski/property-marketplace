@@ -1,7 +1,9 @@
-import { Button, ButtonGroup, Heading } from '@/components';
+'use client';
+import { Box, Button, ButtonGroup, Heading } from '@/components';
 import { PasswordForm, UserForm } from './components';
 import { usePasswordForm, useUserForm } from './hooks';
 import { usePasswordRules } from '../register';
+import styles from './UserProfile.module.css';
 
 export const UserProfile = () => {
   const { formControl: userControl, onSubmit: onSubmitUser } = useUserForm();
@@ -21,19 +23,26 @@ export const UserProfile = () => {
       <Heading level={4} mb="mb-md" mt="mt-sm">
         Profile
       </Heading>
-      <UserForm controls={userControl} onSubmit={onSubmitUser} />
-      <PasswordForm
-        controls={passwordControl}
-        nameConfirm="confirm"
-        namePassword="password"
-        onSubmit={onSubmitPassword}
-        passwordRules={passwordRules}
-      />
-      <Heading level={4} mb="mb-md" mt="mt-sm">
+      <Box className={styles.container}>
+        <UserForm controls={userControl} onSubmit={onSubmitUser} />
+        <PasswordForm
+          controls={passwordControl}
+          nameConfirm="confirm"
+          namePassword="password"
+          onSubmit={onSubmitPassword}
+          passwordRules={passwordRules}
+        />
+      </Box>
+      <Heading level={4} mb="mb-md" mt="mt-md">
         Delete account
       </Heading>
-      <ButtonGroup>
-        <Button label="Delete account" size="size-md" variant="outlined" />
+      <ButtonGroup mb="mb-md">
+        <Button
+          color="negative"
+          label="Delete account"
+          size="size-md"
+          variant="outlined"
+        />
       </ButtonGroup>
     </>
   );
