@@ -46,7 +46,12 @@ export const PasswordForm = <T extends FieldValues>({
       </Field>
       <RegisterValidation passwordRules={passwordRules} />
       <ButtonGroup mt="mt-md" fullWidth>
-        <Button type="submit" label="Sign In" fullWidth size="size-lg" />
+        <Button
+          type="submit"
+          label="Update Password"
+          fullWidth
+          size="size-lg"
+        />
       </ButtonGroup>
     </Form>
   );
