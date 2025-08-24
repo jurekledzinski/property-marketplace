@@ -8,7 +8,12 @@ import { SubmitHandler } from 'react-hook-form';
 
 export const RegisterPage = () => {
   const controls = useRegisterForm();
-  const passwordRules = usePasswordRules({ watch: controls.watch });
+  const passwordRules = usePasswordRules({
+    watch: controls.watch,
+    nameConfirm: 'confirm',
+    namePassword: 'password',
+  });
+
   const onSubmit: SubmitHandler<InputsRegister> = (data) => {
     console.log('Submit', data);
   };
@@ -25,6 +30,11 @@ export const RegisterPage = () => {
           </Heading>
           <RegisterForm
             controls={controls}
+            errors={controls.formState.errors}
+            nameConfirm="confirm"
+            nameEmail="email"
+            nameName="name"
+            namePassword="password"
             passwordRules={passwordRules}
             onSubmit={onSubmit}
           />
