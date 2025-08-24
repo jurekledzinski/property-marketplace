@@ -41,7 +41,7 @@ export const UserForm = ({ controls, onSubmit }: UserFormProps) => {
       </Field>
 
       <ButtonGroup mt="mt-md" fullWidth>
-        <Button type="submit" label="Sign In" fullWidth size="size-lg" />
+        <Button type="submit" label="Update Profile" fullWidth size="size-lg" />
       </ButtonGroup>
     </Form>
   );
