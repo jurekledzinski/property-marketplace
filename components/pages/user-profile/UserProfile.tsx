@@ -1,4 +1,4 @@
-import { Heading } from '@/components/shared';
+import { Button, ButtonGroup, Heading } from '@/components';
 import { PasswordForm, UserForm } from './components';
 import { usePasswordForm, useUserForm } from './hooks';
 import { usePasswordRules } from '../register';
@@ -29,6 +29,12 @@ export const UserProfile = () => {
         onSubmit={onSubmitPassword}
         passwordRules={passwordRules}
       />
+      <Heading level={4} mb="mb-md" mt="mt-sm">
+        Delete account
+      </Heading>
+      <ButtonGroup>
+        <Button label="Delete account" size="size-md" variant="outlined" />
+      </ButtonGroup>
     </>
   );
 };
