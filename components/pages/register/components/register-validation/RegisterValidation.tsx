@@ -1,9 +1,10 @@
-import { ValidationChecklist, ValidationItem } from '@/components';
+import { FieldValues } from 'react-hook-form';
 import { RegisterValidationProps } from './types';
+import { ValidationChecklist, ValidationItem } from '@/components';
 
-export const RegisterValidation = ({
+export const RegisterValidation = <T extends FieldValues>({
   passwordRules,
-}: RegisterValidationProps) => {
+}: RegisterValidationProps<T>) => {
   const { ruleConfirm, rulePassword } = passwordRules;
 
   return (
