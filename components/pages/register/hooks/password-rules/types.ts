@@ -1,6 +1,7 @@
-import { InputsRegister } from '../control-register-form/types';
-import { UseFormWatch } from 'react-hook-form';
+import { FieldValues, Path, UseFormWatch } from 'react-hook-form';
 
-export type UsePasswordRulesProps = {
-  watch: UseFormWatch<InputsRegister>;
+export type UsePasswordRulesProps<T extends FieldValues> = {
+  nameConfirm: Path<T>;
+  namePassword: Path<T>;
+  watch: UseFormWatch<T>;
 };

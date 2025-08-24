@@ -1,9 +1,8 @@
-import { InputsRegister } from '../control-register-form';
+import { FieldValues, Validate } from 'react-hook-form';
 import { UsePasswordRulesProps } from './types';
 import { useValidateCheckList } from '@/components';
-import { Validate } from 'react-hook-form';
 
-const mapRules: Record<string, Validate<string, InputsRegister>> = {
+const mapRules: Record<string, Validate<string, FieldValues>> = {
   minLength: (v) => v.length >= 8 || '',
   hasNumber: (v) => /\d/.test(v) || '',
   hasUppercase: (v) => /[A-Z]/.test(v) || '',
@@ -12,22 +11,26 @@ const mapRules: Record<string, Validate<string, InputsRegister>> = {
   hasNoSpace: (v) => /^\S*$/.test(v) || '',
 };
 
-const confirmRules: Record<string, Validate<string, InputsRegister>> = {
+const confirmRules: Record<string, Validate<string, FieldValues>> = {
   sameValues: (_, rest) => rest.password === rest.confirm,
 };
 
-export const usePasswordRules = ({ watch }: UsePasswordRulesProps) => {
+export const usePasswordRules = <T extends FieldValues>({
+  nameConfirm,
+  namePassword,
+  watch,
+}: UsePasswordRulesProps<T>) => {
   const { ruleResults: rulePassword, validate: validatePassword } =
-    useValidateCheckList({
+    useValidateCheckList<T>({
       mapRules,
-      value: watch('password'),
+      value: watch(namePassword),
       formValues: watch(),
     });
 
   const { ruleResults: ruleConfirm, validate: validateConfirm } =
-    useValidateCheckList({
+    useValidateCheckList<T>({
       mapRules: confirmRules,
-      value: watch('confirm'),
+      value: watch(nameConfirm),
       formValues: watch(),
     });
 
