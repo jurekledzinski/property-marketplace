@@ -1,3 +1,4 @@
+'use client';
 import { InputsPassword } from './types';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useCallback } from 'react';
