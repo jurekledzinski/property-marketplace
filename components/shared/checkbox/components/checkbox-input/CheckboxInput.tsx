@@ -1,10 +1,11 @@
 import { CheckboxProps } from '../../types';
+import { classNames } from '@/helpers';
 import { forwardRef } from 'react';
 import { getClassCheckbox } from '../../utils';
 import { Icon } from '../icon';
 
 export const CheckboxInput = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ color, disabled, readOnly, size, variant, ...props }, ref) => {
+  ({ className, color, disabled, readOnly, size, variant, ...props }, ref) => {
     const classes = getClassCheckbox(color, disabled, readOnly, size, variant);
 
     return (
@@ -19,7 +20,7 @@ export const CheckboxInput = forwardRef<HTMLInputElement, CheckboxProps>(
           type="checkbox"
           onKeyDown={(e) => readOnly && e.preventDefault()}
         />
-        <Icon className={classes.checkbox} />
+        <Icon className={classNames(classes.checkbox, className)} />
       </>
     );
   }
