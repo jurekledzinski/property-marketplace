@@ -229,6 +229,11 @@ a:focus-visible {
   box-shadow: 0 0 0 0.1rem var(--color-focus, var(--color-primary-500, #2095f3));
 }
 
+a {
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
 h1,
 h2,
 h3,
