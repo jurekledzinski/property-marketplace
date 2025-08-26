@@ -5,8 +5,6 @@ import type { ChartOptions } from 'chart.js';
 
 export const useChartBarOptions = ({ chartData }: UseChartBarOptionsProps) => {
   const options = useMemo<ChartOptions<'bar'>>(() => {
-    console.log('Create options');
-
     return {
       indexAxis: 'x',
       responsive: true,

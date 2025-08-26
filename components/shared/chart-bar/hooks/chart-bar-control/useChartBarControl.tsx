@@ -11,7 +11,6 @@ export const useChartBarControl = ({
 }: UseChartBarControlProps) => {
   const data = useMemo(() => {
     if (!chartData?.length) return { labels: [], datasets: [] };
-    console.log('Create data');
     const formatData = chartData.map((i) => i.label.slice(0, 10) + '...');
 
     return {
