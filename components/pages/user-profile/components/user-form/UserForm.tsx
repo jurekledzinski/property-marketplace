@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { UserFormProps } from './types';
 import {
   Button,
@@ -9,7 +10,7 @@ import {
   TextInput,
 } from '@/components';
 
-export const UserForm = ({ controls, onSubmit }: UserFormProps) => {
+const UserFormPart = ({ controls, onSubmit }: UserFormProps) => {
   const { register, formState } = controls;
   const { errors } = formState;
 
@@ -46,3 +47,5 @@ export const UserForm = ({ controls, onSubmit }: UserFormProps) => {
     </Form>
   );
 };
+
+export const UserForm = memo(UserFormPart) as typeof UserFormPart;
