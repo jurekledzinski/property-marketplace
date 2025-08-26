@@ -22,7 +22,6 @@ const PasswordFormPart = <T extends FieldValues>({
   passwordRules,
 }: PasswordFormProps<T>) => {
   const { register } = controls;
-  console.log('PasswordFormPart');
 
   return (
     <Form onSubmit={controls.handleSubmit(onSubmit)} noValidate>
