@@ -1,7 +1,8 @@
-import { ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler } from 'react';
 import { PaddingToken, Size } from '@/types';
 
 export type AccordionHeaderProps = {
+  children?: React.ReactNode;
   checked?: boolean;
   id: string;
   onClick?: React.MouseEventHandler<HTMLInputElement>;

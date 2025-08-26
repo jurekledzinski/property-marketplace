@@ -4,6 +4,7 @@ import { getClassNamesAccordionHeader } from '../../utils';
 import { useAccordion } from '../../store';
 
 export const AccordionHeader = ({
+  children,
   checked,
   id,
   title,
@@ -33,12 +34,14 @@ export const AccordionHeader = ({
         {title}
       </Checkbox>
 
+      {children}
+
       {onChangeDelete ? (
         <Checkbox
           id={`delete-${id}`}
           name="delete"
           color="negative"
-          variant="filled"
+          variant="unfilled"
           onChange={onChangeDelete}
         />
       ) : null}
