@@ -17,7 +17,7 @@ import {
 } from './helpers';
 
 export const usePosition = ({
-  autoWidth = true,
+  autoWidth = false,
   gap = 8,
   id,
   panelRef,
