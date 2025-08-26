@@ -24,9 +24,6 @@ export const UserProfile = () => {
     namePassword: 'password',
   });
 
-  console.log('USER WATCH', user.watch());
-  console.log('PASSWORD WATCH', password.watch());
-
   return (
     <>
       <Heading level={4} mb="mb-md" mt="mt-sm">
@@ -36,6 +33,7 @@ export const UserProfile = () => {
         <UserForm controls={user} onSubmit={onSubmitUser} />
         <PasswordForm
           controls={password}
+          errors={password.formState.errors}
           nameConfirm="confirm"
           namePassword="password"
           onSubmit={onSubmitPassword}
