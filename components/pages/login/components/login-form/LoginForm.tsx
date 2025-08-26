@@ -11,17 +11,28 @@ import {
 } from '@/components';
 
 export const LoginForm = ({ controls, onSubmit }: LoginFormProps) => {
+  const { register, formState } = controls;
+  const { errors } = formState;
+
   return (
     <Form onSubmit={controls.handleSubmit(onSubmit)} noValidate>
       <Field>
         <Label>Email</Label>
-        <TextInput />
-        <Message>Email is required</Message>
+        <TextInput
+          {...register('email', {
+            required: { message: 'Email is required', value: true },
+          })}
+        />
+        {errors.email ? <Message>{errors.email.message}</Message> : null}
       </Field>
       <Field>
         <Label>Password</Label>
-        <PasswordInput />
-        <Message>Email is required</Message>
+        <PasswordInput
+          {...register('password', {
+            required: { message: 'Password is required', value: true },
+          })}
+        />
+        {errors.password ? <Message>{errors.password.message}</Message> : null}
       </Field>
       <ButtonGroup mt="mt-md" fullWidth>
         <Button type="submit" label="Sign In" fullWidth size="size-lg" />

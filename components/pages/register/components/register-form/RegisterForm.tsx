@@ -59,7 +59,7 @@ export const RegisterForm = <T extends FieldValues>({
             validate: passwordRules.validatePassword,
           })}
         />
-        {/* <Message>Email is required</Message> */}
+        {errors.password ? <Message>{errors.password.message}</Message> : null}
       </Field>
 
       <Field>
@@ -73,7 +73,7 @@ export const RegisterForm = <T extends FieldValues>({
             validate: passwordRules.validateConfirm,
           })}
         />
-        {/* <Message>Confirm password is required</Message> */}
+        {errors.confirm ? <Message>{errors.confirm.message}</Message> : null}
       </Field>
 
       <RegisterValidation passwordRules={passwordRules} />
