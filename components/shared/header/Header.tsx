@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import styles from './Header.module.css';
 import { useDrawer, useTheme } from '@/store';
 
@@ -7,7 +8,13 @@ import {
   ButtonGroup,
   Container,
   Heading,
+  Icon,
   IconButton,
+  Menu,
+  MenuContainer,
+  MenuItem,
+  MenuPanel,
+  MenuTrigger,
 } from '@/components';
 import {
   faBars,
@@ -55,7 +62,32 @@ export const Header = () => {
               size="size-md"
               onClick={() => onToggleFiltersPanel && onToggleFiltersPanel()}
             />
-            <IconButton icon={[faBars]} variant="minimal" size="size-md" />
+            <MenuContainer>
+              <MenuTrigger id="root">
+                <Icon icon={faBars} />
+              </MenuTrigger>
+              <MenuPanel
+                id="root"
+                placement="bottom end"
+                type="floating"
+                arrowPlacement="top end"
+                arrowColor="default"
+                arrowSize="size-xs"
+              >
+                <Menu>
+                  <MenuItem id="login">
+                    <Link href="/auth/login">Login</Link>
+                  </MenuItem>
+                  <MenuItem id="register">
+                    <Link href="/auth/register">Register</Link>
+                  </MenuItem>
+                  <MenuItem id="dashbord">
+                    <Link href="/user/dashboard">Dashboard</Link>
+                  </MenuItem>
+                  <MenuItem id="logout">Logout</MenuItem>
+                </Menu>
+              </MenuPanel>
+            </MenuContainer>
           </ButtonGroup>
         </nav>
       </Container>
