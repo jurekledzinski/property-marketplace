@@ -2,6 +2,10 @@
   position: absolute;
   width: 0;
   height: 0;
+  --arrow-size-xs: 4px;
+  --arrow-size-sm: 6px;
+  --arrow-size-md: 8px;
+  --arrow-size-lg: 10px;
 }
 
 /* ---- Placement ---- */
