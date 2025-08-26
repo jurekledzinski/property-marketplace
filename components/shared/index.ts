@@ -31,6 +31,7 @@ export * from './input';
 export * from './label';
 export * from './list';
 export * from './loader';
+export * from './menu';
 export * from './message';
 export * from './modal';
 export * from './pagination';
