@@ -1,9 +1,9 @@
 'use client';
+import styles from './UserProfile.module.css';
 import { Box, Button, ButtonGroup, Heading } from '@/components';
 import { PasswordForm, UserForm } from './components';
 import { usePasswordForm, useUserForm } from './hooks';
 import { usePasswordRules } from '../register';
-import styles from './UserProfile.module.css';
 
 export const UserProfile = () => {
   const { formControl: userControl, onSubmit: onSubmitUser } = useUserForm();
