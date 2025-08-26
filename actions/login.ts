@@ -1,0 +1,22 @@
+'use server';
+import { actionTryCatch } from '@/lib';
+import { signIn } from '@/auth';
+import { UserSchema } from '@/models';
+
+export const login = actionTryCatch(
+  async (prevState: unknown, formData: FormData) => {
+    const body = Object.fromEntries(formData);
+
+    const parsedData = UserSchema.pick({ email: true, password: true }).parse(
+      body
+    );
+
+    await signIn('credentials', {
+      email: parsedData.email,
+      password: parsedData.password,
+      redirect: false,
+    });
+
+    return { message: 'Login success', success: true };
+  }
+);
