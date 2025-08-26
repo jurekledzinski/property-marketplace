@@ -1,6 +1,7 @@
+import { InputsPassword } from '../../hooks';
 import { usePasswordRules } from '@/components';
-// import { InputsPassword } from '../../hooks';
 import {
+  FieldErrors,
   FieldValues,
   Path,
   SubmitHandler,
@@ -9,6 +10,7 @@ import {
 
 export type PasswordFormProps<T extends FieldValues> = {
   controls: UseFormReturn<T, unknown, T>;
+  errors: FieldErrors<InputsPassword>;
   namePassword: Path<T>;
   nameConfirm: Path<T>;
   passwordRules: ReturnType<typeof usePasswordRules<T>>;

@@ -1,4 +1,6 @@
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FieldValues } from 'react-hook-form';
+import { memo } from 'react';
 import { PasswordFormProps } from './types';
 import {
   Button,
@@ -6,18 +8,21 @@ import {
   Field,
   Form,
   Label,
+  Message,
   PasswordInput,
   RegisterValidation,
 } from '@/components';
 
-export const PasswordForm = <T extends FieldValues>({
+const PasswordFormPart = <T extends FieldValues>({
   controls,
+  errors,
   nameConfirm,
   namePassword,
   onSubmit,
   passwordRules,
 }: PasswordFormProps<T>) => {
   const { register } = controls;
+  console.log('PasswordFormPart');
 
   return (
     <Form onSubmit={controls.handleSubmit(onSubmit)} noValidate>
@@ -28,8 +33,9 @@ export const PasswordForm = <T extends FieldValues>({
             required: { message: 'Password is required', value: true },
             validate: passwordRules.validatePassword,
           })}
+          endIcon={[faEye, faEyeSlash]}
         />
-        {/* <Message>Password is required</Message> */}
+        {errors.password ? <Message>{errors.password.message}</Message> : null}
       </Field>
       <Field>
         <Label>Confirm Password</Label>
@@ -41,8 +47,9 @@ export const PasswordForm = <T extends FieldValues>({
             },
             validate: passwordRules.validateConfirm,
           })}
+          endIcon={[faEye, faEyeSlash]}
         />
-        {/* <Message>Password is required</Message> */}
+        {errors.confirm ? <Message>{errors.confirm.message}</Message> : null}
       </Field>
       <RegisterValidation passwordRules={passwordRules} />
       <ButtonGroup mt="mt-md" fullWidth>
@@ -56,3 +63,5 @@ export const PasswordForm = <T extends FieldValues>({
     </Form>
   );
 };
+
+export const PasswordForm = memo(PasswordFormPart) as typeof PasswordFormPart;
