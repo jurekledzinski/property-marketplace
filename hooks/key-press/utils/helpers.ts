@@ -60,11 +60,3 @@ export const trapFocus: PressOptions['trapFocus'] = (event, context) => {
 export const onTab: PressOptions['onTab'] = (event, context) => {
   trapFocus(event, context);
 };
-
-//   if (
-//     (id && !id.includes('root')) ||
-//     (id && id.includes('root') && index !== 0)
-//   ) {
-//     event.preventDefault();
-//   }
-//   event.preventDefault();
