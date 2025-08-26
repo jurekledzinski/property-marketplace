@@ -47,7 +47,10 @@ export const useMenuPanelController = ({
     updateTriggerRect,
   });
 
-  const { arrowPlacement, onSetPosition } = usePosition(positionProps);
+  const { arrowPlacement, onSetPosition } = usePosition({
+    ...positionProps,
+    autoWidth: false,
+  });
 
   const arrowProps = groupArrowProps(
     { ...props, id, placement },
