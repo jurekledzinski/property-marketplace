@@ -6,7 +6,7 @@
   transform: translate(-50%, -50%);
   transform-origin: center;
   z-index: var(--z-modal);
-  background-color: var(--color-surface-elevated-0);
+  background-color: var(--color-surface-elevated-2);
   will-change: opacity, transform;
 }
 
