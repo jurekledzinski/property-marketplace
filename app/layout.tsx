@@ -3,6 +3,7 @@ import DrawerProvider from '@/store/drawer';
 import ThemeProvider from '@/store/theme';
 import { cookies } from 'next/headers';
 import { Montserrat, Roboto } from 'next/font/google';
+import { ToasterProvider } from '@/components';
 import type { Metadata } from 'next';
 
 const roboto = Roboto({
@@ -40,7 +41,10 @@ export default async function RootLayout({
     >
       <ThemeProvider>
         <DrawerProvider>
-          <body>{children}</body>
+          <body>
+            <ToasterProvider mode={mode?.value} />
+            {children}
+          </body>
         </DrawerProvider>
       </ThemeProvider>
     </html>
