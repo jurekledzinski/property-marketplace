@@ -1,22 +1,35 @@
 'use client';
 import styles from './Register.module.css';
 import stylesCommon from '@/components/pages/login/Common.module.css';
-import { Box, Heading, RegisterForm } from '@/components';
-import { classNames } from '@/helpers';
-import { InputsRegister, usePasswordRules, useRegisterForm } from './hooks';
-import { SubmitHandler } from 'react-hook-form';
+import { Alert, Box, Heading, RegisterForm } from '@/components';
+import { classNames, showSuccessToast } from '@/helpers';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { initialState } from '@/constants';
+import { register } from '@/actions';
+import { useActionState } from 'react';
+import { usePasswordRules, useRegisterForm } from './hooks';
+import { useRouter } from 'next/navigation';
 
-export const RegisterPage = () => {
-  const controls = useRegisterForm();
+export const Register = () => {
+  const router = useRouter();
+
+  const [state, action, isPending] = useActionState(register, initialState);
+
+  const { formControl, onSubmit } = useRegisterForm({
+    isPending,
+    isSuccess: state.success,
+    onSubmitForm: action,
+    onSuccess: () => {
+      showSuccessToast(state.message);
+      router.push('/auth/login');
+    },
+  });
+
   const passwordRules = usePasswordRules({
-    watch: controls.watch,
+    watch: formControl.watch,
     nameConfirm: 'confirm',
     namePassword: 'password',
   });
-
-  const onSubmit: SubmitHandler<InputsRegister> = (data) => {
-    console.log('Submit', data);
-  };
 
   return (
     <Box className={stylesCommon.container}>
@@ -29,8 +42,8 @@ export const RegisterPage = () => {
             Sign up
           </Heading>
           <RegisterForm
-            controls={controls}
-            errors={controls.formState.errors}
+            controls={formControl}
+            errors={formControl.formState.errors}
             nameConfirm="confirm"
             nameEmail="email"
             nameName="name"
@@ -38,6 +51,15 @@ export const RegisterPage = () => {
             passwordRules={passwordRules}
             onSubmit={onSubmit}
           />
+          {!state.success && state.message && (
+            <Alert
+              color="negative"
+              icon={faTriangleExclamation}
+              message={state.message}
+              size="size-sm"
+              fullWidth
+            />
+          )}
         </Box>
       </Box>
     </Box>
