@@ -6,16 +6,17 @@ import { UseResetFormProps } from './types';
 export const useResetForm = <T extends FieldValues>({
   isPending,
   isSuccess,
-  methods,
+  formControl,
   onSuccess,
-  defaultValues = {} as T,
+  defaultValues,
 }: UseResetFormProps<T>) => {
   useEffect(() => {
-    if (methods.formState.isSubmitSuccessful && !isPending && isSuccess) {
-      if (Object.keys(defaultValues).length) {
-        methods.reset(defaultValues);
+    if (formControl.formState.isSubmitSuccessful && !isPending && isSuccess) {
+      if (Object.keys(defaultValues ?? {}).length) {
+        formControl.reset(defaultValues);
       }
-      onSuccess();
+
+      if (onSuccess) onSuccess();
     }
-  }, [defaultValues, isPending, methods, isSuccess, onSuccess]);
+  }, [defaultValues, isPending, formControl, isSuccess, onSuccess]);
 };
