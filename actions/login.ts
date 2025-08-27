@@ -7,9 +7,7 @@ export const login = actionTryCatch(
   async (prevState: unknown, formData: FormData) => {
     const body = Object.fromEntries(formData);
 
-    const parsedData = UserSchema.pick({ email: true, password: true }).parse(
-      body
-    );
+    const parsedData = UserSchema.omit({ name: true }).parse(body);
 
     await signIn('credentials', {
       email: parsedData.email,
