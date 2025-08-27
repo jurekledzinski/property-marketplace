@@ -1,16 +1,37 @@
 'use client';
-import { InputsLogin } from './types';
-import { useForm } from 'react-hook-form';
+import { InputsLogin, UseLoginFormProps } from './types';
+import { startTransition } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useResetForm } from '@/hooks';
 
 const defaultValues = {
   email: '',
   password: '',
 };
 
-export const useLoginForm = () => {
-  const formControl = useForm<InputsLogin>({
+export const useLoginForm = ({
+  isPending,
+  isSuccess,
+  onSubmitForm,
+  onSuccess,
+}: UseLoginFormProps) => {
+  const formControl = useForm<InputsLogin>({ defaultValues });
+
+  const onSubmit: SubmitHandler<InputsLogin> = (data) => {
+    const formData = new FormData();
+    formData.set('email', data.email);
+    formData.set('password', data.password);
+
+    startTransition(() => onSubmitForm(formData));
+  };
+
+  useResetForm({
+    isPending,
+    isSuccess,
+    formControl,
     defaultValues,
+    onSuccess,
   });
 
-  return formControl;
+  return { formControl, onSubmit };
 };
