@@ -5,3 +5,4 @@ export * from './formatNumber';
 export * from './formatText';
 export * from './hasError';
 export * from './spacing';
+export * from './toasts';
