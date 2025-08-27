@@ -1,22 +1,31 @@
 'use client';
 import styles from './Login.module.css';
 import stylesCommon from './Common.module.css';
-import { classNames } from '@/helpers';
-import { SubmitHandler } from 'react-hook-form';
-import {
-  Box,
-  Heading,
-  InputsLogin,
-  LoginForm,
-  useLoginForm,
-} from '@/components';
+import { Alert, Box, Heading, LoginForm, useLoginForm } from '@/components';
+import { classNames, showSuccessToast } from '@/helpers';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { login } from '@/actions';
+import { useActionStateReset } from '@/hooks';
+import { useRouter } from 'next/navigation';
 
-export const LoginPage = () => {
-  const controls = useLoginForm();
+export const Login = () => {
+  const router = useRouter();
 
-  const onSubmit: SubmitHandler<InputsLogin> = (data) => {
-    console.log('Submit', data);
-  };
+  const { formAction, isPending, state } = useActionStateReset({
+    fnAction: login,
+    autoReset: true,
+  });
+
+  const { formControl, onSubmit } = useLoginForm({
+    isPending,
+    isSuccess: state.success,
+    onSubmitForm: formAction,
+    onSuccess: async () => {
+      showSuccessToast(state.message);
+      router.replace('/');
+      router.refresh();
+    },
+  });
 
   return (
     <Box className={stylesCommon.container}>
@@ -28,7 +37,16 @@ export const LoginPage = () => {
           <Heading className={stylesCommon.title} level={4}>
             Sign in
           </Heading>
-          <LoginForm controls={controls} onSubmit={onSubmit} />
+          <LoginForm controls={formControl} onSubmit={onSubmit} />
+          {!state.success && state.message && (
+            <Alert
+              color="negative"
+              icon={faTriangleExclamation}
+              message={state.message}
+              size="size-sm"
+              fullWidth
+            />
+          )}
         </Box>
       </Box>
     </Box>
