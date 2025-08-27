@@ -44,4 +44,5 @@ export * from './search-input';
 export * from './select';
 export * from './table';
 export * from './text-input';
+export * from './toaster-provider';
 export * from './validation-checklist';
