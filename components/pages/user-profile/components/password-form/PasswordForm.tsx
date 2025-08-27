@@ -1,4 +1,3 @@
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FieldValues } from 'react-hook-form';
 import { memo } from 'react';
 import { PasswordFormProps } from './types';
@@ -32,7 +31,6 @@ const PasswordFormPart = <T extends FieldValues>({
             required: { message: 'Password is required', value: true },
             validate: passwordRules.validatePassword,
           })}
-          endIcon={[faEye, faEyeSlash]}
         />
         {errors.password ? <Message>{errors.password.message}</Message> : null}
       </Field>
@@ -46,7 +44,6 @@ const PasswordFormPart = <T extends FieldValues>({
             },
             validate: passwordRules.validateConfirm,
           })}
-          endIcon={[faEye, faEyeSlash]}
         />
         {errors.confirm ? <Message>{errors.confirm.message}</Message> : null}
       </Field>
