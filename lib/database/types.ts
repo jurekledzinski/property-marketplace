@@ -3,3 +3,7 @@ export type State<T> = {
   success: boolean;
   payload?: T;
 };
+
+export type DataDB<T> = T & {
+  _id: string;
+};
