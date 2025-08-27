@@ -1,4 +1,3 @@
-'use server';
 import { AuthError } from 'next-auth';
 import { authMessage } from './authMessage';
 import { State } from '../database';
