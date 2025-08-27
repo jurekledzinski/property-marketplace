@@ -1,5 +1,6 @@
 'use client';
 import styles from './PasswordInput.module.css';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { forwardRef, Ref } from 'react';
 import { Input, InputWrapper } from '../';
 import { PasswordInputProps } from './types';
@@ -10,7 +11,7 @@ export const PasswordInput = forwardRef<
   PasswordInputProps
 >(
   (
-    { endIcon, startIcon, isPending, ...props },
+    { endIcon = [faEye, faEyeSlash], startIcon, isPending, ...props },
     ref: Ref<HTMLTextAreaElement | HTMLInputElement>
   ) => {
     const [show, setShow] = useState(false);
