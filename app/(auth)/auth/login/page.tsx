@@ -1,7 +1,7 @@
-import { LoginPage } from '@/components';
+import { Login } from '@/components';
 
-const Login = async () => {
-  return <LoginPage />;
+const LoginPage = async () => {
+  return <Login />;
 };
 
-export default Login;
+export default LoginPage;
