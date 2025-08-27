@@ -1,7 +1,7 @@
-import { RegisterPage } from '@/components';
+import { Register } from '@/components';
 
-const Register = async () => {
-  return <RegisterPage />;
+const RegisterPage = async () => {
+  return <Register />;
 };
 
-export default Register;
+export default RegisterPage;
