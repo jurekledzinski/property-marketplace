@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 export const AdvertSchema = z.object({
   advertiser: z.string(),
+  userId: z.string(),
   email: z.email(),
   phone: z.string(),
   country: z.string(),
@@ -12,6 +13,8 @@ export const AdvertSchema = z.object({
   title: z.string(),
   description: z.string(),
   images: z.array(z.string()),
+  dbImages: z.array(z.string()).optional(),
+  deleteImagesIds: z.array(z.string()).optional(),
   type: z.string(), // apartment | house
   status: z.string(), // rent | sale
   condition: z.string(),
