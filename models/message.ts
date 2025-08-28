@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const MessageSchema = z.object({
   id: z.string().optional(),
-  advertiserId: z.string(),
+  userId: z.string(),
   sender: z.object({ name: z.string(), email: z.email() }),
   title: z.string(),
   description: z.string(),
