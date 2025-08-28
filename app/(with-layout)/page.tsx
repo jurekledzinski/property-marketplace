@@ -4,6 +4,7 @@ import { HomePageProps } from './types';
 const dataAdvertCards = [
   {
     area: 100,
+    userId: '1',
     bathrooms: 1,
     city: 'Sittard',
     country: 'Netherlands',
@@ -18,6 +19,7 @@ const dataAdvertCards = [
   },
   {
     area: 100,
+    userId: '1',
     bathrooms: 1,
     city: 'Sittard',
     country: 'Netherlands',
@@ -32,6 +34,7 @@ const dataAdvertCards = [
   },
   {
     area: 100,
+    userId: '1',
     bathrooms: 1,
     city: 'Sittard',
     country: 'Netherlands',
@@ -46,6 +49,7 @@ const dataAdvertCards = [
   },
   {
     area: 100,
+    userId: '1',
     bathrooms: 1,
     city: 'Sittard',
     country: 'Netherlands',
@@ -60,6 +64,7 @@ const dataAdvertCards = [
   },
   {
     area: 100,
+    userId: '1',
     bathrooms: 1,
     city: 'Sittard',
     country: 'Netherlands',
