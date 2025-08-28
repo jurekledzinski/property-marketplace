@@ -13,4 +13,5 @@ export type InputsAvert = Omit<Advert, OmitKeys> & {
 
 export type UseAdvertFormProps = {
   advert?: InputsAvert;
+  userId: string;
 };

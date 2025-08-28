@@ -1,6 +1,6 @@
 'use client';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { InputsAvert, UseAdvertFormProps } from './types';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useCallback } from 'react';
 
 const defaultValues = {
@@ -25,12 +25,15 @@ const defaultValues = {
   bathrooms: '',
   amenities: [],
   style: '',
+  dbImages: [],
+  deleteImagesIds: [],
 };
 
-export const useAdvertForm = ({ advert }: UseAdvertFormProps) => {
+export const useAdvertForm = ({ advert, userId }: UseAdvertFormProps) => {
   const formControl = useForm<InputsAvert>({
     defaultValues: {
       advertiser: advert?.advertiser ?? defaultValues.advertiser,
+      userId: userId,
       email: advert?.email ?? defaultValues.email,
       phone: advert?.phone ?? defaultValues.phone,
       country: advert?.country ?? defaultValues.country,
@@ -51,11 +54,14 @@ export const useAdvertForm = ({ advert }: UseAdvertFormProps) => {
       bathrooms: advert?.bathrooms ?? defaultValues.bathrooms,
       style: advert?.style ?? defaultValues.style,
       amenities: advert?.amenities ?? defaultValues.amenities,
+      dbImages: advert?.dbImages ?? defaultValues.dbImages,
+      deleteImagesIds: advert?.deleteImagesIds ?? defaultValues.deleteImagesIds,
     },
   });
 
   const onSubmit: SubmitHandler<InputsAvert> = useCallback((data) => {
     console.log('Submit advert', data);
+    // deleteImagesIds można dodać podczas nowego ponieważ jest opcjonalne i musi być w edycji
   }, []);
 
   return { formControl, onSubmit };
