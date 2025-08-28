@@ -8,11 +8,11 @@ const defaultValues = {
   message: '',
 };
 
-export const useContactForm = ({ advertiserId }: useContactFormProps) => {
+export const useContactForm = ({ userId }: useContactFormProps) => {
   const formControls = useForm<InputsContact>({ defaultValues });
 
   const onSubmit: SubmitHandler<InputsContact> = (data) => {
-    console.log('Submit contact', data, advertiserId);
+    console.log('Submit contact', data, userId);
   };
 
   return { formControls, onSubmit };

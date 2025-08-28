@@ -5,5 +5,5 @@ export type InputsContact = {
 };
 
 export type useContactFormProps = {
-  advertiserId: string;
+  userId: string;
 };
