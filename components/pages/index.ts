@@ -4,6 +4,7 @@ export * from './login';
 export * from './register';
 export * from './user-adverts';
 export * from './user-dashboard';
+export * from './user-edit-advert';
 export * from './user-messages';
 export * from './user-new-advert';
 export * from './user-profile';
