@@ -26,7 +26,7 @@ export const DetailsAdvert = ({ advertDetails }: DetailsAdvertProps) => {
   const slide = searchParams.get('slide');
   const format = formatNumber(`${advertDetails.price}`, 'nl-NL', optionsFormat);
   const carousel = useCarouselThumbnails();
-  const formControls = useContactForm({ advertiserId: '123' });
+  const formControls = useContactForm({ userId: '123' });
 
   return (
     <Container
