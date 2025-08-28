@@ -3,7 +3,7 @@ import { UserMessages } from '@/components';
 const dataMessages = [
   {
     id: '1',
-    advertiserId: '64f123abc456def789012345',
+    userId: '64f123abc456def789012345',
     sender: {
       name: 'Joe Doe 1',
       email: 'joedoe@gmail.com',
@@ -15,7 +15,7 @@ const dataMessages = [
   },
   {
     id: '2',
-    advertiserId: '64f123abc456def789012345',
+    userId: '64f123abc456def789012345',
     sender: {
       name: 'Joe Doe 2',
       email: 'joedoe@gmail.com',
@@ -26,7 +26,7 @@ const dataMessages = [
   },
   {
     id: '3',
-    advertiserId: '64f123abc456def789012345',
+    userId: '64f123abc456def789012345',
     sender: {
       name: 'Joe Doe 3',
       email: 'joedoe@gmail.com',
