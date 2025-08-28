@@ -1,10 +1,10 @@
 'use client';
 import { AdvertForm } from './components';
-import { Heading } from '@/components';
+import { Heading, UserNewAdvertProps } from '@/components';
 import { useAdvertForm } from './hooks';
 
-export const UserNewAdvert = () => {
-  const form = useAdvertForm({});
+export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
+  const form = useAdvertForm({ userId });
 
   return (
     <>
