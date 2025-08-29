@@ -1,5 +1,5 @@
 import { Advert } from '@/models';
 
 export type UseFormatDetailsProps = {
-  details: Advert;
+  details: Omit<Advert, 'files'>;
 };

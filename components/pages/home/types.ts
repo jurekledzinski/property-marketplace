@@ -7,6 +7,7 @@ type OmitUnion =
   | 'condition'
   | 'description'
   | 'email'
+  | 'files'
   | 'images'
   | 'phone'
   | 'style'
