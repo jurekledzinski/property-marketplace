@@ -1,5 +1,5 @@
 'use server';
-import { actionTryCatch } from '@/lib';
+import { actionTryCatch, successResponseAction } from '@/lib';
 import { signIn } from '@/auth';
 import { UserSchema } from '@/models';
 
@@ -15,6 +15,6 @@ export const login = actionTryCatch(
       redirect: false,
     });
 
-    return { message: 'Login success', success: true };
+    return successResponseAction('Login success');
   }
 );
