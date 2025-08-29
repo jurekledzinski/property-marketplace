@@ -1,8 +1,11 @@
+import styles from '../../AdvertsTable.module.css';
 import { AdvertsUser } from '../../types';
 import { createColumnHelper } from '@tanstack/react-table';
+import { IconButton, UseAdvertsColumnsProps } from '@/components';
 import { useMemo } from 'react';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-export const useAdvertsColumns = () => {
+export const useAdvertsColumns = ({ onDelete }: UseAdvertsColumnsProps) => {
   const columnHelper = createColumnHelper<AdvertsUser>();
 
   const columns = useMemo(() => {
@@ -37,29 +40,20 @@ export const useAdvertsColumns = () => {
         header: () => <span>Actions</span>,
         cell: (info) => (
           <span style={{ display: 'flex', gap: 8 }}>
-            <button
-              onClick={() => {
-                console.log('edit info', info);
-              }}
-              style={{ flex: 1 }}
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => {
-                console.log('delete info', info);
-              }}
-              style={{ flex: 1 }}
-            >
-              Delete
-            </button>
+            <IconButton
+              href={`/user/adverts/edit/${info.row.original.id}`}
+              icon={[faPenToSquare]}
+            />
+            <IconButton
+              icon={[faTrash]}
+              onClick={() => onDelete(info.row.original.id)}
+              type="button"
+            />
           </span>
         ),
       }),
     ];
-  }, [columnHelper]);
-
-  console.log('Create cols');
+  }, [columnHelper, onDelete]);
 
   return columns;
 };
