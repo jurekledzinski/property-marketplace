@@ -10,7 +10,11 @@ import {
 } from './components';
 
 export const UserAdverts = ({ adverts = [] }: UserAdvertsProps) => {
-  const columns = useAdvertsColumns();
+  const columns = useAdvertsColumns({
+    onDelete: (id) => {
+      console.log('Delete advert id', id);
+    },
+  });
   const { isEmpty, noResults, table } = useControlAdvertsTable({
     adverts,
     columns,
