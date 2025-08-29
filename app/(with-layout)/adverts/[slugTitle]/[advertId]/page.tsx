@@ -34,6 +34,7 @@ const data = {
   advertiser: 'Joe Doe',
   email: 'joedoe@gmail.com',
   phone: '0657123123',
+  userId: '123',
 
   type: 'house',
   status: 'sale',
