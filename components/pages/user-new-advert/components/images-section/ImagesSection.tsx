@@ -5,6 +5,12 @@ import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { ImagesSectionProps } from './types';
 
 import {
+  useControlValidateFiles,
+  useRemovePreviewFiles,
+  useChangeFiles,
+} from './hooks';
+
+import {
   Box,
   DropZone,
   Field,
@@ -14,57 +20,49 @@ import {
   Label,
   Message,
   PreviewFiles,
+  useValidateFiles,
 } from '@/components';
 
-export const ImagesSection = ({ validate, controls }: ImagesSectionProps) => {
+export const ImagesSection = ({ controls }: ImagesSectionProps) => {
   const { formState, control, watch, register, setValue } = controls;
   const { errors } = formState;
 
-  const mergeFiles = (oldFiles: File[], newFiles: File[]) => {
-    const fileMap = new Map();
-    [...oldFiles, ...newFiles].forEach((file) => {
-      const key = `${file.name}-${file.size}`;
-      fileMap.set(key, file);
-    });
+  const { mergeFiles, onChangeFiles } = useChangeFiles({ setValue, watch });
+  const onRemove = useRemovePreviewFiles({ setValue, watch });
 
-    return Array.from(fileMap.values());
-  };
+  const checkFiles = useValidateFiles({
+    allowTypes: ['image/jpeg', 'image/png'],
+    maxAmount: 10,
+    maxTotalSize: [6, 'MB'],
+  });
+  const validate = useControlValidateFiles({ checkFiles });
 
   return (
     <>
       <Field>
         <Label>Images</Label>
         <Controller
-          name="images"
+          name="files"
           control={control}
           rules={{ validate }}
           render={({ field: { onChange, ...rest } }) => (
             <DropZone
+              {...rest}
               onDrop={(e) => {
                 const dropped = Array.from(e.dataTransfer.files);
-                const mergedFiles = mergeFiles(watch('images'), dropped);
+                const mergedFiles = mergeFiles(dropped);
                 onChange(mergedFiles);
               }}
-              {...rest}
               title="Drag and drop"
             >
               <FileInput
                 accept=".jpg,.pdf"
                 label="Add images"
                 multiple
-                {...register('images', { validate })}
-                onChange={(e) => {
-                  if (!e.target.files) return;
-                  const dropped = Array.from(e.target.files);
-                  const mergedFiles = mergeFiles(watch('images'), dropped);
-
-                  setValue('images', mergedFiles, {
-                    shouldValidate: true,
-                    shouldDirty: false,
-                  });
-                }}
+                {...register('files', { validate })}
+                onChange={onChangeFiles}
               />
-              <Message variant="error">{errors.images?.message}</Message>
+              <Message variant="error">{errors.files?.message}</Message>
             </DropZone>
           )}
         />
@@ -72,15 +70,9 @@ export const ImagesSection = ({ validate, controls }: ImagesSectionProps) => {
       <Field>
         <Label>Preview files</Label>
         <PreviewFiles
-          images={[...watch('images')]}
+          images={[...(watch('files') ?? []), ...watch('images')!]}
           gridPlacement="column"
-          onRemove={(index) => {
-            setValue(
-              'images',
-              [...watch('images')].filter((_, i) => i !== index),
-              { shouldValidate: true, shouldDirty: false }
-            );
-          }}
+          onRemove={onRemove}
         >
           <Box className={styles.info}>
             <Icon color="primary" icon={faImage} size="4x" />

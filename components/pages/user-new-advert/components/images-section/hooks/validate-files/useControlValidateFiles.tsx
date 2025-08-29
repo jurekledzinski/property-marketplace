@@ -19,11 +19,13 @@ export const useControlValidateFiles = <
       const maxAmount = checkFiles.checkMaxAmountFiles(files);
       const maxSize = checkFiles.checkMaxSize(files);
       const required = checkFiles.checkRequiredFiles(files);
+      const totalMaxSize = checkFiles.checkMaxTotalSize(files);
 
       if (type !== true) return type;
       if (maxAmount !== true) return maxAmount;
       if (maxSize !== true) return maxSize;
       if (required !== true) return required;
+      if (totalMaxSize !== true) return totalMaxSize;
 
       return true;
     },
