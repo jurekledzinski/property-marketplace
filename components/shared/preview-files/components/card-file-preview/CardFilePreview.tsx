@@ -46,8 +46,9 @@ export const CardFilePreview = ({
       <IconButton
         icon={[faXmark]}
         style={{ position: 'absolute', top: 0, right: 0 }}
-        onClick={() => onRemove(index)}
+        onClick={() => onRemove(index, file)}
         size="size-xxs"
+        type="button"
       />
     </div>
   );
