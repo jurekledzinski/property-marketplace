@@ -12,7 +12,7 @@ const editAdvert = {
   country: 'Some country',
   description: 'Description',
   email: 'joedoe@gmail.com',
-  images: [],
+  files: [],
   phone: '555444333',
   postalCode: '4534HG',
   price: '200',
@@ -24,7 +24,7 @@ const editAdvert = {
   type: 'house',
   userId: '123',
   year: '2000',
-  dbImages: [
+  images: [
     'https://cdn.pixabay.com/photo/2019/06/10/09/00/village-4263755_960_720.jpg',
     'https://cdn.pixabay.com/photo/2017/05/28/18/48/ivy-2351778_1280.jpg',
     'https://cdn.pixabay.com/photo/2015/11/15/08/21/house-1044132_1280.jpg',
@@ -36,11 +36,11 @@ const editAdvert = {
 const EditAdvertPage = async ({ params }: EditAdvertPageProps) => {
   const { advertId } = await params;
 
-  console.log('SERVER ADVERT EDIT PAGE ID ADVERT', advertId);
+  //   console.log('SERVER ADVERT EDIT PAGE ID ADVERT', advertId);
 
   const session = await auth();
 
-  console.log('Edit advert server session', session);
+  //   console.log('Edit advert server session', session);
 
   return <UserEditAdvert advert={editAdvert} userId={session?.user.id ?? ''} />;
 };
