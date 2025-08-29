@@ -38,18 +38,8 @@ export const useFilterForm = ({
   const [reset, setReset] = useState(resetState);
   const stableControls = useForm<InputsAdvertsFilter>({
     defaultValues: {
-      status: filters.status ?? defaultValues.status,
-      amenities: filters.amenities ?? defaultValues.amenities,
-      area: filters.area ?? defaultValues.area,
-      city: filters.city ?? defaultValues.city,
-      condition: filters.condition ?? defaultValues.condition,
-      country: filters.country ?? defaultValues.country,
-      priceFrom: filters.priceFrom ?? defaultValues.priceFrom,
-      priceTo: filters.priceTo ?? defaultValues.priceTo,
-      type: filters.type ?? defaultValues.type,
-      rooms: filters.rooms ?? defaultValues.rooms,
-      style: filters.style ?? defaultValues.style,
-      year: filters.year ?? defaultValues.year,
+      ...defaultValues,
+      ...filters,
     },
   });
 
