@@ -6,6 +6,7 @@ export const useValidateFiles = ({
   allowTypes,
   maxAmount,
   maxSize,
+  maxTotalSize,
 }: UseValidateFilesProps) => {
   const checkFileType = (
     files: File[],
@@ -33,6 +34,29 @@ export const useValidateFiles = ({
 
       if (parseFloat(formattedSize) > maxSize[0]) {
         const size = maxSize.join('');
+        return onGetMessage(file, size);
+      }
+    }
+
+    return true;
+  };
+
+  const checkMaxTotalSize = (
+    files: File[],
+    onGetMessage: (file: File, size: string) => string = (file, size) =>
+      `Total size exceeds the maximum allowed size of ${size}.`
+  ) => {
+    if (!maxTotalSize || maxTotalSize.length < 2) return true;
+
+    let totalFilesSize = 0;
+
+    for (const file of files) {
+      const formattedSize = formatFileSize(file.size, maxTotalSize[1]);
+
+      totalFilesSize += parseFloat(formattedSize);
+
+      if (totalFilesSize > maxTotalSize[0]) {
+        const size = maxTotalSize.join('');
         return onGetMessage(file, size);
       }
     }
@@ -69,5 +93,6 @@ export const useValidateFiles = ({
     checkMaxSize,
     checkMaxAmountFiles,
     checkRequiredFiles,
+    checkMaxTotalSize,
   };
 };

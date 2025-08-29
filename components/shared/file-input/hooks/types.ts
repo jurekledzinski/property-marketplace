@@ -5,6 +5,7 @@ export type UseValidateFilesProps = {
   allowTypes: FileMimeType[];
   maxAmount?: number;
   maxSize?: MaxSize;
+  maxTotalSize?: MaxSize;
 };
 
 export type UseValidateFilesOnChangeProps = {
