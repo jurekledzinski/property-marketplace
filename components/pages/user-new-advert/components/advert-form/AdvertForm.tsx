@@ -3,7 +3,6 @@ import { DescriptionSection } from '../description-section';
 import { ImagesSection } from '../images-section';
 import { PersonalSection } from '../personal-section';
 import { PriceSection } from '../price-section/PriceSection';
-import { useControlValidateFiles } from '../images-section/hooks';
 import {
   AmenitiesSection,
   ArchitectureSection,
@@ -15,17 +14,9 @@ import {
   LocationSection,
   PropertyDetailsSection,
   PropertyTypeSection,
-  useValidateFiles,
 } from '@/components';
 
-export const AdvertForm = ({ controls, onSubmit }: AdvertFormProps) => {
-  const checkFiles = useValidateFiles({
-    allowTypes: ['image/jpeg', 'image/png'],
-    maxSize: [3, 'MB'],
-    maxAmount: 10,
-  });
-  const validate = useControlValidateFiles({ checkFiles });
-
+export const AdvertForm = ({ controls, onSubmit, reset }: AdvertFormProps) => {
   return (
     <Form
       data-group="true"
@@ -34,7 +25,7 @@ export const AdvertForm = ({ controls, onSubmit }: AdvertFormProps) => {
       noValidate
     >
       <FormGroup>
-        <PersonalSection controls={controls} />
+        <PersonalSection controls={controls} key={reset.personal} />
         <LocationSection
           controls={controls}
           errors={controls.formState.errors}
@@ -48,8 +39,8 @@ export const AdvertForm = ({ controls, onSubmit }: AdvertFormProps) => {
             required: { message: 'Country is required', value: true },
           }}
         />
-        <DescriptionSection controls={controls} />
-        <ImagesSection validate={validate} controls={controls} />
+        <DescriptionSection controls={controls} key={reset.description} />
+        <ImagesSection controls={controls} />
       </FormGroup>
       <FormGroup>
         <PropertyTypeSection
@@ -83,7 +74,7 @@ export const AdvertForm = ({ controls, onSubmit }: AdvertFormProps) => {
           }}
           rulesYear={{ required: { message: 'Year is required', value: true } }}
         />
-        <BathroomsSection controls={controls} />
+        <BathroomsSection controls={controls} key={reset.bathrooms} />
         <ArchitectureSection
           controls={controls}
           errors={controls.formState.errors}
@@ -92,7 +83,11 @@ export const AdvertForm = ({ controls, onSubmit }: AdvertFormProps) => {
             required: { message: 'Style is required', value: true },
           }}
         />
-        <AmenitiesSection controls={controls} nameAmenities="amenities" />
+        <AmenitiesSection
+          controls={controls}
+          nameAmenities="amenities"
+          key={reset.amenities}
+        />
         <ButtonGroup mt="mt-md" fullWidth>
           <Button type="submit" label="Sign In" fullWidth size="size-lg" />
         </ButtonGroup>
