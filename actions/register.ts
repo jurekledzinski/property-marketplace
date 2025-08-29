@@ -1,7 +1,12 @@
 'use server';
 import bcrypt from 'bcrypt';
 import { User, UserSchema } from '@/models';
-import { connectDBAction, errorResponseAction, getCollectionDb } from '@/lib';
+import {
+  connectDBAction,
+  errorResponseAction,
+  getCollectionDb,
+  successResponseAction,
+} from '@/lib';
 
 export const register = connectDBAction(
   async (prevState: unknown, formData: FormData) => {
@@ -24,6 +29,6 @@ export const register = connectDBAction(
 
     await collection.insertOne({ ...parsedData, password: hash });
 
-    return { message: 'Register successful', success: true };
+    return successResponseAction('Register successful');
   }
 );
