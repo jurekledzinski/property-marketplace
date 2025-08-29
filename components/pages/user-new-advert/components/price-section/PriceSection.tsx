@@ -17,6 +17,7 @@ export const PriceSection = ({ controls }: PriceSectionProps) => {
   const { errors } = formState;
   const { typePriceFrom, onBlur, onFocus } = usePriceInputType();
 
+
   return (
     <>
       <Field>
