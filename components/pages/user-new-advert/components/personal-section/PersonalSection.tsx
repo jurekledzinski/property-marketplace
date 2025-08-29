@@ -25,6 +25,11 @@ export const PersonalSection = ({ controls }: PersonalSectionProps) => {
           type="email"
           {...register('email', {
             required: { message: 'Email is required', value: true },
+            validate: {
+              matchPattern: (v) =>
+                /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+                'Email address must be a valid address',
+            },
           })}
           placeholder="Email"
         />
