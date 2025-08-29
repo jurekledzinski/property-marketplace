@@ -39,7 +39,10 @@ const connectDB = (
       await client.connect();
       return await fn(req, res);
     } catch {
-      return errorResponseApi(500, 'Something went wrong, please try later');
+      return errorResponseApi({
+        message: 'Something went wrong, please try later',
+        status: 500,
+      });
     }
   };
 };
@@ -58,7 +61,10 @@ const connectDBAuth = (
       await client.connect();
       return await fn(req, ctx);
     } catch {
-      return errorResponseApi(500, 'Something went wrong, please try later');
+      return errorResponseApi({
+        message: 'Something went wrong, please try later',
+        status: 500,
+      });
     }
   };
 };
