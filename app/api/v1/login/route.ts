@@ -1,5 +1,5 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { User } from '@/models';
 
 import {
@@ -7,6 +7,7 @@ import {
   connectDB,
   comparePasswords,
   errorResponseApi,
+  successResponseApi,
   DataDB,
 } from '@/lib';
 
@@ -15,22 +16,24 @@ export const POST = connectDB(async (req: NextRequest) => {
 
   const collection = getCollectionDb<User>('users');
 
-  if (!collection) return errorResponseApi(500);
+  if (!collection) return errorResponseApi({ status: 500 });
 
   const user = await collection.findOne<DataDB<User>>({
     email: body.email,
   });
 
-  if (!user) return errorResponseApi(409, 'User not exist');
+  if (!user) {
+    return errorResponseApi({ message: 'User not exist', status: 409 });
+  }
 
   const isMatch = await comparePasswords(body.password, user.password);
 
-  if (!isMatch) return errorResponseApi(409, 'Incorrect credentials');
+  if (!isMatch) {
+    return errorResponseApi({ message: 'Incorrect credentials', status: 409 });
+  }
 
-  const response = NextResponse.json({
-    success: true,
+  return successResponseApi({
     payload: { name: user.name, email: user.email, id: user._id },
+    success: true,
   });
-
-  return response;
 });
