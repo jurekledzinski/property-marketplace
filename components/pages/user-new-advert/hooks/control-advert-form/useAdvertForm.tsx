@@ -1,7 +1,9 @@
 'use client';
 import { InputsAvert, UseAdvertFormProps } from './types';
+import { startTransition, useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useCallback } from 'react';
+import { useResetForm } from '@/hooks';
+import { v4 as uuidv4 } from 'uuid';
 
 const defaultValues = {
   advertiser: '',
@@ -14,7 +16,7 @@ const defaultValues = {
   postalCode: '',
   title: '',
   description: '',
-  images: [],
+  files: [],
   type: '', // apartment | house
   status: '', // rent | sale
   price: '',
@@ -25,44 +27,75 @@ const defaultValues = {
   bathrooms: '',
   amenities: [],
   style: '',
-  dbImages: [],
+  images: [],
   deleteImagesIds: [],
+  userId: '',
 };
 
-export const useAdvertForm = ({ advert, userId }: UseAdvertFormProps) => {
+const resetState = {
+  personal: uuidv4(),
+  description: uuidv4(),
+  bathrooms: uuidv4(),
+  amenities: uuidv4(),
+};
+
+export const useAdvertForm = ({
+  advert,
+  userId,
+  isPending,
+  isSuccess,
+  onSubmitForm,
+}: UseAdvertFormProps) => {
+  const [reset, setReset] = useState(resetState);
+
   const formControl = useForm<InputsAvert>({
     defaultValues: {
-      advertiser: advert?.advertiser ?? defaultValues.advertiser,
-      userId: userId,
-      email: advert?.email ?? defaultValues.email,
-      phone: advert?.phone ?? defaultValues.phone,
-      country: advert?.country ?? defaultValues.country,
-      state: advert?.state ?? defaultValues.state,
-      city: advert?.city ?? defaultValues.city,
-      street: advert?.street ?? defaultValues.street,
-      postalCode: advert?.postalCode ?? defaultValues.postalCode,
-      title: advert?.title ?? defaultValues.title,
-      description: advert?.description ?? defaultValues.description,
-      images: advert?.images ?? defaultValues.images,
-      type: advert?.type ?? defaultValues.type,
-      status: advert?.status ?? defaultValues.status,
-      price: advert?.price ?? defaultValues.price,
-      condition: advert?.condition ?? defaultValues.condition,
-      year: advert?.year ?? defaultValues.year,
-      area: advert?.area ?? defaultValues.area,
-      rooms: advert?.rooms ?? defaultValues.rooms,
-      bathrooms: advert?.bathrooms ?? defaultValues.bathrooms,
-      style: advert?.style ?? defaultValues.style,
-      amenities: advert?.amenities ?? defaultValues.amenities,
-      dbImages: advert?.dbImages ?? defaultValues.dbImages,
-      deleteImagesIds: advert?.deleteImagesIds ?? defaultValues.deleteImagesIds,
+      ...defaultValues,
+      ...advert,
+      userId,
     },
   });
 
-  const onSubmit: SubmitHandler<InputsAvert> = useCallback((data) => {
-    console.log('Submit advert', data);
-    // deleteImagesIds można dodać podczas nowego ponieważ jest opcjonalne i musi być w edycji
-  }, []);
+  console.log('add form', formControl.watch());
 
-  return { formControl, onSubmit };
+  const onSubmit: SubmitHandler<InputsAvert> = useCallback(
+    (data) => {
+      const formData = new FormData();
+
+      for (const key in data) {
+        const value = data[key as keyof InputsAvert];
+
+        if (typeof value === 'string') {
+          formData.append(key, value);
+        } else if (Array.isArray(value) && value[0] instanceof File) {
+          value.forEach((file) => formData.append(key, file));
+        } else {
+          console.log('Reszta', key);
+          formData.append(key, JSON.stringify(value));
+        }
+      }
+
+      console.log('SUBMIT', data);
+
+      startTransition(() => onSubmitForm(formData));
+    },
+    [onSubmitForm]
+  );
+
+  useResetForm({
+    isPending,
+    isSuccess,
+    formControl,
+    defaultValues,
+    onSuccess: () => {
+      setReset({
+        personal: uuidv4(),
+        description: uuidv4(),
+        bathrooms: uuidv4(),
+        amenities: uuidv4(),
+      });
+    },
+  });
+
+  return { formControl, onSubmit, reset };
 };

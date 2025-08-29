@@ -8,10 +8,13 @@ export type InputsAvert = Omit<Advert, OmitKeys> & {
   area: string;
   rooms: string;
   bathrooms: string;
-  images: File[];
+  images: string[];
 };
 
 export type UseAdvertFormProps = {
   advert?: InputsAvert;
   userId: string;
+  onSubmitForm: (payload: FormData) => void;
+  isPending: boolean;
+  isSuccess: boolean;
 };
