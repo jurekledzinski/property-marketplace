@@ -1,28 +1,38 @@
 import 'server-only';
-import { Advert } from '@/models';
-import { fetchResponse, getOptions } from './fetchApi';
-import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
-import { tryCatch } from './tryCatch';
-import { getDomain } from '../helpers/getDomain';
 import { endpoints } from './configApi';
+import { fetchData } from './fetchApi';
+import { getDomain } from '../helpers/getDomain';
+import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
+import { UserAdvertsTable } from './types';
+import { Advert } from '@/models';
 
-export interface UserAdverts
-  extends Pick<Advert, 'userId' | 'title' | 'type' | 'createdAt'> {
-  id: string;
-  stage: string;
-  actions: string;
-}
+// Fetch user adverts
 
-export const fetchAdverts = tryCatch<Advert[]>(
-  async (url: string, headers?: ReadonlyHeaders) => {
-    const options = getOptions(['adverts'], headers);
-    const response = await fetch(url, options);
-    return fetchResponse(response);
-  }
-);
-
-export const getAdverts = async () => {
+export const getUserAdverts = async (headers?: ReadonlyHeaders) => {
   const domain = await getDomain();
-  const response = await fetchAdverts(endpoints.adverts(domain));
+
+  const response = await fetchData<UserAdvertsTable[]>({
+    tags: ['adverts'],
+    url: endpoints.userAdverts(domain),
+    headers,
+  });
+
+  return response.success ? response.payload : null;
+};
+
+// Fetch user advert
+
+export const getUserAdvert = async (
+  headers?: ReadonlyHeaders,
+  advertId?: string
+) => {
+  const domain = await getDomain();
+
+  const response = await fetchData<Advert>({
+    tags: ['advert'],
+    url: endpoints.userAdvert(domain, advertId),
+    headers,
+  });
+
   return response.success ? response.payload : null;
 };
