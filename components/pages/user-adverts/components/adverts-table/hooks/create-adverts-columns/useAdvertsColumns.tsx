@@ -1,12 +1,13 @@
 import styles from '../../AdvertsTable.module.css';
-import { AdvertsUser } from '../../types';
 import { createColumnHelper } from '@tanstack/react-table';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { formatDateLocalString } from '@/helpers';
 import { IconButton, UseAdvertsColumnsProps } from '@/components';
 import { useMemo } from 'react';
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { UserAdvertsTable } from '@/lib';
 
 export const useAdvertsColumns = ({ onDelete }: UseAdvertsColumnsProps) => {
-  const columnHelper = createColumnHelper<AdvertsUser>();
+  const columnHelper = createColumnHelper<UserAdvertsTable>();
 
   const columns = useMemo(() => {
     const { accessor } = columnHelper;
@@ -27,11 +28,7 @@ export const useAdvertsColumns = ({ onDelete }: UseAdvertsColumnsProps) => {
       accessor('createdAt', {
         header: () => <span>Date added</span>,
         cell: (info) => (
-          <span>
-            {new Date(info.getValue()).toLocaleString('en-GB', {
-              timeZone: 'UTC',
-            })}
-          </span>
+          <span>{formatDateLocalString({ date: info.getValue() })}</span>
         ),
         sortingFn: 'datetime',
       }),
@@ -46,7 +43,10 @@ export const useAdvertsColumns = ({ onDelete }: UseAdvertsColumnsProps) => {
             />
             <IconButton
               icon={[faTrash]}
-              onClick={() => onDelete(info.row.original.id)}
+              onClick={() => {
+                console.log('onDelete call', info);
+                onDelete(info.row.original.id);
+              }}
               type="button"
             />
           </span>
