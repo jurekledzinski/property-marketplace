@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 export type State<T> = {
   message: string;
   success: boolean;
@@ -5,5 +7,5 @@ export type State<T> = {
 };
 
 export type DataDB<T> = T & {
-  _id: string;
+  _id: ObjectId;
 };
