@@ -1,5 +1,5 @@
 import styles from './AdvertsTable.module.css';
-import { AdvertsUser, AdvertsTableTableProps } from './types';
+import { AdvertsTableTableProps } from './types';
 import { ColumnsFilterBody, ColumnsFilterHeader } from './components';
 import {
   TableState,
@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableStatus,
 } from '@/components';
+import { UserAdvertsTable } from '@/lib';
 
 export const AdvertsTable = ({
   children,
@@ -17,7 +18,7 @@ export const AdvertsTable = ({
   table,
   emptyMessage = 'No data available',
   noResultsMessage = 'No results match your filter',
-}: AdvertsTableTableProps<AdvertsUser>) => {
+}: AdvertsTableTableProps<UserAdvertsTable>) => {
   console.log('Render table');
   return (
     <div className={styles.wrapper}>
