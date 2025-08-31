@@ -30,3 +30,21 @@ export const removeNonDigitsObj = <
 };
 
 export const removeNonDigits = (str: string) => str.replace(/[^\d]/g, '');
+
+export const formatNumberToStringObject = <
+  K extends keyof T,
+  T extends { [K: string]: T[K] } | null
+>(
+  data: T
+): { [K in keyof T]: T[K] extends number ? string : T[K] } | null => {
+  if (data === null) return null;
+
+  return Object.fromEntries(
+    Object.entries(data).map((item) => {
+      if (typeof item[1] === 'number') {
+        return [item[0], item[1].toString()];
+      }
+      return item;
+    })
+  );
+};
