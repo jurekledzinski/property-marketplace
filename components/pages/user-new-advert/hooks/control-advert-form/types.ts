@@ -12,7 +12,7 @@ export type InputsAvert = Omit<Advert, OmitKeys> & {
 };
 
 export type UseAdvertFormProps = {
-  advert?: InputsAvert;
+  advert?: InputsAvert | null;
   userId: string;
   onSubmitForm: (payload: FormData) => void;
   isPending: boolean;

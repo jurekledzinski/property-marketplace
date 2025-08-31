@@ -51,7 +51,7 @@ export const useAdvertForm = ({
   const formControl = useForm<InputsAvert>({
     defaultValues: {
       ...defaultValues,
-      ...advert,
+      ...(advert ?? {}),
       userId,
     },
   });
