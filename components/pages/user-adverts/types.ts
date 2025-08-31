@@ -1,5 +1,5 @@
-import { AdvertsUser } from './components';
+import { UserAdvertsTable } from '@/lib';
 
 export type UserAdvertsProps = {
-  adverts?: AdvertsUser[];
+  adverts?: UserAdvertsTable[];
 };

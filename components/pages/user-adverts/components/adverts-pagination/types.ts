@@ -1,9 +1,9 @@
-import { AdvertsUser } from '../adverts-table';
 import { Table } from '@tanstack/react-table';
+import { UserAdvertsTable } from '@/lib';
 
 export type AdvertsPaginationProps = {
   amountData: number;
   currentPage: number;
   itemsPerPage: number;
-  table: Table<AdvertsUser>;
+  table: Table<UserAdvertsTable>;
 };
