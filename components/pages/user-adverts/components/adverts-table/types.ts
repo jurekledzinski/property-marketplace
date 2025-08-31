@@ -9,13 +9,3 @@ export type AdvertsTableTableProps<T extends object> = {
   noResultsMessage?: string;
   loading?: boolean;
 };
-
-export type AdvertsUser = {
-  id: string;
-  userId: string;
-  title: string;
-  type: string;
-  stage: string;
-  createdAt: number;
-  actions: string;
-};
