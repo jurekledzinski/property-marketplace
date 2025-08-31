@@ -1,5 +1,6 @@
 export * from './classNames';
 export * from './filterProps';
+export * from './formatDate';
 export * from './formatFile';
 export * from './formatNumber';
 export * from './formatText';
