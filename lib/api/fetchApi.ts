@@ -32,3 +32,27 @@ export function getOptions(tags?: string[], headers?: ReadonlyHeaders) {
 
   return options;
 }
+
+export const fetchData = async <T>({
+  tags,
+  url,
+  headers,
+}: {
+  url: string;
+  tags: string[];
+  headers?: ReadonlyHeaders;
+}): Promise<
+  { success: true; payload: T } | { success: false; message: string }
+> => {
+  try {
+    const options = getOptions(tags, headers);
+    const response = await fetch(url, options);
+    const data = await fetchResponse(response);
+    return { success: true, payload: data.payload };
+  } catch {
+    return {
+      message: 'Something went wrong, plese try later',
+      success: false,
+    };
+  }
+};
