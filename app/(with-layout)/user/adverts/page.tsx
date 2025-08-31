@@ -1,22 +1,12 @@
-import { AdvertsUser, UserAdverts } from '@/components';
-import { getAdverts } from '@/lib';
-
-// const stage = ['active', 'expired', 'expire soon'];
-
-// const adverts = Array.from<AdvertsUser>({ length: 50 }).map((_, index) => ({
-//   id: index.toString(),
-//   userId: '123',
-//   title: `Modern apartment in city center-${index}`,
-//   type: `Apartment-${index}`,
-//   stage: stage[Math.round(Math.random() * 2)],
-//   createdAt: Date.now() - Math.floor(Math.random() * 10000000000),
-//   actions: '',
-// }));
+import { getUserAdverts } from '@/lib';
+import { headers } from 'next/headers';
+import { UserAdverts } from '@/components';
 
 const UserAdvertsPage = async () => {
-  const data = await getAdverts();
+  const headersData = await headers();
+  const userAdverts = await getUserAdverts(headersData);
 
-  return <UserAdverts adverts={data ? data : []} />;
+  return <UserAdverts adverts={userAdverts ? userAdverts : []} />;
 };
 
 export default UserAdvertsPage;
