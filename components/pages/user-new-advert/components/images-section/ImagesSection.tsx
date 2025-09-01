@@ -25,6 +25,7 @@ import {
 
 export const ImagesSection = ({
   controls,
+  removeUploadedFiles,
   uploadFiles,
 }: ImagesSectionProps) => {
   const { formState, control, watch, register, setValue } = controls;
@@ -36,7 +37,11 @@ export const ImagesSection = ({
     uploadFiles,
   });
 
-  const onRemove = useRemovePreviewFiles({ setValue, watch });
+  const onRemove = useRemovePreviewFiles({
+    removeUploadedFiles,
+    setValue,
+    watch,
+  });
 
   const checkFiles = useValidateFiles({
     allowTypes: ['image/jpeg', 'image/png'],
@@ -75,7 +80,8 @@ export const ImagesSection = ({
       <Field>
         <Label>Preview files</Label>
         <PreviewFiles
-          images={[...(watch('files') ?? []), ...watch('images')!]}
+          //   images={[...(watch('files') ?? []), ...watch('images')!]}
+          images={[...watch('images')!]}
           gridPlacement="column"
           onRemove={onRemove}
         >

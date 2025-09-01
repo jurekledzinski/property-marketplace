@@ -22,6 +22,7 @@ export const AdvertForm = ({
   onSubmit,
   reset,
   uploadFiles,
+  removeUploadedFiles,
 }: AdvertFormProps) => {
   return (
     <Form
@@ -46,7 +47,11 @@ export const AdvertForm = ({
           }}
         />
         <DescriptionSection controls={controls} key={reset.description} />
-        <ImagesSection controls={controls} uploadFiles={uploadFiles} />
+        <ImagesSection
+          controls={controls}
+          removeUploadedFiles={removeUploadedFiles}
+          uploadFiles={uploadFiles}
+        />
       </FormGroup>
       <FormGroup>
         <PropertyTypeSection

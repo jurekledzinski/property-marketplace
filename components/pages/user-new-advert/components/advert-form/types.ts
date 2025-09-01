@@ -6,5 +6,6 @@ export type AdvertFormProps = {
   onSubmit: SubmitHandler<InputsAvert>;
   uploadFiles: (files: File[]) => Promise<void>;
   reset: Record<string, string>;
+  removeUploadedFiles: (deletedIds: { fileId: string; name: string }[]) => void;
   isPending?: boolean;
 };
