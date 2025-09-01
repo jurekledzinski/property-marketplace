@@ -27,7 +27,7 @@ export const DetailsHeroImage = ({
             ) : (
               <Image
                 className={styles.detailsImage}
-                src={images[index]}
+                src={images[index].url}
                 onLoad={onLoad}
                 onError={onError}
                 alt="Advert image"
