@@ -5,7 +5,7 @@ import { initialState } from '@/constants';
 import { newAdvert } from '@/actions';
 import { useActionState } from 'react';
 import { useAdvertForm } from './hooks';
-import { useControlFetchFiles } from '@/hooks/control-fetch-files/useControlFetchFiles';
+import { useControlUploadFiles } from '@/hooks';
 
 export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
   const [state, action, isPending] = useActionState(newAdvert, initialState);
@@ -17,7 +17,7 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
     onSubmitForm: action,
   });
 
-  const { uploadFiles } = useControlFetchFiles({
+  const { uploadFiles } = useControlUploadFiles({
     limit: 3,
     onAddUrl: (arrUrls) => {
       const images = form.formControl.getValues('images');
@@ -25,7 +25,6 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
       form.formControl.setValue('images', merged);
     },
     onUpdateLocalFiles: (restFiles) => {
-      console.log('upload files form');
       form.formControl.setValue('files', restFiles);
     },
   });
