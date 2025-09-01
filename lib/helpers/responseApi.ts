@@ -2,36 +2,33 @@ import { NextResponse } from 'next/server';
 
 //before errorMessage used in routes api
 
-export const errorResponseApi = ({
-  message,
-  status,
-}: {
+type Params<T extends object> = {
   message?: string;
   status?: number;
-}) => {
-  return NextResponse.json(
-    { ...(message !== undefined && { message }) },
-    { ...(status !== undefined && { status }) }
-  );
+  payload?: T;
+  success?: boolean;
 };
 
-export const successResponseApi = <T extends object>({
+const commonResponseApi = <T extends object>({
   message,
   payload,
   status,
   success,
-}: {
-  message?: string;
-  payload?: T;
-  status?: number;
-  success?: boolean;
-}) => {
+}: Params<T>) => {
   return NextResponse.json(
     {
       ...(message !== undefined && { message }),
       ...(payload !== undefined && { payload }),
       ...(success !== undefined && { success }),
     },
-    { ...(status && { status }) }
+    { ...(status !== undefined && { status }) }
   );
+};
+
+export const errorResponseApi = <T extends object>(params: Params<T>) => {
+  return commonResponseApi(params);
+};
+
+export const successResponseApi = <T extends object>(params: Params<T>) => {
+  return commonResponseApi(params);
 };
