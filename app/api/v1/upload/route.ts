@@ -138,3 +138,55 @@ export const POST = connectDBAuth(
     });
   })
 );
+
+// If edit form remove from edited advert
+
+export const DELETE = connectDBAuth(
+  auth(async (request) => {
+    const { searchParams } = new URL(request.url);
+    const advertId = searchParams.get('id');
+
+    const formData = request.formData();
+    const deletedId = (await formData).get('deleteId') as string;
+    const name = (await formData).get('name') as string;
+
+    if (!request.auth) {
+      return errorResponseApi({
+        message: 'Unauthorized',
+        status: 401,
+        payload: { fileId: deletedId, name },
+      });
+    }
+
+    console.log('DELETE API FILE', deletedId);
+
+    if (!deletedId) {
+      return errorResponseApi({
+        message: 'Not found',
+        status: 404,
+        payload: { fileId: deletedId, name },
+      });
+    }
+
+    const imagekit = new ImageKit({
+      publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
+      privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
+      urlEndpoint: 'https://ik.imagekit.io/mdklwracd5rti',
+    });
+
+    const storedImage = await imagekit.getFileDetails(deletedId);
+
+    if (storedImage.fileId === deletedId) {
+      await imagekit.deleteFile(deletedId);
+
+      if (advertId) {
+        //Tu musisz usunąć z advertu gdy edit form
+      }
+    }
+
+    return successResponseApi({
+      message: 'Success delete',
+      payload: { fileId: deletedId, name },
+    });
+  })
+);
