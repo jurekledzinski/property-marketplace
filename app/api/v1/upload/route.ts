@@ -4,6 +4,7 @@ import ImageKit from 'imagekit';
 import { auth } from '@/auth';
 import { connectDBAuth, errorResponseApi, successResponseApi } from '@/lib';
 import { NextResponse } from 'next/server';
+
 import { Readable } from 'node:stream';
 import { ReadableStream } from 'node:stream/web';
 import fs from 'node:fs';
@@ -18,9 +19,19 @@ export const config = {
   },
 };
 
+type Payload = {
+  url: string;
+  fileId: string;
+  name: string;
+};
+type UploadInfo = Promise<Payload>[];
+
 export const POST = connectDBAuth(
   auth(async (request) => {
-    console.log('POST ADVERT auth ---->', request.auth);
+    if (!request.auth) {
+      return errorResponseApi({ message: 'Unauthorized', status: 401 });
+    }
+
     const imagekit = new ImageKit({
       publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
       privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
@@ -31,7 +42,8 @@ export const POST = connectDBAuth(
       const headers = Object.fromEntries(request.headers);
 
       const bb = busboy({ headers });
-      const uploadPromises: Promise<string>[] = [];
+
+      const uploadFileInfo: UploadInfo = [];
 
       bb.on('file', (name, file, info) => {
         const tempFilePath = path.join(
@@ -42,7 +54,11 @@ export const POST = connectDBAuth(
 
         file.pipe(writeStream);
 
-        const uploadPromise = new Promise<string>((res, rej) => {
+        const uploadPromise = new Promise<{
+          url: string;
+          name: string;
+          fileId: string;
+        }>((res) => {
           writeStream.on('finish', async () => {
             try {
               const result = await imagekit.upload({
@@ -52,34 +68,67 @@ export const POST = connectDBAuth(
               });
 
               fs.unlink(tempFilePath, () => {});
-              res(result.url);
-            } catch (err) {
-              rej(err);
-              return errorResponseApi({
-                status: 500,
-                message: 'Upload failed',
+
+              res({
+                fileId: result.fileId,
+                name: info.filename,
+                url: result.url,
               });
+            } catch {
+              reject(
+                errorResponseApi({
+                  message: 'Upload failed for some files',
+                  status: 500,
+                  success: false,
+                  payload: { url: '', fileId: '', name: info.filename },
+                })
+              );
             }
           });
         });
 
-        uploadPromises.push(uploadPromise);
+        uploadFileInfo.push(uploadPromise);
 
-        file.on('error', () =>
-          errorResponseApi({ message: 'Upload failed', status: 500 })
-        );
+        file.on('error', () => {
+          return errorResponseApi({
+            message: 'Upload failed',
+            status: 500,
+            payload: uploadFileInfo,
+          });
+        });
       });
 
       bb.on('finish', async () => {
         try {
-          const storedURLs = await Promise.all(uploadPromises);
-          resolve(successResponseApi({ payload: storedURLs }));
+          const result = await Promise.allSettled(uploadFileInfo);
+
+          if ('value' in result[0]) {
+            resolve(
+              successResponseApi({
+                payload: result[0].value,
+              })
+            );
+          }
         } catch {
-          reject(errorResponseApi({ message: 'Upload failed', status: 500 }));
+          reject(
+            errorResponseApi({
+              message: 'Upload failed',
+              status: 500,
+              payload: uploadFileInfo,
+            })
+          );
         }
       });
 
-      bb.on('error', (err) => reject(err));
+      bb.on('error', () => {
+        return reject(
+          errorResponseApi({
+            message: 'Upload failed',
+            status: 500,
+            payload: uploadFileInfo,
+          })
+        );
+      });
 
       // Convert Fetch API stream → Node stream
       const nodeStream = Readable.fromWeb(
