@@ -52,7 +52,6 @@ export const newAdvert = connectDBAction(
     //   }
     // );
 
-
     // if (!response.ok) return errorResponseAction('Upload failed');
 
     // const storedUrls = (await response.json()) as {

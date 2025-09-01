@@ -1,6 +1,6 @@
 'use server';
 import { auth } from '@/auth';
-import { connectDBAction, errorResponseAction, getCollectionDb } from '@/lib';
+import { connectDBAction, errorResponseAction } from '@/lib';
 import { AdvertSchema } from '@/models';
 
 export const editAdvert = connectDBAction(
