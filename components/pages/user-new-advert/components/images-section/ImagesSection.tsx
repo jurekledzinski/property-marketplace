@@ -23,11 +23,19 @@ import {
   useValidateFiles,
 } from '@/components';
 
-export const ImagesSection = ({ controls }: ImagesSectionProps) => {
+export const ImagesSection = ({
+  controls,
+  uploadFiles,
+}: ImagesSectionProps) => {
   const { formState, control, watch, register, setValue } = controls;
   const { errors } = formState;
 
-  const { mergeFiles, onChangeFiles } = useChangeFiles({ setValue, watch });
+  const { onChangeFiles, onDrop } = useChangeFiles({
+    setValue,
+    watch,
+    uploadFiles,
+  });
+
   const onRemove = useRemovePreviewFiles({ setValue, watch });
 
   const checkFiles = useValidateFiles({
@@ -35,6 +43,7 @@ export const ImagesSection = ({ controls }: ImagesSectionProps) => {
     maxAmount: 10,
     maxTotalSize: [6, 'MB'],
   });
+
   const validate = useControlValidateFiles({ checkFiles });
 
   return (
@@ -48,11 +57,7 @@ export const ImagesSection = ({ controls }: ImagesSectionProps) => {
           render={({ field: { onChange, ...rest } }) => (
             <DropZone
               {...rest}
-              onDrop={(e) => {
-                const dropped = Array.from(e.dataTransfer.files);
-                const mergedFiles = mergeFiles(dropped);
-                onChange(mergedFiles);
-              }}
+              onDrop={(e) => onChange(onDrop(e))}
               title="Drag and drop"
             >
               <FileInput

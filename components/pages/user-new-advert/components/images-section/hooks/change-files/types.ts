@@ -4,4 +4,5 @@ import { UseFormSetValue, UseFormWatch } from 'react-hook-form';
 export type UseChangeFilesProps = {
   setValue: UseFormSetValue<InputsAvert>;
   watch: UseFormWatch<InputsAvert>;
+  uploadFiles: (files: File[]) => Promise<void>;
 };

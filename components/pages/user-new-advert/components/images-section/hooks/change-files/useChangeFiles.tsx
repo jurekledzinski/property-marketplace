@@ -1,7 +1,11 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, DragEvent } from 'react';
 import { UseChangeFilesProps } from './types';
 
-export const useChangeFiles = ({ setValue, watch }: UseChangeFilesProps) => {
+export const useChangeFiles = ({
+  setValue,
+  watch,
+  uploadFiles,
+}: UseChangeFilesProps) => {
   const mergeFiles = (newFiles: File[]) => {
     const fileMap = new Map();
     [...(watch('files') ?? []), ...newFiles].forEach((file) => {
@@ -18,6 +22,7 @@ export const useChangeFiles = ({ setValue, watch }: UseChangeFilesProps) => {
     const dropped = Array.from(e.target.files);
 
     const mergedFiles = mergeFiles(dropped);
+    uploadFiles(mergedFiles);
 
     setValue('files', mergedFiles, {
       shouldValidate: true,
@@ -25,5 +30,13 @@ export const useChangeFiles = ({ setValue, watch }: UseChangeFilesProps) => {
     });
   };
 
-  return { onChangeFiles, mergeFiles };
+  const onDrop = (e: DragEvent<HTMLDivElement>) => {
+    const dropped = Array.from(e.dataTransfer.files);
+    const mergedFiles = mergeFiles(dropped);
+    uploadFiles(mergedFiles);
+
+    return mergedFiles;
+  };
+
+  return { onChangeFiles, onDrop, mergeFiles };
 };
