@@ -15,8 +15,6 @@ const EditAdvertPage = async ({ params }: EditAdvertPageProps) => {
 
   const formattedUserAdvert = formatNumberToStringObject(userAdvert);
 
-  console.log('EditAdvertPage', formattedUserAdvert);
-
   return (
     <UserEditAdvert
       advert={formattedUserAdvert}
