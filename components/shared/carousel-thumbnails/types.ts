@@ -1,7 +1,7 @@
 import { useCarouselThumbnails } from './hooks';
 
 export type GroupThumbnailsProps = {
-  images: string[];
+  images: { url: string; fileId: string }[];
   onClickThumbnail: (index: number) => void;
   carouselControl: ReturnType<typeof useCarouselThumbnails>;
 };

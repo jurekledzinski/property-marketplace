@@ -15,7 +15,7 @@ export const PreviewFiles = ({
     <div className={classes}>
       {images.map((file, index) => (
         <CardFilePreview
-          key={typeof file === 'string' ? file : file.name}
+          key={file && file instanceof File ? file.name : file.url}
           file={file}
           gridPlacement={gridPlacement}
           index={index}

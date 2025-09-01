@@ -18,7 +18,7 @@ export const CarouselThumbnails = ({
         {images.map((image, index) => (
           <ImageContainer
             className={styles.item}
-            key={image}
+            key={image.url}
             loader="skeleton"
             onClick={() => onClickThumbnail(index)}
           >
@@ -35,7 +35,7 @@ export const CarouselThumbnails = ({
                 ) : (
                   <Image
                     className={styles.image}
-                    src={image}
+                    src={image.url}
                     onLoad={onLoad}
                     onError={onError}
                     alt="Advert image"

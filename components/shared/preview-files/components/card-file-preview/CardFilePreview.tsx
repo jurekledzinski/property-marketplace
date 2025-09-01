@@ -14,7 +14,9 @@ export const CardFilePreview = ({
   gridPlacement,
 }: CardFilePreviewProps) => {
   const classes = getClassNamesCardFilePreview(gridPlacement);
-  const objectUrl = useObjectUrl(file);
+  const objectUrl = useObjectUrl(
+    file && file instanceof File ? file : file.url
+  );
 
   return (
     <div className={classes.card}>
@@ -31,7 +33,7 @@ export const CardFilePreview = ({
               />
             ) : (
               <Image
-                src={typeof file === 'string' ? file : objectUrl!}
+                src={file && file instanceof File ? objectUrl ?? '' : file.url}
                 onLoad={() => setTimeout(() => onLoad && onLoad(), 1000)}
                 onError={onError}
                 alt="image"
@@ -42,7 +44,9 @@ export const CardFilePreview = ({
           </>
         )}
       </ImageContainer>
-      {typeof file !== 'string' && <p className={classes.title}>{file.name}</p>}
+      {file && file instanceof File && (
+        <p className={classes.title}>{file.name}</p>
+      )}
       <IconButton
         icon={[faXmark]}
         style={{ position: 'absolute', top: 0, right: 0 }}
