@@ -60,11 +60,9 @@ const connectDBAuth = (
     try {
       await client.connect();
       return await fn(req, ctx);
-    } catch {
-      return errorResponseApi({
-        message: 'Something went wrong, please try later',
-        status: 500,
-      });
+    } catch (error) {
+      console.log('CONNECT DB AUTH ----------------->', error);
+      return error;
     }
   };
 };
