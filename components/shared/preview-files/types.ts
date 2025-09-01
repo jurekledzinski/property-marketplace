@@ -1,9 +1,9 @@
 export type PreviewFileProps = {
   children?: React.ReactNode;
-  images: (File | { url: string; fileId: string })[];
+  images: (File | { fileId: string; name: string; url: string })[];
   gridPlacement?: 'column' | 'grid' | 'row';
   onRemove: (
     index: number,
-    file: { url: string; fileId: string } | File
+    file: { fileId: string; name: string; url: string } | File
   ) => void;
 };
