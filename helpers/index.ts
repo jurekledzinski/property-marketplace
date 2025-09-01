@@ -1,4 +1,5 @@
 export * from './classNames';
+export * from './error';
 export * from './filterProps';
 export * from './formatDate';
 export * from './formatFile';
