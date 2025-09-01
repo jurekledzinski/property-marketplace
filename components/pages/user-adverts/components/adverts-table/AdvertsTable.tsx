@@ -19,7 +19,6 @@ export const AdvertsTable = ({
   emptyMessage = 'No data available',
   noResultsMessage = 'No results match your filter',
 }: AdvertsTableTableProps<UserAdvertsTable>) => {
-  console.log('Render table');
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapperTable}>

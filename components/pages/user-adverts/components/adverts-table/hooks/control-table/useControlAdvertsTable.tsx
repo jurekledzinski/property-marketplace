@@ -41,7 +41,5 @@ export const useControlAdvertsTable = <T extends RowData>({
     [table]
   );
 
-  console.log('Control table');
-
   return { isEmpty, noResults, table };
 };
