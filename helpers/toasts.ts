@@ -13,19 +13,25 @@ const toastMessage = (message: string) => `${message}`;
 
 export const showPromisToast = <T extends Response>({
   autoClose,
-  message,
+  name,
   promise,
+  messageSuccess = 'Image saved',
+  messageError = 'Could not save',
+  task = 'saving',
 }: {
   promise: Promise<T>;
-  message?: string;
+  name?: string;
+  messageSuccess?: string;
+  messageError?: string;
   autoClose?: number;
+  task?: 'deleting' | 'saving' | 'updating';
 }) => {
   toast.promise(
     promise,
     {
-      loading: 'Saving...',
-      success: toastMessage(`Image saved ${creatMessage(message)}`),
-      error: toastMessage(`Could not save ${creatMessage(message)}`),
+      loading: `${task.charAt(0) + task.substring(1)}...`,
+      success: toastMessage(`${messageSuccess} ${creatMessage(name)}`),
+      error: toastMessage(`${messageError} ${creatMessage(name)}`),
     },
     { ...(autoClose && { duration: autoClose }) }
   );
