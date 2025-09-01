@@ -16,7 +16,13 @@ import {
   PropertyTypeSection,
 } from '@/components';
 
-export const AdvertForm = ({ controls, onSubmit, reset }: AdvertFormProps) => {
+export const AdvertForm = ({
+  controls,
+  isPending,
+  onSubmit,
+  reset,
+  uploadFiles,
+}: AdvertFormProps) => {
   return (
     <Form
       data-group="true"
@@ -40,7 +46,7 @@ export const AdvertForm = ({ controls, onSubmit, reset }: AdvertFormProps) => {
           }}
         />
         <DescriptionSection controls={controls} key={reset.description} />
-        <ImagesSection controls={controls} />
+        <ImagesSection controls={controls} uploadFiles={uploadFiles} />
       </FormGroup>
       <FormGroup>
         <PropertyTypeSection
@@ -89,7 +95,13 @@ export const AdvertForm = ({ controls, onSubmit, reset }: AdvertFormProps) => {
           key={reset.amenities}
         />
         <ButtonGroup mt="mt-md" fullWidth>
-          <Button type="submit" label="Sign In" fullWidth size="size-lg" />
+          <Button
+            type="submit"
+            label="Sign In"
+            fullWidth
+            size="size-lg"
+            isLoading={isPending}
+          />
         </ButtonGroup>
       </FormGroup>
     </Form>
