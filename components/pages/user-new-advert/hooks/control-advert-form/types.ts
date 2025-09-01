@@ -8,7 +8,7 @@ export type InputsAvert = Omit<Advert, OmitKeys> & {
   area: string;
   rooms: string;
   bathrooms: string;
-  images: string[];
+  images: { url: string; fileId: string }[];
 };
 
 export type UseAdvertFormProps = {

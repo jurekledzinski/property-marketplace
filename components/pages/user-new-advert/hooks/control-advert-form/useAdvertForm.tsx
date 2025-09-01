@@ -56,26 +56,39 @@ export const useAdvertForm = ({
     },
   });
 
-  console.log('add form', formControl.watch());
-
   const onSubmit: SubmitHandler<InputsAvert> = useCallback(
     (data) => {
+      delete data.files;
+      console.log('submit ADVERT', data);
       const formData = new FormData();
+
+      //   Nie wysyłaj files do action
 
       for (const key in data) {
         const value = data[key as keyof InputsAvert];
 
         if (typeof value === 'string') {
           formData.append(key, value);
-        } else if (Array.isArray(value) && value[0] instanceof File) {
-          value.forEach((file) => formData.append(key, file));
-        } else {
-          console.log('Reszta', key);
-          formData.append(key, JSON.stringify(value));
+        } else if (Array.isArray(value)) {
+          if (value[0] && value[0] instanceof File) {
+            console.log('key 1', key);
+            value.forEach((file) => {
+              if (file instanceof File) formData.append(key, file);
+            });
+          } else if (
+            value[0] &&
+            typeof value[0] === 'object' &&
+            'url' in value[0] &&
+            'fileId' in value[0]
+          ) {
+            console.log('key 2', key);
+            formData.append(key, JSON.stringify(value));
+          } else {
+            console.log('key 3', key);
+            formData.append(key, JSON.stringify(value));
+          }
         }
       }
-
-      console.log('SUBMIT', data);
 
       startTransition(() => onSubmitForm(formData));
     },
