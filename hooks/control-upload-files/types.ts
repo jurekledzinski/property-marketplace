@@ -9,6 +9,12 @@ export type ResponseApi<T extends object = PaylaodUpload> = {
 
 export type useControlUploadFilesProps = {
   limit: number;
-  onAddUrl: (urls: Omit<PaylaodUpload, 'name'>[]) => void;
+  onAddUrl: (urls: PaylaodUpload[]) => void;
+  onDeleteUrl: (ids: Omit<PaylaodUpload, 'url'>[]) => void;
   onUpdateLocalFiles: (filteredFiles: File[]) => void;
+  onUpdateDeletedIds: (ids: Omit<PaylaodUpload, 'url'>[]) => void;
+};
+
+export type RemoveFiles = {
+  deletedImagesIds: Omit<PaylaodUpload, 'url'>[];
 };
