@@ -13,8 +13,13 @@ export const AdvertSchema = z.object({
   title: z.string(),
   description: z.string(),
   files: z.array(z.instanceof(File)).optional(),
-  images: z.array(z.object({ url: z.string(), fileId: z.string() })),
-  deleteImagesIds: z.array(z.string()).optional(),
+  images: z.array(
+    z.object({ fileId: z.string(), name: z.string(), url: z.string() })
+  ),
+  //   deleteImagesIds: z.array(z.string()).optional(),
+  deleteImagesIds: z
+    .array(z.object({ fileId: z.string(), name: z.string() }))
+    .optional(),
   type: z.string(), // apartment | house
   status: z.string(), // rent | sale
   condition: z.string(),
