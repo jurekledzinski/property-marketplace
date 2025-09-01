@@ -17,15 +17,32 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
     onSubmitForm: action,
   });
 
-  const { uploadFiles } = useControlUploadFiles({
+  console.log('form', form.formControl.watch());
+
+  const { removeUploadedFiles, uploadFiles } = useControlUploadFiles({
     limit: 3,
     onAddUrl: (arrUrls) => {
       const images = form.formControl.getValues('images');
       const merged = images.concat(arrUrls);
       form.formControl.setValue('images', merged);
     },
+    onDeleteUrl: (arrIds) => {
+      const images = form.formControl.getValues('images');
+      const ids = arrIds.map((i) => i.fileId);
+      const filter = images.filter((i) => !ids.includes(i.fileId));
+      form.formControl.setValue('images', filter);
+    },
     onUpdateLocalFiles: (restFiles) => {
       form.formControl.setValue('files', restFiles);
+    },
+    onUpdateDeletedIds: (arrIds) => {
+      //   const delIds = form.formControl.getValues('deleteImagesIds')!;
+      //   const ids = arrIds.map((i) => i.fileId);
+      //   const filter = delIds.filter((i) => !ids.includes(i.fileId));
+      form.formControl.setValue('deleteImagesIds', arrIds, {
+        shouldValidate: true,
+        shouldDirty: false,
+      });
     },
   });
 
@@ -40,6 +57,7 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
         reset={form.reset}
         isPending={isPending}
         uploadFiles={uploadFiles}
+        removeUploadedFiles={removeUploadedFiles}
       />
     </>
   );
