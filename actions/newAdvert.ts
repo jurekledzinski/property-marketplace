@@ -14,6 +14,7 @@ export const newAdvert = connectDBAction(
   async (prevState: unknown, formData: FormData) => {
     const session = await auth();
     const data = Object.fromEntries(formData);
+    // const cookies = await formatCookiesString();
 
     if (!session) return errorResponseAction('Unauthorized');
 
@@ -34,22 +35,29 @@ export const newAdvert = connectDBAction(
 
     const parsedData = AdvertSchema.parse(dataForm);
 
-    const files = formData.getAll('files');
-    const filesData = new FormData();
-    files.forEach((file) => filesData.append('files', file));
+    // const files = formData.getAll('files');
+    // const filesData = new FormData();
+    // files.forEach((file) => filesData.append('files', file));
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/v1/upload`,
-      {
-        body: filesData,
-        method: 'POST',
-        cache: 'no-store',
-      }
-    );
+    // const response = await fetch(
+    //   `${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/v1/upload`,
+    //   {
+    //     body: filesData,
+    //     method: 'POST',
+    //     cache: 'no-store',
+    //     headers: {
+    //       Cookie: cookies,
+    //     },
+    //     credentials: 'include',
+    //   }
+    // );
 
-    if (!response.ok) return errorResponseAction('Upload failed');
 
-    const storedUrls = (await response.json()) as { payload: string[] };
+    // if (!response.ok) return errorResponseAction('Upload failed');
+
+    // const storedUrls = (await response.json()) as {
+    //   payload: { url: string; fileId: string }[];
+    // };
 
     const collection = getCollectionDb<Advert>('adverts');
 
@@ -61,7 +69,6 @@ export const newAdvert = connectDBAction(
 
     collection.insertOne({
       ...parsedData,
-      images: storedUrls.payload,
       createdAt: new Date().toISOString(),
     });
 
