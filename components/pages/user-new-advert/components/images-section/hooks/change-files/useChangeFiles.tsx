@@ -2,13 +2,14 @@ import { ChangeEvent, DragEvent } from 'react';
 import { UseChangeFilesProps } from './types';
 
 export const useChangeFiles = ({
-  setValue,
-  watch,
+  files,
+  onPreValidation,
+  onSetFiles,
   uploadFiles,
 }: UseChangeFilesProps) => {
   const mergeFiles = (newFiles: File[]) => {
-    const fileMap = new Map();
-    [...(watch('files') ?? []), ...newFiles].forEach((file) => {
+    const fileMap = new Map<string, File>();
+    [...(files ?? []), ...newFiles].forEach((file) => {
       const key = `${file.name}-${file.size}`;
       fileMap.set(key, file);
     });
@@ -19,21 +20,33 @@ export const useChangeFiles = ({
   const onChangeFiles = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
 
-    const dropped = Array.from(e.target.files);
+    const invalidFiles = onPreValidation(e);
 
-    const mergedFiles = mergeFiles(dropped);
+    const filterFiles = Array.from(e.target.files).filter(
+      (file) => !invalidFiles.includes(file.name)
+    );
+
+    const mergedFiles = mergeFiles(filterFiles);
+
+    if (!mergedFiles.length) return;
+
     uploadFiles(mergedFiles);
-
-    setValue('files', mergedFiles, {
-      shouldValidate: true,
-      shouldDirty: false,
-    });
+    onSetFiles(mergedFiles);
   };
 
   const onDrop = (e: DragEvent<HTMLDivElement>) => {
-    const dropped = Array.from(e.dataTransfer.files);
-    const mergedFiles = mergeFiles(dropped);
+    const invalidFiles = onPreValidation(e);
+
+    const filterFiles = Array.from(e.dataTransfer.files).filter(
+      (file) => !invalidFiles.includes(file.name)
+    );
+
+    const mergedFiles = mergeFiles(filterFiles);
+
+    if (!mergedFiles.length) return;
+
     uploadFiles(mergedFiles);
+    onSetFiles(mergedFiles);
 
     return mergedFiles;
   };
