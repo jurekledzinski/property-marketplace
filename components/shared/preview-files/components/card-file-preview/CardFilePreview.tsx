@@ -44,9 +44,9 @@ export const CardFilePreview = ({
           </>
         )}
       </ImageContainer>
-      {file && file instanceof File && (
-        <p className={classes.title}>{file.name}</p>
-      )}
+
+      <p className={classes.title}>{file.name}</p>
+
       <IconButton
         icon={[faXmark]}
         style={{ position: 'absolute', top: 0, right: 0 }}
