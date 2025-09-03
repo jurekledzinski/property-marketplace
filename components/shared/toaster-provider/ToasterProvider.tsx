@@ -7,7 +7,6 @@ export const ToasterProvider = ({ mode = 'light' }: ToasterProviderProps) => {
     <Toaster
       position="top-left"
       toastOptions={{
-        duration: 2000,
         style: {
           borderRadius: 0,
           backgroundColor: mode === 'light' ? '#ffffff' : '#333333',
