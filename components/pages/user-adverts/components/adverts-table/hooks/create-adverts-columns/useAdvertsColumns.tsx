@@ -43,10 +43,7 @@ export const useAdvertsColumns = ({ onDelete }: UseAdvertsColumnsProps) => {
             />
             <IconButton
               icon={[faTrash]}
-              onClick={() => {
-                console.log('onDelete call', info);
-                onDelete(info.row.original.id);
-              }}
+              onClick={() => onDelete(info.row.original.id)}
               type="button"
             />
           </span>
