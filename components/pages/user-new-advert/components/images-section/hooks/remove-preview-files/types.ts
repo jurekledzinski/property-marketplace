@@ -1,8 +1,6 @@
-import { InputsAvert } from '@/components/pages/user-new-advert/hooks';
-import { UseFormSetValue, UseFormWatch } from 'react-hook-form';
+import { Advert } from '@/models';
 
 export type UseRemovePreviewFilesProps = {
-  removeUploadedFiles: (deletedIds: { fileId: string; name: string }[]) => void;
-  setValue: UseFormSetValue<InputsAvert>;
-  watch: UseFormWatch<InputsAvert>;
+  deleteUploadedFiles: (deletedIds: { fileId: string; name: string }[]) => void;
+  deleteImagesIds: Advert['deleteImagesIds'];
 };
