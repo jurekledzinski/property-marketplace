@@ -11,9 +11,7 @@ const defaultValues = {
 export const useContactForm = ({ userId }: useContactFormProps) => {
   const formControls = useForm<InputsContact>({ defaultValues });
 
-  const onSubmit: SubmitHandler<InputsContact> = (data) => {
-    console.log('Submit contact', data, userId);
-  };
+  const onSubmit: SubmitHandler<InputsContact> = (data) => {};
 
   return { formControls, onSubmit };
 };

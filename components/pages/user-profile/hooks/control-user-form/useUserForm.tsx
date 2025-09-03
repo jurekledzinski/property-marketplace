@@ -13,9 +13,7 @@ export const useUserForm = () => {
     defaultValues,
   });
 
-  const onSubmit: SubmitHandler<InputsUser> = useCallback((data) => {
-    console.log('Submit user', data);
-  }, []);
+  const onSubmit: SubmitHandler<InputsUser> = useCallback((data) => {}, []);
 
   return { formControl, onSubmit };
 };

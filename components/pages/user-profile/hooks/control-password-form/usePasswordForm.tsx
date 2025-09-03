@@ -13,9 +13,7 @@ export const usePasswordForm = () => {
     defaultValues,
   });
 
-  const onSubmit: SubmitHandler<InputsPassword> = useCallback((data) => {
-    console.log('Submit password', data);
-  }, []);
+  const onSubmit: SubmitHandler<InputsPassword> = useCallback((data) => {}, []);
 
   return { formControl, onSubmit };
 };
