@@ -2,9 +2,8 @@ import 'server-only';
 import busboy from 'busboy';
 import ImageKit from 'imagekit';
 import { auth } from '@/auth';
-import { connectDBAuth, errorResponseApi, successResponseApi } from '@/lib';
 import { NextResponse } from 'next/server';
-
+import { connectDBAuth, errorResponseApi, successResponseApi } from '@/lib';
 import { Readable } from 'node:stream';
 import { ReadableStream } from 'node:stream/web';
 import fs from 'node:fs';
@@ -35,7 +34,7 @@ export const POST = connectDBAuth(
     const imagekit = new ImageKit({
       publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
       privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
-      urlEndpoint: 'https://ik.imagekit.io/mdklwracd5rti',
+      urlEndpoint: process.env.IMAGEKIT_URL!,
     });
 
     return new Promise<NextResponse>((resolve, reject) => {
@@ -54,11 +53,7 @@ export const POST = connectDBAuth(
 
         file.pipe(writeStream);
 
-        const uploadPromise = new Promise<{
-          url: string;
-          name: string;
-          fileId: string;
-        }>((res) => {
+        const uploadPromise = new Promise<Payload>((res) => {
           writeStream.on('finish', async () => {
             try {
               const result = await imagekit.upload({
@@ -79,7 +74,6 @@ export const POST = connectDBAuth(
                 errorResponseApi({
                   message: 'Upload failed for some files',
                   status: 500,
-                  success: false,
                   payload: { url: '', fileId: '', name: info.filename },
                 })
               );
@@ -93,7 +87,7 @@ export const POST = connectDBAuth(
           return errorResponseApi({
             message: 'Upload failed',
             status: 500,
-            payload: uploadFileInfo,
+            payload: uploadFileInfo[0],
           });
         });
       });
@@ -114,7 +108,7 @@ export const POST = connectDBAuth(
             errorResponseApi({
               message: 'Upload failed',
               status: 500,
-              payload: uploadFileInfo,
+              payload: uploadFileInfo[0],
             })
           );
         }
@@ -125,12 +119,11 @@ export const POST = connectDBAuth(
           errorResponseApi({
             message: 'Upload failed',
             status: 500,
-            payload: uploadFileInfo,
+            payload: uploadFileInfo[0],
           })
         );
       });
 
-      // Convert Fetch API stream → Node stream
       const nodeStream = Readable.fromWeb(
         request.body! as ReadableStream<Uint8Array<ArrayBuffer>>
       );
@@ -139,54 +132,43 @@ export const POST = connectDBAuth(
   })
 );
 
-// If edit form remove from edited advert
-
 export const DELETE = connectDBAuth(
   auth(async (request) => {
-    const { searchParams } = new URL(request.url);
-    const advertId = searchParams.get('id');
-
-    const formData = request.formData();
-    const deletedId = (await formData).get('deleteId') as string;
-    const name = (await formData).get('name') as string;
+    const formData = await request.formData();
+    const deletedFileId = formData.get('deleteId') as string;
+    const fileName = formData.get('name') as string;
 
     if (!request.auth) {
       return errorResponseApi({
         message: 'Unauthorized',
         status: 401,
-        payload: { fileId: deletedId, name },
+        payload: { fileId: deletedFileId, name: fileName },
       });
     }
 
-    console.log('DELETE API FILE', deletedId);
-
-    if (!deletedId) {
+    if (!deletedFileId) {
       return errorResponseApi({
         message: 'Not found',
         status: 404,
-        payload: { fileId: deletedId, name },
+        payload: { fileId: deletedFileId, name: fileName },
       });
     }
 
     const imagekit = new ImageKit({
       publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
       privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
-      urlEndpoint: 'https://ik.imagekit.io/mdklwracd5rti',
+      urlEndpoint: process.env.IMAGEKIT_URL!,
     });
 
-    const storedImage = await imagekit.getFileDetails(deletedId);
+    const storedImage = await imagekit.getFileDetails(deletedFileId);
 
-    if (storedImage.fileId === deletedId) {
-      await imagekit.deleteFile(deletedId);
-
-      if (advertId) {
-        //Tu musisz usunąć z advertu gdy edit form
-      }
+    if (storedImage.fileId === deletedFileId) {
+      await imagekit.deleteFile(deletedFileId);
     }
 
     return successResponseApi({
-      message: 'Success delete',
-      payload: { fileId: deletedId, name },
+      message: 'Image delete successfull',
+      payload: { fileId: deletedFileId, name: fileName },
     });
   })
 );
