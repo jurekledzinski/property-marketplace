@@ -1,8 +1,10 @@
-import { InputsAvert } from '@/components/pages/user-new-advert/hooks';
-import { UseFormSetValue, UseFormWatch } from 'react-hook-form';
+import { ChangeEvent, DragEvent } from 'react';
 
 export type UseChangeFilesProps = {
-  setValue: UseFormSetValue<InputsAvert>;
-  watch: UseFormWatch<InputsAvert>;
+  files: File[];
   uploadFiles: (files: File[]) => Promise<void>;
+  onPreValidation: (
+    e: ChangeEvent<HTMLInputElement> | DragEvent<HTMLDivElement>
+  ) => string[];
+  onSetFiles: (files: File[]) => void;
 };
