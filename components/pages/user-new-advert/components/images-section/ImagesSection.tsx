@@ -3,6 +3,8 @@ import styles from '../../UserNewAdvert.module.css';
 import { Controller } from 'react-hook-form';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { ImagesSectionProps } from './types';
+import { validationOptions } from './hooks';
+import { cloneDeep } from 'lodash';
 
 import {
   useControlValidateFiles,
@@ -21,34 +23,40 @@ import {
   Message,
   PreviewFiles,
   useValidateFiles,
+  useValidateFilesOnChange,
 } from '@/components';
 
 export const ImagesSection = ({
   controls,
-  removeUploadedFiles,
+  deleteUploadedFiles,
   uploadFiles,
+  validationInfo,
 }: ImagesSectionProps) => {
-  const { formState, control, watch, register, setValue } = controls;
+  const { formState, control, getValues, watch, register, setValue } = controls;
   const { errors } = formState;
 
+  const onPreValidation = useValidateFilesOnChange({
+    ...validationOptions,
+    onError: validationInfo,
+  });
+
   const { onChangeFiles, onDrop } = useChangeFiles({
-    setValue,
-    watch,
+    onSetFiles: (files) =>
+      setValue('files', files, {
+        shouldValidate: true,
+        shouldDirty: false,
+      }),
     uploadFiles,
+    onPreValidation,
+    files: getValues('files') || [],
   });
 
   const onRemove = useRemovePreviewFiles({
-    removeUploadedFiles,
-    setValue,
-    watch,
+    deleteUploadedFiles,
+    deleteImagesIds: getValues('deleteImagesIds'),
   });
 
-  const checkFiles = useValidateFiles({
-    allowTypes: ['image/jpeg', 'image/png'],
-    maxAmount: 10,
-    maxTotalSize: [6, 'MB'],
-  });
-
+  const checkFiles = useValidateFiles(validationOptions);
   const validate = useControlValidateFiles({ checkFiles });
 
   return (
@@ -62,15 +70,21 @@ export const ImagesSection = ({
           render={({ field: { onChange, ...rest } }) => (
             <DropZone
               {...rest}
-              onDrop={(e) => onChange(onDrop(e))}
+              onDrop={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onChange(onDrop(e));
+              }}
               title="Drag and drop"
             >
               <FileInput
-                accept=".jpg,.pdf"
+                accept=".jpg,.jpeg,.png"
                 label="Add images"
                 multiple
                 {...register('files', { validate })}
-                onChange={onChangeFiles}
+                onChange={(e) => {
+                  onChangeFiles(e);
+                }}
               />
               <Message variant="error">{errors.files?.message}</Message>
             </DropZone>
@@ -80,8 +94,7 @@ export const ImagesSection = ({
       <Field>
         <Label>Preview files</Label>
         <PreviewFiles
-          //   images={[...(watch('files') ?? []), ...watch('images')!]}
-          images={[...watch('images')!]}
+          images={cloneDeep(watch('images') || [])}
           gridPlacement="column"
           onRemove={onRemove}
         >
