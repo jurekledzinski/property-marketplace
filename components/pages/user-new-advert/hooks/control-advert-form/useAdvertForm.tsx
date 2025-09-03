@@ -59,7 +59,7 @@ export const useAdvertForm = ({
   const onSubmit: SubmitHandler<InputsAvert> = useCallback(
     (data) => {
       delete data.files;
-      console.log('submit ADVERT', data);
+      //   console.log('submit ADVERT', data);
       const formData = new FormData();
 
       //   Nie wysyłaj files do action
@@ -71,7 +71,7 @@ export const useAdvertForm = ({
           formData.append(key, value);
         } else if (Array.isArray(value)) {
           if (value[0] && value[0] instanceof File) {
-            console.log('key 1', key);
+            // console.log('key 1', key);
             value.forEach((file) => {
               if (file instanceof File) formData.append(key, file);
             });
@@ -81,10 +81,10 @@ export const useAdvertForm = ({
             'url' in value[0] &&
             'fileId' in value[0]
           ) {
-            console.log('key 2', key);
+            // console.log('key 2', key);
             formData.append(key, JSON.stringify(value));
           } else {
-            console.log('key 3', key);
+            // console.log('key 3', key);
             formData.append(key, JSON.stringify(value));
           }
         }
