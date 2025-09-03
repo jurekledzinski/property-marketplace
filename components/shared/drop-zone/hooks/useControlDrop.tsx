@@ -8,6 +8,7 @@ export const useControlDrop = ({
 }: UseControlDropProps) => {
   const onDragOver = (e: Event) => {
     e.preventDefault();
+    e.stopPropagation();
     e.dataTransfer.dropEffect = 'move';
     if (!isEnter) onEnter();
   };
