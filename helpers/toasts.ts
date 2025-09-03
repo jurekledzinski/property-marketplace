@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast';
+import { capitalizeFirstLetter } from './formatText';
 
 export const showSuccessToast = (message: string, autoClose?: number) => {
   toast.success(message, { ...(autoClose && { duration: autoClose }) });
@@ -29,7 +30,7 @@ export const showPromisToast = <T extends Response>({
   toast.promise(
     promise,
     {
-      loading: `${task.charAt(0) + task.substring(1)}...`,
+      loading: `${capitalizeFirstLetter(task)} ${creatMessage(name)} ...`,
       success: toastMessage(`${messageSuccess} ${creatMessage(name)}`),
       error: toastMessage(`${messageError} ${creatMessage(name)}`),
     },
