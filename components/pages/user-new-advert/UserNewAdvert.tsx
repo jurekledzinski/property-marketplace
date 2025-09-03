@@ -6,6 +6,7 @@ import { newAdvert } from '@/actions';
 import { useActionState } from 'react';
 import { useAdvertForm } from './hooks';
 import { useControlUploadFiles } from '@/hooks';
+import { showErrorToast } from '@/helpers';
 
 export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
   const [state, action, isPending] = useActionState(newAdvert, initialState);
@@ -17,18 +18,19 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
     onSubmitForm: action,
   });
 
-  console.log('form', form.formControl.watch());
+  const formData = form.formControl.getValues();
+  console.log('formData', formData);
 
-  const { removeUploadedFiles, uploadFiles } = useControlUploadFiles({
+  const { deleteUploadedFiles, uploadFiles } = useControlUploadFiles({
     limit: 3,
-    onAddUrl: (arrUrls) => {
+    onAddImages: (arrUrls) => {
       const images = form.formControl.getValues('images');
-      const merged = images.concat(arrUrls);
-      form.formControl.setValue('images', merged);
+      form.formControl.setValue('images', images.concat(arrUrls), {
+        shouldDirty: true,
+      });
     },
-    onDeleteUrl: (arrIds) => {
+    onDeleteImages: (ids) => {
       const images = form.formControl.getValues('images');
-      const ids = arrIds.map((i) => i.fileId);
       const filter = images.filter((i) => !ids.includes(i.fileId));
       form.formControl.setValue('images', filter);
     },
@@ -36,13 +38,7 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
       form.formControl.setValue('files', restFiles);
     },
     onUpdateDeletedIds: (arrIds) => {
-      //   const delIds = form.formControl.getValues('deleteImagesIds')!;
-      //   const ids = arrIds.map((i) => i.fileId);
-      //   const filter = delIds.filter((i) => !ids.includes(i.fileId));
-      form.formControl.setValue('deleteImagesIds', arrIds, {
-        shouldValidate: true,
-        shouldDirty: false,
-      });
+      form.formControl.setValue('deleteImagesIds', arrIds);
     },
   });
 
@@ -57,7 +53,19 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
         reset={form.reset}
         isPending={isPending}
         uploadFiles={uploadFiles}
-        removeUploadedFiles={removeUploadedFiles}
+        deleteUploadedFiles={deleteUploadedFiles}
+        validationInfo={({ name, type }) => {
+          console.log('TOES', name, type);
+          if (type === 'amount') {
+            showErrorToast(`Maximum 10 images allowed`);
+          }
+          if (type === 'size') {
+            showErrorToast(`${name} exceeds the 500KB size limit`);
+          }
+          if (type === 'type') {
+            showErrorToast(`${name} is not allowed. Use JPG or PNG`);
+          }
+        }}
       />
     </>
   );
