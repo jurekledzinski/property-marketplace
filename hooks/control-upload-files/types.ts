@@ -1,6 +1,6 @@
-export type PaylaodUpload = { url: string; fileId: string; name: string };
+export type PayloadUpload = { url: string; fileId: string; name: string };
 
-export type ResponseApi<T extends object = PaylaodUpload> = {
+export type ResponseApi<T extends object = PayloadUpload> = {
   message?: string;
   status?: number;
   payload?: T;
@@ -9,12 +9,12 @@ export type ResponseApi<T extends object = PaylaodUpload> = {
 
 export type useControlUploadFilesProps = {
   limit: number;
-  onAddUrl: (urls: PaylaodUpload[]) => void;
-  onDeleteUrl: (ids: Omit<PaylaodUpload, 'url'>[]) => void;
+  onAddImages: (urls: PayloadUpload[]) => void;
+  onDeleteImages: (ids: string[]) => void;
   onUpdateLocalFiles: (filteredFiles: File[]) => void;
-  onUpdateDeletedIds: (ids: Omit<PaylaodUpload, 'url'>[]) => void;
+  onUpdateDeletedIds: (ids: Omit<PayloadUpload, 'url'>[]) => void;
 };
 
 export type RemoveFiles = {
-  deletedImagesIds: Omit<PaylaodUpload, 'url'>[];
+  deletedImagesIds: Omit<PayloadUpload, 'url'>[];
 };
