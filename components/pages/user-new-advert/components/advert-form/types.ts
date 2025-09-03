@@ -1,4 +1,5 @@
 import { InputsAvert } from '../../hooks';
+import { OnError } from '@/components';
 import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 export type AdvertFormProps = {
@@ -6,6 +7,7 @@ export type AdvertFormProps = {
   onSubmit: SubmitHandler<InputsAvert>;
   uploadFiles: (files: File[]) => Promise<void>;
   reset: Record<string, string>;
-  removeUploadedFiles: (deletedIds: { fileId: string; name: string }[]) => void;
+  deleteUploadedFiles: (deletedIds: { fileId: string; name: string }[]) => void;
+  validationInfo: OnError;
   isPending?: boolean;
 };
