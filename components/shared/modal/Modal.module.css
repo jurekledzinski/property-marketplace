@@ -1,5 +1,5 @@
 .modalElement {
-  position: absolute;
+  position: fixed;
   width: min(calc(100% - 2rem), 500px);
   top: 50%;
   left: 50%;
