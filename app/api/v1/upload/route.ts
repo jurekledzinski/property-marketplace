@@ -135,8 +135,8 @@ export const POST = connectDBAuth(
 export const DELETE = connectDBAuth(
   auth(async (request) => {
     const formData = await request.formData();
-    const deletedFileId = formData.get('deleteId') as string;
-    const fileName = formData.get('name') as string;
+    const deletedFileId = formData.get('fileId') as string;
+    const fileName = formData.get('fileName') as string;
 
     if (!request.auth) {
       return errorResponseApi({
@@ -154,21 +154,29 @@ export const DELETE = connectDBAuth(
       });
     }
 
-    const imagekit = new ImageKit({
-      publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
-      privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
-      urlEndpoint: process.env.IMAGEKIT_URL!,
-    });
+    try {
+      const imagekit = new ImageKit({
+        publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
+        privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
+        urlEndpoint: process.env.IMAGEKIT_URL!,
+      });
 
-    const storedImage = await imagekit.getFileDetails(deletedFileId);
+      const storedImage = await imagekit.getFileDetails(deletedFileId);
 
-    if (storedImage.fileId === deletedFileId) {
-      await imagekit.deleteFile(deletedFileId);
+      if (storedImage.fileId === deletedFileId) {
+        await imagekit.deleteFile(deletedFileId);
+      }
+
+      return successResponseApi({
+        message: 'Image delete successfull',
+        payload: { fileId: deletedFileId, name: fileName },
+      });
+    } catch {
+      return errorResponseApi({
+        message: 'Not found',
+        status: 404,
+        payload: { fileId: deletedFileId, name: fileName },
+      });
     }
-
-    return successResponseApi({
-      message: 'Image delete successfull',
-      payload: { fileId: deletedFileId, name: fileName },
-    });
   })
 );
