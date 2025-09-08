@@ -1,5 +1,5 @@
 'use server';
-import { Advert, AdvertSchema } from '@/models';
+import { Advert, AdvertSchema, DraftFile } from '@/models';
 
 import {
   connectDBAction,
@@ -9,12 +9,12 @@ import {
 } from '@/lib';
 
 import { auth } from '@/auth';
+import ImageKit from 'imagekit';
 
 export const newAdvert = connectDBAction(
   async (prevState: unknown, formData: FormData) => {
     const session = await auth();
     const data = Object.fromEntries(formData);
-    // const cookies = await formatCookiesString();
 
     if (!session) return errorResponseAction('Unauthorized');
 
@@ -26,49 +26,38 @@ export const newAdvert = connectDBAction(
       rooms: data.rooms,
       bathrooms: data.bathrooms,
       amenities: JSON.parse(formData.getAll('amenities').toString()),
-      files: formData.getAll('files'),
+      deleteImages: JSON.parse(formData.getAll('deleteImages').toString()),
       images: JSON.parse(formData.getAll('images').toString()),
-      deleteImagesIds: JSON.parse(
-        formData.getAll('deleteImagesIds').toString()
-      ),
     };
 
     const parsedData = AdvertSchema.parse(dataForm);
 
-    // const files = formData.getAll('files');
-    // const filesData = new FormData();
-    // files.forEach((file) => filesData.append('files', file));
+    const advertCollection = getCollectionDb<Advert>('adverts');
+    const draftCollection = getCollectionDb<DraftFile>('draftImages');
 
-    // const response = await fetch(
-    //   `${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/v1/upload`,
-    //   {
-    //     body: filesData,
-    //     method: 'POST',
-    //     cache: 'no-store',
-    //     headers: {
-    //       Cookie: cookies,
-    //     },
-    //     credentials: 'include',
-    //   }
-    // );
+    if (!advertCollection || !draftCollection) {
+      return errorResponseAction('Internal server error');
+    }
 
-    // if (!response.ok) return errorResponseAction('Upload failed');
+    const imagekit = new ImageKit({
+      publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
+      privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
+      urlEndpoint: process.env.IMAGEKIT_URL!,
+    });
 
-    // const storedUrls = (await response.json()) as {
-    //   payload: { url: string; fileId: string }[];
-    // };
+    (parsedData.deleteImages || []).forEach(async (image) => {
+      await imagekit.deleteFile(image.fileId);
+    });
 
-    const collection = getCollectionDb<Advert>('adverts');
+    draftCollection.deleteOne({ userId: session.user.id });
 
-    if (!collection) return errorResponseAction('Internal server error');
-
-    delete parsedData.deleteImagesIds;
+    delete parsedData.deleteImages;
     delete parsedData.state;
     delete parsedData.files;
 
-    collection.insertOne({
+    advertCollection.insertOne({
       ...parsedData,
-      createdAt: new Date().toISOString(),
+      createdAt: new Date(),
     });
 
     return successResponseAction('Create advert successful');
