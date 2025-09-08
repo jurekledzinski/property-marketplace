@@ -26,9 +26,9 @@ const commonResponseApi = <T extends object>({
 };
 
 export const errorResponseApi = <T extends object>(params: Params<T>) => {
-  return commonResponseApi(params);
+  return commonResponseApi({ ...params, success: false });
 };
 
 export const successResponseApi = <T extends object>(params: Params<T>) => {
-  return commonResponseApi(params);
+  return commonResponseApi({ ...params, success: true });
 };
