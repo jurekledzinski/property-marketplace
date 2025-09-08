@@ -1,6 +1,7 @@
 import 'server-only';
 import { Advert } from '@/models';
 import { auth } from '@/auth';
+import { ObjectId } from 'mongodb';
 
 import {
   connectDBAuth,
@@ -9,7 +10,6 @@ import {
   DataDB,
   formatDBDocumentId,
 } from '@/lib';
-import { ObjectId } from 'mongodb';
 
 export const GET = connectDBAuth(
   auth(async (request) => {
