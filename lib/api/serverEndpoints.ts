@@ -1,6 +1,6 @@
-import 'server-only';
+'server only';
 
-export const endpoints = {
+export const serverEndpoint = {
   userAdverts: (domain: string) => `${domain}/api/v1/user-adverts`,
   userAdvert: (domain: string, advertId?: string) =>
     `${domain}/api/v1/user-advert?id=${advertId}`,
