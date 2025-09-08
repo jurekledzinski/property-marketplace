@@ -16,7 +16,7 @@ export const AdvertSchema = z.object({
   images: z.array(
     z.object({ fileId: z.string(), name: z.string(), url: z.string() })
   ),
-  deleteImagesIds: z
+  deleteImages: z
     .array(z.object({ fileId: z.string(), name: z.string() }))
     .optional(),
   type: z.string(), // apartment | house
@@ -30,7 +30,7 @@ export const AdvertSchema = z.object({
 
   style: z.string(),
   amenities: z.array(z.string()),
-  createdAt: z.string().optional(),
+  createdAt: z.date().optional(),
 });
 
 export type Advert = z.infer<typeof AdvertSchema>;
