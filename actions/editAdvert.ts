@@ -1,7 +1,17 @@
 'use server';
+import z from 'zod';
+import { Advert, AdvertSchema, DraftFile } from '@/models';
 import { auth } from '@/auth';
-import { connectDBAction, errorResponseAction } from '@/lib';
-import { AdvertSchema } from '@/models';
+import { ObjectId } from 'mongodb';
+
+import {
+  connectDBAction,
+  DataDB,
+  errorResponseAction,
+  getCollectionDb,
+  successResponseAction,
+} from '@/lib';
+import ImageKit from 'imagekit';
 
 export const editAdvert = connectDBAction(
   async (prevState: unknown, formData: FormData) => {
@@ -10,54 +20,51 @@ export const editAdvert = connectDBAction(
 
     if (!session) return errorResponseAction('Unauthorized');
 
-    // Part parsing to będzie jedna funkcja helper
-    // będzie w lib actions newAdvert
-
-    // pamietaj jedno zadanie funkcji
-    // ---- ten fragment się powtarza newAdvert action także
     const dataForm = {
       ...data,
+      createdAt: new Date(data.createdAt.toString()),
       price: data.price,
       year: data.year,
       area: data.area,
       rooms: data.rooms,
       bathrooms: data.bathrooms,
       amenities: JSON.parse(formData.getAll('amenities').toString()),
-      files: formData.getAll('files'),
+      deleteImages: JSON.parse(formData.getAll('deleteImages').toString()),
       images: JSON.parse(formData.getAll('images').toString()),
-      deleteImagesIds: JSON.parse(
-        formData.getAll('deleteImagesIds').toString()
-      ),
     };
 
-    const parsedData = AdvertSchema.parse(dataForm);
+    console.log('dataForm edit action', dataForm);
 
-    // ----
+    const parsedData = AdvertSchema.extend({ id: z.string() }).parse(dataForm);
 
-    const files = formData.getAll('files');
-    const deletedImages = formData.get('deleteImagesIds');
-    const filesData = new FormData();
-    files.forEach((file) => filesData.append('files', file));
-    filesData.append('deletedImages', JSON.stringify(deletedImages));
-    // Tu trzeba dodać teraz deleteImagesIds do body by usunąć z imagekit
-    // w tym api/upload tam trzeba to jakoś zrobić by działał na
-    // edit także i podczas new advert upload
+    const advertCollection = getCollectionDb<DataDB<Advert>>('adverts');
+    const draftCollection = getCollectionDb<DraftFile>('draftImages');
 
-    // const response = await fetch(
-    //   `${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/v1/upload`,
-    //   {
-    //     body: filesData,
-    //     method: 'POST',
-    //     cache: 'no-store',
-    //   }
-    // );
+    if (!advertCollection || !draftCollection) {
+      return errorResponseAction('Internal server error');
+    }
 
-    // if (!response.ok) return errorResponseAction('Upload failed');
+    const imagekit = new ImageKit({
+      publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
+      privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
+      urlEndpoint: process.env.IMAGEKIT_URL!,
+    });
 
-    // const storedUrls = (await response.json()) as {
-    //   payload: { url: string; fileId: string }[];
-    // };
+    (parsedData.deleteImages || []).forEach(async (image) => {
+      await imagekit.deleteFile(image.fileId);
+    });
 
-    return { message: 'Edit advert successful', success: true };
+    draftCollection.deleteOne({ userId: session.user.id });
+
+    delete parsedData.deleteImages;
+    delete parsedData.state;
+    delete parsedData.files;
+
+    await advertCollection.updateOne(
+      { _id: new ObjectId(parsedData.id) },
+      { $set: { ...parsedData } }
+    );
+
+    return successResponseAction('Edit advert successful');
   }
 );
