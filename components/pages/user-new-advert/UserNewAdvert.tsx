@@ -1,46 +1,45 @@
 'use client';
 import { AdvertForm } from './components';
-import { Heading, UserNewAdvertProps } from '@/components';
 import { initialState } from '@/constants';
 import { newAdvert } from '@/actions';
+import { showSuccessToast } from '@/helpers';
 import { useActionState } from 'react';
-import { useAdvertForm } from './hooks';
-import { useControlUploadFiles } from '@/hooks';
-import { showErrorToast } from '@/helpers';
+import { useAdvertFormWithUploads } from './hooks';
+import { usePreventBackNavigation, usePreventLinkNavigation } from '@/hooks';
+import { useRouter } from 'next/navigation';
+
+import {
+  Heading,
+  Modal,
+  useControlModal,
+  UserNewAdvertProps,
+  validationFilesInfo,
+} from '@/components';
 
 export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
+  const router = useRouter();
+
   const [state, action, isPending] = useActionState(newAdvert, initialState);
+  const { onClose, onOpen, isOpen } = useControlModal();
 
-  const form = useAdvertForm({
-    userId,
+  const { deleteUploadedFiles, form, uploadFiles } = useAdvertFormWithUploads({
+    action,
     isPending,
-    isSuccess: state.success,
-    onSubmitForm: action,
+    mode: 'new',
+    success: state.success,
+    onSuccess: () => showSuccessToast(state.message),
+    userId,
   });
 
-  const formData = form.formControl.getValues();
-  console.log('formData', formData);
+  //   const { getValues } = form.formControl;
+  const { dirtyFields, isDirty } = form.formControl.formState;
 
-  const { deleteUploadedFiles, uploadFiles } = useControlUploadFiles({
-    limit: 3,
-    onAddImages: (arrUrls) => {
-      const images = form.formControl.getValues('images');
-      form.formControl.setValue('images', images.concat(arrUrls), {
-        shouldDirty: true,
-      });
-    },
-    onDeleteImages: (ids) => {
-      const images = form.formControl.getValues('images');
-      const filter = images.filter((i) => !ids.includes(i.fileId));
-      form.formControl.setValue('images', filter);
-    },
-    onUpdateLocalFiles: (restFiles) => {
-      form.formControl.setValue('files', restFiles);
-    },
-    onUpdateDeletedIds: (arrIds) => {
-      form.formControl.setValue('deleteImagesIds', arrIds);
-    },
-  });
+  console.log('dirtyFields', dirtyFields);
+  console.log('isDirty', isDirty);
+  //   console.log('values form', getValues());
+
+  usePreventBackNavigation({ isDirty, onOpen });
+  usePreventLinkNavigation({ idLink: 'menu-link', isDirty, onOpen });
 
   return (
     <>
@@ -54,19 +53,23 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
         isPending={isPending}
         uploadFiles={uploadFiles}
         deleteUploadedFiles={deleteUploadedFiles}
-        validationInfo={({ name, type }) => {
-          console.log('TOES', name, type);
-          if (type === 'amount') {
-            showErrorToast(`Maximum 10 images allowed`);
-          }
-          if (type === 'size') {
-            showErrorToast(`${name} exceeds the 500KB size limit`);
-          }
-          if (type === 'type') {
-            showErrorToast(`${name} is not allowed. Use JPG or PNG`);
-          }
-        }}
+        validationInfo={validationFilesInfo}
       />
+      <Modal
+        confirmText="Leave"
+        title="Leave page warning"
+        isOpen={isOpen}
+        onClose={onClose}
+        onCancel={onClose}
+        variant="warning"
+        onConfirm={() => {
+          router.push('/user/dashboard');
+        }}
+      >
+        Warning: Data you have entered will be lost,
+        <br />
+        if you leave this page without saving.
+      </Modal>
     </>
   );
 };
