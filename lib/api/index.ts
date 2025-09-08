@@ -1,5 +1,5 @@
 export * from './adverts';
-export * from './configApi';
+export * from './serverEndpoints';
 export * from './fetchApi';
-export * from './tryCatch';
 export * from './types';
+export * from './serverEndpoints';
