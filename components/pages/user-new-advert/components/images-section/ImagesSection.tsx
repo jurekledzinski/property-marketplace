@@ -1,16 +1,11 @@
 'use client';
 import styles from '../../UserNewAdvert.module.css';
+import { cloneDeep } from 'lodash';
 import { Controller } from 'react-hook-form';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { ImagesSectionProps } from './types';
+import { useChangeFiles, useControlValidateFiles } from './hooks';
 import { validationOptions } from './hooks';
-import { cloneDeep } from 'lodash';
-
-import {
-  useControlValidateFiles,
-  useRemovePreviewFiles,
-  useChangeFiles,
-} from './hooks';
 
 import {
   Box,
@@ -51,13 +46,8 @@ export const ImagesSection = ({
     files: getValues('files') || [],
   });
 
-  const onRemove = useRemovePreviewFiles({
-    deleteUploadedFiles,
-    deleteImagesIds: getValues('deleteImagesIds'),
-  });
-
   const checkFiles = useValidateFiles(validationOptions);
-  const validate = useControlValidateFiles({ checkFiles });
+  const validate = useControlValidateFiles({ checkFiles, otherKey: 'images' });
 
   return (
     <>
@@ -96,7 +86,7 @@ export const ImagesSection = ({
         <PreviewFiles
           images={cloneDeep(watch('images') || [])}
           gridPlacement="column"
-          onRemove={onRemove}
+          onRemove={deleteUploadedFiles}
         >
           <Box className={styles.info}>
             <Icon color="primary" icon={faImage} size="4x" />

@@ -12,9 +12,11 @@ export const useControlValidateFiles = <
   K extends Path<T>
 >({
   checkFiles,
-}: useControlValidateFilesProps): RegisterOptions<T, K>['validate'] => {
+  otherKey,
+}: useControlValidateFilesProps<T>): RegisterOptions<T, K>['validate'] => {
   const validate: RegisterOptions<T, K>['validate'] = useCallback(
-    (files: FieldPathValue<T, K>) => {
+    (files: FieldPathValue<T, K>, formData: FieldValues) => {
+      const otherField = formData[otherKey ?? ''];
       const type = checkFiles.checkFileType(files);
       const maxAmount = checkFiles.checkMaxAmountFiles(files);
       const maxSize = checkFiles.checkMaxSize(files);
@@ -24,12 +26,12 @@ export const useControlValidateFiles = <
       if (type !== true) return type;
       if (maxAmount !== true) return maxAmount;
       if (maxSize !== true) return maxSize;
-      if (required !== true) return required;
+      if (required !== true) return otherField.length ? true : required;
       if (totalMaxSize !== true) return totalMaxSize;
 
       return true;
     },
-    [checkFiles]
+    [checkFiles, otherKey]
   );
 
   return validate;
