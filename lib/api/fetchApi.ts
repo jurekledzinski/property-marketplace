@@ -1,4 +1,7 @@
+import { ApiErrorResponse, ApiSuccessResponse, FetchAPIProps } from './types';
+import { fetchResponse } from '@/helpers';
 import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
+import { tryCatchApi } from '../../helpers/tryCatch';
 
 function formatHeaders(headers?: ReadonlyHeaders) {
   const formattedHeader =
@@ -11,48 +14,35 @@ function formatHeaders(headers?: ReadonlyHeaders) {
   return formattedHeader;
 }
 
-export async function fetchResponse(response: Response) {
-  // Now should be error from body instead statusText
-  if (!response.ok) throw new Error(response.statusText);
-  return await response.json();
-}
-
-export function getOptions(tags?: string[], headers?: ReadonlyHeaders) {
+export const fetchApi = async <T extends object>({
+  url,
+  method = 'GET',
+  body,
+  credentials,
+  tags,
+  headers,
+  revalidate,
+  cache,
+}: FetchAPIProps): Promise<ApiSuccessResponse<T> | ApiErrorResponse> => {
   const formattedHeaders = formatHeaders(headers);
 
-  const options = {
-    ...(tags && { next: { tags } }),
-    ...(formattedHeaders && { headers: formattedHeaders }),
-    ...(!formattedHeaders && {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }),
+  const baseHeaders = {
+    'Content-Type': 'application/json',
   };
 
-  return options;
-}
+  const options: RequestInit = {
+    method,
+  };
 
-export const fetchData = async <T>({
-  tags,
-  url,
-  headers,
-}: {
-  url: string;
-  tags: string[];
-  headers?: ReadonlyHeaders;
-}): Promise<
-  { success: true; payload: T } | { success: false; message: string }
-> => {
-  try {
-    const options = getOptions(tags, headers);
-    const response = await fetch(url, options);
-    const data = await fetchResponse(response);
-    return { success: true, payload: data.payload };
-  } catch {
-    return {
-      message: 'Something went wrong, plese try later',
-      success: false,
-    };
-  }
+  if (formattedHeaders) options['headers'] = formattedHeaders;
+  if (!formattedHeaders) options['headers'] = baseHeaders;
+  if (body) options['body'] = body;
+  if (credentials) options['credentials'] = credentials;
+  if (revalidate || tags) options['next'] = { tags, revalidate };
+  if (cache) options['cache'] = cache;
+
+  return await tryCatchApi({
+    promise: fetch(url, options),
+    reponse: fetchResponse,
+  });
 };
