@@ -14,31 +14,51 @@ export const DrawerPanel = () => {
     <div className={styles.panel}>
       <List className={styles.list}>
         <ListItem>
-          <Link className={styles.listItem} href="/user/dashboard">
+          <Link
+            className={styles.listItem}
+            data-link="menu-link"
+            href="/user/dashboard"
+          >
             <Icon icon={faGear} />
             Dashboard
           </Link>
         </ListItem>
         <ListItem>
-          <Link className={styles.listItem} href="/user/adverts/new">
+          <Link
+            className={styles.listItem}
+            data-link="menu-link"
+            href="/user/adverts/new"
+          >
             <Icon icon={faAdd} />
             New Advert
           </Link>
         </ListItem>
         <ListItem>
-          <Link className={styles.listItem} href="/user/adverts">
+          <Link
+            className={styles.listItem}
+            data-link="menu-link"
+            href="/user/adverts"
+          >
             <Icon icon={faAd} />
             My Adverts
           </Link>
         </ListItem>
         <ListItem>
-          <Link className={styles.listItem} href="/user/profile">
+          <Link
+            className={styles.listItem}
+            data-link="menu-link"
+            href="/user/profile"
+          >
             <Icon icon={faUser} />
             Profile
           </Link>
         </ListItem>
         <ListItem>
-          <Link className={styles.listItem} href="/user/messages">
+          <Link
+            className={styles.listItem}
+            data-link="menu-link"
+            href="/user/messages"
+          >
             <Icon icon={faEnvelope} />
             Messages
           </Link>
