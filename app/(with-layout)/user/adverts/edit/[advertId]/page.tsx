@@ -5,14 +5,12 @@ import { getUserAdvert } from '@/lib';
 import { headers } from 'next/headers';
 import { formatNumberToStringObject } from '@/helpers';
 
-// Tu trzeba params i pobierać będzie advert na podstawie advertId
 const EditAdvertPage = async ({ params }: EditAdvertPageProps) => {
   const session = await auth();
   const headersData = await headers();
   const { advertId } = await params;
 
   const userAdvert = await getUserAdvert(headersData, advertId);
-
   const formattedUserAdvert = formatNumberToStringObject(userAdvert);
 
   return (
