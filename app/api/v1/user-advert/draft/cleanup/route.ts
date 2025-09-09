@@ -10,8 +10,8 @@ import {
 } from '@/lib';
 
 export const GET = connectDB(async () => {
-  const MS = 2 * 60 * 60 * 1000;
-  const cutoff = new Date(Date.now() - MS);
+  const maxTime = 2 * 60 * 60 * 1000;
+  const cutoff = new Date(Date.now() - maxTime);
 
   const draftCollection = getCollectionDb<DraftFile>('draftImages');
 
@@ -28,19 +28,17 @@ export const GET = connectDB(async () => {
   });
 
   for (const draft of staleDrafts) {
-    const images = [...draft.images!, ...draft.deleteImages!].filter(
-      (image) => !image.isOriginal
-    );
-    for (const img of images) {
+    const images = [...(draft.images || []), ...(draft.deleteImages || [])];
+    const newImages = images.filter((image) => !image.isOriginal);
+
+    for (const image of newImages) {
       try {
-        await imagekit.deleteFile(img.fileId);
+        await imagekit.deleteFile(image.fileId);
       } catch {}
     }
 
     await draftCollection.deleteOne({ _id: draft._id });
   }
 
-  return successResponseApi({
-    message: 'Stale drafts deleted successfull',
-  });
+  return successResponseApi({ success: true });
 });
