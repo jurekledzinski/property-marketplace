@@ -17,7 +17,7 @@ export const AdvertSchema = z.object({
     z.object({ fileId: z.string(), name: z.string(), url: z.string() })
   ),
   deleteImages: z
-    .array(z.object({ fileId: z.string(), name: z.string() }))
+    .array(z.object({ fileId: z.string(), name: z.string(), url: z.string() }))
     .optional(),
   type: z.string(), // apartment | house
   status: z.string(), // rent | sale
