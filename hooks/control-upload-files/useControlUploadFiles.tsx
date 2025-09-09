@@ -1,6 +1,6 @@
+'use client';
 import { PayloadUpload, useControlUploadFilesProps } from './types';
 import { useCallback, useRef } from 'react';
-('use client');
 
 import {
   getFilesSuccessNames,
