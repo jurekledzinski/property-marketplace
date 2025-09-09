@@ -1,17 +1,17 @@
 'use server';
 import z from 'zod';
-import { Advert, AdvertSchema, DraftFile } from '@/models';
+import { Advert, AdvertSchema } from '@/models';
 import { auth } from '@/auth';
 import { ObjectId } from 'mongodb';
 
 import {
   connectDBAction,
   DataDB,
+  deleteImagesImagekit,
   errorResponseAction,
   getCollectionDb,
   successResponseAction,
 } from '@/lib';
-import ImageKit from 'imagekit';
 
 export const editAdvert = connectDBAction(
   async (prevState: unknown, formData: FormData) => {
@@ -38,23 +38,21 @@ export const editAdvert = connectDBAction(
     const parsedData = AdvertSchema.extend({ id: z.string() }).parse(dataForm);
 
     const advertCollection = getCollectionDb<DataDB<Advert>>('adverts');
-    const draftCollection = getCollectionDb<DraftFile>('draftImages');
 
-    if (!advertCollection || !draftCollection) {
+    if (!advertCollection) {
       return errorResponseAction('Internal server error');
     }
 
-    const imagekit = new ImageKit({
-      publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
-      privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
-      urlEndpoint: process.env.IMAGEKIT_URL!,
+    const result = await deleteImagesImagekit({
+      checkIsOriginal: false,
+      images: parsedData.deleteImages,
+      userId: session.user.id,
+      advertId: parsedData.id,
     });
 
-    (parsedData.deleteImages || []).forEach(async (image) => {
-      await imagekit.deleteFile(image.fileId);
-    });
-
-    draftCollection.deleteOne({ userId: session.user.id });
+    if (result !== undefined && !result) {
+      return errorResponseAction('Internal server error');
+    }
 
     delete parsedData.deleteImages;
     delete parsedData.state;
