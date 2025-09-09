@@ -9,6 +9,13 @@ type OmitKeys =
   | 'images'
   | 'deleteImages';
 
+type ExtendedImage = {
+  fileId: string;
+  name: string;
+  url: string;
+  isOriginal?: boolean;
+};
+
 export type InputsAvert = Omit<Advert, OmitKeys> & {
   id?: string;
   price: string;
@@ -16,8 +23,8 @@ export type InputsAvert = Omit<Advert, OmitKeys> & {
   area: string;
   rooms: string;
   bathrooms: string;
-  images: { fileId: string; name: string; url: string; isOriginal?: boolean }[];
-  deleteImages?: { fileId: string; name: string; isOriginal?: boolean }[];
+  images: ExtendedImage[];
+  deleteImages?: ExtendedImage[];
 };
 
 export type UseAdvertFormProps = {
