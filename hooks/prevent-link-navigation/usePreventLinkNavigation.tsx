@@ -1,29 +1,32 @@
+'use client';
 import { useEffect } from 'react';
 import { UsePreventLinkNavigationProps } from './types';
 
 export const usePreventLinkNavigation = ({
+  currentUrl,
   isDirty,
   onOpen,
-  idLink,
+  selectors,
 }: UsePreventLinkNavigationProps) => {
   useEffect(() => {
-    const links = document.querySelector(`data-link=${idLink}`);
+    if (!isDirty || !selectors.length) return;
 
-    if (!isDirty || !links) return;
+    const handleClickElement = (e: Event) => {
+      e.preventDefault();
+      const href = (e.currentTarget as HTMLLinkElement).getAttribute('href');
+      onOpen(currentUrl, href);
+    };
 
-    if (typeof window !== 'undefined') {
-      window.history.pushState(null, document.title, window.location.href);
+    for (const value of selectors) {
+      const listElements = document.querySelectorAll(`[data-link="${value}"]`);
+
+      for (const element of listElements) {
+        element.addEventListener('click', handleClickElement);
+
+        return () => {
+          element.removeEventListener('click', handleClickElement);
+        };
+      }
     }
-
-    const handleClickLink = () => {
-      window.history.pushState(null, document.title, window.location.href);
-      onOpen();
-    };
-
-    links.addEventListener('click', handleClickLink);
-
-    return () => {
-      links.removeEventListener('click', handleClickLink);
-    };
-  }, [idLink, isDirty, onOpen]);
+  }, [currentUrl, isDirty, onOpen, selectors]);
 };
