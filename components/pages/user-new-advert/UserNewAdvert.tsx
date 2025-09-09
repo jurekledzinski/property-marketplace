@@ -5,41 +5,52 @@ import { newAdvert } from '@/actions';
 import { showSuccessToast } from '@/helpers';
 import { useActionState } from 'react';
 import { useAdvertFormWithUploads } from './hooks';
-import { usePreventBackNavigation, usePreventLinkNavigation } from '@/hooks';
+import { useExitGuard } from '@/hooks';
 import { useRouter } from 'next/navigation';
 
 import {
   Heading,
   Modal,
-  useControlModal,
   UserNewAdvertProps,
   validationFilesInfo,
 } from '@/components';
 
 export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
   const router = useRouter();
-
   const [state, action, isPending] = useActionState(newAdvert, initialState);
-  const { onClose, onOpen, isOpen } = useControlModal();
 
-  const { deleteUploadedFiles, form, uploadFiles } = useAdvertFormWithUploads({
-    action,
-    isPending,
-    mode: 'new',
-    success: state.success,
-    onSuccess: () => showSuccessToast(state.message),
-    userId,
-  });
+  const { deleteDraft, deleteUploadedFiles, form, uploadFiles } =
+    useAdvertFormWithUploads({
+      action,
+      isPending,
+      mode: 'new',
+      success: state.success,
+      onSuccess: () => showSuccessToast(state.message),
+      userId,
+    });
 
-  //   const { getValues } = form.formControl;
+  const { watch } = form.formControl;
   const { dirtyFields, isDirty } = form.formControl.formState;
+
+  const { isOpen, onClose, onConfirm } = useExitGuard({
+    confirmUrl: '/user/dashboard',
+    currentUrl: '/user/adverts/new',
+    isDirty,
+    onConfirmLeave: async (url) => {
+      const { getValues } = form.formControl;
+      const images = getValues('images');
+      const deleteImages = getValues('deleteImages');
+      const result = await deleteDraft(images, deleteImages);
+      console.log('result confirm', result);
+      if (result.success) router.push(url);
+    },
+    onBlockLeave: (url) => router.push(url),
+    selectors: ['menu-link'],
+  });
 
   console.log('dirtyFields', dirtyFields);
   console.log('isDirty', isDirty);
-  //   console.log('values form', getValues());
-
-  usePreventBackNavigation({ isDirty, onOpen });
-  usePreventLinkNavigation({ idLink: 'menu-link', isDirty, onOpen });
+  console.log('watch', watch());
 
   return (
     <>
@@ -62,9 +73,7 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
         onClose={onClose}
         onCancel={onClose}
         variant="warning"
-        onConfirm={() => {
-          router.push('/user/dashboard');
-        }}
+        onConfirm={onConfirm}
       >
         Warning: Data you have entered will be lost,
         <br />
