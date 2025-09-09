@@ -13,7 +13,7 @@ export const useAdvertFormWithUploads = ({
   userId,
   onSuccess,
 }: UseAdvertFormWithUploadsProps) => {
-  const { draft, updateDraft } = useDraftsImages({
+  const { draft, updateDraft, deleteDraft } = useDraftsImages({
     advertId: advert?.id,
     mode,
   });
@@ -23,12 +23,12 @@ export const useAdvertFormWithUploads = ({
   const form = useAdvertForm({
     advert: {
       ...(advert! ?? {}),
-      ...(draft.images
-        ? {
-            deleteImages: draft.deleteImages,
-            images: draft.images,
-          }
-        : {}),
+      ...(draft.images && {
+        images: draft.images,
+      }),
+      ...(draft.deleteImages && {
+        deleteImages: draft.deleteImages,
+      }),
     },
     isPending,
     isSuccess: success,
@@ -52,7 +52,8 @@ export const useAdvertFormWithUploads = ({
         shouldDirty: true,
       });
 
-      console.log('ADDIMAGE', draft.advertId);
+      console.log('ADDIMAGE mergedImages', mergedImages);
+      console.log('ADDIMAGE deletedImages', deletedImages);
 
       updateDraft(mergedImages, deletedImages);
     },
@@ -65,10 +66,14 @@ export const useAdvertFormWithUploads = ({
       form.formControl.setValue('images', restImages, {
         shouldDirty: true,
       });
-      form.formControl.resetField('deleteImages', {
-        defaultValue: mergeDeletedImages,
-        keepDirty: false,
+
+      form.formControl.reset({
+        ...form.formControl.getValues(), // keep other fields intact
+        deleteImages: mergeDeletedImages,
       });
+
+      console.log('DELIMAGE restImages', restImages);
+      console.log('DELIMAGE mergeDeletedImages', mergeDeletedImages);
 
       updateDraft(restImages, mergeDeletedImages);
 
@@ -87,5 +92,5 @@ export const useAdvertFormWithUploads = ({
     },
   });
 
-  return { deleteUploadedFiles, form, uploadFiles };
+  return { deleteDraft, deleteUploadedFiles, form, uploadFiles };
 };
