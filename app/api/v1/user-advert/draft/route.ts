@@ -5,6 +5,7 @@ import { ObjectId } from 'mongodb';
 
 import {
   connectDBAuth,
+  deleteImagesImagekit,
   errorResponseApi,
   getCollectionDb,
   successResponseApi,
@@ -34,6 +35,7 @@ export const GET = connectDBAuth(
       advertId,
       mode,
       userId: request.auth.user.id,
+      $nor: [{ status: 'failed' }],
     });
 
     const advert = advertId
@@ -140,20 +142,28 @@ export const PATCH = connectDBAuth(
 
 export const DELETE = connectDBAuth(
   auth(async (request) => {
+    const body = await request.json();
+
+    const deletedImages = body.deleteImages || [];
+    const images = body.images || [];
+
     const searchParams = request.nextUrl.searchParams;
-    const draftId = searchParams.get('draftId');
+    const advertId = searchParams.get('id');
 
     if (!request.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });
     }
 
-    if (!draftId) {
-      return errorResponseApi({ message: 'Not found', status: 404 });
+    const result = await deleteImagesImagekit({
+      checkIsOriginal: true,
+      images: [...images, ...deletedImages],
+      userId: request.auth.user.id,
+      advertId,
+    });
+
+    if (result !== undefined && !result) {
+      return errorResponseApi({ status: 500 });
     }
-
-    const collection = getCollectionDb<DraftFile>('draftImages');
-
-    if (!collection) return errorResponseApi({ status: 500 });
 
     return successResponseApi({ message: 'Draft deleted successfull' });
   })
