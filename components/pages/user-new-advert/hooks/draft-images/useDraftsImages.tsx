@@ -48,11 +48,11 @@ export const useDraftsImages = ({ advertId, mode }: useDraftsImagesProps) => {
   const deleteDraftImages = useMutation<
     ApiSuccessResponse<DraftFile> | ApiErrorResponse,
     unknown,
-    { images: DraftFile['images'] }
+    { deletedImages: DraftFile['deleteImages']; images: DraftFile['images'] }
   >({
-    mutationFn: async ({ images }) => {
+    mutationFn: async ({ deletedImages, images }) => {
       const response = await fetchApiClient<DraftFile>({
-        body: JSON.stringify({ images }),
+        body: JSON.stringify({ deletedImages, images }),
         credentials: 'include',
         method: 'DELETE',
         url: clientEndpoint.deleteDraftImages(advertId),
@@ -75,8 +75,11 @@ export const useDraftsImages = ({ advertId, mode }: useDraftsImagesProps) => {
     });
   }, [draftImages.data]);
 
-  const deleteDraft = (images: DraftFile['images']) => {
-    deleteDraftImages.mutate({ images });
+  const deleteDraft = async (
+    images: DraftFile['images'],
+    deletedImages: DraftFile['deleteImages']
+  ) => {
+    return await deleteDraftImages.mutateAsync({ deletedImages, images });
   };
 
   const updateDraft = (
