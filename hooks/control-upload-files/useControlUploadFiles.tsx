@@ -1,6 +1,6 @@
-'use client';
 import { PayloadUpload, useControlUploadFilesProps } from './types';
 import { useCallback, useRef } from 'react';
+('use client');
 
 import {
   getFilesSuccessNames,
@@ -21,8 +21,6 @@ export const useControlUploadFiles = ({
 
   const uploadFiles = useCallback(
     async (files: File[]) => {
-      //   console.log('FILES', files);
-      //   console.log('PENDINGFILES', pendingUploadFiles.current);
       const index = getIndexes(limit, pendingUploadFiles.current.length);
       pendingUploadFiles.current = files.slice(index.start, index.end);
 
@@ -33,7 +31,6 @@ export const useControlUploadFiles = ({
       });
 
       const result = await Promise.allSettled(allPromises);
-      //   console.log('result upload', result);
 
       if (result) {
         const { rejectedFiles, successFiles } = getResultByStatus(result);
@@ -47,8 +44,6 @@ export const useControlUploadFiles = ({
         const restFiles = files.filter(
           (file) => ![...successNames, ...rejectedNames].includes(file.name)
         );
-
-        // console.log('restFiles', restFiles);
 
         onUpdateLocalFiles(restFiles);
 
@@ -66,11 +61,7 @@ export const useControlUploadFiles = ({
     async (index: number, file: PayloadUpload | File) => {
       if (file instanceof File) return;
 
-      onDeleteImages({
-        fileId: file.fileId,
-        name: file.name,
-        isOriginal: file.isOriginal,
-      });
+      onDeleteImages(file);
     },
     [onDeleteImages]
   );

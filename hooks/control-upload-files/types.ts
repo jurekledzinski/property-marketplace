@@ -15,7 +15,7 @@ export type ResponseApi<T extends object = PayloadUpload> = {
 export type useControlUploadFilesProps = {
   limit: number;
   onAddImages: (urls: PayloadUpload[]) => void;
-  onDeleteImages: (deletedImage: Omit<PayloadUpload, 'url'>) => void;
+  onDeleteImages: (deletedImage: PayloadUpload) => void;
   onUpdateLocalFiles: (filteredFiles: File[]) => void;
 };
 
