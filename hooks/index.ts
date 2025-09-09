@@ -4,6 +4,7 @@ export * from './arrow-navigation';
 export * from './arrow-nested-navigation';
 export * from './click-outside';
 export * from './control-upload-files';
+export * from './exit-guard';
 export * from './key-map';
 export * from './key-press';
 export * from './prevent-back-navigation';
