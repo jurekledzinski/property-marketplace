@@ -18,18 +18,9 @@ export const useAdvertFormWithUploads = ({
     mode,
   });
 
-  console.log('draft', draft);
-
   const form = useAdvertForm({
-    advert: {
-      ...(advert! ?? {}),
-      ...(draft.images && {
-        images: draft.images,
-      }),
-      ...(draft.deleteImages && {
-        deleteImages: draft.deleteImages,
-      }),
-    },
+    advert,
+    draft,
     isPending,
     isSuccess: success,
     mode,
@@ -42,7 +33,8 @@ export const useAdvertFormWithUploads = ({
     limit: 3,
     onAddImages: (addedImages) => {
       const images = form.formControl.getValues('images');
-      const deletedImages = form.formControl.getValues('deleteImages') || [];
+      const deletedImages = form.deletedImages || [];
+
       const markImages = addedImages.map((img) => ({
         ...img,
         isOriginal: false,
@@ -52,28 +44,17 @@ export const useAdvertFormWithUploads = ({
         shouldDirty: true,
       });
 
-      console.log('ADDIMAGE mergedImages', mergedImages);
-      console.log('ADDIMAGE deletedImages', deletedImages);
-
       updateDraft(mergedImages, deletedImages);
     },
     onDeleteImages: (delImage) => {
       const images = form.formControl.getValues('images');
-      const deletedImages = form.formControl.getValues('deleteImages') || [];
+      const deletedImages = form.deletedImages || [];
+
       const restImages = images.filter((img) => img.fileId !== delImage.fileId);
       const mergeDeletedImages = [...deletedImages, delImage];
 
-      form.formControl.setValue('images', restImages, {
-        shouldDirty: true,
-      });
-
-      form.formControl.reset({
-        ...form.formControl.getValues(), // keep other fields intact
-        deleteImages: mergeDeletedImages,
-      });
-
-      console.log('DELIMAGE restImages', restImages);
-      console.log('DELIMAGE mergeDeletedImages', mergeDeletedImages);
+      form.formControl.setValue('images', restImages, { shouldDirty: true });
+      form.onSetDeleteImages(mergeDeletedImages);
 
       updateDraft(restImages, mergeDeletedImages);
 
