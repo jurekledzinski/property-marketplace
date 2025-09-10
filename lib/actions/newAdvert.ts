@@ -26,7 +26,6 @@ export const deleteImagesImagekit = async ({
       : true;
 
     if (!shouldDelete) {
-      // Skip images where isOriginal is true or missing
       return { ...image, success: true };
     }
 
