@@ -7,17 +7,21 @@ import {
   connectDBAuth,
   deleteImagesImagekit,
   errorResponseApi,
+  getBodyRequest,
   getCollectionDb,
   successResponseApi,
 } from '@/lib';
 
+type BodyDraftDelete = Pick<DraftFile, 'deleteImages' | 'images'>;
+type BodyDraftPatch = BodyDraftDelete;
+
 export const GET = connectDBAuth(
-  auth(async (request) => {
-    const searchParams = request.nextUrl.searchParams;
+  auth(async (req) => {
+    const searchParams = req.nextUrl.searchParams;
     const advertId = searchParams.get('id') || '';
     const mode = (searchParams.get('mode') || '') as 'edit' | 'new';
 
-    if (!request.auth) {
+    if (!req.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });
     }
 
@@ -28,22 +32,16 @@ export const GET = connectDBAuth(
       return errorResponseApi({ status: 500 });
     }
 
-    console.log('GET ADVERT DRAFT advertId', advertId);
-    console.log('GET ADVERT mode', mode);
-
     const draftDb = await draftCollection.findOne({
       advertId,
       mode,
-      userId: request.auth.user.id,
+      userId: req.auth.user.id,
       $nor: [{ status: 'failed' }],
     });
 
     const advert = advertId
       ? await advertCollection.findOne({ _id: new ObjectId(advertId) })
       : null;
-
-    console.log('GET draftDb', draftDb);
-    console.log('GET advert', advert);
 
     if (draftDb) {
       return successResponseApi({
@@ -58,7 +56,7 @@ export const GET = connectDBAuth(
       const initialImages = advert ? advert.images : [];
 
       const newDraft = await draftCollection.findOneAndUpdate(
-        { mode, userId: request.auth.user.id },
+        { mode, userId: req.auth.user.id },
         {
           $set: {
             ...(advertId && { advertId }),
@@ -86,16 +84,18 @@ export const GET = connectDBAuth(
 );
 
 export const PATCH = connectDBAuth(
-  auth(async (request) => {
-    const { deletedImages, images } = await request.json();
-    const searchParams = request.nextUrl.searchParams;
+  auth(async (req) => {
+    const body = await getBodyRequest<BodyDraftPatch>(req);
+    const deleteImages = body.deleteImages || [];
+    const images = body.images || [];
+    const searchParams = req.nextUrl.searchParams;
     const advertId = searchParams.get('id') ?? '';
 
-    if (!request.auth) {
+    if (!req.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });
     }
 
-    if (!images) {
+    if (!images || !deleteImages) {
       return errorResponseApi({ message: 'Not found', status: 404 });
     }
 
@@ -105,15 +105,15 @@ export const PATCH = connectDBAuth(
 
     const draftDb = await collection.findOne({
       advertId,
-      userId: request.auth.user.id,
+      userId: req.auth.user.id,
     });
 
     if (draftDb) {
       await collection.updateOne(
-        { advertId, userId: request.auth.user.id },
+        { advertId, userId: req.auth.user.id },
         {
           $set: {
-            deleteImages: deletedImages,
+            deleteImages,
             images,
             updatedAt: new Date(),
           },
@@ -123,12 +123,12 @@ export const PATCH = connectDBAuth(
       await collection.updateOne(
         {
           $or: [{ advertId: { $exists: false } }, { advertId: undefined }],
-          userId: request.auth.user.id,
+          userId: req.auth.user.id,
         },
         {
           $set: {
             ...(advertId && { advertId }),
-            deleteImages: deletedImages,
+            deleteImages,
             images,
             updatedAt: new Date(),
           },
@@ -141,23 +141,22 @@ export const PATCH = connectDBAuth(
 );
 
 export const DELETE = connectDBAuth(
-  auth(async (request) => {
-    const body = await request.json();
-
-    const deletedImages = body.deleteImages || [];
+  auth(async (req) => {
+    const body = await getBodyRequest<BodyDraftDelete>(req);
+    const deleteImages = body.deleteImages || [];
     const images = body.images || [];
 
-    const searchParams = request.nextUrl.searchParams;
+    const searchParams = req.nextUrl.searchParams;
     const advertId = searchParams.get('id');
 
-    if (!request.auth) {
+    if (!req.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });
     }
 
     const result = await deleteImagesImagekit({
       checkIsOriginal: true,
-      images: [...images, ...deletedImages],
-      userId: request.auth.user.id,
+      images: [...images, ...deleteImages],
+      userId: req.auth.user.id,
       advertId,
     });
 
