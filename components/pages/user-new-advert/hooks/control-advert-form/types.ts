@@ -1,4 +1,5 @@
 import { Advert } from '@/models';
+import { DraftPayload } from '../draft-images';
 
 type OmitKeys =
   | 'price'
@@ -24,10 +25,10 @@ export type InputsAvert = Omit<Advert, OmitKeys> & {
   rooms: string;
   bathrooms: string;
   images: ExtendedImage[];
-  deleteImages?: ExtendedImage[];
 };
 
 export type UseAdvertFormProps = {
+  draft: DraftPayload;
   isPending: boolean;
   isSuccess: boolean;
   mode: 'edit' | 'new';
@@ -36,3 +37,5 @@ export type UseAdvertFormProps = {
   advert?: InputsAvert | null;
   onSuccess?: () => void;
 };
+
+export type DeleteImages = DraftPayload['deleteImages'];

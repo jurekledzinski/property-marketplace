@@ -1,37 +1,11 @@
 'use client';
+import { DeleteImages, InputsAvert, UseAdvertFormProps } from './types';
 import { formatFormData } from '@/helpers';
-import { InputsAvert, UseAdvertFormProps } from './types';
-import { startTransition, useCallback, useState } from 'react';
+import { startTransition, useCallback, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useAdvertInitialValues } from '../advert-initial-values';
 import { useResetForm } from '@/hooks';
 import { v4 as uuidv4 } from 'uuid';
-
-const defaultValues = {
-  advertiser: '',
-  email: '',
-  phone: '',
-  country: '',
-  state: '',
-  city: '',
-  street: '',
-  postalCode: '',
-  title: '',
-  description: '',
-  files: [],
-  type: '', // apartment | house
-  status: '', // rent | sale
-  price: '',
-  condition: '',
-  year: '',
-  area: '',
-  rooms: '',
-  bathrooms: '',
-  amenities: [],
-  style: '',
-  images: [],
-  deleteImages: [],
-  userId: '',
-};
 
 const resetState = {
   personal: uuidv4(),
@@ -42,6 +16,7 @@ const resetState = {
 
 export const useAdvertForm = ({
   advert,
+  draft,
   userId,
   isPending,
   isSuccess,
@@ -50,9 +25,21 @@ export const useAdvertForm = ({
   onSuccess,
 }: UseAdvertFormProps) => {
   const [reset, setReset] = useState(resetState);
+  const [deletedImages, setDeletedImages] = useState<DeleteImages>(
+    draft.deleteImages ?? []
+  );
+
+  const { defaultValues, initialValues } = useAdvertInitialValues({
+    draft,
+    userId,
+    advert,
+    onSetDeleteImages: useCallback((data) => {
+      setDeletedImages(data);
+    }, []),
+  });
 
   const formControl = useForm<InputsAvert>({
-    values: { ...defaultValues, ...(advert ?? {}), userId },
+    defaultValues: { ...initialValues },
   });
 
   const onSubmit: SubmitHandler<InputsAvert> = useCallback(
@@ -62,7 +49,7 @@ export const useAdvertForm = ({
         delete image.isOriginal;
         return image;
       });
-      const deleteImages = (data.deleteImages || []).map((image) => {
+      const deleteImages = (deletedImages || []).map((image) => {
         delete image.isOriginal;
         return image;
       });
@@ -70,7 +57,7 @@ export const useAdvertForm = ({
       const formData = formatFormData({ ...data, deleteImages, images });
       startTransition(() => onSubmitForm(formData));
     },
-    [onSubmitForm]
+    [deletedImages, onSubmitForm]
   );
 
   useResetForm({
@@ -90,5 +77,14 @@ export const useAdvertForm = ({
     },
   });
 
-  return { formControl, onSubmit, reset };
+  useEffect(() => {
+    if (!initialValues.images) return;
+    formControl.reset(initialValues);
+  }, [formControl, initialValues]);
+
+  const onSetDeleteImages = (images: DeleteImages = []) => {
+    setDeletedImages(images);
+  };
+
+  return { deletedImages, formControl, onSetDeleteImages, onSubmit, reset };
 };
