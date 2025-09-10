@@ -1,6 +1,5 @@
 'use client';
 import { AmenitiesSectionProps } from './types';
-import { memo } from 'react';
 
 import {
   Checkbox,
@@ -29,7 +28,7 @@ const amenities = [
   'Wheelchair Accessible',
 ];
 
-export const AmenitiesPart = <T extends PropertyAmenitiesFields>({
+export const AmenitiesSection = <T extends PropertyAmenitiesFields>({
   controls,
   nameAmenities,
 }: AmenitiesSectionProps<T>) => {
@@ -58,7 +57,3 @@ export const AmenitiesPart = <T extends PropertyAmenitiesFields>({
     </>
   );
 };
-
-export const AmenitiesSection = memo(AmenitiesPart) as typeof AmenitiesPart;
-
-AmenitiesPart.displayName = 'AmenitiesSection';
