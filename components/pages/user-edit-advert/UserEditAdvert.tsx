@@ -3,6 +3,8 @@ import { editAdvert } from '@/actions';
 import { initialState } from '@/constants';
 import { showSuccessToast } from '@/helpers';
 import { useActionState } from 'react';
+import { useExitGuard } from '@/hooks';
+import { usePathname, useRouter } from 'next/navigation';
 import { UserEditAdvertProps } from './types';
 
 import {
@@ -12,8 +14,6 @@ import {
   validationFilesInfo,
   Modal,
 } from '@/components';
-import { useRouter, usePathname } from 'next/navigation';
-import { useExitGuard } from '@/hooks';
 
 export const UserEditAdvert = ({ advert, userId }: UserEditAdvertProps) => {
   const router = useRouter();
@@ -34,25 +34,20 @@ export const UserEditAdvert = ({ advert, userId }: UserEditAdvertProps) => {
       },
     });
 
-  const { dirtyFields, isDirty } = form.formControl.formState;
-
   const { isOpen, onClose, onConfirm } = useExitGuard({
     confirmUrl: '/user/adverts',
     currentUrl: pathname,
-    isDirty,
+    isDirty: form.formControl.formState.isDirty,
     onConfirmLeave: async (url) => {
       const { getValues } = form.formControl;
       const images = getValues('images');
-      const deleteImages = getValues('deleteImages');
-      const result = await deleteDraft(images, deleteImages);
+      const deletedImages = form.deletedImages || [];
+      const result = await deleteDraft(images, deletedImages);
       if (result.success) router.push(url);
     },
     onBlockLeave: (url) => router.push(url),
     selectors: ['menu-link'],
   });
-
-  console.log('dirtyFields', dirtyFields);
-  console.log('isDirty', isDirty);
 
   return (
     <>
@@ -66,7 +61,7 @@ export const UserEditAdvert = ({ advert, userId }: UserEditAdvertProps) => {
         deleteUploadedFiles={deleteUploadedFiles}
         uploadFiles={uploadFiles}
         validationInfo={validationFilesInfo}
-        isPending={false}
+        isPending={isPending}
       />
       <Modal
         confirmText="Leave"

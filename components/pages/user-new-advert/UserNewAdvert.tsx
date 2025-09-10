@@ -29,28 +29,20 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
       userId,
     });
 
-  const { watch } = form.formControl;
-  const { dirtyFields, isDirty } = form.formControl.formState;
-
   const { isOpen, onClose, onConfirm } = useExitGuard({
     confirmUrl: '/user/dashboard',
     currentUrl: '/user/adverts/new',
-    isDirty,
+    isDirty: form.formControl.formState.isDirty,
     onConfirmLeave: async (url) => {
       const { getValues } = form.formControl;
       const images = getValues('images');
-      const deleteImages = getValues('deleteImages');
-      const result = await deleteDraft(images, deleteImages);
-      console.log('result confirm', result);
+      const deletedImages = form.deletedImages || [];
+      const result = await deleteDraft(images, deletedImages);
       if (result.success) router.push(url);
     },
     onBlockLeave: (url) => router.push(url),
     selectors: ['menu-link'],
   });
-
-  console.log('dirtyFields', dirtyFields);
-  console.log('isDirty', isDirty);
-  console.log('watch', watch());
 
   return (
     <>
