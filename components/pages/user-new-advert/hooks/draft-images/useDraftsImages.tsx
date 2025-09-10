@@ -14,8 +14,8 @@ export const useDraftsImages = ({ advertId, mode }: useDraftsImagesProps) => {
     deleteImages: [],
   });
 
-  const draftImages = useQuery({
-    queryKey: ['draft'],
+  const { data: draftData } = useQuery({
+    queryKey: ['drafts'],
     queryFn: async () =>
       await fetchApiClient<DraftFile>({
         credentials: 'include',
@@ -29,12 +29,12 @@ export const useDraftsImages = ({ advertId, mode }: useDraftsImagesProps) => {
     unknown,
     {
       images: DraftFile['images'];
-      deletedImages: DraftFile['deleteImages'];
+      deleteImages: DraftFile['deleteImages'];
     }
   >({
-    mutationFn: async ({ deletedImages, images }) => {
+    mutationFn: async ({ deleteImages, images }) => {
       const response = await fetchApiClient<DraftFile>({
-        body: JSON.stringify({ deletedImages, images }),
+        body: JSON.stringify({ deleteImages, images }),
         credentials: 'include',
         method: 'PATCH',
         url: clientEndpoint.updateDraftImages(advertId),
@@ -48,11 +48,11 @@ export const useDraftsImages = ({ advertId, mode }: useDraftsImagesProps) => {
   const deleteDraftImages = useMutation<
     ApiSuccessResponse<DraftFile> | ApiErrorResponse,
     unknown,
-    { deletedImages: DraftFile['deleteImages']; images: DraftFile['images'] }
+    { deleteImages: DraftFile['deleteImages']; images: DraftFile['images'] }
   >({
-    mutationFn: async ({ deletedImages, images }) => {
+    mutationFn: async ({ deleteImages, images }) => {
       const response = await fetchApiClient<DraftFile>({
-        body: JSON.stringify({ deletedImages, images }),
+        body: JSON.stringify({ deleteImages, images }),
         credentials: 'include',
         method: 'DELETE',
         url: clientEndpoint.deleteDraftImages(advertId),
@@ -65,28 +65,28 @@ export const useDraftsImages = ({ advertId, mode }: useDraftsImagesProps) => {
   });
 
   useEffect(() => {
-    if (!draftImages.data) return;
-    if (!draftImages.data.success || !draftImages.data.payload) return;
+    if (!draftData) return;
+    if (!draftData.success || !draftData.payload) return;
 
     setDraft({
-      advertId: draftImages.data.payload.advertId || '',
-      images: draftImages.data.payload.images || [],
-      deleteImages: draftImages.data.payload.deleteImages || [],
+      advertId: draftData.payload.advertId || '',
+      images: draftData.payload.images || [],
+      deleteImages: draftData.payload.deleteImages || [],
     });
-  }, [draftImages.data]);
+  }, [draftData]);
 
   const deleteDraft = async (
     images: DraftFile['images'],
-    deletedImages: DraftFile['deleteImages']
+    deleteImages: DraftFile['deleteImages']
   ) => {
-    return await deleteDraftImages.mutateAsync({ deletedImages, images });
+    return await deleteDraftImages.mutateAsync({ deleteImages, images });
   };
 
   const updateDraft = (
     images: DraftFile['images'],
-    deletedImages?: DraftFile['deleteImages']
+    deleteImages?: DraftFile['deleteImages']
   ) => {
-    updateDraftImages.mutate({ deletedImages, images });
+    updateDraftImages.mutate({ deleteImages, images });
   };
 
   return { deleteDraft, draft, updateDraft };
