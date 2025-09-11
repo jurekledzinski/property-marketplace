@@ -13,11 +13,11 @@ export const GET = connectDB(async () => {
   const maxTime = 2 * 60 * 60 * 1000;
   const cutoff = new Date(Date.now() - maxTime);
 
-  const draftCollection = getCollectionDb<DraftFile>('draftImages');
+  const draftCol = getCollectionDb<DraftFile>('draftImages');
 
-  if (!draftCollection) return errorResponseApi({ status: 500 });
+  if (!draftCol) return errorResponseApi({ status: 500 });
 
-  const staleDrafts = await draftCollection
+  const staleDrafts = await draftCol
     .find({ updatedAt: { $lt: cutoff } })
     .toArray();
 
@@ -37,7 +37,7 @@ export const GET = connectDB(async () => {
       } catch {}
     }
 
-    await draftCollection.deleteOne({ _id: draft._id });
+    await draftCol.deleteOne({ _id: draft._id });
   }
 
   return successResponseApi({ success: true });
