@@ -6,3 +6,4 @@ export * from './formatDBDocumentId';
 export * from './getDomain';
 export * from './responseAction';
 export * from './responseApi';
+export * from './searchParamsApi';
