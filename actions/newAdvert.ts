@@ -1,15 +1,15 @@
 'use server';
 import { Advert, AdvertSchema } from '@/models';
+import { auth } from '@/auth';
 
 import {
   connectDBAction,
   deleteImagesImagekit,
   errorResponseAction,
+  formatDataNewAdvert,
   getCollectionDb,
   successResponseAction,
 } from '@/lib';
-
-import { auth } from '@/auth';
 
 export const newAdvert = connectDBAction(
   async (prevState: unknown, formData: FormData) => {
@@ -18,17 +18,7 @@ export const newAdvert = connectDBAction(
 
     if (!session) return errorResponseAction('Unauthorized');
 
-    const dataForm = {
-      ...data,
-      price: data.price,
-      year: data.year,
-      area: data.area,
-      rooms: data.rooms,
-      bathrooms: data.bathrooms,
-      amenities: JSON.parse(formData.getAll('amenities').toString()),
-      deleteImages: JSON.parse(formData.getAll('deleteImages').toString()),
-      images: JSON.parse(formData.getAll('images').toString()),
-    };
+    const dataForm = formatDataNewAdvert(data, formData);
 
     const parsedData = AdvertSchema.parse(dataForm);
 
