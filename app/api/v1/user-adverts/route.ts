@@ -6,30 +6,23 @@ import {
   connectDBAuth,
   getCollectionDb,
   errorResponseApi,
-  UserAdvertsTable,
-  DataDB,
   formatDBDocumentId,
+  getUserAdvertsApi,
 } from '@/lib';
 
 export const GET = connectDBAuth(
-  auth(async (request) => {
-    if (!request.auth) {
+  auth(async (req) => {
+    if (!req.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });
     }
 
-    const collection = getCollectionDb<Advert>('adverts');
+    const ctx = { userId: req.auth.user.id };
 
-    if (!collection) return errorResponseApi({ status: 500 });
+    const advertCol = getCollectionDb<Advert>('adverts');
 
-    const userAdverts = await collection
-      .find<Advert>({ userId: request.auth.user.id })
-      .project<DataDB<UserAdvertsTable>>({
-        title: 1,
-        userId: 1,
-        type: 1,
-        createdAt: 1,
-      })
-      .toArray();
+    if (!advertCol) return errorResponseApi({ status: 500 });
+
+    const userAdverts = await getUserAdvertsApi(ctx, advertCol);
 
     if (!userAdverts) return errorResponseApi({ status: 404 });
 
