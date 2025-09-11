@@ -9,6 +9,7 @@ import {
   DataDB,
   deleteImagesImagekit,
   errorResponseAction,
+  formatDataEditAdvert,
   getCollectionDb,
   successResponseAction,
 } from '@/lib';
@@ -20,20 +21,7 @@ export const editAdvert = connectDBAction(
 
     if (!session) return errorResponseAction('Unauthorized');
 
-    const dataForm = {
-      ...data,
-      createdAt: new Date(data.createdAt.toString()),
-      price: data.price,
-      year: data.year,
-      area: data.area,
-      rooms: data.rooms,
-      bathrooms: data.bathrooms,
-      amenities: JSON.parse(formData.getAll('amenities').toString()),
-      deleteImages: JSON.parse(formData.getAll('deleteImages').toString()),
-      images: JSON.parse(formData.getAll('images').toString()),
-    };
-
-    console.log('dataForm edit action', dataForm);
+    const dataForm = formatDataEditAdvert(data, formData);
 
     const parsedData = AdvertSchema.extend({ id: z.string() }).parse(dataForm);
 
