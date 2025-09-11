@@ -1,3 +1,4 @@
+import 'server-only';
 import { Advert, DraftFile } from '@/models';
 import { Collection, Filter, ObjectId } from 'mongodb';
 import { GETDraftContext, PATCHDraftContext } from './types';
