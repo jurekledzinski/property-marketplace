@@ -1,7 +1,6 @@
 import 'server-only';
 import { Advert, DraftFile } from '@/models';
 import { auth } from '@/auth';
-import { getQueries } from '@/lib/helpers/searchParmsApi';
 
 import {
   connectDBAuth,
@@ -24,6 +23,7 @@ import {
   DELETEDraftSearchParams,
   DELETEBodyDraft,
   PATCHBodyDraft,
+  getQueries,
 } from '@/lib';
 
 export const GET = connectDBAuth(
