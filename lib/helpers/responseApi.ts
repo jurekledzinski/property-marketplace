@@ -1,3 +1,4 @@
+import { ApiError } from '@/helpers';
 import { NextResponse } from 'next/server';
 
 //before errorMessage used in routes api
@@ -31,4 +32,19 @@ export const errorResponseApi = <T extends object>(params: Params<T>) => {
 
 export const successResponseApi = <T extends object>(params: Params<T>) => {
   return commonResponseApi({ ...params, success: true });
+};
+
+// For future improvements
+export const throwApiError = <T extends object>({
+  message,
+  payload,
+  status,
+  success,
+}: {
+  message?: string;
+  payload?: T;
+  status?: number;
+  success?: boolean;
+} = {}) => {
+  throw new ApiError({ message, payload, status, success });
 };
