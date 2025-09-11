@@ -1,4 +1,4 @@
-import { ErrorApi } from '@/helpers';
+import { ApiError } from '@/helpers';
 import { PayloadUpload, ResponseApi } from '../types';
 
 type Methods = 'DELETE' | 'POST';
@@ -18,7 +18,7 @@ export const fetchFilesResponse = async (response: Promise<Response>) => {
 
   if (!result.ok) {
     const body = await result.json();
-    const error = new ErrorApi();
+    const error = new ApiError();
     error.payload = body.payload;
     throw error;
   }
@@ -31,7 +31,7 @@ export const fetchFilesResponse = async (response: Promise<Response>) => {
 export const fetchFilesFailed = (
   error: Error
 ): Promise<ResponseApi<PayloadUpload>> => {
-  if (error instanceof ErrorApi) {
+  if (error instanceof ApiError) {
     return Promise.reject({ success: false, payload: error.payload });
   }
 

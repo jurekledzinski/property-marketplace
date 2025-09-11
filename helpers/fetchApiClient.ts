@@ -1,12 +1,12 @@
+import { ApiError } from './error';
 import { ApiErrorResponse, ApiSuccessResponse } from '@/lib';
 import { tryCatchApi } from './tryCatch';
-import { ErrorApi } from './error';
 
 export const fetchResponse = async (response: Response) => {
   const data = await response.json();
 
   if (!response.ok) {
-    const error = new ErrorApi();
+    const error = new ApiError();
     error.message = data?.message ?? response.statusText;
     error.success = false;
     throw error;
