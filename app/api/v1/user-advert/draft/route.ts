@@ -1,7 +1,7 @@
 import 'server-only';
 import { Advert, DraftFile } from '@/models';
 import { auth } from '@/auth';
-import { ObjectId } from 'mongodb';
+import { getQueries } from '@/lib/helpers/searchParmsApi';
 
 import {
   connectDBAuth,
@@ -10,86 +10,64 @@ import {
   getBodyRequest,
   getCollectionDb,
   successResponseApi,
+  getAdvert,
+  createDraftQuery,
+  updateDraft,
+  GETDraftSearchParams,
+  updateContext,
+  createDraftExistPayload,
+  createDraftCreatePayload,
+  PATCHDraftSearchParams,
+  createPATCHDraftQuery,
+  updateDraftExist,
+  updateDraftNotExist,
+  DELETEDraftSearchParams,
+  DELETEBodyDraft,
+  PATCHBodyDraft,
 } from '@/lib';
-
-type BodyDraftDelete = Pick<DraftFile, 'deleteImages' | 'images'>;
-type BodyDraftPatch = BodyDraftDelete;
 
 export const GET = connectDBAuth(
   auth(async (req) => {
-    const searchParams = req.nextUrl.searchParams;
-    const advertId = searchParams.get('id') || '';
-    const mode = (searchParams.get('mode') || '') as 'edit' | 'new';
+    const { id, mode } = getQueries<GETDraftSearchParams>(req);
 
     if (!req.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });
     }
 
-    const draftCollection = getCollectionDb<DraftFile>('draftImages');
-    const advertCollection = getCollectionDb<Advert>('adverts');
+    const ctx = { advertId: id, mode, userId: req.auth.user.id };
 
-    if (!draftCollection || !advertCollection) {
-      return errorResponseApi({ status: 500 });
-    }
+    const draftCol = getCollectionDb<DraftFile>('draftImages');
+    const advertCol = getCollectionDb<Advert>('adverts');
 
-    const draftDb = await draftCollection.findOne({
-      advertId,
-      mode,
-      userId: req.auth.user.id,
-      $nor: [{ status: 'failed' }],
-    });
+    if (!draftCol || !advertCol) return errorResponseApi({ status: 500 });
 
-    const advert = advertId
-      ? await advertCollection.findOne({ _id: new ObjectId(advertId) })
-      : null;
+    const query = createDraftQuery(ctx);
+    const draftDb = await draftCol.findOne(query);
 
     if (draftDb) {
-      return successResponseApi({
-        message: 'Draft already exist',
-        payload: {
-          advertId,
-          deleteImages: draftDb.deleteImages,
-          images: draftDb.images,
-        },
-      });
+      const draftCtx = updateContext(ctx, draftDb.deleteImages, draftDb.images);
+      const successResponseOptions = createDraftExistPayload(draftCtx);
+      return successResponseApi(successResponseOptions);
     } else {
-      const initialImages = advert ? advert.images : [];
-
-      const newDraft = await draftCollection.findOneAndUpdate(
-        { mode, userId: req.auth.user.id },
-        {
-          $set: {
-            ...(advertId && { advertId }),
-            mode,
-            updatedAt: new Date(),
-          },
-          $setOnInsert: { createdAt: new Date(), images: initialImages },
-        },
-        { upsert: true, returnDocument: 'after' }
-      );
+      const initialImages = await getAdvert(ctx, advertCol);
+      const newDraft = await updateDraft(ctx, draftCol, initialImages);
 
       if (!newDraft) {
         return errorResponseApi({ message: 'Not found', status: 404 });
       }
 
-      return successResponseApi({
-        message: 'Draft created successfull',
-        payload: {
-          deleteImages: newDraft.deleteImages,
-          images: newDraft.images,
-        },
-      });
+      const newCtx = updateContext(ctx, newDraft.deleteImages, newDraft.images);
+      const successResponseOptions = createDraftCreatePayload(newCtx);
+
+      return successResponseApi(successResponseOptions);
     }
   })
 );
 
 export const PATCH = connectDBAuth(
   auth(async (req) => {
-    const body = await getBodyRequest<BodyDraftPatch>(req);
-    const deleteImages = body.deleteImages || [];
-    const images = body.images || [];
-    const searchParams = req.nextUrl.searchParams;
-    const advertId = searchParams.get('id') ?? '';
+    const { deleteImages, images } = await getBodyRequest<PATCHBodyDraft>(req);
+    const { id } = getQueries<PATCHDraftSearchParams>(req);
 
     if (!req.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });
@@ -99,42 +77,22 @@ export const PATCH = connectDBAuth(
       return errorResponseApi({ message: 'Not found', status: 404 });
     }
 
-    const collection = getCollectionDb<DraftFile>('draftImages');
-
-    if (!collection) return errorResponseApi({ status: 500 });
-
-    const draftDb = await collection.findOne({
-      advertId,
+    const ctx = {
+      advertId: id,
+      images,
+      deleteImages,
       userId: req.auth.user.id,
-    });
+    };
 
-    if (draftDb) {
-      await collection.updateOne(
-        { advertId, userId: req.auth.user.id },
-        {
-          $set: {
-            deleteImages,
-            images,
-            updatedAt: new Date(),
-          },
-        }
-      );
-    } else {
-      await collection.updateOne(
-        {
-          $or: [{ advertId: { $exists: false } }, { advertId: undefined }],
-          userId: req.auth.user.id,
-        },
-        {
-          $set: {
-            ...(advertId && { advertId }),
-            deleteImages,
-            images,
-            updatedAt: new Date(),
-          },
-        }
-      );
-    }
+    const draftCol = getCollectionDb<DraftFile>('draftImages');
+
+    if (!draftCol) return errorResponseApi({ status: 500 });
+
+    const query = createPATCHDraftQuery(ctx);
+    const draftDb = await draftCol.findOne(query);
+
+    if (draftDb) updateDraftExist(ctx, draftCol, query);
+    else updateDraftNotExist(ctx, draftCol);
 
     return successResponseApi({ message: 'Draft update successfull' });
   })
@@ -142,12 +100,8 @@ export const PATCH = connectDBAuth(
 
 export const DELETE = connectDBAuth(
   auth(async (req) => {
-    const body = await getBodyRequest<BodyDraftDelete>(req);
-    const deleteImages = body.deleteImages || [];
-    const images = body.images || [];
-
-    const searchParams = req.nextUrl.searchParams;
-    const advertId = searchParams.get('id');
+    const { deleteImages, images } = await getBodyRequest<DELETEBodyDraft>(req);
+    const { id } = getQueries<DELETEDraftSearchParams>(req);
 
     if (!req.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });
@@ -155,9 +109,9 @@ export const DELETE = connectDBAuth(
 
     const result = await deleteImagesImagekit({
       checkIsOriginal: true,
-      images: [...images, ...deleteImages],
+      images: [...(images || []), ...(deleteImages || [])],
       userId: req.auth.user.id,
-      advertId,
+      advertId: id,
     });
 
     if (result !== undefined && !result) {
