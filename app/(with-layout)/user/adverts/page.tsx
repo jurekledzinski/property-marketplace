@@ -1,10 +1,10 @@
-import { getUserAdverts } from '@/lib';
+import { getUserAdvertsPage } from '@/lib';
 import { headers } from 'next/headers';
 import { UserAdverts } from '@/components';
 
 const UserAdvertsPage = async () => {
   const headersData = await headers();
-  const userAdverts = await getUserAdverts(headersData);
+  const userAdverts = await getUserAdvertsPage(headersData);
 
   return <UserAdverts adverts={userAdverts ? userAdverts : []} />;
 };

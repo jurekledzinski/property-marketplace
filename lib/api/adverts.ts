@@ -6,9 +6,9 @@ import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/he
 import { UserAdvertsTable } from './types';
 import { Advert } from '@/models';
 
-// Fetch user adverts
+// Fetch user adverts server component
 
-export const getUserAdverts = async (headers?: ReadonlyHeaders) => {
+export const getUserAdvertsPage = async (headers?: ReadonlyHeaders) => {
   const domain = await getDomain();
 
   const response = await fetchApi<UserAdvertsTable[]>({
@@ -20,9 +20,9 @@ export const getUserAdverts = async (headers?: ReadonlyHeaders) => {
   return response.success ? response.payload : null;
 };
 
-// Fetch user advert
+// Fetch user advert server component
 
-export const getUserAdvert = async (
+export const getUserAdvertPage = async (
   headers?: ReadonlyHeaders,
   advertId?: string
 ) => {
@@ -34,5 +34,9 @@ export const getUserAdvert = async (
     headers,
   });
 
-  return response.success ? response.payload : null;
+  if (!response.success || !response.payload) {
+    return null;
+  }
+
+  return response.payload;
 };
