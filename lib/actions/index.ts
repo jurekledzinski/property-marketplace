@@ -1,1 +1,1 @@
-export * from './newAdvert';
+export * from './new-advert';
