@@ -9,10 +9,11 @@ import {
   errorResponseApi,
   successResponseApi,
   DataDB,
+  getBodyRequest,
 } from '@/lib';
 
 export const POST = connectDB(async (req: NextRequest) => {
-  const body = (await req.json()) as Omit<User, 'name'>;
+  const body = await getBodyRequest<Omit<User, 'name'>>(req);
 
   const collection = getCollectionDb<User>('users');
 
