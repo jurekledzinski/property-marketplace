@@ -57,6 +57,7 @@ export const GET = connectDBAuth(
       }
 
       const newCtx = updateContext(ctx, newDraft.deleteImages, newDraft.images);
+
       const successResponseOptions = createDraftCreatePayload(newCtx);
 
       return successResponseApi(successResponseOptions);

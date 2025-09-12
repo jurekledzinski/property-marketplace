@@ -45,10 +45,11 @@ export const updateDraft = async (
     {
       $set: {
         ...(advertId && { advertId }),
+        images,
         mode,
         updatedAt: new Date(),
       },
-      $setOnInsert: { createdAt: new Date(), images },
+      $setOnInsert: { createdAt: new Date() },
     },
     { upsert: true, returnDocument: 'after' }
   );
