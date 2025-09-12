@@ -22,7 +22,7 @@ export const Login = () => {
     onSubmitForm: formAction,
     onSuccess: async () => {
       showSuccessToast(state.message);
-      router.replace('/');
+      router.replace('/user/dashboard');
       router.refresh();
     },
   });
