@@ -25,11 +25,9 @@ export const editAdvert = connectDBAction(
 
     const parsedData = AdvertSchema.extend({ id: z.string() }).parse(dataForm);
 
-    const advertCollection = getCollectionDb<DataDB<Advert>>('adverts');
+    const advertsCol = getCollectionDb<DataDB<Advert>>('adverts');
 
-    if (!advertCollection) {
-      return errorResponseAction('Internal server error');
-    }
+    if (!advertsCol) return errorResponseAction('Internal server error');
 
     const result = await deleteImagesImagekit({
       checkIsOriginal: false,
@@ -38,15 +36,13 @@ export const editAdvert = connectDBAction(
       advertId: parsedData.id,
     });
 
-    if (result !== undefined && !result) {
-      return errorResponseAction('Internal server error');
-    }
+    if (result === false) return errorResponseAction('Internal server error');
 
     delete parsedData.deleteImages;
     delete parsedData.state;
     delete parsedData.files;
 
-    await advertCollection.updateOne(
+    await advertsCol.updateOne(
       { _id: new ObjectId(parsedData.id) },
       { $set: { ...parsedData } }
     );

@@ -22,11 +22,9 @@ export const newAdvert = connectDBAction(
 
     const parsedData = AdvertSchema.parse(dataForm);
 
-    const advertCollection = getCollectionDb<Advert>('adverts');
+    const advertsCol = getCollectionDb<Advert>('adverts');
 
-    if (!advertCollection) {
-      return errorResponseAction('Internal server error');
-    }
+    if (!advertsCol) return errorResponseAction('Internal server error');
 
     const result = await deleteImagesImagekit({
       checkIsOriginal: false,
@@ -34,15 +32,13 @@ export const newAdvert = connectDBAction(
       userId: session.user.id,
     });
 
-    if (result !== undefined && !result) {
-      return errorResponseAction('Internal server error');
-    }
+    if (result === false) return errorResponseAction('Internal server error');
 
     delete parsedData.deleteImages;
     delete parsedData.state;
     delete parsedData.files;
 
-    advertCollection.insertOne({
+    advertsCol.insertOne({
       ...parsedData,
       createdAt: new Date(),
     });
