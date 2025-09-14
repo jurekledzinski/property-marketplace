@@ -19,11 +19,13 @@ export const GET = connectDBAuth(
 
     const ctx = { userId: req.auth.user.id };
 
-    const userCol = getCollectionDb<DataDB<User>>('adverts');
+    const usersCol = getCollectionDb<DataDB<User>>('users');
 
-    if (!userCol) return errorResponseApi({ status: 500 });
+    if (!usersCol) {
+      return errorResponseApi({ message: 'Internal server error' });
+    }
 
-    const user = await getUserProfile(ctx, userCol);
+    const user = await getUserProfile(ctx, usersCol);
 
     if (!user) return errorResponseApi({ message: 'Not found', status: 404 });
 
