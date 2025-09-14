@@ -4,7 +4,7 @@ import { useActionStateResetProps } from './types';
 
 export const initialState = {
   message: '',
-  success: false,
+  success: undefined,
 };
 
 export const useActionStateReset = <T extends object>({
@@ -36,7 +36,9 @@ export const useActionStateReset = <T extends object>({
   );
 
   useEffect(() => {
-    if (autoReset && state.success && !isPending) resetStateAction();
+    if (autoReset && state.success && !isPending) {
+      resetStateAction();
+    }
   }, [autoReset, state, isPending, resetStateAction]);
 
   return {

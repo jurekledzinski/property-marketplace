@@ -1,7 +1,7 @@
-import { State } from '@/lib';
+import { ActionState } from '@/lib';
 
 export type useActionStateResetProps<T> = {
-  onResetAction?: () => void;
-  fnAction: (prevState: unknown, formData: FormData) => Promise<State<T>>;
+  fnAction: (prevState: unknown, formData: FormData) => Promise<ActionState<T>>;
   autoReset?: boolean;
+  onResetAction?: () => void;
 };
