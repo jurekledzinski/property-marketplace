@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 
 export type State<T> = {
   message: string;
@@ -8,4 +8,8 @@ export type State<T> = {
 
 export type DataDB<T> = T & {
   _id: ObjectId;
+};
+
+export type GobalMongoDB = typeof globalThis & {
+  _mongoClient?: MongoClient;
 };
