@@ -9,26 +9,26 @@ import {
   getBodyRequest,
   getCollectionDb,
   successResponseApi,
-  getAdvert,
+  getUserAdvert,
   createDraftQuery,
   updateDraft,
-  GETDraftSearchParams,
+  GetDraftSearchParams,
   updateContext,
   createDraftExistPayload,
   createDraftCreatePayload,
-  PATCHDraftSearchParams,
+  PatchDraftSearchParams,
   createPATCHDraftQuery,
   updateDraftExist,
   updateDraftNotExist,
-  DELETEDraftSearchParams,
-  DELETEBodyDraft,
-  PATCHBodyDraft,
+  DeleteDraftSearchParams,
+  DeleteBodyDraft,
+  PatchBodyDraft,
   getQueries,
 } from '@/lib';
 
 export const GET = connectDBAuth(
   auth(async (req) => {
-    const { id, mode } = getQueries<GETDraftSearchParams>(req);
+    const { id, mode } = getQueries<GetDraftSearchParams>(req);
 
     if (!req.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });
@@ -49,7 +49,7 @@ export const GET = connectDBAuth(
       const successResponseOptions = createDraftExistPayload(draftCtx);
       return successResponseApi(successResponseOptions);
     } else {
-      const initialImages = await getAdvert(ctx, advertCol);
+      const initialImages = await getUserAdvert(ctx, advertCol);
       const newDraft = await updateDraft(ctx, draftCol, initialImages);
 
       if (!newDraft) {
@@ -67,8 +67,8 @@ export const GET = connectDBAuth(
 
 export const PATCH = connectDBAuth(
   auth(async (req) => {
-    const { deleteImages, images } = await getBodyRequest<PATCHBodyDraft>(req);
-    const { id } = getQueries<PATCHDraftSearchParams>(req);
+    const { deleteImages, images } = await getBodyRequest<PatchBodyDraft>(req);
+    const { id } = getQueries<PatchDraftSearchParams>(req);
 
     if (!req.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });
@@ -101,8 +101,8 @@ export const PATCH = connectDBAuth(
 
 export const DELETE = connectDBAuth(
   auth(async (req) => {
-    const { deleteImages, images } = await getBodyRequest<DELETEBodyDraft>(req);
-    const { id } = getQueries<DELETEDraftSearchParams>(req);
+    const { deleteImages, images } = await getBodyRequest<DeleteBodyDraft>(req);
+    const { id } = getQueries<DeleteDraftSearchParams>(req);
 
     if (!req.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });

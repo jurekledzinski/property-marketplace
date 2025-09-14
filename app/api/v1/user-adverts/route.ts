@@ -18,11 +18,11 @@ export const GET = connectDBAuth(
 
     const ctx = { userId: req.auth.user.id };
 
-    const advertCol = getCollectionDb<Advert>('adverts');
+    const advertsCol = getCollectionDb<Advert>('adverts');
 
-    if (!advertCol) return errorResponseApi({ status: 500 });
+    if (!advertsCol) return errorResponseApi({ status: 500 });
 
-    const userAdverts = await getUserAdvertsApi(ctx, advertCol);
+    const userAdverts = await getUserAdvertsApi(ctx, advertsCol);
 
     if (!userAdverts) return errorResponseApi({ status: 404 });
 

@@ -15,11 +15,11 @@ import {
 export const POST = connectDB(async (req: NextRequest) => {
   const body = await getBodyRequest<Omit<User, 'name'>>(req);
 
-  const collection = getCollectionDb<User>('users');
+  const usersCol = getCollectionDb<User>('users');
 
-  if (!collection) return errorResponseApi({ status: 500 });
+  if (!usersCol) return errorResponseApi({ status: 500 });
 
-  const user = await collection.findOne<DataDB<User>>({
+  const user = await usersCol.findOne<DataDB<User>>({
     email: body.email,
   });
 
