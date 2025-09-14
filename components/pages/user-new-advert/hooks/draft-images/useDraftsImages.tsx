@@ -1,6 +1,6 @@
 'use client';
 import { ApiErrorResponse, ApiSuccessResponse } from '@/lib';
-import { clientEndpoint } from '@/utils';
+import { clientEndpoints } from '@/utils';
 import { DraftFile } from '@/models';
 import { DraftPayload, useDraftsImagesProps } from './types';
 import { fetchApiClient } from '@/helpers';
@@ -19,7 +19,7 @@ export const useDraftsImages = ({ advertId, mode }: useDraftsImagesProps) => {
     queryFn: async () =>
       await fetchApiClient<DraftFile>({
         credentials: 'include',
-        url: clientEndpoint.getDraftImages(mode, advertId),
+        url: clientEndpoints.getDraftImages(mode, advertId),
       }),
     refetchOnWindowFocus: false,
   });
@@ -37,7 +37,7 @@ export const useDraftsImages = ({ advertId, mode }: useDraftsImagesProps) => {
         body: JSON.stringify({ deleteImages, images }),
         credentials: 'include',
         method: 'PATCH',
-        url: clientEndpoint.updateDraftImages(advertId),
+        url: clientEndpoints.updateDraftImages(advertId),
       });
 
       if (!response.success) return response;
@@ -55,7 +55,7 @@ export const useDraftsImages = ({ advertId, mode }: useDraftsImagesProps) => {
         body: JSON.stringify({ deleteImages, images }),
         credentials: 'include',
         method: 'DELETE',
-        url: clientEndpoint.deleteDraftImages(advertId),
+        url: clientEndpoints.deleteDraftImages(advertId),
       });
 
       if (!response.success) return response;
