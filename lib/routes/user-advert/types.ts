@@ -1,11 +1,11 @@
 import { DraftFile } from '@/models';
 
-export type GETDraftSearchParams = {
+export type GetDraftSearchParams = {
   id: string | null;
   mode: 'edit' | 'new';
 };
 
-export type GETDraftContext = {
+export type GetDraftContext = {
   advertId: string | null;
   mode: 'edit' | 'new';
   userId: string;
@@ -14,18 +14,18 @@ export type GETDraftContext = {
   initialImages?: DraftFile['images'];
 };
 
-export type PATCHDraftSearchParams = {
+export type PatchDraftSearchParams = {
   id: string | null;
 };
 
-export type PATCHDraftContext = {
+export type PatchDraftContext = {
   advertId: string | null;
   userId: string;
   deleteImages?: DraftFile['deleteImages'];
   images?: DraftFile['images'];
 };
 
-export type DELETEBodyDraft = Pick<DraftFile, 'deleteImages' | 'images'>;
-export type PATCHBodyDraft = DELETEBodyDraft;
+export type DeleteBodyDraft = Pick<DraftFile, 'deleteImages' | 'images'>;
+export type PatchBodyDraft = DeleteBodyDraft;
 
-export type DELETEDraftSearchParams = PATCHDraftSearchParams;
+export type DeleteDraftSearchParams = PatchDraftSearchParams;

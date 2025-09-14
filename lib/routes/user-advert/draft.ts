@@ -1,11 +1,11 @@
 import 'server-only';
 import { Advert, DraftFile } from '@/models';
 import { Collection, Filter, ObjectId } from 'mongodb';
-import { GETDraftContext, PATCHDraftContext } from './types';
+import { GetDraftContext, PatchDraftContext } from './types';
 
 // --- GET ---
 
-export const createDraftQuery = (ctx: GETDraftContext) => {
+export const createDraftQuery = (ctx: GetDraftContext) => {
   const { advertId, mode, userId } = ctx;
 
   const query: Filter<DraftFile> = {
@@ -19,14 +19,14 @@ export const createDraftQuery = (ctx: GETDraftContext) => {
   return query;
 };
 
-export const getAdvert = async (
-  ctx: GETDraftContext,
-  coll: Collection<Advert>
+export const getUserAdvert = async (
+  ctx: GetDraftContext,
+  col: Collection<Advert>
 ) => {
   const { advertId } = ctx;
 
   if (advertId) {
-    const advert = await coll.findOne({ _id: new ObjectId(advertId) });
+    const advert = await col.findOne({ _id: new ObjectId(advertId) });
     return advert ? advert.images : [];
   }
 
@@ -34,13 +34,13 @@ export const getAdvert = async (
 };
 
 export const updateDraft = async (
-  ctx: GETDraftContext,
-  coll: Collection<DraftFile>,
+  ctx: GetDraftContext,
+  col: Collection<DraftFile>,
   images: DraftFile['images']
 ) => {
   const { advertId, mode, userId } = ctx;
 
-  const newDraft = await coll.findOneAndUpdate(
+  const newDraft = await col.findOneAndUpdate(
     { mode, userId },
     {
       $set: {
@@ -58,16 +58,16 @@ export const updateDraft = async (
 };
 
 export const updateContext = (
-  ctx: GETDraftContext,
-  deleteImages: GETDraftContext['deleteImages'],
-  images: GETDraftContext['images']
+  ctx: GetDraftContext,
+  deleteImages: GetDraftContext['deleteImages'],
+  images: GetDraftContext['images']
 ) => {
   ctx['deleteImages'] = deleteImages;
   ctx['images'] = images;
   return ctx;
 };
 
-export const createDraftExistPayload = (ctx: GETDraftContext) => ({
+export const createDraftExistPayload = (ctx: GetDraftContext) => ({
   message: 'Draft already exist',
   payload: {
     advertId: ctx.advertId,
@@ -76,7 +76,7 @@ export const createDraftExistPayload = (ctx: GETDraftContext) => ({
   },
 });
 
-export const createDraftCreatePayload = (ctx: GETDraftContext) => ({
+export const createDraftCreatePayload = (ctx: GetDraftContext) => ({
   message: 'Draft created successfull',
   payload: {
     deleteImages: ctx.deleteImages,
@@ -86,7 +86,7 @@ export const createDraftCreatePayload = (ctx: GETDraftContext) => ({
 
 // --- PATCH ---
 
-export const createPATCHDraftQuery = (ctx: PATCHDraftContext) => {
+export const createPATCHDraftQuery = (ctx: PatchDraftContext) => {
   const { advertId, userId } = ctx;
 
   const query: Filter<DraftFile> = {
@@ -99,13 +99,13 @@ export const createPATCHDraftQuery = (ctx: PATCHDraftContext) => {
 };
 
 export const updateDraftExist = async (
-  ctx: PATCHDraftContext,
-  coll: Collection<DraftFile>,
+  ctx: PatchDraftContext,
+  col: Collection<DraftFile>,
   query: ReturnType<typeof createPATCHDraftQuery>
 ) => {
   const { deleteImages, images } = ctx;
 
-  await coll.updateOne(query, {
+  await col.updateOne(query, {
     $set: {
       deleteImages: deleteImages || [],
       images: images || [],
@@ -115,12 +115,12 @@ export const updateDraftExist = async (
 };
 
 export const updateDraftNotExist = async (
-  ctx: PATCHDraftContext,
-  coll: Collection<DraftFile>
+  ctx: PatchDraftContext,
+  col: Collection<DraftFile>
 ) => {
   const { advertId, deleteImages, images, userId } = ctx;
 
-  await coll.updateOne(
+  await col.updateOne(
     {
       $or: [{ advertId: { $exists: false } }, { advertId: undefined }],
       userId,
