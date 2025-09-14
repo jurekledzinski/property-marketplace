@@ -1,3 +1,3 @@
-export type GETUserProfileContext = {
+export type GetUserProfileContext = {
   userId: string;
 };

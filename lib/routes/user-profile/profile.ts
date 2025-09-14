@@ -1,20 +1,19 @@
+import 'server-only';
+import { Collection, ObjectId } from 'mongodb';
+import { DataDB } from '@/lib';
+import { GetUserProfileContext } from './types';
+import { User } from '@/models';
+
 // --- GET ---
 
-import { DataDB } from '@/lib/database';
-import { User } from '@/models';
-import { Collection } from 'mongodb';
-import { GETUserProfileContext } from './types';
-
 export const getUserProfile = async (
-  ctx: GETUserProfileContext,
-  coll: Collection<DataDB<User>>
+  ctx: GetUserProfileContext,
+  col: Collection<DataDB<User>>
 ) => {
-  const { userId } = ctx;
-
-  const userAdverts = await coll.findOne<DataDB<User>>(
-    { userId },
+  const user = await col.findOne<DataDB<User>>(
+    { _id: new ObjectId(ctx.userId) },
     { projection: { password: 0 } }
   );
 
-  return userAdverts;
+  return user;
 };
