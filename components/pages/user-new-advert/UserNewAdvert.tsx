@@ -2,10 +2,11 @@
 import { AdvertForm } from './components';
 import { initialState } from '@/constants';
 import { newAdvert } from '@/actions';
-import { showSuccessToast } from '@/helpers';
+import { showErrorToast, showSuccessToast } from '@/helpers';
 import { useActionState } from 'react';
 import { useAdvertFormWithUploads } from './hooks';
 import { useExitGuard } from '@/hooks';
+import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
 import {
@@ -17,6 +18,7 @@ import {
 
 export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const [state, action, isPending] = useActionState(newAdvert, initialState);
 
   const { deleteDraft, deleteUploadedFiles, form, uploadFiles } =
@@ -25,7 +27,11 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
       isPending,
       mode: 'new',
       success: state.success,
-      onSuccess: () => showSuccessToast(state.message),
+      onFailed: () => !state.success && showErrorToast(state.message),
+      onSuccess: () => {
+        if (state.success) showSuccessToast(state.message);
+        queryClient.invalidateQueries({ queryKey: ['drafts'] });
+      },
       userId,
     });
 
