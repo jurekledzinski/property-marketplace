@@ -1,2 +1,2 @@
-export { getUserAdverts as getUserAdvertsApi } from './userAdvert';
+export { getUserAdverts as getUserAdvertsApi } from './userAdverts';
 export * from './types';
