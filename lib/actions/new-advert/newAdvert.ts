@@ -21,9 +21,7 @@ export const deleteImagesImagekit = async ({
   });
 
   const imagesPromises = images.map(async (image) => {
-    const shouldDelete = checkIsOriginal
-      ? image.isOriginal !== undefined && !image.isOriginal
-      : true;
+    const shouldDelete = checkIsOriginal ? image.isOriginal === false : true;
 
     if (!shouldDelete) {
       return { ...image, success: true };
@@ -49,6 +47,8 @@ export const deleteImagesImagekit = async ({
   const draftCollection = getCollectionDb<DraftFile>('draftImages');
 
   if (!draftCollection) return false;
+
+  console.log('allSuccess', allSuccess);
 
   if (allSuccess) {
     draftCollection.deleteOne(deleteQuery);
