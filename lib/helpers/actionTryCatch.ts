@@ -1,10 +1,10 @@
 import { AuthError } from 'next-auth';
 import { authMessage } from './authMessage';
-import { State } from '../database';
+import { ActionState } from '@/lib';
 import { z } from 'zod';
 
 export const actionTryCatch = <T extends object = object>(
-  fn: (prevState: unknown, formData: FormData) => Promise<State<T>>
+  fn: (prevState: unknown, formData: FormData) => Promise<ActionState<T>>
 ) => {
   return async (prevState: unknown, formData: FormData) => {
     try {
