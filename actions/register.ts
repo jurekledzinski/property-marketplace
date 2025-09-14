@@ -14,20 +14,18 @@ export const register = connectDBAction(
 
     const parsedData = UserSchema.parse(body);
 
-    const collection = getCollectionDb<User>('users');
+    const usersCol = getCollectionDb<User>('users');
 
-    if (!collection) return errorResponseAction('Internal server error');
+    if (!usersCol) return errorResponseAction('Internal server error');
 
-    const user = await collection.findOne<User>({
-      email: parsedData.email,
-    });
+    const user = await usersCol.findOne<User>({ email: parsedData.email });
 
     if (user) return errorResponseAction('Email already in use');
 
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(parsedData.password, salt);
 
-    await collection.insertOne({ ...parsedData, password: hash });
+    await usersCol.insertOne({ ...parsedData, password: hash });
 
     return successResponseAction('Register successful');
   }
