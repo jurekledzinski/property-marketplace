@@ -6,6 +6,6 @@ export type InputsLogin = {
 export type UseLoginFormProps = {
   onSubmitForm: (payload: FormData) => void;
   isPending: boolean;
-  isSuccess: boolean;
+  isSuccess?: boolean;
   onSuccess?: () => void;
 };

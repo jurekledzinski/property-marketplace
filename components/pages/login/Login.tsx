@@ -37,7 +37,11 @@ export const Login = () => {
           <Heading className={stylesCommon.title} level={4}>
             Sign in
           </Heading>
-          <LoginForm controls={formControl} onSubmit={onSubmit} />
+          <LoginForm
+            controls={formControl}
+            isPending={!state.message ? isPending : false}
+            onSubmit={onSubmit}
+          />
           {!state.success && state.message && (
             <Alert
               color="negative"

@@ -10,7 +10,11 @@ import {
   TextInput,
 } from '@/components';
 
-export const LoginForm = ({ controls, onSubmit }: LoginFormProps) => {
+export const LoginForm = ({
+  controls,
+  isPending,
+  onSubmit,
+}: LoginFormProps) => {
   const { register, formState } = controls;
   const { errors } = formState;
 
@@ -35,7 +39,13 @@ export const LoginForm = ({ controls, onSubmit }: LoginFormProps) => {
         {errors.password ? <Message>{errors.password.message}</Message> : null}
       </Field>
       <ButtonGroup mt="mt-md" fullWidth>
-        <Button type="submit" label="Sign In" fullWidth size="size-lg" />
+        <Button
+          fullWidth
+          label="Sign In"
+          isLoading={isPending}
+          size="size-lg"
+          type="submit"
+        />
       </ButtonGroup>
     </Form>
   );
