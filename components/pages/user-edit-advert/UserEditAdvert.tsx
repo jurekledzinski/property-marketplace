@@ -1,7 +1,7 @@
 'use client';
 import { editAdvert } from '@/actions';
 import { initialState } from '@/constants';
-import { showSuccessToast } from '@/helpers';
+import { showErrorToast, showSuccessToast } from '@/helpers';
 import { useActionState } from 'react';
 import { useExitGuard } from '@/hooks';
 import { usePathname, useRouter } from 'next/navigation';
@@ -28,8 +28,9 @@ export const UserEditAdvert = ({ advert, userId }: UserEditAdvertProps) => {
       mode: 'edit',
       success: state.success,
       userId,
+      onFailed: () => !state.success && showErrorToast(state.message),
       onSuccess: () => {
-        showSuccessToast(state.message);
+        if (state.success) showSuccessToast(state.message);
         router.push('/user/adverts');
       },
     });
