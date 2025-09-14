@@ -10,7 +10,7 @@ import {
   TextInput,
 } from '@/components';
 
-const UserFormPart = ({ controls, onSubmit }: UserFormProps) => {
+const UserFormPart = ({ controls, isPending, onSubmit }: UserFormProps) => {
   const { register, formState } = controls;
   const { errors } = formState;
 
@@ -42,7 +42,13 @@ const UserFormPart = ({ controls, onSubmit }: UserFormProps) => {
       </Field>
 
       <ButtonGroup mt="mt-md" fullWidth>
-        <Button type="submit" label="Update Profile" fullWidth size="size-lg" />
+        <Button
+          fullWidth
+          isLoading={isPending}
+          label="Update Profile"
+          size="size-lg"
+          type="submit"
+        />
       </ButtonGroup>
     </Form>
   );
