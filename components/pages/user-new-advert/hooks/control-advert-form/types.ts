@@ -30,11 +30,12 @@ export type InputsAvert = Omit<Advert, OmitKeys> & {
 export type UseAdvertFormProps = {
   draft: DraftPayload;
   isPending: boolean;
-  isSuccess: boolean;
   mode: 'edit' | 'new';
   onSubmitForm: (payload: FormData) => void;
   userId: string;
   advert?: InputsAvert | null;
+  isSuccess?: boolean;
+  onFailed?: () => void;
   onSuccess?: () => void;
 };
 

@@ -11,6 +11,7 @@ export const useAdvertFormWithUploads = ({
   mode,
   success,
   userId,
+  onFailed,
   onSuccess,
 }: UseAdvertFormWithUploadsProps) => {
   const { draft, updateDraft, deleteDraft } = useDraftsImages({
@@ -27,6 +28,7 @@ export const useAdvertFormWithUploads = ({
     userId,
     onSubmitForm: action,
     onSuccess,
+    onFailed,
   });
 
   const { deleteUploadedFiles, uploadFiles } = useControlUploadFiles({

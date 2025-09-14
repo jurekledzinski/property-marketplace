@@ -22,6 +22,7 @@ export const useAdvertForm = ({
   isSuccess,
   mode,
   onSubmitForm,
+  onFailed,
   onSuccess,
 }: UseAdvertFormProps) => {
   const [reset, setReset] = useState(resetState);
@@ -65,6 +66,7 @@ export const useAdvertForm = ({
     isSuccess,
     formControl,
     ...(mode === 'new' ? { defaultValues } : {}),
+    onFailed,
     onSuccess: () => {
       if (onSuccess) onSuccess();
       if (mode !== 'new') return;
