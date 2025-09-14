@@ -5,9 +5,8 @@ export const UserSchema = z.object({
     .string({ error: 'Name is required' })
     .min(1, { message: 'Name is required' }),
   email: z
-    .string({ error: 'Email is required' })
-    .email({ message: 'Email is invalid' })
-    .min(1, { message: 'Email is required' }),
+    .email()
+    .refine((val) => val.trim() !== '', { message: 'Email is required' }),
   password: z
     .string({ error: 'Password is required' })
     .min(8, { message: 'Password required at least 8 characters' }),
