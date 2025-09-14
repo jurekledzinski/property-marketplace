@@ -1,19 +1,18 @@
 import 'server-only';
 import { Advert } from '@/models';
 import { Collection } from 'mongodb';
-import { DataDB } from '@/lib/database';
+import { DataDB, UserAdvertsTable } from '@/lib';
 import { GETUserAdvertsContext } from './types';
-import { UserAdvertsTable } from '@/lib/api';
 
 // --- GET ---
 
 export const getUserAdverts = async (
   ctx: GETUserAdvertsContext,
-  coll: Collection<Advert>
+  col: Collection<Advert>
 ) => {
   const { userId } = ctx;
 
-  const userAdverts = await coll
+  const userAdverts = await col
     .find<Advert>({ userId })
     .project<DataDB<UserAdvertsTable>>({
       title: 1,
