@@ -1,13 +1,13 @@
 export type InputsRegister = {
-  name: string;
-  email: string;
-  password: string;
   confirm: string;
+  email: string;
+  name: string;
+  password: string;
 };
 
 export type UseRegisterFormProps = {
-  onSubmitForm: (payload: FormData) => void;
   isPending: boolean;
-  isSuccess: boolean;
+  onSubmitForm: (payload: FormData) => void;
+  isSuccess?: boolean;
   onSuccess?: () => void;
 };

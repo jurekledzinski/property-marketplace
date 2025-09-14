@@ -15,6 +15,7 @@ import {
 export const RegisterForm = <T extends FieldValues>({
   controls,
   errors,
+  isPending,
   nameName,
   nameEmail,
   namePassword,
@@ -78,7 +79,13 @@ export const RegisterForm = <T extends FieldValues>({
 
       <RegisterValidation passwordRules={passwordRules} />
       <ButtonGroup mt="mt-md" fullWidth>
-        <Button type="submit" label="Sign In" fullWidth size="size-lg" />
+        <Button
+          fullWidth
+          isLoading={isPending}
+          label="Sign In"
+          size="size-lg"
+          type="submit"
+        />
       </ButtonGroup>
     </Form>
   );

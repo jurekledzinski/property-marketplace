@@ -44,6 +44,7 @@ export const Register = () => {
           <RegisterForm
             controls={formControl}
             errors={formControl.formState.errors}
+            isPending={!state.message ? isPending : false}
             nameConfirm="confirm"
             nameEmail="email"
             nameName="name"

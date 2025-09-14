@@ -10,6 +10,7 @@ import {
 export type RegisterFormProps<T extends FieldValues> = {
   controls: UseFormReturn<T, unknown, T>;
   errors: FieldErrors<InputsRegister>;
+  isPending: boolean;
   nameName: Path<T>;
   nameEmail: Path<T>;
   namePassword: Path<T>;
