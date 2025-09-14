@@ -15,4 +15,5 @@ export type PasswordFormProps<T extends FieldValues> = {
   nameConfirm: Path<T>;
   passwordRules: ReturnType<typeof usePasswordRules<T>>;
   onSubmit: SubmitHandler<T>;
+  isPending?: boolean;
 };

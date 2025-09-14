@@ -15,6 +15,7 @@ import {
 const PasswordFormPart = <T extends FieldValues>({
   controls,
   errors,
+  isPending,
   nameConfirm,
   namePassword,
   onSubmit,
@@ -50,10 +51,11 @@ const PasswordFormPart = <T extends FieldValues>({
       <RegisterValidation passwordRules={passwordRules} />
       <ButtonGroup mt="mt-md" fullWidth>
         <Button
-          type="submit"
-          label="Update Password"
           fullWidth
+          isLoading={isPending}
+          label="Update Password"
           size="size-lg"
+          type="submit"
         />
       </ButtonGroup>
     </Form>
