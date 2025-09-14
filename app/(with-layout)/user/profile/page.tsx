@@ -1,7 +1,12 @@
+import { getUserProfilePage } from '@/lib';
+import { headers } from 'next/headers';
 import { UserProfile } from '@/components';
 
-const UserProfilePage = () => {
-  return <UserProfile />;
+const UserProfilePage = async () => {
+  const headersData = await headers();
+  const user = await getUserProfilePage(headersData);
+
+  return <UserProfile user={user} />;
 };
 
 export default UserProfilePage;
