@@ -1,4 +1,4 @@
-export const clientEndpoint = {
+export const clientEndpoints = {
   deleteDraftImages: (advertId?: string) => {
     return advertId
       ? `/api/v1/user-advert/draft?id=${advertId}`
