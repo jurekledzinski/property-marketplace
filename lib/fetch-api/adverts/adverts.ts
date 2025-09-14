@@ -1,7 +1,7 @@
 import 'server-only';
-import { serverEndpoint } from './serverEndpoints';
-import { fetchApi } from './fetchApi';
-import { getDomain } from '../helpers/getDomain';
+import { serverEndpoints } from '../utils/serverEndpoints';
+import { fetchApi } from '../utils/fetchApi';
+import { getDomain } from '../../helpers/getDomain';
 import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
 import { UserAdvertsTable } from './types';
 import { Advert } from '@/models';
@@ -13,7 +13,7 @@ export const getUserAdvertsPage = async (headers?: ReadonlyHeaders) => {
 
   const response = await fetchApi<UserAdvertsTable[]>({
     tags: ['adverts'],
-    url: serverEndpoint.userAdverts(domain),
+    url: serverEndpoints.userAdverts(domain),
     headers,
   });
 
@@ -30,7 +30,7 @@ export const getUserAdvertPage = async (
 
   const response = await fetchApi<Advert>({
     tags: ['advert'],
-    url: serverEndpoint.userAdvert(domain, advertId),
+    url: serverEndpoints.userAdvert(domain, advertId),
     headers,
   });
 

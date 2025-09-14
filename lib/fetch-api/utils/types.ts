@@ -1,13 +1,4 @@
-import { Advert } from '@/models';
 import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
-
-export interface UserAdvertsTable
-  extends Pick<Advert, 'userId' | 'title' | 'type'> {
-  id: string;
-  stage?: string;
-  actions?: string;
-  createdAt?: string;
-}
 
 export type ApiSuccessResponse<T> = {
   message?: string;
