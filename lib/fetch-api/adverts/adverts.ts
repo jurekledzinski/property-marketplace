@@ -3,7 +3,7 @@ import { serverEndpoints } from '../utils/serverEndpoints';
 import { fetchApi } from '../utils/fetchApi';
 import { getDomain } from '../../helpers/getDomain';
 import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
-import { Adverts, UserAdvertsTable } from './types';
+import { AdvertDetails, Adverts, UserAdvertsTable } from './types';
 import { Advert } from '@/models';
 
 // Fetch user adverts server component
@@ -67,7 +67,7 @@ export const getAdvertPage = async (
 ) => {
   const domain = await getDomain();
 
-  const response = await fetchApi<Advert>({
+  const response = await fetchApi<AdvertDetails>({
     tags: ['advert'],
     url: serverEndpoints.advert(domain, advertId),
     headers,
