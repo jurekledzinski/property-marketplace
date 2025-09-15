@@ -1,6 +1,5 @@
 import 'server-only';
-import { fetchApi, getDomain, serverEndpoints } from '@/lib';
-import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
+import { fetchApi, getDomain, ReadonlyHeaders, serverEndpoints } from '@/lib';
 import { User } from '@/models';
 
 export const getUserProfilePage = async (headers?: ReadonlyHeaders) => {
