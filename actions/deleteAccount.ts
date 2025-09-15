@@ -37,8 +37,6 @@ export const deleteAccount = connectDBAction(async () => {
   const draftsImages = await getAllUserDrafts(ctx, draftsCol);
 
   const mergedImages = uniqBy([...advertsImages, ...draftsImages], 'fileId');
-  console.log('ctx delete account', ctx);
-  console.log('del account mergedImages', mergedImages);
 
   const result = await deleteImagesImagekit({
     checkIsOriginal: false,
