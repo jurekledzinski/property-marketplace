@@ -1,9 +1,9 @@
 import { ChangeEventHandler, MouseEventHandler } from 'react';
-import { Message } from '@/models';
+import { Messages } from '@/lib';
 
 export type MessageAccordionProps = {
   selectedIds: string[];
-  message?: Message;
+  message?: Messages;
   onClick?: MouseEventHandler<HTMLInputElement>;
   onChangeDelete?: ChangeEventHandler<HTMLInputElement>;
 };
