@@ -1,5 +1,5 @@
-import { Message } from '@/models';
+import { Messages } from '@/lib';
 
 export type UserMessagesProps = {
-  messages?: Message[];
+  messages?: Messages[];
 };
