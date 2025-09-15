@@ -1,4 +1,3 @@
-import styles from '../../AdvertsTable.module.css';
 import { createColumnHelper } from '@tanstack/react-table';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { formatDateLocalString } from '@/helpers';
