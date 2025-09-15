@@ -24,7 +24,7 @@ export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const slide = searchParams.get('slide');
-  const format = formatNumber(`${advert?.price || ''}`, 'nl-NL', optionsFormat);
+  const format = formatNumber(`${advert?.price || 0}`, 'nl-NL', optionsFormat);
   const carousel = useCarouselThumbnails();
   const formControls = useContactForm({ userId: '123' });
 
@@ -42,7 +42,7 @@ export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
       <DetailsHeroImage
         images={advert.images}
         index={Number(slide ?? 0)}
-        price={format.format}
+        price={format.value === '0' ? 'Price not specified' : format.format}
         title={advert.title}
         status={advert.status}
       />
