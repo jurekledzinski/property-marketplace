@@ -1,5 +1,5 @@
-import { Advert } from '@/models';
+import { AdvertDetails } from '@/lib';
 
 export type DetailsAdvertProps = {
-  advertDetails: Omit<Advert, 'files'>;
+  advert: AdvertDetails | null;
 };
