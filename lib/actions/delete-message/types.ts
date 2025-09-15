@@ -1,4 +1,4 @@
 export type DeleteMessageContext = {
-  messageId: string;
+  messagesIds: string[];
   userId: string;
 };

@@ -8,10 +8,12 @@ export const deleteUserMessage = async (
   ctx: DeleteMessageContext,
   col: Collection<DataDB<Message>>
 ) => {
-  const result = await col.deleteOne({
-    _id: new ObjectId(ctx.messageId),
+  const objectIds = ctx.messagesIds.map((id) => new ObjectId(id));
+
+  const result = await col.deleteMany({
+    _id: { $in: objectIds },
     userId: ctx.userId,
   });
 
-  return result.deletedCount === 1;
+  return result.deletedCount > 0;
 };
