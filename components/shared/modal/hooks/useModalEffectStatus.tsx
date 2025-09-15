@@ -2,13 +2,15 @@
 import { UseControlModalProps } from '../types';
 import { useEffect } from 'react';
 
-export const useCloseModalOnSuccess = ({
+export const useModalEffectStatus = ({
   isPending,
   isSuccess,
+  onFailed,
   onSuccess,
   isOpen,
 }: UseControlModalProps) => {
   useEffect(() => {
     if (isOpen && isSuccess && !isPending && onSuccess) onSuccess();
-  }, [isPending, isSuccess, isOpen, onSuccess]);
+    if (isOpen && isSuccess === false && !isPending && onFailed) onFailed();
+  }, [isPending, isSuccess, isOpen, onFailed, onSuccess]);
 };

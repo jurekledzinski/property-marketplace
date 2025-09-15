@@ -1,2 +1,2 @@
-export * from './useCloseModalOnSuccess';
+export * from './useModalEffectStatus';
 export * from './useControlModal';
