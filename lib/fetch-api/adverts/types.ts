@@ -6,6 +6,7 @@ export interface UserAdvertsTable extends Pick<Advert, PickInUserAdvert> {
   id: string;
   stage?: string;
   actions?: string;
+  createdAt?: string;
 }
 
 export type OmitInAdverts =
