@@ -21,6 +21,7 @@ export const CardAdvertContent = ({
     bathrooms,
     city,
     country,
+    id,
     postalCode,
     price,
     rooms,
@@ -54,7 +55,7 @@ export const CardAdvertContent = ({
 
       <ButtonGroup orientation="row" justify="justify-end" fullWidth p="p-md">
         <Button
-          href={`adverts/${encodeURIComponent(title)}/123`}
+          href={`adverts/${encodeURIComponent(title)}/${id}`}
           label="Read more ..."
           variant="contained"
           color="primary"
