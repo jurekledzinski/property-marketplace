@@ -1,4 +1,6 @@
-import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
+import { ReadonlyHeaders as ImmutableHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
+
+export type ReadonlyHeaders = ImmutableHeaders;
 
 export type ApiSuccessResponse<T> = {
   message?: string;
