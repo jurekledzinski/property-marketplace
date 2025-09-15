@@ -61,7 +61,6 @@ const connectDBAuth = (
       await client.connect();
       return await fn(req, ctx);
     } catch (error) {
-      console.log('CONNECT DB AUTH ----------------->', error);
       return error;
     }
   };

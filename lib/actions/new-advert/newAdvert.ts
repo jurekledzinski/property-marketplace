@@ -48,8 +48,6 @@ export const deleteImagesImagekit = async ({
 
   if (!draftCollection) return false;
 
-  console.log('allSuccess', allSuccess);
-
   if (allSuccess) {
     draftCollection.deleteOne(deleteQuery);
   } else {
