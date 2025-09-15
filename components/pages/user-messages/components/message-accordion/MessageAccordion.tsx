@@ -1,6 +1,7 @@
-import { Accordion, AccordionContent, AccordionHeader } from '@/components';
-import { MessageAccordionProps } from './types';
 import styles from '../../UserMessages.module.css';
+import { Accordion, AccordionContent, AccordionHeader } from '@/components';
+import { formatDateLocalString } from '@/helpers';
+import { MessageAccordionProps } from './types';
 
 export const MessageAccordion = ({
   message,
@@ -21,13 +22,14 @@ export const MessageAccordion = ({
         onChangeDelete={onChangeDelete}
       >
         <span className={styles.date}>
-          {new Date(message.createdAt).toLocaleString('en-GB', {
-            timeZone: 'UTC',
+          {formatDateLocalString({
+            date: message?.createdAt,
+            options: { dateStyle: 'full', timeStyle: 'medium' },
           })}
         </span>
       </AccordionHeader>
       <AccordionContent active={selectedIds.includes(message.id)} pt={'pt-sm'}>
-        {message.description}
+        {message.message}
       </AccordionContent>
     </Accordion>
   );
