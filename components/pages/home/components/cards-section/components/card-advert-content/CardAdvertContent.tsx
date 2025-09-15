@@ -16,7 +16,7 @@ import {
 } from '@/components';
 
 export const CardAdvertContent = ({
-  advertCards: {
+  advertCard: {
     area,
     bathrooms,
     city,

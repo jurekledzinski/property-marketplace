@@ -1,5 +1,5 @@
-import { AdvertCards } from '@/components';
+import { Adverts } from '@/lib';
 
 export type CardAdvertProps = {
-  advertCards: AdvertCards;
+  advertCard: Adverts;
 };

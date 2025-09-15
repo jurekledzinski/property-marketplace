@@ -1,5 +1,5 @@
-import { AdvertCards } from '../../types';
+import { Adverts } from '@/lib';
 
 export type CardsSectionProps = {
-  advertCards: AdvertCards[];
+  advertCards: Adverts[];
 };

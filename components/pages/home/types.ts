@@ -1,26 +1,9 @@
-import { Advert } from '@/models';
+import { Adverts } from '@/lib';
 import { InputsAdvertsFilter } from './hooks';
 
-type OmitUnion =
-  | 'advertiser'
-  | 'amenities'
-  | 'condition'
-  | 'description'
-  | 'email'
-  | 'files'
-  | 'images'
-  | 'phone'
-  | 'style'
-  | 'type'
-  | 'year';
-
-export interface AdvertCards extends Omit<Advert, OmitUnion> {
-  src: string;
-}
-
 export type HomeProps = {
-  advertCards: AdvertCards[];
+  advertCards: Adverts[];
+  filters: InputsAdvertsFilter;
   searchValue?: string;
   sortValue?: string;
-  filters: InputsAdvertsFilter;
 };

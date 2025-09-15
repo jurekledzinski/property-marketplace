@@ -7,7 +7,7 @@ export const CardsSection = memo(({ advertCards }: CardsSectionProps) => {
   return (
     <section className={styles.section}>
       {advertCards.map((advert, index) => (
-        <CardAdvert key={index} advertCards={advert} />
+        <CardAdvert key={index} advertCard={advert} />
       ))}
     </section>
   );

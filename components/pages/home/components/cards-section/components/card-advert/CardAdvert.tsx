@@ -5,14 +5,14 @@ import { CardAdvertHeader } from '../card-advert-header';
 import { CardAdvertProps } from './types';
 import { formatNumber } from '@/helpers';
 
-export const CardAdvert = ({ advertCards }: CardAdvertProps) => {
-  const { price, src } = advertCards;
+export const CardAdvert = ({ advertCard }: CardAdvertProps) => {
+  const { price, image } = advertCard;
   const { format } = formatNumber(price.toString(), 'nl-NL', optionsFormat);
 
   return (
     <Card className={styles.card}>
-      <CardAdvertHeader src={src} />
-      <CardAdvertContent advertCards={{ ...advertCards, price: format }} />
+      <CardAdvertHeader src={image.url} />
+      <CardAdvertContent advertCard={{ ...advertCard, price: format }} />
     </Card>
   );
 };
