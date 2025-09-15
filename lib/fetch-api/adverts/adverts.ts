@@ -1,10 +1,15 @@
 import 'server-only';
-import { serverEndpoints } from '../utils/serverEndpoints';
-import { fetchApi } from '../utils/fetchApi';
-import { getDomain } from '../../helpers/getDomain';
-import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
-import { AdvertDetails, Adverts, UserAdvertsTable } from './types';
 import { Advert } from '@/models';
+
+import {
+  AdvertDetails,
+  Adverts,
+  fetchApi,
+  getDomain,
+  ReadonlyHeaders,
+  serverEndpoints,
+  UserAdvertsTable,
+} from '@/lib';
 
 // Fetch user adverts server component
 
