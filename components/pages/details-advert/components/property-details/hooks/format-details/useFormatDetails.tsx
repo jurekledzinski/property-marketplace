@@ -9,7 +9,9 @@ export const useFormatDetails = ({ details }: UseFormatDetailsProps) => {
     const price = formatNumber(priceValue, 'nl-NL', optionsFormat).format;
 
     return {
-      Location: `${details.country}, ${details.state}, ${details.city}`,
+      Location: `${capitalizeFirstLetter(
+        details.country
+      )}, ${capitalizeFirstLetter(details.city)}`,
       Type: capitalizeFirstLetter(details.type),
       Area: `${details.area.toString()}m²`,
       Bedrooms: capitalizeFirstLetter(details.rooms.toString()),
