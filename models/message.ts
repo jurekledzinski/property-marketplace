@@ -2,14 +2,13 @@ import { z } from 'zod';
 
 export const MessageSchema = z.object({
   userId: z.string(),
-  sender: z
-    .object({ name: z.string(), email: z.email() })
-    .refine((sender) => sender.name && sender.email, {
-      error: 'Sender must have a valid name and email',
-    }),
+  name: z.string(),
+  email: z.email().refine((email) => email, {
+    error: 'Email is required',
+  }),
   title: z.string(),
-  description: z.string(),
-  createdAt: z.date(),
+  message: z.string(),
+  createdAt: z.date().optional(),
 });
 
 export type Message = z.infer<typeof MessageSchema>;
