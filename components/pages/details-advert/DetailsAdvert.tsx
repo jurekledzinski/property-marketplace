@@ -1,8 +1,11 @@
 'use client';
 import styles from './DetailsAdvert.module.css';
 import { DetailsAdvertProps } from './types';
-import { formatNumber } from '@/helpers';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { formatNumber, showErrorToast, showSuccessToast } from '@/helpers';
+import { initialState } from '@/constants';
+import { newMessage } from '@/actions';
+import { useActionState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import {
   Box,
@@ -21,12 +24,22 @@ import {
 
 export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const slide = searchParams.get('slide');
+
   const format = formatNumber(`${advert?.price || 0}`, 'nl-NL', optionsFormat);
   const carousel = useCarouselThumbnails();
-  const formControls = useContactForm({ userId: '123' });
+
+  const [state, action, isPending] = useActionState(newMessage, initialState);
+
+  const { formControl, onSubmit } = useContactForm({
+    isPending,
+    isSuccess: state.success,
+    onFailed: () => !state.success && showErrorToast(state.message),
+    onSubmitForm: action,
+    onSuccess: () => state.success && showSuccessToast(state.message),
+    userId: advert?.userId || '',
+  });
 
   if (!advert) return <div>No advert found.</div>;
 
@@ -51,6 +64,7 @@ export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
         carouselControl={carousel}
         images={advert.images}
         onClickThumbnail={(index) => {
+          const pathname = window.location.pathname;
           const query = new URLSearchParams(window.location.search);
           query.set('slide', index.toString());
           router.push(`${pathname}?${query.toString()}`, { scroll: false });
@@ -60,10 +74,12 @@ export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
       <Box className={styles.layout}>
         <PropertyDetails details={advert} />
         <PropertySidebar
-          controls={formControls}
           advertiser={advert.advertiser}
+          controls={formControl}
           email={advert.email}
+          isPending={!state.message ? isPending : false}
           phone={advert.phone}
+          onSubmit={onSubmit}
         />
       </Box>
     </Container>
