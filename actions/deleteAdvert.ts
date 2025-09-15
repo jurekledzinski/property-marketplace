@@ -1,6 +1,7 @@
 'use server';
 import { Advert, DraftFile } from '@/models';
 import { auth } from '@/auth';
+import { revalidateTag } from 'next/cache';
 import { uniqBy } from 'lodash';
 
 import {
@@ -50,6 +51,7 @@ export const deleteAdvert = connectDBAction(
       return errorResponseAction('Delete failed: No document found');
     }
 
+    revalidateTag('userAdverts');
     return successResponseAction('Account delete successful');
   }
 );
