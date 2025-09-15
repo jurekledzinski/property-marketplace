@@ -1,6 +1,6 @@
 'use client';
 import { AdvertForm } from './components';
-import { initialState } from '@/constants';
+import { initialState, modalMessages } from '@/constants';
 import { newAdvert } from '@/actions';
 import { showErrorToast, showSuccessToast } from '@/helpers';
 import { useActionState } from 'react';
@@ -20,6 +20,7 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [state, action, isPending] = useActionState(newAdvert, initialState);
+  const { description, title } = modalMessages.warningLeaveForm();
 
   const { deleteDraft, deleteUploadedFiles, form, uploadFiles } =
     useAdvertFormWithUploads({
@@ -73,9 +74,9 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
         variant="warning"
         onConfirm={onConfirm}
       >
-        Warning: Data you have entered will be lost,
+        {title}
         <br />
-        if you leave this page without saving.
+        {description}
       </Modal>
     </>
   );
