@@ -1,5 +1,6 @@
 'use client';
 import styles from './UserProfile.module.css';
+import { modalMessages } from '@/constants';
 import { PasswordForm, UserForm } from './components';
 import { signOut } from 'next-auth/react';
 import { startTransition } from 'react';
@@ -18,6 +19,7 @@ import {
 } from '@/components';
 
 export const UserProfile = ({ user }: UserProfileProps) => {
+  const { description, title } = modalMessages.deleteAccount();
   const { onClose, onOpen, isOpen } = useControlModal();
   const { password, profile, deleteAccount } = useUserActions({
     onResetDelete: () => {
@@ -50,8 +52,6 @@ export const UserProfile = ({ user }: UserProfileProps) => {
     nameConfirm: 'confirm',
     namePassword: 'password',
   });
-
-  console.log('profile', profile.state);
 
   return (
     <>
@@ -91,16 +91,14 @@ export const UserProfile = ({ user }: UserProfileProps) => {
           startTransition(() => deleteAccount.action(new FormData()));
         }}
         onSuccess={async () => {
-          console.log('Accound success delete');
           onClose();
           deleteAccount.reset();
           await signOut({ redirect: true, redirectTo: '/' });
         }}
         variant="negative"
       >
-        Are you sure you want to delete your account? <br />
-        This action is permanent and cannot be undone. All your data will be
-        permanently removed.
+        {title} <br />
+        {description}
       </Modal>
       <ButtonGroup mb="mb-md">
         <Button
