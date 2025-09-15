@@ -2,9 +2,8 @@
 import styles from './DetailsAdvert.module.css';
 import { DetailsAdvertProps } from './types';
 import { formatNumber, showErrorToast, showSuccessToast } from '@/helpers';
-import { initialState } from '@/constants';
 import { newMessage } from '@/actions';
-import { useActionState } from 'react';
+import { useActionStateReset } from '@/hooks';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import {
@@ -30,14 +29,20 @@ export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
   const format = formatNumber(`${advert?.price || 0}`, 'nl-NL', optionsFormat);
   const carousel = useCarouselThumbnails();
 
-  const [state, action, isPending] = useActionState(newMessage, initialState);
+  const action = useActionStateReset({
+    fnAction: newMessage,
+    onResetAction: () => {
+      if (action.state.success) showSuccessToast(action.state.message);
+      else showErrorToast(action.state.message);
+    },
+  });
 
   const { formControl, onSubmit } = useContactForm({
-    isPending,
-    isSuccess: state.success,
-    onFailed: () => !state.success && showErrorToast(state.message),
-    onSubmitForm: action,
-    onSuccess: () => state.success && showSuccessToast(state.message),
+    isPending: action.isPending,
+    isSuccess: action.state.success,
+    onFailed: () => action.resetStateAction(),
+    onSubmitForm: action.formAction,
+    onSuccess: () => action.resetStateAction(),
     userId: advert?.userId || '',
   });
 
@@ -59,7 +64,6 @@ export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
         title={advert.title}
         status={advert.status}
       />
-
       <CarouselThumbnails
         carouselControl={carousel}
         images={advert.images}
@@ -70,14 +74,13 @@ export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
           router.push(`${pathname}?${query.toString()}`, { scroll: false });
         }}
       />
-
       <Box className={styles.layout}>
         <PropertyDetails details={advert} />
         <PropertySidebar
           advertiser={advert.advertiser}
           controls={formControl}
           email={advert.email}
-          isPending={!state.message ? isPending : false}
+          isPending={!action.state.message ? action.isPending : false}
           phone={advert.phone}
           onSubmit={onSubmit}
         />
