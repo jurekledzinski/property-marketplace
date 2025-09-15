@@ -1,9 +1,12 @@
 import { Advert } from '@/models';
-import { useContactForm } from '@/components';
+import { InputsContact } from '@/components';
+import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 export type PropertySidebarProps = {
   advertiser: Advert['advertiser'];
-  phone: Advert['phone'];
+  controls: UseFormReturn<InputsContact, unknown, InputsContact>;
   email: Advert['email'];
-  controls: ReturnType<typeof useContactForm>;
+  isPending: boolean;
+  onSubmit: SubmitHandler<InputsContact>;
+  phone: Advert['phone'];
 };

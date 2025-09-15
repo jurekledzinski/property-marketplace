@@ -6,8 +6,10 @@ import { PropertySidebarProps } from './types';
 export const PropertySidebar = ({
   advertiser,
   email,
+  isPending,
   phone,
   controls,
+  onSubmit,
 }: PropertySidebarProps) => {
   return (
     <Box className={styles.sidebar}>
@@ -30,8 +32,9 @@ export const PropertySidebar = ({
       </List>
 
       <ContactForm
-        controls={controls.formControls}
-        onSubmit={controls.onSubmit}
+        controls={controls}
+        isPending={isPending}
+        onSubmit={onSubmit}
       />
     </Box>
   );
