@@ -14,7 +14,7 @@ export const useControlAdvertsTable = <T extends RowData>({
   adverts,
   columns,
 }: UseControlTableProps<T>) => {
-  const [data] = useState(() => [...adverts]);
+  const data = useMemo(() => [...adverts], [adverts]);
   const [pagination, onPaginationChange] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 9,
