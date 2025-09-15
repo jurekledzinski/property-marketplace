@@ -1,5 +1,6 @@
 'use client';
-import { Heading } from '@/components';
+import { Heading, Modal, useDeleteAdvert } from '@/components';
+import { modalMessages } from '@/constants';
 import { UserAdvertsProps } from './types';
 
 import {
@@ -10,26 +11,20 @@ import {
 } from './components';
 
 export const UserAdverts = ({ adverts = [] }: UserAdvertsProps) => {
-  const columns = useAdvertsColumns({
-    onDelete: (id) => {
-      console.log('Delete advert id', id);
-    },
-  });
-  const { isEmpty, noResults, table } = useControlAdvertsTable({
-    adverts,
-    columns,
-  });
+  const { description, title } = modalMessages.deleteAdvert();
+  const { action, onConfirm, onDelete, onSuccess, modal } = useDeleteAdvert();
+  const columns = useAdvertsColumns({ onDelete });
+  const controlTable = useControlAdvertsTable({ adverts, columns });
 
   return (
     <>
       <Heading level={4} mb="mb-md" mt="mt-sm">
         User adverts
       </Heading>
-
       <AdvertsTable
-        table={table}
-        isEmpty={isEmpty}
-        noResults={noResults}
+        table={controlTable.table}
+        isEmpty={controlTable.isEmpty}
+        noResults={controlTable.noResults}
         loading={false}
       >
         {(table) => {
@@ -47,6 +42,21 @@ export const UserAdverts = ({ adverts = [] }: UserAdvertsProps) => {
           );
         }}
       </AdvertsTable>
+      <Modal
+        confirmText="Delete"
+        title="Delete advert"
+        isPending={!action.state.message ? action.isPending : false}
+        isOpen={modal.isOpen}
+        isSuccess={action.state.success}
+        onCancel={modal.onClose}
+        onClose={modal.onClose}
+        onConfirm={onConfirm}
+        onSuccess={onSuccess}
+        variant="negative"
+      >
+        {title} <br />
+        {description}
+      </Modal>
     </>
   );
 };
