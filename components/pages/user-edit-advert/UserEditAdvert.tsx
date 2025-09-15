@@ -1,6 +1,6 @@
 'use client';
 import { editAdvert } from '@/actions';
-import { initialState } from '@/constants';
+import { initialState, modalMessages } from '@/constants';
 import { showErrorToast, showSuccessToast } from '@/helpers';
 import { useActionState } from 'react';
 import { useExitGuard } from '@/hooks';
@@ -19,6 +19,7 @@ export const UserEditAdvert = ({ advert, userId }: UserEditAdvertProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const [state, action, isPending] = useActionState(editAdvert, initialState);
+  const { description, title } = modalMessages.warningLeaveForm();
 
   const { deleteDraft, deleteUploadedFiles, form, uploadFiles } =
     useAdvertFormWithUploads({
@@ -73,9 +74,9 @@ export const UserEditAdvert = ({ advert, userId }: UserEditAdvertProps) => {
         variant="warning"
         onConfirm={onConfirm}
       >
-        Warning: Data you have entered will be lost,
+        {title}
         <br />
-        if you leave this page without saving.
+        {description}
       </Modal>
     </>
   );
