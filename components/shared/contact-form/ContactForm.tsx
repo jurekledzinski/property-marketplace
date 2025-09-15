@@ -8,7 +8,11 @@ import {
   Button,
 } from '@/components';
 
-export const ContactForm = ({ controls, onSubmit }: ContactFormProps) => {
+export const ContactForm = ({
+  controls,
+  isPending,
+  onSubmit,
+}: ContactFormProps) => {
   const { formState, register } = controls;
   const { errors } = formState;
 
@@ -42,6 +46,19 @@ export const ContactForm = ({ controls, onSubmit }: ContactFormProps) => {
 
       <Field>
         <TextInput
+          {...register('title', {
+            required: { message: 'Title is required', value: true },
+          })}
+          type="text"
+          placeholder="Title"
+        />
+        {errors.title ? (
+          <Message variant="error">{errors.title.message}</Message>
+        ) : null}
+      </Field>
+
+      <Field>
+        <TextInput
           as="textarea"
           {...register('message', {
             required: { message: 'Message is required', value: true },
@@ -54,7 +71,13 @@ export const ContactForm = ({ controls, onSubmit }: ContactFormProps) => {
       </Field>
 
       <ButtonGroup mt="mt-md" fullWidth>
-        <Button type="submit" label="Send Message" fullWidth size="size-lg" />
+        <Button
+          fullWidth
+          isLoading={isPending}
+          label="Send Message"
+          size="size-lg"
+          type="submit"
+        />
       </ButtonGroup>
     </Form>
   );
