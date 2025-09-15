@@ -5,7 +5,7 @@ import { MessageAccordionProps } from './types';
 
 export const MessageAccordion = ({
   message,
-  selectedIds,
+  openIds,
   onClick,
   onChangeDelete,
 }: MessageAccordionProps) => {
@@ -16,7 +16,7 @@ export const MessageAccordion = ({
       <AccordionHeader
         p={'p-sm'}
         id={message.id!}
-        checked={selectedIds.includes(message.id)}
+        checked={openIds.includes(message.id)}
         title={message.title}
         onClick={onClick}
         onChangeDelete={onChangeDelete}
@@ -28,7 +28,7 @@ export const MessageAccordion = ({
           })}
         </span>
       </AccordionHeader>
-      <AccordionContent active={selectedIds.includes(message.id)} pt={'pt-sm'}>
+      <AccordionContent active={openIds.includes(message.id)} pt={'pt-sm'}>
         {message.message}
       </AccordionContent>
     </Accordion>
