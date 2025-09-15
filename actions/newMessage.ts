@@ -21,6 +21,6 @@ export const newMessage = connectDBAction(
 
     await messagesCol.insertOne(parsedData);
 
-    return successResponseAction('Account delete successful');
+    return successResponseAction('Message sent successfully');
   }
 );

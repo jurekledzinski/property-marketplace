@@ -4,6 +4,7 @@ export * from './deleteMessage';
 export * from './editAdvert';
 export * from './login';
 export * from './newAdvert';
+export * from './newMessage';
 export * from './register';
 export * from './updatePassword';
 export * from './updateProfile';
