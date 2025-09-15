@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import { ModalBody, ModalFooter, ModalHeader } from './components';
 import { modalClassNames } from './utils';
 import { ModalProps } from './types';
-import { useCloseModalOnSuccess } from './hooks';
+import { useModalEffectStatus } from './hooks';
 import { useRef, useState } from 'react';
 
 export const Modal = ({
@@ -14,10 +14,11 @@ export const Modal = ({
   cancelText = 'Cancel',
   isOpen = false,
   isPending = false,
-  isSuccess = false,
+  isSuccess,
   onCancel,
   onClose,
   onConfirm,
+  onFailed,
   onSuccess,
   type = 'button',
   variant = 'primary',
@@ -25,10 +26,11 @@ export const Modal = ({
   const nodeRef = useRef(null);
   const [showBackdrop, setShowBackdrop] = useState(false);
 
-  useCloseModalOnSuccess({
+  useModalEffectStatus({
     isOpen,
     isPending,
     isSuccess,
+    onFailed,
     onSuccess,
   });
 

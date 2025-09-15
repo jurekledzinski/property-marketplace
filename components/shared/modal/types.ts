@@ -4,6 +4,7 @@ export type UseControlModalProps = Partial<{
   isOpen: boolean;
   isPending: boolean;
   isSuccess: boolean;
+  onFailed: () => void;
   onSuccess: () => void;
 }>;
 
