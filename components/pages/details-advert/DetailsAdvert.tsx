@@ -19,14 +19,16 @@ import {
   PropertySidebar,
 } from './components';
 
-export const DetailsAdvert = ({ advertDetails }: DetailsAdvertProps) => {
+export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const slide = searchParams.get('slide');
-  const format = formatNumber(`${advertDetails.price}`, 'nl-NL', optionsFormat);
+  const format = formatNumber(`${advert?.price || ''}`, 'nl-NL', optionsFormat);
   const carousel = useCarouselThumbnails();
   const formControls = useContactForm({ userId: '123' });
+
+  if (!advert) return <div>No advert found.</div>;
 
   return (
     <Container
@@ -38,16 +40,16 @@ export const DetailsAdvert = ({ advertDetails }: DetailsAdvertProps) => {
       pb="pb-sm"
     >
       <DetailsHeroImage
-        images={advertDetails.images}
+        images={advert.images}
         index={Number(slide ?? 0)}
         price={format.format}
-        title={advertDetails.title}
-        status={advertDetails.status}
+        title={advert.title}
+        status={advert.status}
       />
 
       <CarouselThumbnails
         carouselControl={carousel}
-        images={advertDetails.images}
+        images={advert.images}
         onClickThumbnail={(index) => {
           const query = new URLSearchParams(window.location.search);
           query.set('slide', index.toString());
@@ -56,12 +58,12 @@ export const DetailsAdvert = ({ advertDetails }: DetailsAdvertProps) => {
       />
 
       <Box className={styles.layout}>
-        <PropertyDetails details={advertDetails} />
+        <PropertyDetails details={advert} />
         <PropertySidebar
           controls={formControls}
-          advertiser={advertDetails.advertiser}
-          email={advertDetails.email}
-          phone={advertDetails.phone}
+          advertiser={advert.advertiser}
+          email={advert.email}
+          phone={advert.phone}
         />
       </Box>
     </Container>
