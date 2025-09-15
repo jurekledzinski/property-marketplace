@@ -1,6 +1,7 @@
 'use server';
 import { auth } from '@/auth';
 import { Message } from '@/models';
+import { revalidateTag } from 'next/cache';
 
 import {
   connectDBAction,
@@ -14,11 +15,11 @@ import {
 export const deleteMessage = connectDBAction(
   async (prevState: unknown, formData: FormData) => {
     const session = await auth();
-    const { messageId } = Object.fromEntries(formData);
+    const messagesIds = JSON.parse(formData.getAll('deleteIds').toString());
 
     if (!session) return errorResponseAction('Unauthorized');
 
-    const ctx = { messageId: messageId.toString(), userId: session.user.id };
+    const ctx = { messagesIds, userId: session.user.id };
 
     const messagesCol = getCollectionDb<DataDB<Message>>('messages');
 
@@ -30,6 +31,7 @@ export const deleteMessage = connectDBAction(
       return errorResponseAction('Delete failed: No document found');
     }
 
+    revalidateTag('messages');
     return successResponseAction('Account delete successful');
   }
 );
