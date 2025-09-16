@@ -24,9 +24,12 @@ export const editAdvert = connectDBAction(
 
     const dataForm = formatDataEditAdvert({ ...data, userId }, formData);
 
-    const parsedData = AdvertSchema.extend({ id: z.string() }).parse(dataForm);
+    const parsedData = AdvertSchema.extend({ id: z.string() })
+      .omit({ views: true })
+      .parse(dataForm);
 
-    const advertsCol = getCollectionDb<DataDB<Advert>>('adverts');
+    const advertsCol =
+      getCollectionDb<DataDB<Omit<Advert, 'views'>>>('adverts');
 
     if (!advertsCol) return errorResponseAction('Internal server error');
 
