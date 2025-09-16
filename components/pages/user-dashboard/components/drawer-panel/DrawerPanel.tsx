@@ -6,6 +6,7 @@ import {
   faAdd,
   faEnvelope,
   faGear,
+  faHome,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,6 +14,12 @@ export const DrawerPanel = () => {
   return (
     <div className={styles.panel}>
       <List className={styles.list}>
+        <ListItem>
+          <Link className={styles.listItem} data-link="menu-link" href="/">
+            <Icon icon={faHome} />
+            Home page
+          </Link>
+        </ListItem>
         <ListItem>
           <Link
             className={styles.listItem}
