@@ -1,16 +1,17 @@
 import styles from '../../UserDashboard.module.css';
 import { Card, CardContent, CardFooter, CardHeader, Icon } from '@/components';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { MessagesCardProps } from './types';
 
-export const MessagesCard = () => {
+export const MessagesCard = ({ amount }: MessagesCardProps) => {
   return (
     <Card className={styles.messagesAdvert}>
       <CardContent className={styles.cardContent}>
-        <p style={{ fontSize: 20, fontWeight: 500 }}>14</p>
-        <p style={{ fontSize: 14 }}>Total messages</p>
+        <p className={styles.cardTitle}>{amount}</p>
+        <p className={styles.cardText}>Total messages</p>
       </CardContent>
       <CardHeader className={styles.cardHeader}>
-        <Icon icon={faEnvelope} size="2x" />
+        <Icon icon={faEnvelope} size="1x" />
       </CardHeader>
       <CardFooter className={styles.cardFooter}></CardFooter>
     </Card>
