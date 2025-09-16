@@ -12,26 +12,29 @@ import {
   ViewsAdvertsCard,
 } from '@/components';
 
-export const DashboardGrid = ({ dashboardAnalytics }: DashboardGridProps) => {
+export const DashboardGrid = ({ analytics }: DashboardGridProps) => {
   const { mode } = useTheme();
 
   return (
     <Box className={styles.grid}>
-      <TotalAdvertsCard />
-      <AdvertsTypeStatsCard />
-      <TopAdvertCard />
-      <MessagesCard />
+      <TotalAdvertsCard amount={analytics?.total.adverts || 0} />
+      <AdvertsTypeStatsCard
+        rent={analytics?.total.rent || 0}
+        sale={analytics?.total.sale || 0}
+      />
+      <TopAdvertCard title={analytics?.topAdvert || 'No data ...'} />
+      <MessagesCard amount={analytics?.total.messages || 0} />
       <AdvertsStatusCard
         label="Amount"
         mode={mode}
-        stats={dashboardAnalytics.stats}
+        stats={analytics?.stats || []}
         title="Status adverts"
       />
       <ViewsAdvertsCard
         label="Views"
         mode={mode}
         title="Views per advert"
-        views={dashboardAnalytics.views}
+        views={analytics?.views || []}
       />
     </Box>
   );
