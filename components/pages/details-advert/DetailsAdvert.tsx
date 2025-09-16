@@ -4,7 +4,7 @@ import { DetailsAdvertProps } from './types';
 import { formatNumber, showErrorToast, showSuccessToast } from '@/helpers';
 import { newMessage } from '@/actions';
 import { useActionStateReset } from '@/hooks';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 import {
   Box,
@@ -22,7 +22,6 @@ import {
 } from './components';
 
 export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const slide = searchParams.get('slide');
 
@@ -71,7 +70,8 @@ export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
           const pathname = window.location.pathname;
           const query = new URLSearchParams(window.location.search);
           query.set('slide', index.toString());
-          router.push(`${pathname}?${query.toString()}`, { scroll: false });
+          const router = window.history.replaceState;
+          router(null, '', `${pathname}?${query.toString()}`);
         }}
       />
       <Box className={styles.layout}>
