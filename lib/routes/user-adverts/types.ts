@@ -1,3 +1,3 @@
-export type GETUserAdvertsContext = {
+export type GetUserAdvertsContext = {
   userId: string;
 };
