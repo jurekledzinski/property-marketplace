@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import styles from './Header.module.css';
 import { AppBar, ButtonGroup, Container, Heading } from '@/components';
 import { HeaderMenu, NavigationButtons } from './components';
@@ -17,7 +18,9 @@ export const Header = memo(({ session }: HeaderProps) => {
       <AppBar className={styles.bar}>
         <Container m="m-center">
           <nav className={styles.nav}>
-            <Heading level={4}>PlaceQuest</Heading>
+            <Heading level={4}>
+              <Link href="/">PlaceQuest</Link>
+            </Heading>
             <ButtonGroup spacing="normal">
               <NavigationButtons
                 mode={mode}
