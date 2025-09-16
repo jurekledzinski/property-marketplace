@@ -20,8 +20,9 @@ export const editAdvert = connectDBAction(
     const data = Object.fromEntries(formData);
 
     if (!session) return errorResponseAction('Unauthorized');
+    const userId = session.user.id;
 
-    const dataForm = formatDataEditAdvert(data, formData);
+    const dataForm = formatDataEditAdvert({ ...data, userId }, formData);
 
     const parsedData = AdvertSchema.extend({ id: z.string() }).parse(dataForm);
 
