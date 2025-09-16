@@ -5,7 +5,6 @@ export type UseAdvertFormWithUploadsProps = {
   isPending: boolean;
   mode: 'edit' | 'new';
   success?: boolean;
-  userId: string;
   advert?: InputsAvert | null;
   onSuccess?: () => void;
   onFailed?: () => void;

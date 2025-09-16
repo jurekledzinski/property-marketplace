@@ -10,7 +10,6 @@ export const useAdvertFormWithUploads = ({
   isPending,
   mode,
   success,
-  userId,
   onFailed,
   onSuccess,
 }: UseAdvertFormWithUploadsProps) => {
@@ -25,7 +24,6 @@ export const useAdvertFormWithUploads = ({
     isPending,
     isSuccess: success,
     mode,
-    userId,
     onSubmitForm: action,
     onSuccess,
     onFailed,
