@@ -26,6 +26,7 @@ export const DescriptionSection = ({ controls }: DescriptionSectionProps) => {
             required: { message: 'Description is required', value: true },
           })}
           placeholder="Description"
+          as="textarea"
         />
         {errors.description ? (
           <Message variant="error">{errors.description.message}</Message>
