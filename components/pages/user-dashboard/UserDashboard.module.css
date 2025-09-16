@@ -50,6 +50,7 @@
   justify-content: center;
   height: 100%;
   grid-area: card-header;
+  font-size: 24px;
 }
 
 .cardContent {
@@ -79,7 +80,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
 }
 
@@ -88,7 +89,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 14px;
-  /* width: 70px; */
 }
 
 .totalAdverts {
@@ -176,6 +176,18 @@
   max-width: calc(100vw - 3rem);
 }
 
+.cardTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.cardText {
+  font-size: 14px;
+}
+
 @media (min-width: 575px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -183,6 +195,10 @@
     grid-template-areas:
       'total-adverts type-adverts top-advert messages-advert'
       'views-adverts views-adverts views-adverts status-adverts';
+  }
+
+  .cardTitle {
+    max-width: 150px;
   }
 }
 
