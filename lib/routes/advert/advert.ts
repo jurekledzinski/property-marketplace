@@ -15,3 +15,16 @@ export const getAdvert = async (
   });
   return advert;
 };
+
+export const updateAdvertViews = async (
+  ctx: GetAdvertContext,
+  col: Collection<DataDB<Advert>>
+) => {
+  const advert = await col.updateOne(
+    {
+      _id: new ObjectId(ctx.advertId),
+    },
+    { $inc: { views: 1 } }
+  );
+  return advert;
+};
