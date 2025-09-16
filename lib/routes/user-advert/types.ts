@@ -1,5 +1,9 @@
 import { DraftFile } from '@/models';
 
+export type GetUserAdvertSearchParams = {
+  id: string | null;
+};
+
 export type GetDraftSearchParams = {
   id: string | null;
   mode: 'edit' | 'new';
