@@ -1,5 +1,6 @@
 'use client';
 import { AdvertForm } from './components';
+import { Heading, Modal, validationFilesInfo } from '@/components';
 import { initialState, modalMessages } from '@/constants';
 import { newAdvert } from '@/actions';
 import { showErrorToast, showSuccessToast } from '@/helpers';
@@ -9,14 +10,7 @@ import { useExitGuard } from '@/hooks';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-import {
-  Heading,
-  Modal,
-  UserNewAdvertProps,
-  validationFilesInfo,
-} from '@/components';
-
-export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
+export const UserNewAdvert = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [state, action, isPending] = useActionState(newAdvert, initialState);
@@ -33,7 +27,6 @@ export const UserNewAdvert = ({ userId }: UserNewAdvertProps) => {
         if (state.success) showSuccessToast(state.message);
         queryClient.invalidateQueries({ queryKey: ['drafts'] });
       },
-      userId,
     });
 
   const { isOpen, onClose, onConfirm } = useExitGuard({
