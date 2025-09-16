@@ -25,13 +25,11 @@ const defaultValues = {
   amenities: [],
   style: '',
   images: [],
-  userId: '',
 };
 
 export const useAdvertInitialValues = ({
   advert,
   draft,
-  userId,
   onSetDeleteImages,
 }: UseAdvertInitialValuesProps) => {
   const initialValues = useMemo(() => {
@@ -39,9 +37,8 @@ export const useAdvertInitialValues = ({
       ...defaultValues,
       ...(advert ?? {}),
       ...(draft.images ? { images: draft.images } : {}),
-      userId,
     };
-  }, [advert, draft, userId]);
+  }, [advert, draft]);
 
   const initialDeleteImages = useMemo(() => draft.deleteImages || [], [draft]);
 
