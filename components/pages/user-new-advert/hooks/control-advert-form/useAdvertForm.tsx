@@ -17,7 +17,6 @@ const resetState = {
 export const useAdvertForm = ({
   advert,
   draft,
-  userId,
   isPending,
   isSuccess,
   mode,
@@ -32,7 +31,6 @@ export const useAdvertForm = ({
 
   const { defaultValues, initialValues } = useAdvertInitialValues({
     draft,
-    userId,
     advert,
     onSetDeleteImages: useCallback((data) => {
       setDeletedImages(data);

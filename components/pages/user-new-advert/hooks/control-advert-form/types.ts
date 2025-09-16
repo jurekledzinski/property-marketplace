@@ -32,7 +32,6 @@ export type UseAdvertFormProps = {
   isPending: boolean;
   mode: 'edit' | 'new';
   onSubmitForm: (payload: FormData) => void;
-  userId: string;
   advert?: InputsAvert | null;
   isSuccess?: boolean;
   onFailed?: () => void;
