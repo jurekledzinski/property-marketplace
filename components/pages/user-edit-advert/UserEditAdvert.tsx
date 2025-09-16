@@ -15,7 +15,7 @@ import {
   Modal,
 } from '@/components';
 
-export const UserEditAdvert = ({ advert, userId }: UserEditAdvertProps) => {
+export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const [state, action, isPending] = useActionState(editAdvert, initialState);
@@ -28,7 +28,6 @@ export const UserEditAdvert = ({ advert, userId }: UserEditAdvertProps) => {
       isPending,
       mode: 'edit',
       success: state.success,
-      userId,
       onFailed: () => !state.success && showErrorToast(state.message),
       onSuccess: () => {
         if (state.success) showSuccessToast(state.message);
