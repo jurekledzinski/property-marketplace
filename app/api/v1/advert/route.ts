@@ -9,6 +9,7 @@ import {
   getCollectionDb,
   getQueries,
   successResponseApi,
+  updateAdvertViews,
 } from '@/lib';
 import { Advert } from '@/models';
 import { NextRequest } from 'next/server';
@@ -25,6 +26,8 @@ export const GET = connectDB(async (req: NextRequest) => {
   if (!advertsCol) {
     return errorResponseApi({ message: 'Internal server error' });
   }
+
+  await updateAdvertViews(ctx, advertsCol);
 
   const advert = await getAdvert(ctx, advertsCol);
 
