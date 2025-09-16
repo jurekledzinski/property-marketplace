@@ -2,13 +2,13 @@ import { Advert } from '@/models';
 import { DraftPayload } from '../draft-images';
 
 type OmitKeys =
-  | 'price'
-  | 'year'
   | 'area'
-  | 'rooms'
   | 'bathrooms'
+  | 'deleteImages'
   | 'images'
-  | 'deleteImages';
+  | 'price'
+  | 'rooms'
+  | 'year';
 
 type ExtendedImage = {
   fileId: string;
