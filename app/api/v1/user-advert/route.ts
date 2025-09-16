@@ -9,47 +9,38 @@ import {
   errorResponseApi,
   DataDB,
   formatDBDocumentId,
+  GetUserAdvertSearchParams,
+  getQueries,
+  successResponseApi,
 } from '@/lib';
 
 export const GET = connectDBAuth(
-  auth(async (request) => {
-    const searchParams = request.nextUrl.searchParams;
-    const advertId = searchParams.get('id');
+  auth(async (req) => {
+    const { id } = getQueries<GetUserAdvertSearchParams>(req);
 
-    if (!request.auth) {
+    if (!req.auth) {
       return errorResponseApi({ message: 'Unauthorized', status: 401 });
     }
 
-    if (!advertId) {
-      return errorResponseApi({
-        message: 'internal server error',
-        status: 500,
-      });
+    if (!id) return errorResponseApi({ message: 'Internal server error' });
+
+    const ctx = { advertId: id, userId: req.auth.user.id };
+
+    const advertsCol = getCollectionDb<Advert>('adverts');
+
+    if (!advertsCol) {
+      return errorResponseApi({ message: 'Internal server error' });
     }
 
-    const collection = getCollectionDb<Advert>('adverts');
-
-    if (!collection) {
-      return errorResponseApi({
-        message: 'internal server error',
-        status: 500,
-      });
-    }
-
-    const userAdvert = await collection.findOne<DataDB<Advert>>({
-      _id: new ObjectId(advertId),
-      userId: request.auth.user.id,
+    const userAdvert = await advertsCol.findOne<DataDB<Advert>>({
+      _id: new ObjectId(ctx.advertId),
+      userId: ctx.userId,
     });
 
-    if (!userAdvert) {
-      return errorResponseApi({
-        message: 'Advert not found',
-        status: 404,
-      });
-    }
+    if (!userAdvert) return errorResponseApi({ message: 'Not found' });
 
     const result = formatDBDocumentId(userAdvert);
 
-    return Response.json({ success: true, payload: result });
+    return successResponseApi({ payload: result });
   })
 );
