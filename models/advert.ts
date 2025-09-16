@@ -6,12 +6,6 @@ const image = z.object({
   url: z.string(),
 });
 
-const deleteImage = z.object({
-  fileId: z.string(),
-  name: z.string(),
-  url: z.string(),
-});
-
 export const AdvertSchema = z.object({
   advertiser: z.string(),
   userId: z.string(),
@@ -26,7 +20,7 @@ export const AdvertSchema = z.object({
   description: z.string(),
   files: z.array(z.instanceof(File)).optional(),
   images: z.array(image),
-  deleteImages: z.array(deleteImage).optional(),
+  deleteImages: z.array(image).optional(),
   type: z.string(), // apartment | house
   status: z.string(), // rent | sale
   condition: z.string(),
