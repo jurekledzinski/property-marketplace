@@ -6,12 +6,14 @@ export const serverEndpoints = {
 
   adverts: (domain: string) => `${domain}/api/v1/adverts`,
 
-  userMessages: (domain: string) => `${domain}/api/v1/user-messages`,
-
-  userAdverts: (domain: string) => `${domain}/api/v1/user-adverts`,
+  user: (domain: string) => `${domain}/api/v1/user-profile`,
 
   userAdvert: (domain: string, advertId?: string) =>
     `${domain}/api/v1/user-advert?id=${advertId}`,
 
-  user: (domain: string) => `${domain}/api/v1/user-profile`,
+  userAdverts: (domain: string) => `${domain}/api/v1/user-adverts`,
+
+  userAnalytics: (domain: string) => `${domain}/api/v1/user-analytics`,
+
+  userMessages: (domain: string) => `${domain}/api/v1/user-messages`,
 };
