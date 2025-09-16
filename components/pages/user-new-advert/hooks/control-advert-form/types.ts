@@ -8,7 +8,9 @@ type OmitKeys =
   | 'images'
   | 'price'
   | 'rooms'
-  | 'year';
+  | 'year'
+  | 'userId'
+  | 'views';
 
 type ExtendedImage = {
   fileId: string;
