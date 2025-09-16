@@ -1,5 +1,17 @@
 import { z } from 'zod';
 
+const image = z.object({
+  fileId: z.string(),
+  name: z.string(),
+  url: z.string(),
+});
+
+const deleteImage = z.object({
+  fileId: z.string(),
+  name: z.string(),
+  url: z.string(),
+});
+
 export const AdvertSchema = z.object({
   advertiser: z.string(),
   userId: z.string(),
@@ -13,12 +25,8 @@ export const AdvertSchema = z.object({
   title: z.string(),
   description: z.string(),
   files: z.array(z.instanceof(File)).optional(),
-  images: z.array(
-    z.object({ fileId: z.string(), name: z.string(), url: z.string() })
-  ),
-  deleteImages: z
-    .array(z.object({ fileId: z.string(), name: z.string(), url: z.string() }))
-    .optional(),
+  images: z.array(image),
+  deleteImages: z.array(deleteImage).optional(),
   type: z.string(), // apartment | house
   status: z.string(), // rent | sale
   condition: z.string(),
@@ -27,10 +35,10 @@ export const AdvertSchema = z.object({
   area: z.coerce.number(),
   rooms: z.coerce.number(),
   bathrooms: z.coerce.number(),
-
   style: z.string(),
   amenities: z.array(z.string()),
   createdAt: z.date().optional(),
+  views: z.number(),
 });
 
 export type Advert = z.infer<typeof AdvertSchema>;
