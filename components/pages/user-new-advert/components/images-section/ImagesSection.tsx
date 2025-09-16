@@ -59,6 +59,7 @@ export const ImagesSection = ({
           rules={{ validate }}
           render={({ field: { onChange, ...rest } }) => (
             <DropZone
+              className={styles.dropZone}
               {...rest}
               onDrop={(e) => {
                 e.preventDefault();
