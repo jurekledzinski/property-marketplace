@@ -4,7 +4,9 @@ export const serverEndpoints = {
   advert: (domain: string, advertId?: string) =>
     `${domain}/api/v1/advert?id=${advertId}`,
 
-  adverts: (domain: string) => `${domain}/api/v1/adverts`,
+  adverts: (domain: string, searchParams: URLSearchParams) => {
+    return `${domain}/api/v1/adverts?${searchParams.toString()}`;
+  },
 
   user: (domain: string) => `${domain}/api/v1/user-profile`,
 
