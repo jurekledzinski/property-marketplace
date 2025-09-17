@@ -1,9 +1,14 @@
 import { InputsAdvertsFilter } from '@/components';
 
-interface Filters extends Partial<Omit<InputsAdvertsFilter, 'amenities'>> {
+type Filters = Partial<Omit<InputsAdvertsFilter, 'amenities'>>;
+type Pagination = { page?: string; pageSize?: string };
+
+export interface AdvertsSearchParams extends Filters, Pagination {
   amenities?: string;
   search?: string;
   sort?: string;
 }
 
-export type HomePageProps = { searchParams: Promise<Filters> };
+export type HomePageProps = {
+  searchParams: Promise<AdvertsSearchParams>;
+};
