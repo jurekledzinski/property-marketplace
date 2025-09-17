@@ -7,8 +7,11 @@ import { AdvertsLayout, HeroSection } from './components';
 export const Home = ({
   advertCards,
   filters,
+  page,
+  pageSize,
   searchValue,
   sortValue,
+  totalItems,
 }: HomeProps) => {
   return (
     <>
@@ -22,8 +25,11 @@ export const Home = ({
           <AdvertsLayout
             advertCards={advertCards}
             filters={filters}
+            page={page}
+            pageSize={pageSize}
             searchValue={searchValue}
             sortValue={sortValue}
+            totalItems={totalItems}
           />
         </Container>
       </Box>
