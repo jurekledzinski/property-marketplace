@@ -48,12 +48,15 @@ export const getUserAdvertPage = async (
 
 // Fetch all adverts server component
 
-export const getAdvertsPage = async (headers?: ReadonlyHeaders) => {
+export const getAdvertsPage = async (
+  searchParams: URLSearchParams,
+  headers?: ReadonlyHeaders
+) => {
   const domain = await getDomain();
 
-  const response = await fetchApi<Adverts[]>({
+  const response = await fetchApi<{ data: Adverts[]; totalItems: number }>({
     tags: ['adverts'],
-    url: serverEndpoints.adverts(domain),
+    url: serverEndpoints.adverts(domain, searchParams),
     headers,
   });
 
