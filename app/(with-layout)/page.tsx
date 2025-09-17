@@ -1,27 +1,27 @@
-import { getAdvertsPage } from '@/lib';
+import { decodeQueryUrl, getAdvertsPage } from '@/lib';
 import { headers } from 'next/headers';
 import { Home, InputsAdvertsFilter } from '@/components';
 import { HomePageProps } from './types';
 
 const HomePage = async ({ searchParams }: HomePageProps) => {
-  const { search, sort, ...filters } = await searchParams;
-  const headersData = await headers();
-  const adverts = await getAdvertsPage(headersData);
+  const data = await searchParams;
+  const queries = new URLSearchParams(Object.fromEntries(Object.entries(data)));
+  const { page, search, sort, ...filters } = await searchParams;
 
-  const decodedFilters = Object.fromEntries(
-    Object.entries(filters).map((item) =>
-      item[0] === 'amenities'
-        ? [item[0], decodeURIComponent(item[1]).split(',')]
-        : [item[0], decodeURIComponent(item[1])]
-    )
-  ) as InputsAdvertsFilter;
+  const headersData = await headers();
+  const adverts = await getAdvertsPage(queries, headersData);
+
+  const decodedFilters = decodeQueryUrl<object>(filters, ['amenities']);
 
   return (
     <Home
-      advertCards={adverts || []}
-      searchValue={search}
-      sortValue={sort}
-      filters={decodedFilters}
+      advertCards={adverts?.data || []}
+      filters={decodedFilters as InputsAdvertsFilter}
+      page={Number(page) || 1}
+      pageSize={5}
+      searchValue={decodeURIComponent(search ?? '')}
+      sortValue={decodeURIComponent(sort ?? '')}
+      totalItems={adverts?.totalItems || 0}
     />
   );
 };
