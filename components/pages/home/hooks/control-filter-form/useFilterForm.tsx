@@ -76,7 +76,7 @@ export const useFilterForm = ({
   const onSubmit: SubmitHandler<InputsAdvertsFilter> = useCallback(
     (data) => {
       const formatedData = removeNonDigitsObj(data, ['priceFrom', 'priceTo']);
-      setQueryObject(formatedData);
+      setQueryObject({ ...formatedData, page: '1' });
     },
     [setQueryObject]
   );
