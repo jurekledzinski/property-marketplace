@@ -2,6 +2,7 @@ export * from './actionTryCatch';
 export * from './authMessage';
 export * from './bodyJson';
 export * from './cookies';
+export * from './decodeQueryUrl';
 export * from './formatDBDocumentId';
 export * from './getDomain';
 export * from './responseAction';
