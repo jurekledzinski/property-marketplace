@@ -15,13 +15,17 @@ import {
   useFilterForm,
   FiltersChipsPanel,
   useAdvertsFilterUtils,
+  HomeAdvertsPagination,
 } from '@/components';
 
 export const AdvertsLayout = ({
   advertCards,
   filters,
+  page,
+  pageSize,
   searchValue,
   sortValue,
+  totalItems,
 }: AdvertsLayoutProps) => {
   const { openFiltersPanel } = useDrawer();
   const controlQueries = useSetQuries();
@@ -33,8 +37,8 @@ export const AdvertsLayout = ({
     <Box className={styles.layout}>
       <Box className={styles.wrapper}>
         <HeaderPanel
-          searchValue={decodeURIComponent(searchValue ?? '')}
-          sortValue={decodeURIComponent(sortValue ?? '')}
+          searchValue={searchValue}
+          sortValue={sortValue}
           onClearQuerySearch={controlQueries.onClear}
           onSearchQuery={controlQueries.setQueryString}
           onSortQuery={controlQueries.setQueryString}
@@ -46,6 +50,14 @@ export const AdvertsLayout = ({
           />
         )}
         <CardsSection advertCards={advertCards} />
+        <HomeAdvertsPagination
+          amountData={totalItems}
+          currentPage={page}
+          itemsPerPage={pageSize}
+          onChangePage={(page) => {
+            controlQueries.setQueryString(page.toString(), 'page');
+          }}
+        />
       </Box>
       <Backdrop
         className={styles.backdropFilters}
