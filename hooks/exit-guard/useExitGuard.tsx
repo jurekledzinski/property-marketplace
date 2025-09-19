@@ -2,7 +2,7 @@
 import { useControlModal } from '@/components';
 import { UseExitGuardProps } from './types';
 import { usePreventBackNavigation, usePreventLinkNavigation } from '@/hooks';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export const useExitGuard = ({
   confirmUrl,
@@ -12,6 +12,7 @@ export const useExitGuard = ({
   onBlockLeave,
   selectors,
 }: UseExitGuardProps) => {
+  const [isLeavePending, setIsLeavePending] = useState(false);
   const linkHref = useRef('');
   const { onClose, onOpen: onOpenModal, isOpen } = useControlModal();
 
@@ -27,9 +28,12 @@ export const useExitGuard = ({
     selectors,
   });
 
-  const onConfirm = () => {
-    onConfirmLeave(linkHref.current ? linkHref.current : confirmUrl);
+  const onConfirm = async () => {
+    const { current } = linkHref;
+    setIsLeavePending(true);
+    const result = await onConfirmLeave(current ? current : confirmUrl);
+    if (result) setIsLeavePending(false);
   };
 
-  return { isOpen, onClose, onConfirm };
+  return { isLeavePending, isOpen, onClose, onConfirm };
 };

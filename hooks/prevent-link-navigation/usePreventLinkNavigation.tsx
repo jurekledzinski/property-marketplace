@@ -10,6 +10,7 @@ export const usePreventLinkNavigation = ({
 }: UsePreventLinkNavigationProps) => {
   useEffect(() => {
     if (!isDirty || !selectors.length) return;
+    const elements: Element[] = [];
 
     const handleClickElement = (e: Event) => {
       e.preventDefault();
@@ -22,11 +23,14 @@ export const usePreventLinkNavigation = ({
 
       for (const element of listElements) {
         element.addEventListener('click', handleClickElement);
-
-        return () => {
-          element.removeEventListener('click', handleClickElement);
-        };
+        elements.push(element);
       }
     }
+
+    return () => {
+      for (const element of elements) {
+        element.removeEventListener('click', handleClickElement);
+      }
+    };
   }, [currentUrl, isDirty, onOpen, selectors]);
 };
