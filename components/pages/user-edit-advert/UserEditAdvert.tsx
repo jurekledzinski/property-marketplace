@@ -21,19 +21,24 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
   const [state, action, isPending] = useActionState(editAdvert, initialState);
   const { description, title } = modalMessages.warningLeaveForm();
 
-  const { deleteDraft, deleteUploadedFiles, form, uploadFiles } =
-    useAdvertFormWithUploads({
-      action,
-      advert,
-      isPending,
-      mode: 'edit',
-      success: state.success,
-      onFailed: () => !state.success && showErrorToast(state.message),
-      onSuccess: () => {
-        if (state.success) showSuccessToast(state.message);
-        router.push('/user/adverts');
-      },
-    });
+  const {
+    deleteDraft,
+    deleteUploadedFiles,
+    form,
+    isUploadPending,
+    uploadFiles,
+  } = useAdvertFormWithUploads({
+    action,
+    advert,
+    isPending,
+    mode: 'edit',
+    success: state.success,
+    onFailed: () => !state.success && showErrorToast(state.message),
+    onSuccess: () => {
+      if (state.success) showSuccessToast(state.message);
+      router.push('/user/adverts');
+    },
+  });
 
   const { isOpen, onClose, onConfirm } = useExitGuard({
     confirmUrl: '/user/adverts',
@@ -57,21 +62,22 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
       </Heading>
       <AdvertForm
         controls={form.formControl}
+        deleteUploadedFiles={deleteUploadedFiles}
+        isPending={isPending}
+        isUploadPending={isUploadPending}
         onSubmit={form.onSubmit}
         reset={form.reset}
-        deleteUploadedFiles={deleteUploadedFiles}
         uploadFiles={uploadFiles}
         validationInfo={validationFilesInfo}
-        isPending={isPending}
       />
       <Modal
         confirmText="Leave"
-        title="Leave page warning"
         isOpen={isOpen}
-        onClose={onClose}
         onCancel={onClose}
-        variant="warning"
+        onClose={onClose}
         onConfirm={onConfirm}
+        title="Leave page warning"
+        variant="warning"
       >
         {title}
         <br />

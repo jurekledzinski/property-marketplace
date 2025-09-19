@@ -29,49 +29,58 @@ export const useAdvertFormWithUploads = ({
     onFailed,
   });
 
-  const { deleteUploadedFiles, uploadFiles } = useControlUploadFiles({
-    limit: 3,
-    onAddImages: (addedImages) => {
-      const images = form.formControl.getValues('images');
-      const deletedImages = form.deletedImages || [];
+  const { deleteUploadedFiles, isUploadPending, uploadFiles } =
+    useControlUploadFiles({
+      limit: 3,
+      onAddImages: (addedImages) => {
+        const images = form.formControl.getValues('images');
+        const deletedImages = form.deletedImages || [];
 
-      const markImages = addedImages.map((img) => ({
-        ...img,
-        isOriginal: false,
-      }));
-      const mergedImages = images.concat(markImages);
-      form.formControl.setValue('images', mergedImages, {
-        shouldDirty: true,
-      });
+        const markImages = addedImages.map((img) => ({
+          ...img,
+          isOriginal: false,
+        }));
+        const mergedImages = images.concat(markImages);
+        form.formControl.setValue('images', mergedImages, {
+          shouldDirty: true,
+        });
 
-      updateDraft(mergedImages, deletedImages);
-    },
-    onDeleteImages: (delImage) => {
-      const images = form.formControl.getValues('images');
-      const deletedImages = form.deletedImages || [];
+        updateDraft(mergedImages, deletedImages);
+      },
+      onDeleteImages: (delImage) => {
+        const images = form.formControl.getValues('images');
+        const deletedImages = form.deletedImages || [];
 
-      const restImages = images.filter((img) => img.fileId !== delImage.fileId);
-      const mergeDeletedImages = [...deletedImages, delImage];
+        const restImages = images.filter(
+          (img) => img.fileId !== delImage.fileId
+        );
+        const mergeDeletedImages = [...deletedImages, delImage];
 
-      form.formControl.setValue('images', restImages, { shouldDirty: true });
-      form.onSetDeleteImages(mergeDeletedImages);
+        form.formControl.setValue('images', restImages, { shouldDirty: true });
+        form.onSetDeleteImages(mergeDeletedImages);
 
-      updateDraft(restImages, mergeDeletedImages);
+        updateDraft(restImages, mergeDeletedImages);
 
-      showPromisToast({
-        promise: new Promise((resolve) =>
-          setTimeout(resolve, Math.round(Math.random() * 3000))
-        ) as Promise<Response>,
-        name: delImage.name,
-        task: 'deleting',
-        messageError: 'Could not delete',
-        messageSuccess: 'Image deleted',
-      });
-    },
-    onUpdateLocalFiles: (restFiles) => {
-      form.formControl.setValue('files', restFiles);
-    },
-  });
+        showPromisToast({
+          promise: new Promise((resolve) =>
+            setTimeout(resolve, Math.round(Math.random() * 3000))
+          ) as Promise<Response>,
+          name: delImage.name,
+          task: 'deleting',
+          messageError: 'Could not delete',
+          messageSuccess: 'Image deleted',
+        });
+      },
+      onUpdateLocalFiles: (restFiles) => {
+        form.formControl.setValue('files', restFiles);
+      },
+    });
 
-  return { deleteDraft, deleteUploadedFiles, form, uploadFiles };
+  return {
+    deleteDraft,
+    deleteUploadedFiles,
+    isUploadPending,
+    form,
+    uploadFiles,
+  };
 };

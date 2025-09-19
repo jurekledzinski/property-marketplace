@@ -19,6 +19,7 @@ import {
 export const AdvertForm = ({
   controls,
   isPending,
+  isUploadPending,
   onSubmit,
   reset,
   uploadFiles,
@@ -103,11 +104,12 @@ export const AdvertForm = ({
         />
         <ButtonGroup mt="mt-md" fullWidth>
           <Button
-            type="submit"
-            label="Sign In"
+            disabled={isUploadPending}
             fullWidth
-            size="size-lg"
             isLoading={isPending}
+            label="Sign In"
+            size="size-lg"
+            type="submit"
           />
         </ButtonGroup>
       </FormGroup>

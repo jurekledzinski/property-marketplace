@@ -16,18 +16,23 @@ export const UserNewAdvert = () => {
   const [state, action, isPending] = useActionState(newAdvert, initialState);
   const { description, title } = modalMessages.warningLeaveForm();
 
-  const { deleteDraft, deleteUploadedFiles, form, uploadFiles } =
-    useAdvertFormWithUploads({
-      action,
-      isPending,
-      mode: 'new',
-      success: state.success,
-      onFailed: () => !state.success && showErrorToast(state.message),
-      onSuccess: () => {
-        if (state.success) showSuccessToast(state.message);
-        queryClient.invalidateQueries({ queryKey: ['drafts'] });
-      },
-    });
+  const {
+    deleteDraft,
+    deleteUploadedFiles,
+    isUploadPending,
+    form,
+    uploadFiles,
+  } = useAdvertFormWithUploads({
+    action,
+    isPending,
+    mode: 'new',
+    success: state.success,
+    onFailed: () => !state.success && showErrorToast(state.message),
+    onSuccess: () => {
+      if (state.success) showSuccessToast(state.message);
+      queryClient.invalidateQueries({ queryKey: ['drafts'] });
+    },
+  });
 
   const { isOpen, onClose, onConfirm } = useExitGuard({
     confirmUrl: '/user/dashboard',
@@ -51,21 +56,22 @@ export const UserNewAdvert = () => {
       </Heading>
       <AdvertForm
         controls={form.formControl}
+        deleteUploadedFiles={deleteUploadedFiles}
+        isPending={isPending}
+        isUploadPending={isUploadPending}
         onSubmit={form.onSubmit}
         reset={form.reset}
-        isPending={isPending}
         uploadFiles={uploadFiles}
-        deleteUploadedFiles={deleteUploadedFiles}
         validationInfo={validationFilesInfo}
       />
       <Modal
         confirmText="Leave"
-        title="Leave page warning"
         isOpen={isOpen}
-        onClose={onClose}
         onCancel={onClose}
-        variant="warning"
+        onClose={onClose}
         onConfirm={onConfirm}
+        title="Leave page warning"
+        variant="warning"
       >
         {title}
         <br />

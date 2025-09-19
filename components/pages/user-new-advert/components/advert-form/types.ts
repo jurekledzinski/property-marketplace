@@ -15,4 +15,5 @@ export type AdvertFormProps = {
   ) => void;
   validationInfo: OnError;
   isPending?: boolean;
+  isUploadPending?: boolean;
 };
