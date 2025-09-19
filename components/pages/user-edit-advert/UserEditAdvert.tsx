@@ -40,7 +40,7 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
     },
   });
 
-  const { isOpen, onClose, onConfirm } = useExitGuard({
+  const { isLeavePending, isOpen, onClose, onConfirm } = useExitGuard({
     confirmUrl: '/user/adverts',
     currentUrl: pathname,
     isDirty: form.formControl.formState.isDirty,
@@ -50,9 +50,10 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
       const deletedImages = form.deletedImages || [];
       const result = await deleteDraft(images, deletedImages);
       if (result.success) router.push(url);
+      return result.success;
     },
     onBlockLeave: (url) => router.push(url),
-    selectors: ['menu-link'],
+    selectors: ['logo-link', 'menu-link'],
   });
 
   return (
@@ -73,6 +74,7 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
       <Modal
         confirmText="Leave"
         isOpen={isOpen}
+        isPending={isLeavePending}
         onCancel={onClose}
         onClose={onClose}
         onConfirm={onConfirm}
