@@ -4,12 +4,15 @@
   --drawer-top: 0px;
 }
 
-/* To będzie dynamiczne top ile  */
 .inner {
   position: sticky;
-  top: var(--drawer-top);
+  top: 0;
   align-self: flex-start;
   min-height: inherit;
+}
+
+.inner.open {
+  top: var(--drawer-top);
 }
 
 .horizontal,
@@ -142,6 +145,11 @@
   .vertical.right.pinned,
   .vertical.left.pinned {
     width: var(--drawer-width);
+  }
+
+  .vertical.left.pinned,
+  .vertical.right.pinned .inner {
+    top: var(--drawer-top);
   }
 
   /* --- Push --- */
