@@ -5,6 +5,7 @@ import { ModalFooterProps } from './types';
 export const ModalFooter = ({
   cancelText,
   confirmText,
+  isPending,
   onCancel,
   onConfirm,
   type,
@@ -29,6 +30,7 @@ export const ModalFooter = ({
         onClick={onConfirm}
         type={type}
         size="size-xs"
+        isLoading={isPending}
       />
     </footer>
   );

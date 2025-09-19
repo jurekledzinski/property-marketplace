@@ -52,6 +52,7 @@ export const Modal = ({
           <ModalHeader title={title} onClose={onClose} variant={variant} />
           <ModalBody>{children}</ModalBody>
           <ModalFooter
+            isPending={isPending}
             cancelText={cancelText}
             confirmText={confirmText}
             onCancel={onCancel}
