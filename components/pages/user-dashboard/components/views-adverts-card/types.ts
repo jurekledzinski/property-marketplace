@@ -1,8 +1,7 @@
 import { DashboardAnalytics } from '@/models';
-import { ThemeMode } from '@/store';
 
 export type ViewAdvertsCardProps = {
-  mode: ThemeMode;
+  classChartContainer?: string;
   views?: DashboardAnalytics['views'];
   label?: string;
   title?: string;

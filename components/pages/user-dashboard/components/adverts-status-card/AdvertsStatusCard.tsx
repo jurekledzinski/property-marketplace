@@ -5,24 +5,17 @@ import {
   bgColors,
   Card,
   Heading,
-  useChartBgFormat,
   useChartPieControl,
   useChartPieOptions,
 } from '@/components';
 
 export const AdvertsStatusCard = ({
   label,
-  mode,
   stats,
   title,
 }: AdvertsStatusCardProps) => {
-  const backgroundColor = useChartBgFormat({
-    bgColors: [...bgColors].reverse(),
-    mode,
-  });
-
   const formattedStats = useChartPieControl({
-    backgroundColor,
+    backgroundColor: bgColors.reverse(),
     chartData: stats,
     label,
   });

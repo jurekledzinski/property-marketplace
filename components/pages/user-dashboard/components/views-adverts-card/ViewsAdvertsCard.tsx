@@ -7,21 +7,18 @@ import {
   useChartBarOptions,
   Card,
   bgColors,
-  useChartBgFormat,
 } from '@/components';
 
 export const ViewsAdvertsCard = ({
-  mode,
+  classChartContainer,
   label,
   title,
   views,
 }: ViewAdvertsCardProps) => {
-  const backgroundColor = useChartBgFormat({ bgColors, mode });
-
   const formattedViews = useChartBarControl({
     chartData: views,
     label,
-    backgroundColor,
+    backgroundColor: bgColors,
   });
   const options = useChartBarOptions({ chartData: views });
 
@@ -30,7 +27,11 @@ export const ViewsAdvertsCard = ({
       <Heading className={styles.heading} level={4} mb="mb-md">
         {title}
       </Heading>
-      <AdvertsViewsChart options={options} views={formattedViews} />
+      <AdvertsViewsChart
+        classChartContainer={classChartContainer}
+        options={options}
+        views={formattedViews}
+      />
     </Card>
   );
 };
