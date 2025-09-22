@@ -20,6 +20,8 @@ const projection = {
   year: 0,
 };
 
+const minDays = 5 * 24 * 60 * 60 * 1000;
+
 export const getAdverts = async (
   col: Collection<DataDB<Advert>>,
   searchParams: GetAdvertsSearchParams
@@ -122,7 +124,22 @@ export const getAdverts = async (
   const matchStage: Document[] = [
     {
       $match: {
-        ...(matchArray.length ? { $and: [...matchArray] } : {}),
+        ...(matchArray.length
+          ? {
+              $and: [
+                ...matchArray,
+                {
+                  updatedAt: { $gte: new Date(Date.now() - minDays) },
+                },
+              ],
+            }
+          : {
+              $and: [
+                {
+                  updatedAt: { $gte: new Date(Date.now() - minDays) },
+                },
+              ],
+            }),
         $or: [
           { title: { $regex: search || '', $options: 'i' } },
           { description: { $regex: search || '', $options: 'i' } },
