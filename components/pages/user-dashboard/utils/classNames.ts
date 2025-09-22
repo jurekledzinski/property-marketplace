@@ -1,5 +1,5 @@
 import styles from '../UserDashboard.module.css';
-import { ClassNamesUserDashboard } from './types';
+import { ClassNamesGrid, ClassNamesUserDashboard } from './types';
 import { generateClassNames } from '@/helpers';
 
 export const getClassNamesUserDashboard: ClassNamesUserDashboard = (params) => {
@@ -13,6 +13,17 @@ export const getClassNamesUserDashboard: ClassNamesUserDashboard = (params) => {
     }),
     content: generateClassNames(styles, {
       content: true,
+      open: Boolean(open),
+    }),
+  };
+};
+
+export const getClassNamesGrid: ClassNamesGrid = (params) => {
+  const { open } = params;
+
+  return {
+    chartContainer: generateClassNames(styles, {
+      chartContainer: true,
       open: Boolean(open),
     }),
   };

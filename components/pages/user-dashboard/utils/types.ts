@@ -5,3 +5,7 @@ export type ClassNamesUserDashboard = (params: Params) => {
   container: string;
   content: string;
 };
+
+export type ClassNamesGrid = (params: Params) => {
+  chartContainer: string;
+};
