@@ -19,6 +19,7 @@ export const getUserAdverts = async (
       userId: 1,
       type: 1,
       createdAt: 1,
+      updatedAt: 1,
     })
     .toArray();
 
