@@ -400,7 +400,7 @@
   display: flex;
   width: inherit;
   border: 1px solid var(--color-surface-30);
-  transition: box-shadow 300ms linear;
+  /* transition: box-shadow 300ms linear; */
 }
 
 .wrapper .input,
@@ -418,7 +418,8 @@
 .wrapper:focus-within,
 .wrapper.focused {
   border-color: var(--color-focus-primary);
-  outline: 1px solid var(--color-focus-primary);
+  box-shadow: inset 0 0 0 1px var(--color-focus-primary);
+  outline: none;
 }
 
 /* --- Styled elements inside --- */
@@ -527,14 +528,16 @@
 
 .wrapper-valid:focus-within,
 .wrapper-valid.focused {
-  outline: 1px solid var(--color-focus-success);
   border-color: var(--color-focus-success);
+  box-shadow: inset 0 0 0 1px var(--color-focus-success);
+  outline: none;
 }
 
 .wrapper-inValid:focus-within,
 .wrapper-inValid.focused {
-  outline: 1px solid var(--color-focus-negative);
   border-color: var(--color-focus-negative);
+  box-shadow: inset 0 0 0 1px var(--color-focus-negative);
+  outline: none;
 }
 
 .wrapper-valid:focus-within .input,
@@ -542,6 +545,7 @@
 .wrapper-valid:focus-within .textarea,
 .wrapper-inValid:focus-within .textarea {
   box-shadow: none;
+  outline: none;
 }
 
 /* --- Variant contained --- */
