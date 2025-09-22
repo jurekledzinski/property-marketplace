@@ -15,7 +15,7 @@ export const AdvertsStatusCard = ({
   title,
 }: AdvertsStatusCardProps) => {
   const formattedStats = useChartPieControl({
-    backgroundColor: bgColors.reverse(),
+    backgroundColor: [...bgColors].reverse(),
     chartData: stats,
     label,
   });
