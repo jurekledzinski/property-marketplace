@@ -48,7 +48,7 @@ export const editAdvert = connectDBAction(
 
     await advertsCol.updateOne(
       { _id: new ObjectId(parsedData.id) },
-      { $set: { ...parsedData } }
+      { $set: { ...parsedData, updatedAt: new Date() } }
     );
 
     return successResponseAction('Edit advert successful');
