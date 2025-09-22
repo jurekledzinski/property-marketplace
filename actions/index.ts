@@ -6,5 +6,6 @@ export * from './login';
 export * from './newAdvert';
 export * from './newMessage';
 export * from './register';
+export * from './updateAdvertStatus';
 export * from './updatePassword';
 export * from './updateProfile';
