@@ -1,1 +1,1 @@
-export * from './delete-advert';
+export * from './advert-actions';

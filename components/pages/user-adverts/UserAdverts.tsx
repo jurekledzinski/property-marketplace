@@ -1,6 +1,7 @@
 'use client';
-import { Heading, Modal, useDeleteAdvert } from '@/components';
+import { Heading, Modal, useAdvertActions } from '@/components';
 import { modalMessages } from '@/constants';
+import { showSuccessToast } from '@/helpers';
 import { UserAdvertsProps } from './types';
 
 import {
@@ -12,8 +13,13 @@ import {
 
 export const UserAdverts = ({ adverts = [] }: UserAdvertsProps) => {
   const { description, title } = modalMessages.deleteAdvert();
-  const { action, onConfirm, onDelete, onSuccess, modal } = useDeleteAdvert();
-  const columns = useAdvertsColumns({ onDelete });
+
+  const { action, onActive, onConfirm, onDelete, onSuccess, modal } =
+    useAdvertActions({
+      onSuccess: () => showSuccessToast('Advert activated successfully'),
+    });
+
+  const columns = useAdvertsColumns({ onActive, onDelete });
   const controlTable = useControlAdvertsTable({ adverts, columns });
 
   return (
