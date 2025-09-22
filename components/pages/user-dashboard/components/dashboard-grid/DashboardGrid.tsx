@@ -1,11 +1,12 @@
 'use client';
 import styles from '../../UserDashboard.module.css';
 import { DashboardGridProps } from './types';
-import { useTheme } from '@/store';
+import { useDrawer } from '@/store';
 import {
   AdvertsStatusCard,
   AdvertsTypeStatsCard,
   Box,
+  getClassNamesGrid,
   MessagesCard,
   TopAdvertCard,
   TotalAdvertsCard,
@@ -13,7 +14,8 @@ import {
 } from '@/components';
 
 export const DashboardGrid = ({ analytics }: DashboardGridProps) => {
-  const { mode } = useTheme();
+  const { openMenuPanel: open } = useDrawer();
+  const classes = getClassNamesGrid({ open });
 
   return (
     <Box className={styles.grid}>
@@ -26,13 +28,12 @@ export const DashboardGrid = ({ analytics }: DashboardGridProps) => {
       <MessagesCard amount={analytics?.total.messages || 0} />
       <AdvertsStatusCard
         label="Amount"
-        mode={mode}
         stats={analytics?.stats || []}
         title="Status adverts"
       />
       <ViewsAdvertsCard
+        classChartContainer={classes.chartContainer}
         label="Views"
-        mode={mode}
         title="Views per advert"
         views={analytics?.views || []}
       />
