@@ -23,12 +23,17 @@ ChartJS.register(
 );
 
 export const AdvertsViewsChart = ({
+  classChartContainer,
   options,
   views,
 }: AdvertsViewsChartProps) => {
   return (
     <div className={styles.viewsChart}>
-      <Bar data={views ?? { labels: [], datasets: [] }} options={options} />
+      <div className={classChartContainer}>
+        <div id="chartBody" className={styles.chartBody}>
+          <Bar data={views ?? { labels: [], datasets: [] }} options={options} />
+        </div>
+      </div>
     </div>
   );
 };
