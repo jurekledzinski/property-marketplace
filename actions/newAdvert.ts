@@ -42,6 +42,7 @@ export const newAdvert = connectDBAction(
     advertsCol.insertOne({
       ...parsedData,
       createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
     return successResponseAction('Create advert successful');
