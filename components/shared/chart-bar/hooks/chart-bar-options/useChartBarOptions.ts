@@ -7,7 +7,6 @@ export const useChartBarOptions = ({ chartData }: UseChartBarOptionsProps) => {
   const options = useMemo<ChartOptions<'bar'>>(() => {
     return {
       indexAxis: 'x',
-      responsive: true,
       plugins: {
         legend: { display: false },
         tooltip: {
