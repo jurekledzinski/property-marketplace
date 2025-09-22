@@ -15,7 +15,13 @@ export const UserDashboard = ({ children }: UserDashboardProps) => {
     <QueryClientProvider client={queryClient}>
       <Box className={classes.dashboard}>
         <Container className={classes.container} m="m-center" maxWidth="mw-md">
-          <Drawer direction="left" top={54} open={open} variant="push">
+          <Drawer
+            className={classes.drawer}
+            direction="left"
+            top={54}
+            open={open}
+            variant="push"
+          >
             <DrawerPanel />
           </Drawer>
           <Box className={classes.content}>{children}</Box>

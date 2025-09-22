@@ -7,6 +7,7 @@ export const getClassNamesUserDashboard: ClassNamesUserDashboard = (params) => {
 
   return {
     dashboard: styles.dashboard,
+    drawer: styles.drawer,
     container: generateClassNames(styles, {
       container: true,
       open: Boolean(open),
