@@ -2,7 +2,6 @@
   min-height: inherit;
   padding: 0.5rem 0.5rem 0.5rem 0;
   background-color: var(--color-surface-0);
-  border-right: 1px solid var(--color-surface-30);
 }
 
 .listItem {
