@@ -32,6 +32,7 @@ export const AdvertSchema = z.object({
   style: z.string(),
   amenities: z.array(z.string()),
   createdAt: z.date().optional(),
+  updatedAt: z.date().optional(),
   views: z.number(),
 });
 
