@@ -5,6 +5,7 @@ import type { ChartOptions } from 'chart.js';
 export const useChartPieOptions = () => {
   const options = useMemo<ChartOptions<'pie'>>(() => {
     return {
+      responsive: true,
       plugins: {
         legend: {
           align: 'center',
@@ -18,7 +19,6 @@ export const useChartPieOptions = () => {
           cornerRadius: 0,
         },
       },
-      maintainAspectRatio: false,
     };
   }, []);
 
