@@ -23,6 +23,21 @@
   align-self: flex-end;
 }
 
+.active {
+  color: var(--color-success-500);
+  text-transform: capitalize;
+}
+
+.inActive {
+  color: var(--color-negative-500);
+  text-transform: capitalize;
+}
+
+.soonExpire {
+  color: var(--color-warning-500);
+  text-transform: capitalize;
+}
+
 @media (min-width: 1000px) {
   .wrapperContent {
     min-width: initial;
