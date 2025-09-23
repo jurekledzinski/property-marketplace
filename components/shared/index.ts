@@ -34,6 +34,7 @@ export * from './loader';
 export * from './menu';
 export * from './message';
 export * from './modal';
+export * from './no-results';
 export * from './pagination';
 export * from './password-input';
 export * from './pop-over';
