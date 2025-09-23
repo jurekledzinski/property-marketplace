@@ -13,6 +13,9 @@ export const HomeAdvertsPagination = ({
   itemsPerPage,
   onChangePage,
 }: HomeAdvertsPaginationProps) => {
+  const firstPage = (currentPage - 1) * itemsPerPage + 1;
+  const lastPage = Math.min(currentPage * itemsPerPage, amountData);
+
   return (
     <Pagination
       size="size-sm"
@@ -22,15 +25,31 @@ export const HomeAdvertsPagination = ({
       onChangePage={onChangePage}
       perPage={[itemsPerPage]}
     >
-      <PaginationArrow id="first" label={faAnglesLeft} disabled={false} />
-      <PaginationArrow id="prev" label={faChevronLeft} disabled={false} />
+      <PaginationArrow
+        id="first"
+        label={faAnglesLeft}
+        disabled={firstPage === 1}
+      />
+      <PaginationArrow
+        id="prev"
+        label={faChevronLeft}
+        disabled={firstPage === 1}
+      />
       <PaginationInfo
         indexStart={(currentPage - 1) * itemsPerPage + 1}
         indexEnd={Math.min(currentPage * itemsPerPage, amountData)}
         totalAmount={amountData}
       />
-      <PaginationArrow id="next" label={faChevronRight} disabled={false} />
-      <PaginationArrow id="last" label={faAnglesRight} disabled={false} />
+      <PaginationArrow
+        id="next"
+        label={faChevronRight}
+        disabled={lastPage === amountData}
+      />
+      <PaginationArrow
+        id="last"
+        label={faAnglesRight}
+        disabled={lastPage === amountData}
+      />
     </Pagination>
   );
 };
