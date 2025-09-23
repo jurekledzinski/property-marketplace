@@ -151,9 +151,9 @@
   --z-base: 0;
   --z-default: 1;
   --z-adverts-layout: 2;
-  --z-backdrop: 30;
   --z-drawer: 40;
   --z-header: 50;
+  --z-backdrop: 51;
   --z-popover: 100;
   --z-modal: 1000;
   --z-toast: 1100;
@@ -216,6 +216,10 @@ body {
   color: var(--color-text-primary);
   font-weight: 400;
   font-family: var(--font-roboto), sans-serif;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
 
 .no-scroll {
