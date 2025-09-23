@@ -73,6 +73,7 @@ export const AdvertsLayout = ({
         open={openFiltersPanel}
         variant="pinned"
         top={54}
+        zIndex={55}
       >
         <FilterPanel
           isFormEmpty={utilsFilter.isFormFilled}
