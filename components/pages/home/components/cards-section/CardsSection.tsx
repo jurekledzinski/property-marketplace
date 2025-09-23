@@ -1,7 +1,7 @@
-import { faAd } from '@fortawesome/free-solid-svg-icons/faAd';
 import styles from './CardsSection.module.css';
 import { CardAdvert } from './components';
 import { CardsSectionProps } from './types';
+import { faAd } from '@fortawesome/free-solid-svg-icons/faAd';
 import { memo } from 'react';
 import { NoResults } from '@/components';
 
