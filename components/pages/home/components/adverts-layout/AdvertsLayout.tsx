@@ -16,6 +16,7 @@ import {
   FiltersChipsPanel,
   useAdvertsFilterUtils,
   HomeAdvertsPagination,
+  ButtonGroup,
 } from '@/components';
 
 export const AdvertsLayout = ({
@@ -50,14 +51,18 @@ export const AdvertsLayout = ({
           />
         )}
         <CardsSection advertCards={advertCards} />
-        <HomeAdvertsPagination
-          amountData={totalItems}
-          currentPage={page}
-          itemsPerPage={pageSize}
-          onChangePage={(page) => {
-            controlQueries.setQueryString(page.toString(), 'page');
-          }}
-        />
+        {advertCards.length ? (
+          <ButtonGroup fullWidth={true} justify="justify-end" pt="pt-sm">
+            <HomeAdvertsPagination
+              amountData={totalItems}
+              currentPage={page}
+              itemsPerPage={pageSize}
+              onChangePage={(page) => {
+                controlQueries.setQueryString(page.toString(), 'page');
+              }}
+            />
+          </ButtonGroup>
+        ) : null}
       </Box>
       <Backdrop
         className={styles.backdropFilters}
