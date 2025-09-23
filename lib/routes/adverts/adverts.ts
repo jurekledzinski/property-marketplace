@@ -20,7 +20,7 @@ const projection = {
   year: 0,
 };
 
-const minDays = 5 * 24 * 60 * 60 * 1000;
+const maxDays = 7 * 24 * 60 * 60 * 1000;
 
 export const getAdverts = async (
   col: Collection<DataDB<Advert>>,
@@ -129,17 +129,12 @@ export const getAdverts = async (
               $and: [
                 ...matchArray,
                 {
-                  updatedAt: { $gte: new Date(Date.now() - minDays) },
+                  updatedAt: { $gte: new Date(Date.now() - maxDays) },
                 },
               ],
             }
-          : {
-              $and: [
-                {
-                  updatedAt: { $gte: new Date(Date.now() - minDays) },
-                },
-              ],
-            }),
+          : { updatedAt: { $gte: new Date(Date.now() - maxDays) } }),
+
         $or: [
           { title: { $regex: search || '', $options: 'i' } },
           { description: { $regex: search || '', $options: 'i' } },
