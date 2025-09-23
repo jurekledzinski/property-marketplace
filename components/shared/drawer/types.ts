@@ -7,4 +7,5 @@ export type DrawerProps = {
   width?: number;
   top?: number;
   variant?: 'overlay' | 'push' | 'pinned';
+  zIndex?: number;
 };

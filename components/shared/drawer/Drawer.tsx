@@ -6,10 +6,11 @@ export const Drawer = ({
   gap,
   top,
   width,
+  zIndex,
   ...props
 }: DrawerProps) => {
   const classes = getClassNamesDrawer(props);
-  const inline = getDrawerInlineStyles({ gap, top, width });
+  const inline = getDrawerInlineStyles({ gap, top, width, zIndex });
 
   return (
     <div className={classes.drawer} style={inline}>
