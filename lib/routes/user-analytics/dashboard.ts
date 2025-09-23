@@ -42,7 +42,7 @@ export const getUserAnalytics = async (
           statusActive: [
             {
               $match: {
-                createdAt: { $gte: new Date(Date.now() - maxDays) },
+                updatedAt: { $gte: new Date(Date.now() - minDays) },
                 userId,
               },
             },
@@ -51,7 +51,7 @@ export const getUserAnalytics = async (
           statusInActive: [
             {
               $match: {
-                createdAt: {
+                updatedAt: {
                   $lt: new Date(Date.now() - maxDays),
                 },
                 userId,
@@ -62,9 +62,9 @@ export const getUserAnalytics = async (
           statusSoonExpire: [
             {
               $match: {
-                createdAt: {
-                  $gte: new Date(Date.now() - minDays),
-                  $lt: new Date(Date.now() - maxDays),
+                updatedAt: {
+                  $gte: new Date(Date.now() - maxDays),
+                  $lt: new Date(Date.now() - minDays),
                 },
                 userId,
               },
