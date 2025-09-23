@@ -3,5 +3,5 @@ import { ChartOptions } from 'chart.js';
 
 export type AdvertsStatusChartProps = {
   stats?: ReturnType<typeof useChartPieControl>;
-  options?: ChartOptions<'pie'>;
+  options?: ChartOptions<'doughnut'>;
 };
