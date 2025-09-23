@@ -1,6 +1,7 @@
 'use client';
 import styles from './UserMessages.module.css';
 import { deleteMessage } from '@/actions';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { MessageAccordion } from './components';
 import { modalMessages } from '@/constants';
 import { showSuccessToast } from '@/helpers';
@@ -15,6 +16,7 @@ import {
   ButtonGroup,
   Heading,
   Modal,
+  NoResults,
   useControlModal,
 } from '@/components';
 
@@ -51,6 +53,9 @@ export const UserMessages = ({ messages = [] }: UserMessagesProps) => {
             onClick={accordion.handleSelect}
           />
         ))}
+        {!messages.length ? (
+          <NoResults icon={faEnvelope} text="No messages found" />
+        ) : null}
       </Box>
       <Modal
         confirmText="Delete"
