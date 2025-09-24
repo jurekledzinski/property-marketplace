@@ -1,4 +1,4 @@
-import stylesSelectOption from '../components/select-option/SelectOption.module.css';
+import stylesSelectOption from '../Select.module.css';
 import { generateClassNames } from '@/helpers';
 import { Size } from '@/types';
 
