@@ -1,8 +1,9 @@
-import { Adverts } from '@/lib';
+import { Adverts, Countries } from '@/lib';
 import { InputsAdvertsFilter } from './hooks';
 
 export type HomeProps = {
   advertCards: Adverts[];
+  countries: Countries;
   filters: InputsAdvertsFilter;
   page: number;
   pageSize: number;
