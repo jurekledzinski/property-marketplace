@@ -4,15 +4,17 @@ import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 export type AdvertFormProps = {
   controls: UseFormReturn<InputsAvert, unknown, InputsAvert>;
-  onSubmit: SubmitHandler<InputsAvert>;
-  uploadFiles: (files: File[]) => Promise<void>;
-  reset: Record<string, string>;
   deleteUploadedFiles: (
     index: number,
     file:
       | { fileId: string; name: string; url: string; isOriginal?: boolean }
       | File
   ) => void;
+  onScrollEndCities: () => void;
+  onScrollEndStates: () => void;
+  onSubmit: SubmitHandler<InputsAvert>;
+  reset: Record<string, string>;
+  uploadFiles: (files: File[]) => Promise<void>;
   validationInfo: OnError;
   isPending?: boolean;
   isUploadPending?: boolean;

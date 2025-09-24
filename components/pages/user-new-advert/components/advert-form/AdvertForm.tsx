@@ -25,6 +25,8 @@ export const AdvertForm = ({
   uploadFiles,
   deleteUploadedFiles,
   validationInfo,
+  onScrollEndCities,
+  onScrollEndStates,
 }: AdvertFormProps) => {
   return (
     <Form
@@ -40,6 +42,7 @@ export const AdvertForm = ({
           errors={controls.formState.errors}
           nameCity="city"
           nameCountry="country"
+          nameState="state"
           labels={true}
           rulesCity={{
             required: { message: 'City is required', value: true },
@@ -47,6 +50,15 @@ export const AdvertForm = ({
           rulesCountry={{
             required: { message: 'Country is required', value: true },
           }}
+          rulesState={{
+            required: { message: 'State is required', value: true },
+          }}
+          cities={[]}
+          countries={[]}
+          states={[]}
+          getCities={() => {}}
+          onScrollEndCities={onScrollEndCities}
+          onScrollEndStates={onScrollEndStates}
         />
         <DescriptionSection controls={controls} key={reset.description} />
         <ImagesSection

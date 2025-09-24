@@ -70,6 +70,8 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
         reset={form.reset}
         uploadFiles={uploadFiles}
         validationInfo={validationFilesInfo}
+        onScrollEndCities={() => {}}
+        onScrollEndStates={() => {}}
       />
       <Modal
         confirmText="Leave"
