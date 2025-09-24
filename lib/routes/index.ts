@@ -1,5 +1,7 @@
 export * from './advert';
 export * from './adverts';
+export * from './cities';
+export * from './states';
 export * from './user-advert';
 export * from './user-adverts';
 export * from './user-analytics';
