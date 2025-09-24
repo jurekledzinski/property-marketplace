@@ -8,6 +8,8 @@ export const serverEndpoints = {
     return `${domain}/api/v1/adverts?${searchParams.toString()}`;
   },
 
+  countries: () => 'https://data-api.oxilor.com/rest/countries',
+
   user: (domain: string) => `${domain}/api/v1/user-profile`,
 
   userAdvert: (domain: string, advertId?: string) =>
