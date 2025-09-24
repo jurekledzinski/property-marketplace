@@ -2,7 +2,7 @@
 import styles from './AdvertsLayout.module.css';
 import { AdvertsLayoutProps } from './types';
 import { useDrawer } from '@/store';
-import { useSetQuries } from '@/hooks';
+import { useFetchCities, useFetchStates, useSetQuries } from '@/hooks';
 
 import {
   Backdrop,
@@ -21,6 +21,7 @@ import {
 
 export const AdvertsLayout = ({
   advertCards,
+  countries,
   filters,
   page,
   pageSize,
@@ -33,6 +34,8 @@ export const AdvertsLayout = ({
 
   const form = useFilterForm({ ...controlQueries, filters });
   const utilsFilter = useAdvertsFilterUtils({ filters, form });
+  const controlFetchCities = useFetchCities();
+  const controlFetchStates = useFetchStates();
 
   return (
     <Box className={styles.layout}>
@@ -81,8 +84,15 @@ export const AdvertsLayout = ({
         >
           <FilterForm
             controls={form.formControl}
+            countries={countries}
+            getCities={controlFetchCities.getCities}
+            getStates={controlFetchStates.getStates}
+            isSuccessStates={controlFetchStates.isSuccess}
             onSubmit={form.onSubmit}
             reset={form.reset}
+            states={controlFetchStates.countryStates}
+            onScrollEndCities={() => {}}
+            onScrollEndStates={controlFetchStates.onScrollEndStates}
           />
         </FilterPanel>
       </Drawer>
