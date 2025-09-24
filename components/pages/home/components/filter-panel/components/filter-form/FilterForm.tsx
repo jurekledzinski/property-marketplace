@@ -9,15 +9,35 @@ import {
   PropertyTypeSection,
 } from '@/components';
 
-export const FilterForm = ({ controls, onSubmit, reset }: FilterFormProps) => {
+export const FilterForm = ({
+  controls,
+  countries,
+  getCities,
+  getStates,
+  isSuccessStates,
+  onSubmit,
+  reset,
+  onScrollEndCities,
+  onScrollEndStates,
+  states,
+}: FilterFormProps) => {
   return (
     <Form id="filterForm" onSubmit={controls.handleSubmit(onSubmit)} noValidate>
       <LocationSection
         key={reset.location}
+        cities={[]}
         controls={controls}
+        countries={countries}
+        getCities={getCities}
+        getStates={getStates}
         errors={controls.formState.errors}
+        isSuccessStates={isSuccessStates}
         nameCity="city"
         nameCountry="country"
+        nameState="state"
+        onScrollEndCities={onScrollEndCities}
+        onScrollEndStates={onScrollEndStates}
+        states={states}
       />
       <PropertyTypeSection
         key={reset.type}
