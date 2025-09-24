@@ -12,7 +12,7 @@ export const AdvertSchema = z.object({
   email: z.email(),
   phone: z.string(),
   country: z.string(),
-  state: z.string().optional(),
+  state: z.string(),
   city: z.string(),
   street: z.string(),
   postalCode: z.string(),
