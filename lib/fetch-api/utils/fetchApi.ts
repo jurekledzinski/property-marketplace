@@ -1,6 +1,10 @@
-import { ApiErrorResponse, ApiSuccessResponse, FetchAPIProps } from './types';
+import {
+  ApiErrorResponse,
+  ApiSuccessResponse,
+  FetchAPIProps,
+  ReadonlyHeaders,
+} from './types';
 import { fetchResponse } from '@/helpers';
-import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
 import { tryCatchApi } from '../../../helpers/tryCatch';
 
 function formatHeaders(headers?: ReadonlyHeaders) {
