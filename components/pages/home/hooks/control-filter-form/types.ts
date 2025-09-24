@@ -3,6 +3,7 @@ import { useSetQuries } from '@/hooks';
 export type LocationFields = {
   country: string;
   city: string;
+  state: string;
 };
 
 export type PropertyTypeFields = {
