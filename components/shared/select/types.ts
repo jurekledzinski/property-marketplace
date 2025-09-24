@@ -11,5 +11,5 @@ export type SelectProps = {
   size?: Size;
   variant?: PopOverVariant;
   value?: string;
-  onChange?: (value: string) => void;
+  onChange?: (key: string, value?: string) => void;
 };
