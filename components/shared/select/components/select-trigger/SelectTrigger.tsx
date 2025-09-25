@@ -3,9 +3,9 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { getClassNamesInput, InputWrapper, usePopOver } from '@/components';
 import { SelectTriggerProps } from './types';
 import { useAriaAttributes } from '@/hooks';
+import { useCallback } from 'react';
 import { useSelect } from '../../store';
 import { useTriggerEvents } from './hooks/trigger-events';
-import { useCallback } from 'react';
 
 export const SelectTrigger = ({
   endIcon = [faChevronUp, faChevronDown],
