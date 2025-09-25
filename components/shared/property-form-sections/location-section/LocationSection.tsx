@@ -5,6 +5,7 @@ import { LocationSectionProps } from './types';
 import { memo } from 'react';
 
 import {
+  Box,
   Field,
   Label,
   LocationFields,
@@ -77,11 +78,13 @@ export const LocationPart = <T extends LocationFields>({
                       id={country.name.toLowerCase()}
                       data={{ code: country.code }}
                     >
-                      <span className={styles.text}>{country.name}</span>
-                      <span
-                        className={styles.flag}
-                        style={{ backgroundPosition: `-${index * 30}px 0` }}
-                      ></span>
+                      <Box className={styles.countryOption}>
+                        <span>{country.name}</span>
+                        <span
+                          className={styles.flag}
+                          style={{ backgroundPosition: `-${index * 30}px 0` }}
+                        ></span>
+                      </Box>
                     </SelectOption>
                   ))}
                 </SelectList>
