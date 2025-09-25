@@ -1,6 +1,8 @@
 export const clientEndpoints = {
-  cities: (code: string) => {
-    return `/api/v1/cities/?code=${code}`;
+  cities: (code: string, division1Code?: string, after?: string) => {
+    return after
+      ? `/api/v1/cities/?code=${code}&division1Code=${division1Code}&after=${after}`
+      : `/api/v1/cities/?code=${code}&division1Code=${division1Code}`;
   },
   deleteDraftImages: (advertId?: string) => {
     return advertId
