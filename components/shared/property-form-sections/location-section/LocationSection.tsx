@@ -8,6 +8,7 @@ import {
   Box,
   Field,
   Label,
+  Loader,
   LocationFields,
   Message,
   Select,
@@ -46,6 +47,9 @@ export const LocationPart = <T extends LocationFields>({
   const city = getValues(nameCity);
   const clearState = '' as FieldPathValue<T, typeof nameState>;
   const clearCity = '' as FieldPathValue<T, typeof nameCity>;
+  const disabledState = country === '' || !isSuccessStates || !states.length;
+  const disabledCity =
+    country === '' || state === '' || !isSuccessCities || !cities.length;
 
   return (
     <>
@@ -117,8 +121,12 @@ export const LocationPart = <T extends LocationFields>({
             >
               <SelectTrigger
                 placeholder="Select state"
-                disabled={country === '' || !isSuccessStates || !states.length}
-              />
+                disabled={disabledState}
+              >
+                {disabledState && isLoadingStates && (
+                  <Loader position="element" />
+                )}
+              </SelectTrigger>
               <SelectPanel>
                 <SelectScrollList
                   isLoading={isLoadingStates}
@@ -154,15 +162,11 @@ export const LocationPart = <T extends LocationFields>({
           rules={rulesCity}
           render={({ field: { onChange, ...rest } }) => (
             <Select onChange={(id) => onChange(id)} {...rest}>
-              <SelectTrigger
-                placeholder="Select city"
-                disabled={
-                  country === '' ||
-                  state === '' ||
-                  !isSuccessCities ||
-                  !cities.length
-                }
-              />
+              <SelectTrigger placeholder="Select city" disabled={disabledCity}>
+                {disabledCity && isLoadingCities && (
+                  <Loader position="element" />
+                )}
+              </SelectTrigger>
               <SelectPanel>
                 <SelectScrollList
                   isLoading={isLoadingCities}
