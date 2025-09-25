@@ -10,6 +10,7 @@ export * from './fetch-states';
 export * from './infinite-scroll';
 export * from './key-map';
 export * from './key-press';
+export * from './paginanted-query';
 export * from './prevent-back-navigation';
 export * from './prevent-link-navigation';
 export * from './reset-form';
