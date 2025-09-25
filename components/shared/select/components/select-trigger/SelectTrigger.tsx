@@ -8,6 +8,7 @@ import { useSelect } from '../../store';
 import { useTriggerEvents } from './hooks/trigger-events';
 
 export const SelectTrigger = ({
+  children,
   endIcon = [faChevronUp, faChevronDown],
   ...props
 }: SelectTriggerProps) => {
@@ -50,6 +51,7 @@ export const SelectTrigger = ({
           <legend className={classes.legend}>{label}</legend>
         )}
       </fieldset>
+      {children}
     </InputWrapper>
   );
 };
