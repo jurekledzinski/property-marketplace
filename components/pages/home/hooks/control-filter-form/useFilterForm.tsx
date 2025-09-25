@@ -18,6 +18,7 @@ const defaultValues = {
   rooms: '',
   amenities: [],
   style: '',
+  state: '',
 };
 
 const resetState = {
@@ -73,6 +74,18 @@ export const useFilterForm = ({
     onClear(key, value);
   };
 
+  const onResetSomeFilters = (keys: string[]) => {
+    const arrKeys = Object.entries(keys).map((item) => [item[1], '']);
+    const defaultValues = Object.fromEntries(arrKeys);
+    const restValues = formControl.getValues();
+    formControl.reset({ ...restValues, ...defaultValues });
+    const arrUuids = Object.entries(keys).map((item) => [item[1], uuidv4()]);
+    const restObj = Object.fromEntries(arrUuids);
+
+    setReset(restObj);
+    onClearAll(keys);
+  };
+
   const onSubmit: SubmitHandler<InputsAdvertsFilter> = useCallback(
     (data) => {
       const formatedData = removeNonDigitsObj(data, ['priceFrom', 'priceTo']);
@@ -85,6 +98,7 @@ export const useFilterForm = ({
     formControl,
     onResetFilter,
     onResetAllFilters,
+    onResetSomeFilters,
     reset,
     onSubmit,
   };
