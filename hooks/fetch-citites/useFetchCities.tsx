@@ -1,29 +1,11 @@
 'use client';
 import { clientEndpoints } from '@/utils';
-import { fetchApiClient } from '@/helpers';
-import { useQuery } from '@tanstack/react-query';
-import { useRef } from 'react';
+import { usePaginatedQuery } from '../paginanted-query';
 
 export const useFetchCities = () => {
-  const countryCode = useRef('');
-
-  const { data, refetch } = useQuery({
+  return usePaginatedQuery({
+    buildUrl: ({ afterId, code, div1Code }) =>
+      clientEndpoints.cities(code, div1Code, afterId),
     queryKey: ['cities'],
-    queryFn: async () => {
-      return await fetchApiClient({
-        url: clientEndpoints.cities(countryCode.current),
-      });
-    },
-    enabled: false,
-    refetchOnWindowFocus: false,
   });
-
-  const getCities = (code: string) => {
-    countryCode.current = code;
-    refetch();
-  };
-
-  console.log('data cities', data);
-
-  return { getCities };
 };
