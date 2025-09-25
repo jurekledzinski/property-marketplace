@@ -38,6 +38,7 @@ export const getAdverts = async (
     rooms,
     search,
     sort,
+    state,
     status,
     style,
     type,
@@ -49,10 +50,6 @@ export const getAdverts = async (
   const skiptStage = [];
   const limitStage = [];
   const matchObject: Document = {};
-
-  //   const matchStage: Document[] = [
-  //     { $match: { $and: [{ $text: { $search: search || '' } }] } },
-  //   ];
 
   if (priceFrom) {
     matchObject.price = { ...matchObject.price, $gte: Number(priceFrom) };
@@ -83,6 +80,10 @@ export const getAdverts = async (
 
   if (country) {
     matchObject.country = country;
+  }
+
+  if (state) {
+    matchObject.state = state;
   }
 
   if (rooms) {
