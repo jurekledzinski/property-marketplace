@@ -1,6 +1,6 @@
 'use client';
 import styles from './LocationSection.module.css';
-import { Controller, useWatch } from 'react-hook-form';
+import { Controller, FieldPathValue, useWatch } from 'react-hook-form';
 import { LocationSectionProps } from './types';
 import { memo } from 'react';
 
@@ -17,8 +17,6 @@ import {
   SelectTrigger,
 } from '@/components';
 
-// const cities = ['Szczecin', 'Wroclaw', 'Krakow'];
-
 export const LocationPart = <T extends LocationFields>({
   controls,
   countries,
@@ -26,6 +24,9 @@ export const LocationPart = <T extends LocationFields>({
   states,
   getCities,
   getStates,
+  isLoadingCities,
+  isLoadingStates,
+  isSuccessCities,
   isSuccessStates,
   rulesCountry,
   rulesCity,
@@ -38,8 +39,12 @@ export const LocationPart = <T extends LocationFields>({
   onScrollEndCities,
   onScrollEndStates,
 }: LocationSectionProps<T>) => {
-  const { control } = controls;
+  const { control, getValues, setValue } = controls;
   const country = useWatch({ control, name: nameCountry });
+  const state = getValues(nameState);
+  const city = getValues(nameCity);
+  const clearState = '' as FieldPathValue<T, typeof nameState>;
+  const clearCity = '' as FieldPathValue<T, typeof nameCity>;
 
   return (
     <>
@@ -51,21 +56,26 @@ export const LocationPart = <T extends LocationFields>({
           rules={rulesCountry}
           render={({ field: { onChange, ...rest } }) => (
             <Select
-              onChange={(id, value) => {
-                getStates(value!);
+              onChange={(id, data) => {
+                if (data && data.code) getStates(data.code);
                 onChange(id);
-                // jeśli w state country select jest coś dodane to clear state value form
+
+                if (state) setValue(nameState, clearState);
+                if (city) setValue(nameCity, clearCity);
               }}
               {...rest}
             >
-              <SelectTrigger placeholder="Select country" />
+              <SelectTrigger
+                disabled={!countries.length}
+                placeholder="Select country"
+              />
               <SelectPanel>
                 <SelectList>
                   {countries.map((country, index) => (
                     <SelectOption
                       key={country.name}
                       id={country.name.toLowerCase()}
-                      value={country.code}
+                      data={{ code: country.code }}
                     >
                       <span className={styles.text}>{country.name}</span>
                       <span
@@ -92,26 +102,33 @@ export const LocationPart = <T extends LocationFields>({
           rules={rulesState}
           render={({ field: { onChange, ...rest } }) => (
             <Select
-              onChange={(id, value) => {
-                getCities(value!);
+              onChange={(id, data) => {
+                if (data && data.code && data.div1Code) {
+                  getCities(data.code, data.div1Code);
+                }
                 onChange(id);
+
+                if (city) setValue(nameCity, clearCity);
               }}
               {...rest}
             >
               <SelectTrigger
                 placeholder="Select state"
-                disabled={country === '' && !isSuccessStates} //isFetched z useFetchStates
+                disabled={country === '' || !isSuccessStates}
               />
               <SelectPanel>
                 <SelectScrollList
-                  isLoading={false}
+                  isLoading={isLoadingStates}
                   onScrollEnd={onScrollEndStates}
                 >
                   {states.map((state) => (
                     <SelectOption
                       key={state.name}
                       id={state.name.toLowerCase()}
-                      value={state.code}
+                      data={{
+                        code: state.code,
+                        div1Code: state.div1Code,
+                      }}
                     >
                       {state.name}
                     </SelectOption>
@@ -136,16 +153,19 @@ export const LocationPart = <T extends LocationFields>({
             <Select onChange={(id) => onChange(id)} {...rest}>
               <SelectTrigger
                 placeholder="Select city"
-                disabled={country === ''}
+                disabled={state === '' || !isSuccessCities}
               />
               <SelectPanel>
                 <SelectScrollList
-                  isLoading={false}
+                  isLoading={isLoadingCities}
                   onScrollEnd={onScrollEndCities}
                 >
                   {cities.map((city) => (
-                    <SelectOption key={city} id={city.toLowerCase()}>
-                      {city}
+                    <SelectOption
+                      key={city.name + city.div2Code}
+                      id={city.name.toLowerCase()}
+                    >
+                      {city.name}
                     </SelectOption>
                   ))}
                 </SelectScrollList>

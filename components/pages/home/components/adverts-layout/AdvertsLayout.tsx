@@ -83,16 +83,20 @@ export const AdvertsLayout = ({
           onResetAllFilters={form.onResetAllFilters}
         >
           <FilterForm
+            cities={controlFetchCities.dataList}
             controls={form.formControl}
             countries={countries}
-            getCities={controlFetchCities.getCities}
-            getStates={controlFetchStates.getStates}
+            getCities={controlFetchCities.fetchData}
+            getStates={controlFetchStates.fetchData}
+            isLoadingCities={controlFetchCities.isFetching}
+            isLoadingStates={controlFetchStates.isFetching}
             isSuccessStates={controlFetchStates.isSuccess}
+            isSuccessCities={controlFetchCities.isSuccess}
             onSubmit={form.onSubmit}
             reset={form.reset}
-            states={controlFetchStates.countryStates}
-            onScrollEndCities={() => {}}
-            onScrollEndStates={controlFetchStates.onScrollEndStates}
+            states={controlFetchStates.dataList}
+            onScrollEndCities={controlFetchCities.onScrollEnd}
+            onScrollEndStates={controlFetchStates.onScrollEnd}
           />
         </FilterPanel>
       </Drawer>

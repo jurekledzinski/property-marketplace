@@ -9,12 +9,15 @@ import {
 } from 'react-hook-form';
 
 export type LocationSectionProps<T extends LocationFields> = {
-  cities: any;
+  cities: CountryState[];
   controls: UseFormReturn<T>;
   countries: Countries;
   errors: FieldErrors<LocationFields>;
-  getCities: (code: string) => void;
+  getCities: (code: string, division1Code?: string) => void;
   getStates: (code: string) => void;
+  isLoadingCities: boolean;
+  isLoadingStates: boolean;
+  isSuccessCities: boolean;
   isSuccessStates: boolean;
   nameCity: Path<T>;
   nameCountry: Path<T>;

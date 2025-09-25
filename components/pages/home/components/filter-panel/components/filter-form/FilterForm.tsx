@@ -10,10 +10,14 @@ import {
 } from '@/components';
 
 export const FilterForm = ({
+  cities,
   controls,
   countries,
   getCities,
   getStates,
+  isLoadingCities,
+  isLoadingStates,
+  isSuccessCities,
   isSuccessStates,
   onSubmit,
   reset,
@@ -25,12 +29,15 @@ export const FilterForm = ({
     <Form id="filterForm" onSubmit={controls.handleSubmit(onSubmit)} noValidate>
       <LocationSection
         key={reset.location}
-        cities={[]}
+        cities={cities}
         controls={controls}
         countries={countries}
         getCities={getCities}
         getStates={getStates}
         errors={controls.formState.errors}
+        isLoadingCities={isLoadingCities}
+        isLoadingStates={isLoadingStates}
+        isSuccessCities={isSuccessCities}
         isSuccessStates={isSuccessStates}
         nameCity="city"
         nameCountry="country"
