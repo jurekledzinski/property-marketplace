@@ -114,7 +114,7 @@ export const LocationPart = <T extends LocationFields>({
             >
               <SelectTrigger
                 placeholder="Select state"
-                disabled={country === '' || !isSuccessStates}
+                disabled={country === '' || !isSuccessStates || !states.length}
               />
               <SelectPanel>
                 <SelectScrollList
@@ -153,7 +153,12 @@ export const LocationPart = <T extends LocationFields>({
             <Select onChange={(id) => onChange(id)} {...rest}>
               <SelectTrigger
                 placeholder="Select city"
-                disabled={state === '' || !isSuccessCities}
+                disabled={
+                  country === '' ||
+                  state === '' ||
+                  !isSuccessCities ||
+                  !cities.length
+                }
               />
               <SelectPanel>
                 <SelectScrollList
