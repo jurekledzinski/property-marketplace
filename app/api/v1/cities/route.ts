@@ -8,11 +8,15 @@ import {
 } from '@/lib';
 
 export const GET = async (req: NextRequest) => {
-  const { code } = getQueries<GetCitiesSearchParams>(req);
+  const { after, code, division1Code } = getQueries<GetCitiesSearchParams>(req);
 
-  if (!code) return errorResponseApi({ message: 'Internal server error' });
+  if (!code || !division1Code) {
+    return errorResponseApi({ message: 'Internal server error' });
+  }
 
-  const url = `https://data-api.oxilor.com/rest/regions?type=city&countryCode=${code}`;
+  const url = after
+    ? `https://data-api.oxilor.com/rest/regions?type=city&countryCode=${code}&division1Code=${division1Code}&first=10&after=${after}`
+    : `https://data-api.oxilor.com/rest/regions?type=city&countryCode=${code}&division1Code=${division1Code}&first=10`;
 
   const res = await fetch(url, {
     headers: {
