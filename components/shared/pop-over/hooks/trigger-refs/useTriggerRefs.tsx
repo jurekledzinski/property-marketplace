@@ -16,6 +16,10 @@ export const useTriggerRefs = () => {
     }
   }, []);
 
+  const getTrigger = (id: string) => {
+    return triggers.current[id];
+  };
+
   const getTriggerRect = (id: string) => {
     return triggerRects.current[id];
   };
@@ -28,6 +32,7 @@ export const useTriggerRefs = () => {
   };
 
   return {
+    getTrigger,
     getTriggerRect,
     updateTriggerRect,
     setTrigger,
