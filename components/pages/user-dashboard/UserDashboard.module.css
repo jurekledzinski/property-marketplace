@@ -1,4 +1,5 @@
 .dashboard {
+  position: relative;
   min-height: calc(100vh - 104px);
   background-color: var(--color-surface-0);
 }
@@ -7,12 +8,8 @@
   position: relative;
   display: flex;
   min-height: inherit;
-  overflow: hidden;
-  will-change: overflow;
-}
-
-.container.open {
-  animation: unHide 300ms forwards 300ms;
+  transition: clip-path 300ms linear;
+  clip-path: inset(0 0 0 0);
 }
 
 .content {
@@ -25,16 +22,6 @@
 div.drawer {
   background-color: var(--color-surface-0);
   border-right: 1px solid var(--color-surface-30);
-}
-
-@keyframes unHide {
-  from {
-    overflow: hidden;
-  }
-
-  to {
-    overflow: initial;
-  }
 }
 
 .grid {
