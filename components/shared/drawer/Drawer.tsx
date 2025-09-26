@@ -1,5 +1,5 @@
 import { DrawerProps } from './types';
-import { getClassNamesDrawer, getDrawerInlineStyles } from './utils';
+import { getClassNamesDrawer, drawerCSSVariables } from './utils';
 
 export const Drawer = ({
   children,
@@ -10,7 +10,7 @@ export const Drawer = ({
   ...props
 }: DrawerProps) => {
   const classes = getClassNamesDrawer(props);
-  const inline = getDrawerInlineStyles({ gap, top, width, zIndex });
+  const inline = drawerCSSVariables({ gap, top, width, zIndex });
 
   return (
     <div className={classes.drawer} style={inline}>

@@ -1,4 +1,4 @@
-export const getDrawerInlineStyles = ({
+export const drawerCSSVariables = ({
   gap = 0,
   width = 250,
   top = 0,
