@@ -12,7 +12,7 @@ export const setTop: SetTop = ({
 
   const top = {
     x: triggerPosition.x - panelWidth / 2 + triggerWidth / 2,
-    y: triggerPosition.y + window.scrollY - panelHeight,
+    y: triggerPosition.top - panelHeight,
     w: autoWidth ? triggerWidth : panelWidth,
   };
 
@@ -34,11 +34,13 @@ export const setBottom: SetBottom = ({
   panelWidth,
 }) => {
   const triggerWidth = triggerPosition.width;
-  const triggerHeight = triggerPosition.height;
+
+  const y1 = triggerPosition.bottom;
+  const y2 = triggerPosition.height + triggerPosition.y;
 
   const bottom = {
     x: triggerPosition.x - panelWidth / 2 + triggerWidth / 2,
-    y: triggerPosition.y + triggerHeight + window.scrollY,
+    y: triggerPosition.bottom,
     w: autoWidth ? triggerWidth : panelWidth,
   };
 
@@ -67,16 +69,16 @@ export const setLeft: SetLeft = ({
 
   const left = {
     x: triggerPosition.x - panelWidth - paddingLeft,
-    y: triggerPosition.y + window.scrollY + triggerHeight / 2 - panelHeight / 2,
+    y: triggerPosition.top + triggerHeight / 2 - panelHeight / 2,
     w: autoWidth ? triggerWidth : panelWidth,
   };
 
   if (alignment === 'start') {
-    left.y = triggerPosition.y + window.scrollY;
+    left.y = triggerPosition.top;
   }
 
   if (alignment === 'end') {
-    left.y = triggerPosition.bottom + window.scrollY - panelHeight;
+    left.y = triggerPosition.bottom - panelHeight;
   }
 
   return left;
@@ -96,16 +98,16 @@ export const setRight: SetRight = ({
 
   const right = {
     x: triggerPosition.x + triggerWidth + paddingRight,
-    y: triggerPosition.y + window.scrollY + triggerHeight / 2 - panelHeight / 2,
+    y: triggerPosition.top + triggerHeight / 2 - panelHeight / 2,
     w: autoWidth ? triggerWidth : panelWidth,
   };
 
   if (alignment === 'start') {
-    right.y = triggerPosition.y + window.scrollY;
+    right.y = triggerPosition.top;
   }
 
   if (alignment === 'end') {
-    right.y = triggerPosition.bottom + window.scrollY - panelHeight;
+    right.y = triggerPosition.bottom - panelHeight;
   }
 
   return right;
