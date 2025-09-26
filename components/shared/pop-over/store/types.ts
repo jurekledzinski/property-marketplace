@@ -6,6 +6,7 @@ export type ContextPopOver = {
   mapRefs: React.RefObject<Map<string, HTMLElement>>;
   triggers: React.RefObject<Record<string, HTMLElement | null>>;
   setTrigger: (node: HTMLElement | null, id: string) => void;
+  getTrigger: (id: string) => HTMLElement | null;
   getTriggerRect: (id: string) => DOMRect;
   updateTriggerRect: (id: string) => void;
 };
