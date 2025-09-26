@@ -70,13 +70,14 @@ export const AdvertsLayout = ({
       <Backdrop
         className={styles.backdropFilters}
         open={Boolean(openFiltersPanel)}
+        zIndex={48}
       />
       <Drawer
         direction="right"
         open={openFiltersPanel}
         variant="pinned"
         top={54}
-        zIndex={55}
+        zIndex={49}
       >
         <FilterPanel
           isFormEmpty={utilsFilter.isFormFilled}
