@@ -61,6 +61,7 @@ export const LocationPart = <T extends LocationFields>({
           rules={rulesCountry}
           render={({ field: { onChange, ...rest } }) => (
             <Select
+              closeOnScroll={true}
               onChange={(id, data) => {
                 if (data && data.code) getStates(data.code);
                 onChange(id);
@@ -109,6 +110,7 @@ export const LocationPart = <T extends LocationFields>({
           rules={rulesState}
           render={({ field: { onChange, ...rest } }) => (
             <Select
+              closeOnScroll={true}
               onChange={(id, data) => {
                 if (data && data.code && data.div1Code) {
                   getCities(data.code, data.div1Code);
@@ -161,7 +163,11 @@ export const LocationPart = <T extends LocationFields>({
           control={control}
           rules={rulesCity}
           render={({ field: { onChange, ...rest } }) => (
-            <Select onChange={(id) => onChange(id)} {...rest}>
+            <Select
+              closeOnScroll={true}
+              onChange={(id) => onChange(id)}
+              {...rest}
+            >
               <SelectTrigger placeholder="Select city" disabled={disabledCity}>
                 {disabledCity && isLoadingCities && (
                   <Loader position="element" />

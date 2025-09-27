@@ -48,7 +48,11 @@ const TypePart = <T extends PropertyTypeFields>({
           rules={rulesType}
           control={control}
           render={({ field: { onChange, ...rest } }) => (
-            <Select onChange={(id) => onChange(id)} {...rest}>
+            <Select
+              closeOnScroll={true}
+              onChange={(id) => onChange(id)}
+              {...rest}
+            >
               <SelectTrigger placeholder="Select type property" />
               <SelectPanel>
                 <SelectList>
@@ -70,7 +74,11 @@ const TypePart = <T extends PropertyTypeFields>({
           rules={rulesStatus}
           control={control}
           render={({ field: { onChange, ...rest } }) => (
-            <Select onChange={(id) => onChange(id)} {...rest}>
+            <Select
+              closeOnScroll={true}
+              onChange={(id) => onChange(id)}
+              {...rest}
+            >
               <SelectTrigger placeholder="Select type advertisement" />
               <SelectPanel>
                 <SelectList>
@@ -92,7 +100,11 @@ const TypePart = <T extends PropertyTypeFields>({
           rules={rulesCondition}
           control={control}
           render={({ field: { onChange, ...rest } }) => (
-            <Select onChange={(id) => onChange(id)} {...rest}>
+            <Select
+              closeOnScroll={true}
+              onChange={(id) => onChange(id)}
+              {...rest}
+            >
               <SelectTrigger placeholder="Select technical condition" />
               <SelectPanel>
                 <SelectList>
