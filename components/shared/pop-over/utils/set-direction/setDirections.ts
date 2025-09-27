@@ -35,9 +35,6 @@ export const setBottom: SetBottom = ({
 }) => {
   const triggerWidth = triggerPosition.width;
 
-  const y1 = triggerPosition.bottom;
-  const y2 = triggerPosition.height + triggerPosition.y;
-
   const bottom = {
     x: triggerPosition.x - panelWidth / 2 + triggerWidth / 2,
     y: triggerPosition.bottom,

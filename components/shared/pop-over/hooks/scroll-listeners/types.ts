@@ -1,12 +1,13 @@
-import { RefObject } from 'react';
 import { Placement } from '../../types';
-import { SizeWindow } from '../position';
+import { RefObject } from 'react';
+import { SizeWindow } from '../../utils';
 
 export type UseScrollListenersProps = {
   getScrollParent: (element: HTMLElement | null) => HTMLElement | Window;
   getTrigger: (id: string) => HTMLElement | null;
   getTriggerRect: (id: string) => DOMRect;
   id: string;
+  onCloseOnScroll: (id: string) => void;
   onSetPosition: (
     dynamic?: Placement,
     el?: SizeWindow,
@@ -16,4 +17,5 @@ export type UseScrollListenersProps = {
   panelRef: RefObject<HTMLDivElement | null>;
   placement: Placement;
   updateTriggerRect: (id: string) => void;
+  closeOnScroll?: boolean;
 };

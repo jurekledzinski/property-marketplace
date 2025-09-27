@@ -1,5 +1,5 @@
-import { Placement } from '../../types';
-import { setBottom, setLeft, setRight, setTop } from './setDirections';
+import { setBottom, setLeft, setRight, setTop } from '../set-direction';
+import { SetPositionParams } from './types';
 
 export const setPosition = ({
   currentPlacement,
@@ -9,16 +9,7 @@ export const setPosition = ({
   panelWidth,
   panelHeight,
   panelStyle,
-}: {
-  autoWidth?: boolean;
-  currentPlacement: Placement;
-  size: { width: number; height: number };
-  panelPosition: DOMRect;
-  triggerPosition: DOMRect;
-  panelWidth: number;
-  panelHeight: number;
-  panelStyle: CSSStyleDeclaration;
-}) => {
+}: SetPositionParams) => {
   const alignment = currentPlacement?.split(' ')[1];
   const mainDirection = currentPlacement?.split(' ')[0];
 

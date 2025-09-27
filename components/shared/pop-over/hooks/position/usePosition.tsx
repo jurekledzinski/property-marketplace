@@ -1,13 +1,14 @@
 'use client';
-import { arrowFlip } from './helpers';
-import { getScrollParent } from './scrollParent';
 import { Placement, setPosition, useScrollListeners } from '@/components';
-import { SizeWindow, UsePositionProps } from './types';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePanelSize } from '../panel-size';
+import { UsePositionProps } from './types';
 import { useWindowResize } from '@/hooks';
 
 import {
+  getScrollParent,
+  SizeWindow,
+  arrowFlip,
   checkHorizontalSpace,
   checkVerticalSpace,
   getCheckSpace,
@@ -15,18 +16,20 @@ import {
   getPanelRect,
   setNewPosition,
   updateSizeWindow,
-} from './helpers';
+} from '../../utils';
 
 export const usePosition = ({
   autoWidth = true,
+  closeOnScroll,
   gap = 8,
+  getTrigger,
+  getTriggerRect,
   id,
+  onCloseOnScroll,
   panelRef,
   placement = 'bottom',
   open,
   type = 'floating',
-  getTrigger,
-  getTriggerRect,
   updateTriggerRect,
 }: UsePositionProps) => {
   const sizeWindow = useRef({ width: 0, height: 0 });
@@ -130,88 +133,19 @@ export const usePosition = ({
     }, [getTriggerRect, id, open, onSetPosition, placement, updateTriggerRect]),
   });
 
-  //   function getScrollParent(element: HTMLElement | null): HTMLElement | Window {
-  //     if (!element) return window;
-  //     let parent: HTMLElement | null = element.parentElement;
-  //     while (parent) {
-  //       const style = getComputedStyle(parent);
-  //       if (
-  //         /(auto|scroll)/.test(style.overflow + style.overflowY + style.overflowX)
-  //       ) {
-  //         return parent;
-  //       }
-  //       parent = parent.parentElement;
-  //     }
-  //     return window;
-  //   }
-
   useScrollListeners({
+    closeOnScroll,
     getScrollParent,
     getTrigger,
     getTriggerRect,
     id,
+    onCloseOnScroll,
     onSetPosition,
     open,
     panelRef,
     placement,
     updateTriggerRect,
   });
-
-  //   useEffect(() => {
-  //     if (!panelRef.current) return;
-
-  //     updateTriggerRect(id);
-
-  //     const triggerEl = getTrigger(id);
-
-  //     const scrollParent = getScrollParent(triggerEl);
-
-  //     console.log('scrollParent', scrollParent);
-
-  //     const handleScroll = () => {
-  //       if (open) {
-  //         console.log('SSSS');
-  //         updateTriggerRect(id);
-  //         const rect = getTriggerRect(id);
-  //         const size = { h: window.innerHeight, w: window.innerWidth };
-  //         onSetPosition(placement, size, rect);
-  //       }
-  //     };
-
-  //     scrollParent.addEventListener('scroll', handleScroll, { passive: true });
-  //     if (scrollParent !== window) {
-  //       window.addEventListener('scroll', handleScroll, { passive: true });
-  //     }
-
-  //     return () => {
-  //       scrollParent.removeEventListener('scroll', handleScroll);
-  //       if (scrollParent !== window) {
-  //         window.removeEventListener('scroll', handleScroll);
-  //       }
-  //     };
-  //   }, [
-  //     open,
-  //     id,
-  //     getTrigger,
-  //     getTriggerRect,
-  //     panelRef,
-  //     placement,
-  //     onSetPosition,
-  //     updateTriggerRect,
-  //   ]);
-
-  //   useWindowScroll({
-  //     onScroll: () => {
-  //       if (open) {
-  //         updateTriggerRect(id);
-  //         const rect = getTriggerRect(id);
-  //         const size = { h: window.innerHeight, w: window.innerWidth };
-  //         onSetPosition(placement, size, rect);
-  //       } else {
-  //         updateTriggerRect(id);
-  //       }
-  //     },
-  //   });
 
   return { arrowPlacement, onSetPosition };
 };
