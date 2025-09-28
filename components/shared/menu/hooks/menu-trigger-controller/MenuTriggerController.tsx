@@ -19,7 +19,7 @@ export const useMenuTriggerController = ({
   }, [id, onToggle]);
 
   const ref = (node: HTMLButtonElement) => {
-    if (id) setTrigger(node, id);
+    if (id) setTrigger(id, node);
   };
 
   return { ...a11y, className, onClick, ref };
