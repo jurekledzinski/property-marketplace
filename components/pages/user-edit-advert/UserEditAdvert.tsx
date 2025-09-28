@@ -3,7 +3,7 @@ import { editAdvert } from '@/actions';
 import { initialState, modalMessages } from '@/constants';
 import { showErrorToast, showSuccessToast } from '@/helpers';
 import { useActionState } from 'react';
-import { useExitGuard } from '@/hooks';
+import { useExitGuard, useFetchCities, useFetchStates } from '@/hooks';
 import { usePathname, useRouter } from 'next/navigation';
 import { UserEditAdvertProps } from './types';
 
@@ -21,13 +21,7 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
   const [state, action, isPending] = useActionState(editAdvert, initialState);
   const { description, title } = modalMessages.warningLeaveForm();
 
-  const {
-    deleteDraft,
-    deleteUploadedFiles,
-    form,
-    isUploadPending,
-    uploadFiles,
-  } = useAdvertFormWithUploads({
+  const advertEdit = useAdvertFormWithUploads({
     action,
     advert,
     isPending,
@@ -43,12 +37,12 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
   const { isLeavePending, isOpen, onClose, onConfirm } = useExitGuard({
     confirmUrl: '/user/adverts',
     currentUrl: pathname,
-    isDirty: form.formControl.formState.isDirty,
+    isDirty: advertEdit.form.formControl.formState.isDirty,
     onConfirmLeave: async (url) => {
-      const { getValues } = form.formControl;
+      const { getValues } = advertEdit.form.formControl;
       const images = getValues('images');
-      const deletedImages = form.deletedImages || [];
-      const result = await deleteDraft(images, deletedImages);
+      const deletedImages = advertEdit.form.deletedImages || [];
+      const result = await advertEdit.deleteDraft(images, deletedImages);
       if (result.success) router.push(url);
       return result.success;
     },
@@ -56,22 +50,34 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
     selectors: ['logo-link', 'menu-link'],
   });
 
+  const controlFetchCities = useFetchCities();
+  const controlFetchStates = useFetchStates();
+
   return (
     <>
       <Heading level={4} mb="mb-md" mt="mt-sm">
         Edit Advert
       </Heading>
       <AdvertForm
-        controls={form.formControl}
-        deleteUploadedFiles={deleteUploadedFiles}
+        cities={controlFetchCities.dataList}
+        countries={[]}
+        controls={advertEdit.form.formControl}
+        deleteUploadedFiles={advertEdit.deleteUploadedFiles}
+        getCities={controlFetchCities.fetchData}
+        getStates={controlFetchStates.fetchData}
+        isLoadingCities={controlFetchCities.isFetching}
+        isLoadingStates={controlFetchStates.isFetching}
         isPending={isPending}
-        isUploadPending={isUploadPending}
-        onSubmit={form.onSubmit}
-        reset={form.reset}
-        uploadFiles={uploadFiles}
+        isSuccessCities={controlFetchCities.isSuccess}
+        isSuccessStates={controlFetchStates.isSuccess}
+        isUploadPending={advertEdit.isUploadPending}
+        onSubmit={advertEdit.form.onSubmit}
+        reset={advertEdit.form.reset}
+        states={controlFetchStates.dataList}
+        uploadFiles={advertEdit.uploadFiles}
         validationInfo={validationFilesInfo}
-        onScrollEndCities={() => {}}
-        onScrollEndStates={() => {}}
+        onScrollEndCities={controlFetchCities.onScrollEnd}
+        onScrollEndStates={controlFetchStates.onScrollEnd}
       />
       <Modal
         confirmText="Leave"
