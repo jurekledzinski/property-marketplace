@@ -1,10 +1,10 @@
 'use client';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 export const useControlPopOver = () => {
   const [open, setOpen] = useState<Record<string, boolean>>({});
 
-  const onToggle = (id: string) => {
+  const onToggle = useCallback((id: string) => {
     setOpen((prev) => {
       const copy = { ...prev };
 
@@ -24,16 +24,21 @@ export const useControlPopOver = () => {
 
       return updatedState;
     });
-  };
+  }, []);
 
-  const onClose = (id: string) => {
+  const onClose = useCallback((id: string) => {
     setOpen((prev) => {
       const update = Object.entries(prev).filter((item) => item[0] !== id);
       return Object.fromEntries(update);
     });
-  };
+  }, []);
 
-  const onCloseAll = () => setOpen({});
+  const onCloseAll = useCallback(() => setOpen({}), []);
 
-  return { open, onClose, onCloseAll, onToggle };
+  return useMemo(
+    () => ({ open, onClose, onCloseAll, onToggle }),
+    [onClose, onCloseAll, onToggle, open]
+  );
+
+  //   return { open, onClose, onCloseAll, onToggle };
 };
