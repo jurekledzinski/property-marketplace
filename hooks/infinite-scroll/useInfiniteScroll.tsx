@@ -28,7 +28,6 @@ export const useInfiniteScroll = <T extends HTMLElement>({
       const targetHeight = target.offsetHeight;
 
       if (scrollHeight < scrollHeight) {
-        console.log('TO SMALL');
         scrolledElement.removeEventListener('scroll', onScroll);
       }
 
