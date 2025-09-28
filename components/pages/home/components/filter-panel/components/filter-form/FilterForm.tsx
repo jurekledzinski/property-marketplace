@@ -20,7 +20,6 @@ export const FilterForm = ({
   isSuccessCities,
   isSuccessStates,
   onSubmit,
-  reset,
   onScrollEndCities,
   onScrollEndStates,
   states,
@@ -28,7 +27,6 @@ export const FilterForm = ({
   return (
     <Form id="filterForm" onSubmit={controls.handleSubmit(onSubmit)} noValidate>
       <LocationSection
-        key={reset.location}
         cities={cities}
         controls={controls}
         countries={countries}
@@ -47,7 +45,6 @@ export const FilterForm = ({
         states={states}
       />
       <PropertyTypeSection
-        key={reset.type}
         controls={controls}
         errors={controls.formState.errors}
         nameCondition="condition"
@@ -55,21 +52,15 @@ export const FilterForm = ({
         nameType="type"
       />
       <PropertyDetailsSection
-        key={reset.details}
         controls={controls}
         errors={controls.formState.errors}
         nameArea="area"
         nameRooms="rooms"
         nameYear="year"
       />
-      <PriceSection key={reset.price} controls={controls} />
-      <AmenitiesSection
-        key={reset.amenities}
-        controls={controls}
-        nameAmenities="amenities"
-      />
+      <PriceSection controls={controls} errors={controls.formState.errors} />
+      <AmenitiesSection controls={controls} nameAmenities="amenities" />
       <ArchitectureSection
-        key={reset.architecture}
         controls={controls}
         errors={controls.formState.errors}
         nameStyle="style"
