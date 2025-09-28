@@ -1,16 +1,20 @@
 'use client';
-import { useRef } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 
 export const useKeyMap = <T extends HTMLElement | string>() => {
   const mapKeys = useRef(new Map<string, T>());
 
-  const onSetKey = (id: string, ref: T) => {
+  const onSetKey = useCallback((id: string, ref: T | null) => {
+    if (!ref) return;
     mapKeys.current.set(id, ref);
-  };
+  }, []);
 
-  const onDeleteKey = (id: string) => {
+  const onDeleteKey = useCallback((id: string) => {
     mapKeys.current.delete(id);
-  };
+  }, []);
 
-  return { mapKeys, onDeleteKey, onSetKey };
+  return useMemo(
+    () => ({ mapKeys, onDeleteKey, onSetKey }),
+    [onDeleteKey, onSetKey]
+  );
 };
