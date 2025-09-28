@@ -2,8 +2,7 @@ import { capitalizeFirstLetter } from '@/helpers';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { getClassNamesInput, InputWrapper, usePopOver } from '@/components';
 import { SelectTriggerProps } from './types';
-import { useAriaAttributes } from '@/hooks';
-import { useCallback } from 'react';
+import { useAriaAttributes, useSetKeyMap } from '@/hooks';
 import { useSelect } from '../../store';
 import { useTriggerEvents } from './hooks/trigger-events';
 
@@ -12,7 +11,7 @@ export const SelectTrigger = ({
   endIcon = [faChevronUp, faChevronDown],
   ...props
 }: SelectTriggerProps) => {
-  const { onToggle, open, setTrigger } = usePopOver();
+  const { onDeleteKey, onToggle, open, setTrigger: onSetKey } = usePopOver();
   const { isError, label, size, value, variant } = useSelect();
   const { onClick, onKeyDown } = useTriggerEvents({ onToggle });
 
@@ -20,10 +19,7 @@ export const SelectTrigger = ({
   const a11y = useAriaAttributes().selectTriggerA11y(isOpen, label);
   const classes = getClassNamesInput({ variant, size, isError });
 
-  const setTriggerRef = useCallback(
-    (node: HTMLDivElement) => node && setTrigger(node, 'root'),
-    [setTrigger]
-  );
+  const setKeyMap = useSetKeyMap({ id: 'root', onDeleteKey, onSetKey });
 
   return (
     <InputWrapper
@@ -32,7 +28,7 @@ export const SelectTrigger = ({
       endIcon={isOpen ? endIcon[0] : endIcon[1]}
       isError={isError}
       onClickEndIcon={onClick}
-      ref={setTriggerRef}
+      ref={setKeyMap}
       size={size}
       variant={variant}
       {...(isOpen && { className: 'focused' })}
