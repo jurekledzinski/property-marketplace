@@ -6,7 +6,7 @@ import { newAdvert } from '@/actions';
 import { showErrorToast, showSuccessToast } from '@/helpers';
 import { useActionState } from 'react';
 import { useAdvertFormWithUploads } from './hooks';
-import { useExitGuard } from '@/hooks';
+import { useExitGuard, useFetchCities, useFetchStates } from '@/hooks';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
@@ -16,13 +16,7 @@ export const UserNewAdvert = () => {
   const [state, action, isPending] = useActionState(newAdvert, initialState);
   const { description, title } = modalMessages.warningLeaveForm();
 
-  const {
-    deleteDraft,
-    deleteUploadedFiles,
-    isUploadPending,
-    form,
-    uploadFiles,
-  } = useAdvertFormWithUploads({
+  const advert = useAdvertFormWithUploads({
     action,
     isPending,
     mode: 'new',
@@ -37,12 +31,12 @@ export const UserNewAdvert = () => {
   const { isLeavePending, isOpen, onClose, onConfirm } = useExitGuard({
     confirmUrl: '/user/dashboard',
     currentUrl: '/user/adverts/new',
-    isDirty: form.formControl.formState.isDirty,
+    isDirty: advert.form.formControl.formState.isDirty,
     onConfirmLeave: async (url) => {
-      const { getValues } = form.formControl;
+      const { getValues } = advert.form.formControl;
       const images = getValues('images');
-      const deletedImages = form.deletedImages || [];
-      const result = await deleteDraft(images, deletedImages);
+      const deletedImages = advert.form.deletedImages || [];
+      const result = await advert.deleteDraft(images, deletedImages);
       if (result.success) router.push(url);
       return result.success;
     },
@@ -50,20 +44,34 @@ export const UserNewAdvert = () => {
     selectors: ['logo-link', 'menu-link'],
   });
 
+  const controlFetchCities = useFetchCities();
+  const controlFetchStates = useFetchStates();
+
   return (
     <>
       <Heading level={4} mb="mb-md" mt="mt-sm">
         Add New Advert
       </Heading>
       <AdvertForm
-        controls={form.formControl}
-        deleteUploadedFiles={deleteUploadedFiles}
+        cities={controlFetchCities.dataList}
+        countries={[]}
+        controls={advert.form.formControl}
+        deleteUploadedFiles={advert.deleteUploadedFiles}
+        getCities={controlFetchCities.fetchData}
+        getStates={controlFetchStates.fetchData}
+        isLoadingCities={controlFetchCities.isFetching}
+        isLoadingStates={controlFetchStates.isFetching}
         isPending={isPending}
-        isUploadPending={isUploadPending}
-        onSubmit={form.onSubmit}
-        reset={form.reset}
-        uploadFiles={uploadFiles}
+        isSuccessCities={controlFetchCities.isSuccess}
+        isSuccessStates={controlFetchStates.isSuccess}
+        isUploadPending={advert.isUploadPending}
+        onSubmit={advert.form.onSubmit}
+        reset={advert.form.reset}
+        states={controlFetchStates.dataList}
+        uploadFiles={advert.uploadFiles}
         validationInfo={validationFilesInfo}
+        onScrollEndCities={controlFetchCities.onScrollEnd}
+        onScrollEndStates={controlFetchStates.onScrollEnd}
       />
       <Modal
         confirmText="Leave"
