@@ -1,9 +1,8 @@
 'use client';
 import { InputsAdvertsFilter, UseFilterFormProps } from './types';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useCallback, useMemo, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { removeNonDigitsObj } from '@/helpers';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useCallback, useMemo } from 'react';
 
 const defaultValues = {
   country: '',
@@ -21,22 +20,12 @@ const defaultValues = {
   state: '',
 };
 
-const resetState = {
-  amenities: uuidv4(),
-  architecture: uuidv4(),
-  details: uuidv4(),
-  location: uuidv4(),
-  price: uuidv4(),
-  type: uuidv4(),
-};
-
 export const useFilterForm = ({
   filters,
   onClear,
   onClearAll,
   setQueryObject,
 }: UseFilterFormProps) => {
-  const [reset, setReset] = useState(resetState);
   const stableControls = useForm<InputsAdvertsFilter>({
     defaultValues: {
       ...defaultValues,
@@ -48,14 +37,6 @@ export const useFilterForm = ({
 
   const onResetAllFilters = () => {
     formControl.reset(defaultValues);
-    setReset({
-      amenities: uuidv4(),
-      architecture: uuidv4(),
-      details: uuidv4(),
-      location: uuidv4(),
-      price: uuidv4(),
-      type: uuidv4(),
-    });
     onClearAll(Object.keys(defaultValues));
   };
 
@@ -67,10 +48,11 @@ export const useFilterForm = ({
       const updated = currentValue.filter((item) => item !== value);
       formControl.setValue(keyInput, updated, { shouldDirty: false });
     } else {
-      formControl.resetField(keyInput);
+      formControl.setValue(keyInput, defaultValues[keyInput], {
+        shouldDirty: false,
+      });
     }
 
-    setReset((prev) => ({ ...prev, [key]: uuidv4() }));
     onClear(key, value);
   };
 
@@ -79,10 +61,6 @@ export const useFilterForm = ({
     const defaultValues = Object.fromEntries(arrKeys);
     const restValues = formControl.getValues();
     formControl.reset({ ...restValues, ...defaultValues });
-    const arrUuids = Object.entries(keys).map((item) => [item[1], uuidv4()]);
-    const restObj = Object.fromEntries(arrUuids);
-
-    setReset(restObj);
     onClearAll(keys);
   };
 
@@ -99,7 +77,6 @@ export const useFilterForm = ({
     onResetFilter,
     onResetAllFilters,
     onResetSomeFilters,
-    reset,
     onSubmit,
   };
 };
