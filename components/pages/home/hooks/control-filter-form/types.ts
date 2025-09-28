@@ -26,14 +26,17 @@ export type PropertyStylesFields = {
   style: string;
 };
 
+export type PropertyPricesFields = {
+  priceFrom: string;
+  priceTo: string;
+};
+
 export type InputsAdvertsFilter = LocationFields &
   PropertyTypeFields &
   PropertyMetricFields &
   PropertyAmenitiesFields &
-  PropertyStylesFields & {
-    priceFrom: string;
-    priceTo: string;
-  };
+  PropertyStylesFields &
+  PropertyPricesFields;
 
 export interface UseFilterFormProps extends ReturnType<typeof useSetQuries> {
   filters: InputsAdvertsFilter;
