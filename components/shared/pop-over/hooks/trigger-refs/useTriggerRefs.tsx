@@ -5,7 +5,7 @@ export const useTriggerRefs = () => {
   const triggers = useRef<Record<string, HTMLElement | null>>({});
   const triggerRects = useRef<Record<string, DOMRect>>({});
 
-  const setTrigger = useCallback((node: HTMLElement | null, id: string) => {
+  const setTrigger = useCallback((id: string, node: HTMLElement | null) => {
     if (!id) return;
 
     if (node) {
@@ -16,20 +16,20 @@ export const useTriggerRefs = () => {
     }
   }, []);
 
-  const getTrigger = (id: string) => {
+  const getTrigger = useCallback((id: string) => {
     return triggers.current[id];
-  };
+  }, []);
 
-  const getTriggerRect = (id: string) => {
+  const getTriggerRect = useCallback((id: string) => {
     return triggerRects.current[id];
-  };
+  }, []);
 
-  const updateTriggerRect = (id: string) => {
+  const updateTriggerRect = useCallback((id: string) => {
     if (!triggers.current || !triggers.current[id]) return;
 
     const rect = triggers.current[id].getBoundingClientRect();
     triggerRects.current[id] = rect;
-  };
+  }, []);
 
   return {
     getTrigger,
