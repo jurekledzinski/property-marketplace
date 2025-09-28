@@ -17,5 +17,4 @@ export type FilterFormProps = {
   onScrollEndStates: () => void;
   onSubmit: SubmitHandler<InputsAdvertsFilter>;
   states: CountryState[];
-  reset: Record<string, string>;
 };
