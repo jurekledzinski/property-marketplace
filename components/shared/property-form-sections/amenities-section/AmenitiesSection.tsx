@@ -1,5 +1,7 @@
 'use client';
 import { AmenitiesSectionProps } from './types';
+import { memo } from 'react';
+import { useWatch } from 'react-hook-form';
 
 import {
   Checkbox,
@@ -28,11 +30,12 @@ const amenities = [
   'Wheelchair Accessible',
 ];
 
-export const AmenitiesSection = <T extends PropertyAmenitiesFields>({
+const AmenitiesPart = <T extends PropertyAmenitiesFields>({
   controls,
   nameAmenities,
 }: AmenitiesSectionProps<T>) => {
-  const { register } = controls;
+  const { control, register } = controls;
+  const selectedAmenities = useWatch({ control, name: nameAmenities });
 
   return (
     <>
@@ -47,6 +50,7 @@ export const AmenitiesSection = <T extends PropertyAmenitiesFields>({
                 id={amenity.toLowerCase()}
                 value={amenity.toLowerCase()}
                 size="size-xs"
+                checked={selectedAmenities?.includes(amenity.toLowerCase())}
               >
                 {amenity}
               </Checkbox>
@@ -57,3 +61,7 @@ export const AmenitiesSection = <T extends PropertyAmenitiesFields>({
     </>
   );
 };
+
+export const AmenitiesSection = memo(AmenitiesPart) as typeof AmenitiesPart;
+
+AmenitiesPart.displayName = 'AmenitiesSection';
