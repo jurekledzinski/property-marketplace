@@ -1,13 +1,15 @@
 export type ContextPopOver = {
-  onClose: (id: string) => void;
-  onCloseAll: () => void;
-  onToggle: (id: string) => void;
-  open: Record<string, boolean>;
-  mapRefs: React.RefObject<Map<string, HTMLElement>>;
-  triggers: React.RefObject<Record<string, HTMLElement | null>>;
-  setTrigger: (node: HTMLElement | null, id: string) => void;
   getTrigger: (id: string) => HTMLElement | null;
   getTriggerRect: (id: string) => DOMRect;
+  mapKeys: React.RefObject<Map<string, HTMLElement>>;
+  onClose: (id: string) => void;
+  onCloseAll: () => void;
+  onDeleteKey: (id: string) => void;
+  onSetKey: (id: string, ref: HTMLElement | null) => void;
+  onToggle: (id: string) => void;
+  open: Record<string, boolean>;
+  setTrigger: (id: string, node: HTMLElement | null) => void;
+  triggers: React.RefObject<Record<string, HTMLElement | null>>;
   updateTriggerRect: (id: string) => void;
 };
 
