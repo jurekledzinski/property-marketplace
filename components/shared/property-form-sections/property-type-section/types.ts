@@ -9,11 +9,11 @@ import {
 export type PropertyTypeSectionProps<T extends PropertyTypeFields> = {
   controls: UseFormReturn<T>;
   errors: FieldErrors<PropertyTypeFields>;
-  nameType: Path<T>;
   nameCondition: Path<T>;
   nameStatus: Path<T>;
+  nameType: Path<T>;
   labels?: boolean;
-  rulesType?: UseControllerProps<T, Path<T>>['rules'];
   rulesCondition?: UseControllerProps<T, Path<T>>['rules'];
   rulesStatus?: UseControllerProps<T, Path<T>>['rules'];
+  rulesType?: UseControllerProps<T, Path<T>>['rules'];
 };
