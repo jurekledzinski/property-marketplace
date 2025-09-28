@@ -3,8 +3,8 @@ import { ApiSuccessResponse, States } from '@/lib';
 import { CountryState, UsePaginatedQueryProps } from './types';
 import { fetchApiClient } from '@/helpers';
 import { uniqBy } from 'lodash';
+import { useCallback, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useRef, useState } from 'react';
 
 export const usePaginatedQuery = ({
   buildUrl,
@@ -19,7 +19,6 @@ export const usePaginatedQuery = ({
   const { isSuccess, refetch, isFetching } = useQuery({
     queryKey,
     queryFn: async () => {
-      //   console.log('1 countryCode.current', countryCode.current);
       return await fetchApiClient<States>({
         url: buildUrl({
           afterId: afterId.current,
@@ -32,17 +31,10 @@ export const usePaginatedQuery = ({
     refetchOnWindowFocus: false,
   });
 
-  //   console.log('isPending', isPending);
-  //   console.log('isFetching', isFetching);
-
-  //   console.log('2 data fetch', data);
-
-  const handleResult = (data: ApiSuccessResponse<States>) => {
+  const handleResult = useCallback((data: ApiSuccessResponse<States>) => {
     const payload = data.payload!;
 
     const isMoreData = payload.pageInfo?.hasNextPage;
-
-    // console.log('4 isMoreData', isMoreData);
 
     hasNextPage.current = isMoreData;
 
@@ -61,38 +53,38 @@ export const usePaginatedQuery = ({
     }
 
     return edges;
-  };
+  }, []);
 
-  const fetchData = async (code: string, division1Code?: string) => {
-    setDataList([]);
-    afterId.current = '';
-    countryCode.current = '';
-    div1Code.current = '';
+  const fetchData = useCallback(
+    async (code: string, division1Code?: string) => {
+      setDataList([]);
+      afterId.current = '';
+      countryCode.current = '';
+      div1Code.current = '';
 
-    if (code) countryCode.current = code;
-    if (division1Code) div1Code.current = division1Code;
+      if (code) countryCode.current = code;
+      if (division1Code) div1Code.current = division1Code;
 
-    const result = await refetch();
+      const result = await refetch();
 
-    if (result.isSuccess && result.data.success && result.data.payload) {
-      const newData = handleResult(result.data);
-      setDataList(newData);
-    }
-  };
+      if (result.isSuccess && result.data.success && result.data.payload) {
+        const newData = handleResult(result.data);
+        setDataList(newData);
+      }
+    },
+    [handleResult, refetch]
+  );
 
-  const onScrollEnd = async () => {
-    // console.log('3 Scroll end hasNextPage', hasNextPage.current);
+  const onScrollEnd = useCallback(async () => {
     if (!hasNextPage.current) return;
 
     const result = await refetch();
 
     if (result.isSuccess && result.data.success && result.data.payload) {
       const newData = handleResult(result.data);
-      //   console.log('DATALIST', dataList);
-      //   console.log('NEWDATA', newData);
       setDataList((prev) => uniqBy([...prev, ...newData], 'name'));
     }
-  };
+  }, [handleResult, refetch]);
 
   return {
     dataList,
