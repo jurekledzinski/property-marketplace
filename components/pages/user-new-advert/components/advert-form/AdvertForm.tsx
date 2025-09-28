@@ -17,7 +17,16 @@ import {
 } from '@/components';
 
 export const AdvertForm = ({
+  cities,
   controls,
+  countries,
+  getCities,
+  getStates,
+  isLoadingCities,
+  isLoadingStates,
+  isSuccessCities,
+  isSuccessStates,
+  states,
   isPending,
   isUploadPending,
   onSubmit,
@@ -38,8 +47,16 @@ export const AdvertForm = ({
       <FormGroup>
         <PersonalSection controls={controls} key={reset.personal} />
         <LocationSection
+          cities={cities}
           controls={controls}
+          countries={countries}
           errors={controls.formState.errors}
+          getCities={getCities}
+          getStates={getStates}
+          isLoadingCities={isLoadingCities}
+          isLoadingStates={isLoadingStates}
+          isSuccessCities={isSuccessCities}
+          isSuccessStates={isSuccessStates}
           nameCity="city"
           nameCountry="country"
           nameState="state"
@@ -53,12 +70,9 @@ export const AdvertForm = ({
           rulesState={{
             required: { message: 'State is required', value: true },
           }}
-          cities={[]}
-          countries={[]}
-          states={[]}
-          getCities={() => {}}
           onScrollEndCities={onScrollEndCities}
           onScrollEndStates={onScrollEndStates}
+          states={states}
         />
         <DescriptionSection controls={controls} key={reset.description} />
         <ImagesSection

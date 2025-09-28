@@ -1,9 +1,20 @@
 import { InputsAvert } from '../../hooks';
 import { OnError } from '@/components';
+import { CountryState } from '@/hooks';
+import { Countries } from '@/lib';
 import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 export type AdvertFormProps = {
+  countries: Countries;
+  cities: CountryState[];
   controls: UseFormReturn<InputsAvert, unknown, InputsAvert>;
+  getCities: (code: string, division1Code?: string) => void;
+  isLoadingStates: boolean;
+  getStates: (code: string) => void;
+  isSuccessCities: boolean;
+  isLoadingCities: boolean;
+  isSuccessStates: boolean;
+  states: CountryState[];
   deleteUploadedFiles: (
     index: number,
     file:
