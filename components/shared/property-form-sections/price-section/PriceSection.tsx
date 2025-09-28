@@ -1,14 +1,13 @@
 'use client';
-import { Controller, useFormState } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import { Field, Message, TextInput, usePriceInputType } from '@/components';
 import { formatNumber } from '@/helpers';
 import { memo } from 'react';
 import { optionsFormat, validate } from './utils';
 import { PriceSectionProps } from './types';
 
-export const PriceSection = memo(({ controls }: PriceSectionProps) => {
+const PricePart = ({ controls, errors }: PriceSectionProps) => {
   const { control } = controls;
-  const { errors } = useFormState({ control });
 
   const { typePriceFrom, typePriceTo, onBlur, onFocus } = usePriceInputType();
 
@@ -74,6 +73,8 @@ export const PriceSection = memo(({ controls }: PriceSectionProps) => {
       </Field>
     </>
   );
-});
+};
 
-PriceSection.displayName = 'PriceSection';
+export const PriceSection = memo(PricePart) as typeof PricePart;
+
+PricePart.displayName = 'PriceSection';
