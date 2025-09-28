@@ -41,10 +41,10 @@ export const LocationPart = <T extends LocationFields>({
   onScrollEndCities,
   onScrollEndStates,
 }: LocationSectionProps<T>) => {
-  const { control, getValues, setValue } = controls;
+  const { control, setValue } = controls;
   const country = useWatch({ control, name: nameCountry });
-  const state = getValues(nameState);
-  const city = getValues(nameCity);
+  const state = useWatch({ control, name: nameState });
+  const city = useWatch({ control, name: nameCity });
   const clearState = '' as FieldPathValue<T, typeof nameState>;
   const clearCity = '' as FieldPathValue<T, typeof nameCity>;
   const disabledState = country === '' || !isSuccessStates || !states.length;
@@ -65,6 +65,8 @@ export const LocationPart = <T extends LocationFields>({
               onChange={(id, data) => {
                 if (data && data.code) getStates(data.code);
                 onChange(id);
+
+                console.log('1 ID', id);
 
                 if (state) setValue(nameState, clearState);
                 if (city) setValue(nameCity, clearCity);
@@ -116,6 +118,7 @@ export const LocationPart = <T extends LocationFields>({
                   getCities(data.code, data.div1Code);
                 }
                 onChange(id);
+                console.log('2 ID', id);
 
                 if (city) setValue(nameCity, clearCity);
               }}
