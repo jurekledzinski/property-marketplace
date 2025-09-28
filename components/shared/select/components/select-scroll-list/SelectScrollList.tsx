@@ -8,13 +8,10 @@ export const SelectScrollList = ({
   isLoading,
   onScrollEnd,
 }: SelectScrollListProps) => {
-  const { localRef } = useInfiniteScroll<HTMLDivElement>({
-    isLoading,
-    onScrollEnd,
-  });
+  const element = useInfiniteScroll<HTMLDivElement>({ isLoading, onScrollEnd });
 
   return (
-    <SelectList ref={localRef}>
+    <SelectList ref={element.localRef}>
       {isLoading && <Loader position="viewport" />}
       {children}
     </SelectList>
