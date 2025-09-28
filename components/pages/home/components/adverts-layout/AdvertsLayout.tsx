@@ -94,7 +94,6 @@ export const AdvertsLayout = ({
             isSuccessStates={controlFetchStates.isSuccess}
             isSuccessCities={controlFetchCities.isSuccess}
             onSubmit={form.onSubmit}
-            reset={form.reset}
             states={controlFetchStates.dataList}
             onScrollEndCities={controlFetchCities.onScrollEnd}
             onScrollEndStates={controlFetchStates.onScrollEnd}
