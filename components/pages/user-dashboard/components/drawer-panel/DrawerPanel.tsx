@@ -15,7 +15,12 @@ export const DrawerPanel = () => {
     <div className={styles.panel}>
       <List className={styles.list}>
         <ListItem>
-          <Link className={styles.listItem} data-link="menu-link" href="/">
+          <Link
+            className={styles.listItem}
+            data-link="menu-link"
+            href="/"
+            prefetch={true}
+          >
             <Icon icon={faHome} />
             Home page
           </Link>
@@ -25,6 +30,7 @@ export const DrawerPanel = () => {
             className={styles.listItem}
             data-link="menu-link"
             href="/user/dashboard"
+            prefetch={true}
           >
             <Icon icon={faGear} />
             Dashboard
@@ -35,6 +41,7 @@ export const DrawerPanel = () => {
             className={styles.listItem}
             data-link="menu-link"
             href="/user/adverts/new"
+            prefetch={true}
           >
             <Icon icon={faAdd} />
             New Advert
@@ -45,6 +52,7 @@ export const DrawerPanel = () => {
             className={styles.listItem}
             data-link="menu-link"
             href="/user/adverts"
+            prefetch={true}
           >
             <Icon icon={faAd} />
             My Adverts
@@ -55,6 +63,7 @@ export const DrawerPanel = () => {
             className={styles.listItem}
             data-link="menu-link"
             href="/user/profile"
+            prefetch={true}
           >
             <Icon icon={faUser} />
             Profile
@@ -65,6 +74,7 @@ export const DrawerPanel = () => {
             className={styles.listItem}
             data-link="menu-link"
             href="/user/messages"
+            prefetch={true}
           >
             <Icon icon={faEnvelope} />
             Messages
