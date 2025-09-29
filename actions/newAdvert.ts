@@ -36,7 +36,6 @@ export const newAdvert = connectDBAction(
     if (result === false) return errorResponseAction('Internal server error');
 
     delete parsedData.deleteImages;
-    delete parsedData.state;
     delete parsedData.files;
 
     advertsCol.insertOne({
