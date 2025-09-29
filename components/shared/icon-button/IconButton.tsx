@@ -19,6 +19,7 @@ export const IconButton = ({
         className={classes}
         {...(button.disabled || button.isLoading ? {} : { href: rest.href })}
         {...rest}
+        prefetch={true}
       >
         <IconButtonContent
           icon={icon}

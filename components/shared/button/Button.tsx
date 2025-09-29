@@ -19,6 +19,7 @@ export const Button = ({
         className={classElement}
         {...(button.disabled || button.isLoading ? {} : { href: rest.href })}
         {...rest}
+        prefetch={true}
       >
         <ButtonContent
           label={label}
