@@ -38,8 +38,8 @@ export const CardAdvertContent = ({
       </Heading>
 
       <p className={styles.location}>
-        <Icon icon={faLocationDot} /> {street}, {postalCode}, {country}, {state}
-        , {city}
+        <Icon color="negative" icon={faLocationDot} /> {street},{postalCode},{' '}
+        {country}, {state}, {city}
       </p>
 
       <Box className={styles.amenities}>
