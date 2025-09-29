@@ -15,7 +15,7 @@ import {
   Modal,
 } from '@/components';
 
-export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
+export const UserEditAdvert = ({ advert, countries }: UserEditAdvertProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const [state, action, isPending] = useActionState(editAdvert, initialState);
@@ -39,8 +39,7 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
     currentUrl: pathname,
     isDirty: advertEdit.form.formControl.formState.isDirty,
     onConfirmLeave: async (url) => {
-      const { getValues } = advertEdit.form.formControl;
-      const images = getValues('images');
+      const images = advertEdit.form.formControl.getValues('images');
       const deletedImages = advertEdit.form.deletedImages || [];
       const result = await advertEdit.deleteDraft(images, deletedImages);
       if (result.success) router.push(url);
@@ -60,7 +59,7 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
       </Heading>
       <AdvertForm
         cities={controlFetchCities.dataList}
-        countries={[]}
+        countries={countries}
         controls={advertEdit.form.formControl}
         deleteUploadedFiles={advertEdit.deleteUploadedFiles}
         getCities={controlFetchCities.fetchData}
@@ -72,7 +71,6 @@ export const UserEditAdvert = ({ advert }: UserEditAdvertProps) => {
         isSuccessStates={controlFetchStates.isSuccess}
         isUploadPending={advertEdit.isUploadPending}
         onSubmit={advertEdit.form.onSubmit}
-        reset={advertEdit.form.reset}
         states={controlFetchStates.dataList}
         uploadFiles={advertEdit.uploadFiles}
         validationInfo={validationFilesInfo}
