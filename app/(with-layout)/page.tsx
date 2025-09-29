@@ -1,7 +1,12 @@
-import { decodeQueryUrl, getAdvertsPage, getCountries } from '@/lib';
 import { headers } from 'next/headers';
 import { Home, InputsAdvertsFilter } from '@/components';
 import { HomePageProps } from './types';
+import {
+  decodeQueryUrl,
+  formatCountires,
+  getAdvertsPage,
+  getCountries,
+} from '@/lib';
 
 const HomePage = async ({ searchParams }: HomePageProps) => {
   const data = await searchParams;
@@ -12,14 +17,9 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
   const adverts = await getAdvertsPage(queries, headersData);
 
   const decodedFilters = decodeQueryUrl<object>(filters, ['amenities']);
-  const dataCountry = await getCountries();
 
-  const countries = dataCountry
-    .map((country) => ({
-      name: country.name,
-      code: country.countryCode,
-    }))
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const countriesData = await getCountries();
+  const countries = formatCountires(countriesData);
 
   return (
     <Home
