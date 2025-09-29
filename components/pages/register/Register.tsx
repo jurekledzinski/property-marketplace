@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import styles from './Register.module.css';
 import stylesCommon from '@/components/pages/login/Common.module.css';
 import { Alert, Box, Heading, RegisterForm } from '@/components';
@@ -52,6 +53,18 @@ export const Register = () => {
             passwordRules={passwordRules}
             onSubmit={onSubmit}
           />
+
+          <p className={styles.linkText}>
+            Already have an account?
+            <Link
+              className={styles.linkLogin}
+              href="/auth/login"
+              prefetch={true}
+            >
+              Log in
+            </Link>
+          </p>
+
           {!state.success && state.message && (
             <Alert
               color="negative"

@@ -1,3 +1,14 @@
 .leftBackground {
   background-image: url('/images/House-login.png');
 }
+
+.linkText {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 14px;
+}
+
+.linkRegister {
+  color: var(--color-primary-700);
+}

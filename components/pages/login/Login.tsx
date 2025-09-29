@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import styles from './Login.module.css';
 import stylesCommon from './Common.module.css';
 import { Alert, Box, Heading, LoginForm, useLoginForm } from '@/components';
@@ -42,6 +43,18 @@ export const Login = () => {
             isPending={!state.message ? isPending : false}
             onSubmit={onSubmit}
           />
+
+          <p className={styles.linkText}>
+            Don&apos;t have an account?
+            <Link
+              className={styles.linkRegister}
+              href="/auth/register"
+              prefetch={true}
+            >
+              Sign up
+            </Link>
+          </p>
+
           {!state.success && state.message && (
             <Alert
               color="negative"
