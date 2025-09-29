@@ -5,14 +5,6 @@ import { startTransition, useCallback, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAdvertInitialValues } from '../advert-initial-values';
 import { useResetForm } from '@/hooks';
-import { v4 as uuidv4 } from 'uuid';
-
-const resetState = {
-  personal: uuidv4(),
-  description: uuidv4(),
-  bathrooms: uuidv4(),
-  amenities: uuidv4(),
-};
 
 export const useAdvertForm = ({
   advert,
@@ -24,7 +16,6 @@ export const useAdvertForm = ({
   onFailed,
   onSuccess,
 }: UseAdvertFormProps) => {
-  const [reset, setReset] = useState(resetState);
   const [deletedImages, setDeletedImages] = useState<DeleteImages>(
     draft.deleteImages ?? []
   );
@@ -67,13 +58,6 @@ export const useAdvertForm = ({
     onFailed,
     onSuccess: () => {
       if (onSuccess) onSuccess();
-      if (mode !== 'new') return;
-      setReset({
-        personal: uuidv4(),
-        description: uuidv4(),
-        bathrooms: uuidv4(),
-        amenities: uuidv4(),
-      });
     },
   });
 
@@ -86,5 +70,5 @@ export const useAdvertForm = ({
     setDeletedImages(images);
   };
 
-  return { deletedImages, formControl, onSetDeleteImages, onSubmit, reset };
+  return { deletedImages, formControl, onSetDeleteImages, onSubmit };
 };
