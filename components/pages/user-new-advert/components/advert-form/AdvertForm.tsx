@@ -30,7 +30,6 @@ export const AdvertForm = ({
   isPending,
   isUploadPending,
   onSubmit,
-  reset,
   uploadFiles,
   deleteUploadedFiles,
   validationInfo,
@@ -45,7 +44,7 @@ export const AdvertForm = ({
       noValidate
     >
       <FormGroup>
-        <PersonalSection controls={controls} key={reset.personal} />
+        <PersonalSection controls={controls} />
         <LocationSection
           cities={cities}
           controls={controls}
@@ -74,7 +73,7 @@ export const AdvertForm = ({
           onScrollEndStates={onScrollEndStates}
           states={states}
         />
-        <DescriptionSection controls={controls} key={reset.description} />
+        <DescriptionSection controls={controls} />
         <ImagesSection
           controls={controls}
           deleteUploadedFiles={deleteUploadedFiles}
@@ -114,7 +113,7 @@ export const AdvertForm = ({
           }}
           rulesYear={{ required: { message: 'Year is required', value: true } }}
         />
-        <BathroomsSection controls={controls} key={reset.bathrooms} />
+        <BathroomsSection controls={controls} />
         <ArchitectureSection
           controls={controls}
           errors={controls.formState.errors}
@@ -123,11 +122,7 @@ export const AdvertForm = ({
             required: { message: 'Style is required', value: true },
           }}
         />
-        <AmenitiesSection
-          controls={controls}
-          nameAmenities="amenities"
-          key={reset.amenities}
-        />
+        <AmenitiesSection controls={controls} nameAmenities="amenities" />
         <ButtonGroup mt="mt-md" fullWidth>
           <Button
             disabled={isUploadPending}

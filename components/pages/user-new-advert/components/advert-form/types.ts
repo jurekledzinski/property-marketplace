@@ -24,7 +24,6 @@ export type AdvertFormProps = {
   onScrollEndCities: () => void;
   onScrollEndStates: () => void;
   onSubmit: SubmitHandler<InputsAvert>;
-  reset: Record<string, string>;
   uploadFiles: (files: File[]) => Promise<void>;
   validationInfo: OnError;
   isPending?: boolean;
