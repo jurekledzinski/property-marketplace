@@ -1,6 +1,11 @@
 'use client';
 import { AdvertForm } from './components';
-import { Heading, Modal, validationFilesInfo } from '@/components';
+import {
+  Heading,
+  Modal,
+  UserNewAdvertProps,
+  validationFilesInfo,
+} from '@/components';
 import { initialState, modalMessages } from '@/constants';
 import { newAdvert } from '@/actions';
 import { showErrorToast, showSuccessToast } from '@/helpers';
@@ -10,7 +15,7 @@ import { useExitGuard, useFetchCities, useFetchStates } from '@/hooks';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-export const UserNewAdvert = () => {
+export const UserNewAdvert = ({ countries }: UserNewAdvertProps) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [state, action, isPending] = useActionState(newAdvert, initialState);
@@ -33,8 +38,7 @@ export const UserNewAdvert = () => {
     currentUrl: '/user/adverts/new',
     isDirty: advert.form.formControl.formState.isDirty,
     onConfirmLeave: async (url) => {
-      const { getValues } = advert.form.formControl;
-      const images = getValues('images');
+      const images = advert.form.formControl.getValues('images');
       const deletedImages = advert.form.deletedImages || [];
       const result = await advert.deleteDraft(images, deletedImages);
       if (result.success) router.push(url);
@@ -54,7 +58,7 @@ export const UserNewAdvert = () => {
       </Heading>
       <AdvertForm
         cities={controlFetchCities.dataList}
-        countries={[]}
+        countries={countries}
         controls={advert.form.formControl}
         deleteUploadedFiles={advert.deleteUploadedFiles}
         getCities={controlFetchCities.fetchData}
@@ -66,7 +70,6 @@ export const UserNewAdvert = () => {
         isSuccessStates={controlFetchStates.isSuccess}
         isUploadPending={advert.isUploadPending}
         onSubmit={advert.form.onSubmit}
-        reset={advert.form.reset}
         states={controlFetchStates.dataList}
         uploadFiles={advert.uploadFiles}
         validationInfo={validationFilesInfo}
