@@ -1,8 +1,8 @@
-import { UserEditAdvert } from '@/components';
 import { EditAdvertPageProps } from './types';
-import { getUserAdvertPage } from '@/lib';
-import { headers } from 'next/headers';
+import { formatCountires, getCountries, getUserAdvertPage } from '@/lib';
 import { formatNumberToStringObject } from '@/helpers';
+import { headers } from 'next/headers';
+import { UserEditAdvert } from '@/components';
 
 const EditAdvertPage = async ({ params }: EditAdvertPageProps) => {
   const headersData = await headers();
@@ -11,7 +11,10 @@ const EditAdvertPage = async ({ params }: EditAdvertPageProps) => {
   const userAdvert = await getUserAdvertPage(headersData, advertId);
   const formattedUserAdvert = formatNumberToStringObject(userAdvert);
 
-  return <UserEditAdvert advert={formattedUserAdvert} />;
+  const countriesData = await getCountries();
+  const countries = formatCountires(countriesData);
+
+  return <UserEditAdvert advert={formattedUserAdvert} countries={countries} />;
 };
 
 export default EditAdvertPage;
