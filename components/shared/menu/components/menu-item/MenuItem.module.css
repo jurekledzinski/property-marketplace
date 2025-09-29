@@ -1,9 +1,0 @@
-.menu-item {
-  padding: 0.25rem;
-  transition: 100ms linear;
-}
-
-.menu-item:focus {
-  background-color: #dddddd;
-  color: white;
-}
