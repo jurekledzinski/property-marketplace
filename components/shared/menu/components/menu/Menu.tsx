@@ -1,13 +1,8 @@
-import { BaseMenu } from './BaseMenu';
 import { MenuProps } from './types';
-import { useMenuController } from '../../hooks';
+import { getMenuClassNames } from '../../utils';
 
-export const Menu = ({ children, ...props }: MenuProps) => {
-  const menuProps = useMenuController();
+export const Menu = ({ children, className, size }: MenuProps) => {
+  const classes = getMenuClassNames({ className, size });
 
-  return (
-    <BaseMenu {...props} {...menuProps}>
-      {children}
-    </BaseMenu>
-  );
+  return <ul className={classes}>{children}</ul>;
 };

@@ -1,17 +1,8 @@
 import { MenuTriggerProps } from './types';
-import { useMenuTriggerController } from '../../hooks';
+import { useMenuTrigger } from '../../hooks';
 
-export const MenuTrigger = ({
-  children,
-  id,
-  fullWidth,
-  ...props
-}: MenuTriggerProps) => {
-  const menuTriggerProps = useMenuTriggerController({ fullWidth, id });
+export const MenuTrigger = ({ children, id }: MenuTriggerProps) => {
+  const menuChildren = useMenuTrigger({ children, id });
 
-  return (
-    <button {...props} {...menuTriggerProps} data-id={id} data-type="trigger">
-      {children}
-    </button>
-  );
+  return <>{menuChildren}</>;
 };

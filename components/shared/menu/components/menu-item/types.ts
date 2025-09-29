@@ -1,5 +1,1 @@
-import { HTMLAttributes } from 'react';
-
-export interface MenuItemProps extends HTMLAttributes<HTMLDivElement> {
-  index?: number;
-}
+export type MenuItemProps = React.LiHTMLAttributes<HTMLLIElement>;

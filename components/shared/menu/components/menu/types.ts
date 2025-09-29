@@ -1,8 +1,5 @@
-import { HTMLAttributes } from 'react';
+import { Size } from '@/types';
 
-export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
-  orientation?: 'horizontal' | 'vertical';
-  onSelectItem?: (id: string) => void;
+export interface MenuProps extends React.MenuHTMLAttributes<HTMLUListElement> {
+  size?: Size;
 }
-
-export type BaseMenuProps = MenuProps;
