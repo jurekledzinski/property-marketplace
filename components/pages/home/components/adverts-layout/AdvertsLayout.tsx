@@ -55,7 +55,12 @@ export const AdvertsLayout = ({
         )}
         <CardsSection advertCards={advertCards} />
         {advertCards.length ? (
-          <ButtonGroup fullWidth={true} justify="justify-end" pt="pt-sm">
+          <ButtonGroup
+            fullWidth={true}
+            justify="justify-end"
+            mt="mt-md"
+            mb="mb-sm"
+          >
             <HomeAdvertsPagination
               amountData={totalItems}
               currentPage={page}
