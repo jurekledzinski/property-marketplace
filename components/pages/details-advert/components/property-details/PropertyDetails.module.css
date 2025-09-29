@@ -30,3 +30,71 @@
   align-items: center;
   text-transform: capitalize;
 }
+
+.description {
+  line-height: 1.4;
+}
+
+.air-conditioning {
+  color: #add8e6;
+}
+
+.balcony {
+  color: #32cd32;
+}
+
+.basement {
+  color: #708090;
+}
+
+.elevator {
+  color: #d3d3d3;
+}
+
+.garage {
+  color: #696969;
+}
+
+.garden {
+  color: #228b22;
+}
+
+.fireplace {
+  color: #ff4500;
+}
+
+.furnished {
+  color: #f5deb3;
+}
+
+.heating {
+  color: #ff6347;
+}
+
+.internet {
+  color: #1e90ff;
+}
+
+.parking {
+  color: #a9a9a9;
+}
+
+.smart-home-features {
+  color: #4169e1;
+}
+
+.security-system {
+  color: #00008b;
+}
+
+.storage-room {
+  color: #8b4513;
+}
+
+.swimming-pool {
+  color: #20b2aa;
+}
+
+.wheelchair-accessible {
+  color: #ffd700;
+}

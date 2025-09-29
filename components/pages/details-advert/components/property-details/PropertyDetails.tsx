@@ -26,7 +26,7 @@ export const PropertyDetails = ({ details }: PropertyDetailsProps) => {
         Description
       </Heading>
 
-      <p>{details.description}</p>
+      <p className={styles.description}>{details.description}</p>
 
       <Heading level={4} mb="mb-md" mt="mt-md">
         Amenitis
@@ -36,6 +36,7 @@ export const PropertyDetails = ({ details }: PropertyDetailsProps) => {
         {details.amenities.map((amenity) => (
           <ListItem className={styles.amenityItem} key={amenity}>
             <Icon
+              className={styles[amenity.toLowerCase().replace(/\s/g, '-')]}
               icon={amenitiesIcons[amenity as keyof typeof amenitiesIcons]}
             />
             {amenity}
