@@ -2,9 +2,19 @@
 import Link from 'next/link';
 import styles from './Login.module.css';
 import stylesCommon from './Common.module.css';
-import { Alert, Box, Heading, LoginForm, useLoginForm } from '@/components';
+import {
+  Alert,
+  Box,
+  Heading,
+  Icon,
+  LoginForm,
+  useLoginForm,
+} from '@/components';
 import { classNames, showSuccessToast } from '@/helpers';
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowLeft,
+  faTriangleExclamation,
+} from '@fortawesome/free-solid-svg-icons';
 import { login } from '@/actions';
 import { useActionStateReset } from '@/hooks';
 import { useRouter } from 'next/navigation';
@@ -60,10 +70,17 @@ export const Login = () => {
               color="negative"
               icon={faTriangleExclamation}
               message={state.message}
-              size="size-sm"
+              size="size-xs"
               fullWidth
             />
           )}
+
+          <p className={styles.linkBack}>
+            <Icon icon={faArrowLeft} />
+            <Link href="/" prefetch={true}>
+              Back to Home
+            </Link>
+          </p>
         </Box>
       </Box>
     </Box>

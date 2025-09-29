@@ -2,14 +2,18 @@
 import Link from 'next/link';
 import styles from './Register.module.css';
 import stylesCommon from '@/components/pages/login/Common.module.css';
-import { Alert, Box, Heading, RegisterForm } from '@/components';
+import { Alert, Box, Heading, Icon, RegisterForm } from '@/components';
 import { classNames, showSuccessToast } from '@/helpers';
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { initialState } from '@/constants';
 import { register } from '@/actions';
 import { useActionState } from 'react';
 import { usePasswordRules, useRegisterForm } from './hooks';
 import { useRouter } from 'next/navigation';
+
+import {
+  faArrowLeft,
+  faTriangleExclamation,
+} from '@fortawesome/free-solid-svg-icons';
 
 export const Register = () => {
   const router = useRouter();
@@ -74,6 +78,13 @@ export const Register = () => {
               fullWidth
             />
           )}
+
+          <p className={styles.linkBack}>
+            <Icon icon={faArrowLeft} />
+            <Link href="/" prefetch={true}>
+              Back to Home
+            </Link>
+          </p>
         </Box>
       </Box>
     </Box>

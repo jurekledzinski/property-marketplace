@@ -12,3 +12,12 @@
 .linkRegister {
   color: var(--color-primary-700);
 }
+
+.linkBack {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--color-secondary-700);
+  font-size: 14px;
+}
