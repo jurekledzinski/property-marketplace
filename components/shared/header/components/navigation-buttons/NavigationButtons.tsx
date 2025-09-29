@@ -34,7 +34,7 @@ export const NavigationButtons = ({
         <IconButton
           icon={[faMoon]}
           variant="minimal"
-          size="size-md"
+          size="size-xs"
           onClick={() => onChangeTheme('dark')}
         />
       ) : (
@@ -42,7 +42,7 @@ export const NavigationButtons = ({
           id="light"
           icon={[faSun]}
           variant="minimal"
-          size="size-md"
+          size="size-xs"
           onClick={() => onChangeTheme('light')}
         />
       )}
