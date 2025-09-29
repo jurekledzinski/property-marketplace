@@ -16,8 +16,8 @@ export const PropertyDetails = ({ details }: PropertyDetailsProps) => {
       <List>
         {Object.entries(formatedDetails).map((detail) => (
           <ListItem className={styles.detailItem} key={detail[0]}>
-            <span>{detail[0]}</span>
-            <span>{detail[1]}</span>
+            <span className={styles.detailsItemKey}>{detail[0]}</span>
+            <span className={styles.detailsItemValue}>{detail[1]}</span>
           </ListItem>
         ))}
       </List>

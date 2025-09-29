@@ -12,6 +12,14 @@
   align-items: center;
 }
 
+.detailsItemKey {
+  text-transform: capitalize;
+}
+
+.detailsItemValue {
+  text-transform: capitalize;
+}
+
 .amenitiesList {
   flex-direction: row;
   flex-wrap: wrap;
