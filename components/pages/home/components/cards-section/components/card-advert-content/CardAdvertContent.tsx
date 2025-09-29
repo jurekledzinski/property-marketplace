@@ -28,6 +28,7 @@ export const CardAdvertContent = ({
     street,
     title,
     status,
+    state,
   },
 }: CardAdvertContentProps) => {
   return (
@@ -37,7 +38,8 @@ export const CardAdvertContent = ({
       </Heading>
 
       <p className={styles.location}>
-        <Icon icon={faLocationDot} /> {street} {postalCode} {city} {country}
+        <Icon icon={faLocationDot} /> {street}, {postalCode}, {country}, {state}
+        , {city}
       </p>
 
       <Box className={styles.amenities}>

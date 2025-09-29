@@ -9,6 +9,7 @@
 .location {
   padding: 0 1rem 0.5rem 0.85rem;
   font-size: 14px;
+  text-transform: capitalize;
 }
 
 .price {
@@ -23,4 +24,5 @@
   gap: 0.25rem;
   padding: 0 1rem 0.5rem;
   font-size: 14px;
+  text-transform: capitalize;
 }
