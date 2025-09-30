@@ -1,28 +1,13 @@
 .container {
   width: calc(100% - 1rem);
+  max-height: 200px;
   overflow: hidden;
   margin: 0 auto;
   padding: 0.5rem 0;
 }
 
-.list {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 0.5rem;
-  width: 100%;
+.splide {
   height: 100%;
-  transition: 200ms ease;
-  touch-action: none;
-  backface-visibility: hidden;
-  list-style: none;
-}
-
-.list .item {
-  position: relative;
-  width: 25%;
-  flex-shrink: 0;
-  z-index: 0;
-  cursor: pointer;
 }
 
 .image {
