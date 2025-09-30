@@ -19,7 +19,13 @@ export const Header = memo(({ session }: HeaderProps) => {
         <Container m="m-center">
           <nav className={styles.nav}>
             <Heading level={4}>
-              <Link data-link="logo-link" href="/">
+              <Link
+                data-link="logo-link"
+                href="/"
+                prefetch={true}
+                scroll={false}
+                as="/"
+              >
                 PlaceQuest
               </Link>
             </Heading>
