@@ -1,4 +1,5 @@
 'use client';
+import styles from './AmenitiesSection.module.css';
 import { AmenitiesSectionProps } from './types';
 import { memo } from 'react';
 import { useWatch } from 'react-hook-form';
@@ -7,7 +8,6 @@ import {
   Checkbox,
   CheckboxGroup,
   Field,
-  Label,
   PropertyAmenitiesFields,
 } from '@/components';
 
@@ -40,7 +40,7 @@ const AmenitiesPart = <T extends PropertyAmenitiesFields>({
   return (
     <>
       <Field>
-        <Label>Amenities</Label>
+        <legend className={styles.legend}>Amenities</legend>
         <CheckboxGroup orientation="column" spacing="tight">
           {amenities.map((amenity) => {
             return (
