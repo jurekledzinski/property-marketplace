@@ -42,6 +42,7 @@ export const SelectTrigger = ({
           value={capitalizeFirstLetter(value)}
           onKeyDown={onKeyDown}
           tabIndex={-1}
+          name="select"
         />
         {variant !== 'basic' && (
           <legend className={classes.legend}>{label}</legend>
