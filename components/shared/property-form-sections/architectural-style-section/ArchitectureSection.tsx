@@ -1,8 +1,8 @@
+import styles from './ArchitectureSection.module.css';
 import { ArchitectureProps } from './types';
 import { memo } from 'react';
 import {
   Field,
-  Label,
   Message,
   PropertyStylesFields,
   Radio,
@@ -22,7 +22,7 @@ const StylePart = <T extends PropertyStylesFields>({
   return (
     <>
       <Field>
-        <Label>Style</Label>
+        <legend className={styles.legend}>Style</legend>
         <RadioGroup orientation="column" spacing="tight">
           {architectureStyles.map((style) => (
             <Radio

@@ -1,0 +1,5 @@
+.legend {
+  width: fit-content;
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
