@@ -11,6 +11,7 @@ const DrawerProvider = ({ children }: DrawerProviderProps) => {
     () => ({
       openFiltersPanel,
       openMenuPanel,
+      onCloseFilterPanel: () => setOpenFiltersPanel(false),
       onToggleFiltersPanel: () => setOpenFiltersPanel((prev) => !prev),
       onToggleMenuPanel: () => setOpenMenuPanel((prev) => !prev),
     }),
