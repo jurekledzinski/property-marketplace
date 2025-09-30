@@ -1,5 +1,5 @@
 import { Countries } from '@/lib';
-import { InputsAvert } from '../user-new-advert';
+import { InputsAvert } from '@/components';
 
 export type UserEditAdvertProps = {
   advert: InputsAvert | null;
