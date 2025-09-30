@@ -29,7 +29,7 @@ export const AdvertsLayout = ({
   sortValue,
   totalItems,
 }: AdvertsLayoutProps) => {
-  const { openFiltersPanel } = useDrawer();
+  const { openFiltersPanel, onCloseFilterPanel } = useDrawer();
   const controlQueries = useSetQuries();
 
   const form = useFilterForm({ ...controlQueries, filters });
@@ -76,6 +76,7 @@ export const AdvertsLayout = ({
         className={styles.backdropFilters}
         open={Boolean(openFiltersPanel)}
         zIndex={48}
+        onClick={onCloseFilterPanel}
       />
       <Drawer
         direction="right"
