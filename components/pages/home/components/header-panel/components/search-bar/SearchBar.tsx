@@ -23,6 +23,7 @@ export const SearchBar = ({
       placeholder="Search"
       value={state}
       onClickEndIcon={onClickEndIcon}
+      name="Search"
     />
   );
 };
