@@ -66,8 +66,6 @@ export const LocationPart = <T extends LocationFields>({
                 if (data && data.code) getStates(data.code);
                 onChange(id);
 
-                console.log('1 ID', id);
-
                 if (state) setValue(nameState, clearState);
                 if (city) setValue(nameCity, clearCity);
               }}
@@ -118,7 +116,6 @@ export const LocationPart = <T extends LocationFields>({
                   getCities(data.code, data.div1Code);
                 }
                 onChange(id);
-                console.log('2 ID', id);
 
                 if (city) setValue(nameCity, clearCity);
               }}
