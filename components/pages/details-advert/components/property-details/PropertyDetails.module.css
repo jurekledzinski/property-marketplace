@@ -20,7 +20,7 @@
   text-transform: capitalize;
 }
 
-.amenitiesList {
+ul.amenitiesList {
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -35,66 +35,66 @@
   line-height: 1.4;
 }
 
-.air-conditioning {
+.amenityItem .air-conditioning {
   color: #add8e6;
 }
 
-.balcony {
+.amenityItem .balcony {
   color: #32cd32;
 }
 
-.basement {
+.amenityItem .basement {
   color: #708090;
 }
 
-.elevator {
+.amenityItem .elevator {
   color: #d3d3d3;
 }
 
-.garage {
+.amenityItem .garage {
   color: #696969;
 }
 
-.garden {
+.amenityItem .garden {
   color: #228b22;
 }
 
-.fireplace {
+.amenityItem .fireplace {
   color: #ff4500;
 }
 
-.furnished {
+.amenityItem .furnished {
   color: #f5deb3;
 }
 
-.heating {
+.amenityItem .heating {
   color: #ff6347;
 }
 
-.internet {
+.amenityItem .internet {
   color: #1e90ff;
 }
 
-.parking {
+.amenityItem .parking {
   color: #a9a9a9;
 }
 
-.smart-home-features {
+.amenityItem .smart-home-features {
   color: #4169e1;
 }
 
-.security-system {
+.amenityItem .security-system {
   color: #00008b;
 }
 
-.storage-room {
+.amenityItem .storage-room {
   color: #8b4513;
 }
 
-.swimming-pool {
+.amenityItem .swimming-pool {
   color: #20b2aa;
 }
 
-.wheelchair-accessible {
+.amenityItem .wheelchair-accessible {
   color: #ffd700;
 }
