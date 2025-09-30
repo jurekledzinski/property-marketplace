@@ -25,9 +25,10 @@ const DetailsPart = <T extends PropertyMetricFields>({
   return (
     <>
       <Field>
-        {labels && <Label>Year</Label>}
+        {labels && <Label htmlFor="year">Year</Label>}
         <TextInput
           {...register(nameYear, rulesYear)}
+          id="year"
           type="number"
           min={1800}
           max={new Date().getFullYear()}
@@ -38,9 +39,10 @@ const DetailsPart = <T extends PropertyMetricFields>({
         ) : null}
       </Field>
       <Field>
-        {labels && <Label>Size</Label>}
+        {labels && <Label htmlFor="size">Size</Label>}
         <TextInput
           {...register(nameArea, rulesArea)}
+          id="size"
           placeholder="Area"
           type="number"
           endIcon={['m²']}
@@ -51,9 +53,10 @@ const DetailsPart = <T extends PropertyMetricFields>({
         ) : null}
       </Field>
       <Field>
-        {labels && <Label>Rooms</Label>}
+        {labels && <Label htmlFor="rooms">Rooms</Label>}
         <TextInput
           {...register(nameRooms, rulesRooms)}
+          id="rooms"
           placeholder="Number of rooms"
           type="number"
           min={1}
