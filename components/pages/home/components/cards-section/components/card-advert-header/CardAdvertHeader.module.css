@@ -9,6 +9,8 @@
 .container .image {
   object-fit: cover;
   aspect-ratio: 3 / 2;
+  height: inherit;
+  width: inherit;
 
   transition: transform 300ms linear;
   transform: scale(1);
