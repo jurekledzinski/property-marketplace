@@ -28,17 +28,18 @@ export const RegisterForm = <T extends FieldValues>({
   return (
     <Form onSubmit={controls.handleSubmit(onSubmit)} noValidate>
       <Field>
-        <Label>Name</Label>
+        <Label htmlFor="name">Name</Label>
         <TextInput
           {...register(nameName, {
             required: { message: 'Name is required', value: true },
           })}
+          id="name"
         />
         {errors.name ? <Message>{errors.name.message}</Message> : null}
       </Field>
 
       <Field>
-        <Label>Email</Label>
+        <Label htmlFor="email">Email</Label>
         <TextInput
           {...register(nameEmail, {
             required: { message: 'Email is required', value: true },
@@ -48,6 +49,7 @@ export const RegisterForm = <T extends FieldValues>({
                 'Email address must be a valid address',
             },
           })}
+          id="email"
         />
         {errors.email ? <Message>{errors.email.message}</Message> : null}
       </Field>
@@ -78,6 +80,7 @@ export const RegisterForm = <T extends FieldValues>({
       </Field>
 
       <RegisterValidation passwordRules={passwordRules} />
+
       <ButtonGroup mt="mt-md" fullWidth>
         <Button
           fullWidth
