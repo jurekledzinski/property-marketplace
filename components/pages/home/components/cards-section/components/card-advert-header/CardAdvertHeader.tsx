@@ -26,6 +26,7 @@ export const CardAdvertHeader = ({ src }: CardAdvertHeaderProps) => {
                 alt="Advert image"
                 width={850}
                 height={480}
+                priority={true}
               />
             )}
           </>
