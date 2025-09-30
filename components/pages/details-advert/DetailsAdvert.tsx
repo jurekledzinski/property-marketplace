@@ -10,23 +10,18 @@ import {
   Box,
   CarouselThumbnails,
   Container,
-  optionsFormat,
-  useCarouselThumbnails,
-  useContactForm,
-} from '@/components';
-
-import {
   DetailsHeroImage,
+  optionsFormat,
   PropertyDetails,
   PropertySidebar,
-} from './components';
+  useContactForm,
+} from '@/components';
 
 export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
   const searchParams = useSearchParams();
   const slide = searchParams.get('slide');
 
   const format = formatNumber(`${advert?.price || 0}`, 'nl-NL', optionsFormat);
-  const carousel = useCarouselThumbnails();
 
   const action = useActionStateReset({
     fnAction: newMessage,
@@ -64,7 +59,6 @@ export const DetailsAdvert = ({ advert }: DetailsAdvertProps) => {
         status={advert.status}
       />
       <CarouselThumbnails
-        carouselControl={carousel}
         images={advert.images}
         onClickThumbnail={(index) => {
           const pathname = window.location.pathname;
