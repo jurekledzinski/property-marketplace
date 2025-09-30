@@ -1,8 +1,9 @@
 export type ContextDrawer = {
-  openFiltersPanel: boolean;
-  openMenuPanel: boolean;
+  onCloseFilterPanel: () => void;
   onToggleFiltersPanel: () => void;
   onToggleMenuPanel: () => void;
+  openFiltersPanel: boolean;
+  openMenuPanel: boolean;
 };
 
 export type DrawerProviderProps = {
