@@ -8,6 +8,7 @@ export * from './formatFormData';
 export * from './formatNumber';
 export * from './formatText';
 export * from './hasError';
+export * from './localStorage';
 export * from './spacing';
 export * from './toasts';
 export * from './tryCatch';
