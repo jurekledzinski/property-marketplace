@@ -208,6 +208,10 @@ html[data-theme='dark'] {
   --icon-color-active: #dddddd;
 }
 
+.disabled-transition * {
+  transition: none !important;
+}
+
 body {
   background-color: var(--color-surface);
   min-height: 100vh;
