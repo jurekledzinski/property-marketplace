@@ -7,13 +7,13 @@ export const useModalEffectStatus = ({
   isSuccess,
   onFailed,
   onSuccess,
-  isOpen,
+  open,
 }: UseControlModalProps) => {
   useEffect(() => {
-    if (isOpen) document.body.classList.add('modal-open');
+    if (open) document.body.classList.add('modal-open');
     else document.body.classList.remove('modal-open');
 
-    if (isOpen && isSuccess && !isPending && onSuccess) onSuccess();
-    if (isOpen && isSuccess === false && !isPending && onFailed) onFailed();
-  }, [isPending, isSuccess, isOpen, onFailed, onSuccess]);
+    if (open && isSuccess && !isPending && onSuccess) onSuccess();
+    if (open && isSuccess === false && !isPending && onFailed) onFailed();
+  }, [isPending, isSuccess, open, onFailed, onSuccess]);
 };
