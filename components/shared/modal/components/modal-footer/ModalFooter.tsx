@@ -9,7 +9,7 @@ export const ModalFooter = ({
   onCancel,
   onConfirm,
   type,
-  variant,
+  color,
 }: ModalFooterProps) => {
   const classes = modalFooterClassNames();
 
@@ -26,7 +26,7 @@ export const ModalFooter = ({
       <Button
         label={confirmText}
         variant="contained"
-        color={variant}
+        color={color}
         onClick={onConfirm}
         type={type}
         size="size-xs"

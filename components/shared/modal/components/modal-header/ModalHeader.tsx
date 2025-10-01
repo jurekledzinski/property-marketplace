@@ -3,15 +3,15 @@ import { IconButton } from '@/components';
 import { modalHeaderClassNames } from '../../utils/classNames';
 import { ModalHeaderProps } from './types';
 
-export const ModalHeader = ({ title, onClose, variant }: ModalHeaderProps) => {
-  const classes = modalHeaderClassNames(variant!);
+export const ModalHeader = ({ color, title, onClose }: ModalHeaderProps) => {
+  const classes = modalHeaderClassNames(color!);
 
   return (
     <header className={classes.header}>
       <h3 className={classes.title}>{title}</h3>
       <IconButton
         icon={[faXmark]}
-        color={variant}
+        color={color}
         onClick={onClose}
         size="size-xxs"
         variant="contained"

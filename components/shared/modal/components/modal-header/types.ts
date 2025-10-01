@@ -3,6 +3,6 @@ import { MouseEventHandler } from 'react';
 
 export type ModalHeaderProps = {
   title: string;
-  variant?: Color;
+  color?: Color;
   onClose?: MouseEventHandler<HTMLButtonElement>;
 };
