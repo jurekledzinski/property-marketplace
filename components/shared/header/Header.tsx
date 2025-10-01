@@ -18,7 +18,7 @@ export const Header = memo(({ session }: HeaderProps) => {
       <AppBar className={styles.bar}>
         <Container m="m-center">
           <nav className={styles.nav}>
-            <Heading level={4}>
+            <Heading className={styles.logo} level={4}>
               <Link
                 data-link="logo-link"
                 href="/"
