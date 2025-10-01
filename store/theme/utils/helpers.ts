@@ -6,7 +6,7 @@ export const setThemeAttributes = (mode: ThemeMode) => {
   document.cookie = `mode=${mode}; path=/; max-age=31536000`;
   setLocalItem('mode', mode);
   document.documentElement.setAttribute('data-theme', mode);
-  document.documentElement.classList.add('disbled-transition');
+  document.documentElement.classList.add('disabled-transition');
 };
 
 export const controlSetTimeoutDisable = (
@@ -15,7 +15,7 @@ export const controlSetTimeoutDisable = (
   if (timeoutId.current) clearTimeout(timeoutId.current);
 
   timeoutId.current = setTimeout(
-    () => document.documentElement.classList.remove('disbled-transition'),
+    () => document.documentElement.classList.remove('disabled-transition'),
     100
   );
 };
