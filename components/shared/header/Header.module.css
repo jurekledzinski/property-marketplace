@@ -11,6 +11,10 @@
   z-index: var(--z-header);
 }
 
+.logo a {
+  color: var(--color-primary-400);
+}
+
 @media (min-width: 575px) {
   button.iconFilter {
     display: none;
