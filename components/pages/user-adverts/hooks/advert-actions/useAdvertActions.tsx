@@ -18,8 +18,6 @@ export const useAdvertActions = ({
     onResetAction: onSuccessUpdate,
   });
 
-  console.log('actionUpdateStatus', actionUpdateStatus);
-
   const onDelete = (id: string) => {
     advertId.current = id;
     modal.onOpen();
