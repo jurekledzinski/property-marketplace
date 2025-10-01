@@ -1,3 +1,8 @@
+@import './skeleton.css';
+@import './autofill.css';
+@import './scroll.css';
+@import './elements.css';
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,7 +13,7 @@
 }
 
 :root {
-  /* Colors */
+  /* Color scales */
 
   --color-primary-50: #f0fff0;
   --color-primary-100: #ccf3cc;
@@ -32,16 +37,6 @@
   --color-secondary-700: #5b5b5b;
   --color-secondary-800: #3d3d3d;
   --color-secondary-900: #1c1c1c;
-
-  /* Color text */
-
-  --color-text-primary: #555555;
-  --color-text-secondary: #dddddd;
-  --color-text-white: white;
-  --color-text-dark: #555555;
-  --color-text-disabled: #c0c0c0;
-
-  /* Feedback */
 
   --color-negative-50: #ffebef;
   --color-negative-100: #ffced3;
@@ -104,6 +99,14 @@
   --color-disabled-100: #e5e7eb;
   --color-disabled-200: #9ca3af;
 
+  /* Color text */
+
+  --color-text-primary: #555555;
+  --color-text-secondary: #dddddd;
+  --color-text-white: white;
+  --color-text-dark: #555555;
+  --color-text-disabled: #c0c0c0;
+
   /* Focus */
 
   --color-focus-primary: var(--color-primary-500);
@@ -153,7 +156,7 @@
   --z-adverts-layout: 2;
   --z-drawer: 40;
   --z-header: 50;
-  --z-backdrop: 52;
+  --z-backdrop: 60;
   --z-popover: 100;
   --z-modal: 1000;
   --z-toast: 1100;
@@ -228,98 +231,4 @@ body.modal-open {
 
 .no-scroll {
   overflow: hidden;
-}
-
-button:focus-visible,
-a:focus-visible {
-  transition: none;
-  outline: none;
-  box-shadow: 0 0 0 0.1rem var(--color-focus, var(--color-primary-500, #2095f3));
-}
-
-a {
-  text-decoration: none;
-  color: var(--color-text-primary);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-montserrat);
-}
-
-a,
-button,
-input,
-textarea {
-  font-family: var(--font-roboto), sans-serif;
-  font-weight: 400;
-}
-
-::-moz-scrollbar {
-  scrollbar-color: #555555 #f1f1f1;
-  scrollbar-width: thin;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 100vh;
-  background-color: transparent;
-}
-
-::-webkit-scrollbar {
-  background-color: transparent;
-  width: 0.5rem;
-  height: 0.5rem;
-}
-
-::-webkit-scrollbar-thumb {
-  cursor: default;
-  border: 1px solid transparent;
-  border-radius: 100vh;
-  background-clip: padding-box;
-  background-color: var(--color-primary-700);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  border-width: 0;
-}
-
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-  box-shadow: 0 0 0 1000px white inset !important;
-  -webkit-box-shadow: 0 0 0 1000px white inset !important;
-  transition: background-color 5000s ease-in-out 0s;
-  -webkit-text-fill-color: #000 !important;
-}
-
-.skeleton {
-  position: relative;
-  overflow: hidden;
-  background-color: #e0e0e0;
-}
-
-.skeleton::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(to right, transparent, #f0f0f0 50%, transparent);
-  animation: skeleton 1.2s infinite;
-}
-
-@keyframes skeleton {
-  0% {
-    transform: translateX(-100%);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
 }
