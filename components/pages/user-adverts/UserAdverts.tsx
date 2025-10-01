@@ -52,13 +52,14 @@ export const UserAdverts = ({ adverts = [] }: UserAdvertsProps) => {
         confirmText="Delete"
         title="Delete advert"
         isPending={!action.state.message ? action.isPending : false}
-        isOpen={modal.isOpen}
+        open={modal.isOpen}
         isSuccess={action.state.success}
         onCancel={modal.onClose}
         onClose={modal.onClose}
         onConfirm={onConfirm}
         onSuccess={onSuccess}
-        variant="negative"
+        color="negative"
+        portal={true}
       >
         {title} <br />
         {description}

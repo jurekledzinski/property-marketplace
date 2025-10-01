@@ -83,7 +83,7 @@ export const UserProfile = ({ user }: UserProfileProps) => {
         isPending={
           !deleteAccount.state.message ? deleteAccount.isPending : false
         }
-        isOpen={isOpen}
+        open={isOpen}
         isSuccess={deleteAccount.state.success}
         onCancel={onClose}
         onClose={onClose}
@@ -95,7 +95,8 @@ export const UserProfile = ({ user }: UserProfileProps) => {
           deleteAccount.reset();
           await signOut({ redirect: true, redirectTo: '/' });
         }}
-        variant="negative"
+        color="negative"
+        portal={true}
       >
         {title} <br />
         {description}

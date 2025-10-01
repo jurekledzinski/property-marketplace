@@ -80,13 +80,14 @@ export const UserAdvert = ({
 
       <Modal
         confirmText="Leave"
-        isOpen={isOpen}
+        open={isOpen}
         isPending={isLeavePending}
         onCancel={onClose}
         onClose={onClose}
         onConfirm={onConfirm}
         title="Leave page warning"
-        variant="warning"
+        color="warning"
+        portal={true}
       >
         {title}
         <br />

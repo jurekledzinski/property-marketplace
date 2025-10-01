@@ -61,7 +61,7 @@ export const UserMessages = ({ messages = [] }: UserMessagesProps) => {
         confirmText="Delete"
         title="Delete messages"
         isPending={action.isPending}
-        isOpen={modal.isOpen}
+        open={modal.isOpen}
         isSuccess={action.state.success}
         onCancel={modal.onClose}
         onClose={modal.onClose}
@@ -81,7 +81,8 @@ export const UserMessages = ({ messages = [] }: UserMessagesProps) => {
           action.resetStateAction();
           accordion.handleClearDeleteIds();
         }}
-        variant="negative"
+        color="negative"
+        portal={true}
       >
         {title}
         <br />
