@@ -1,7 +1,7 @@
 import { ModalFooterProps, ModalHeaderProps } from './components';
 
 export type UseControlModalProps = Partial<{
-  isOpen: boolean;
+  open: boolean;
   isPending: boolean;
   isSuccess: boolean;
   onFailed: () => void;
@@ -13,4 +13,5 @@ export interface ModalProps
     ModalFooterProps,
     UseControlModalProps {
   children: React.ReactNode;
+  portal?: boolean;
 }
