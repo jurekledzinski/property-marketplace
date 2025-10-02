@@ -2,26 +2,26 @@
   color: var(--color-secondary-700);
 }
 
-.icon.info {
+.info {
   color: var(--color-info-700);
 }
 
-.icon.negative {
+.negative {
   color: var(--color-negative-500);
 }
 
-.icon.primary {
+.primary {
   color: var(--color-primary-700);
 }
 
-.icon.secondary {
+.secondary {
   color: var(--color-secondary-400);
 }
 
-.icon.success {
+.success {
   color: var(--color-success-400);
 }
 
-.icon.warning {
-  color: var(--color-warning-900);
+.warning {
+  color: var(--color-warning-600);
 }
