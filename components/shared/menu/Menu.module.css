@@ -5,6 +5,7 @@
 .menuItem {
   padding: 0.5rem;
   transition: 300ms linear;
+  cursor: pointer;
 }
 
 .menuItem:hover {
