@@ -20,14 +20,21 @@ export const AdvertsStatusCard = ({
     label,
   });
 
-  const options = useChartPieOptions();
+  const { htmlLegendPlugin, options, stylesLegend, toggleLegend } =
+    useChartPieOptions();
 
   return (
     <Card className={styles.statusAdverts}>
       <Heading className={styles.heading} level={4} mb="mb-md">
         {title}
       </Heading>
-      <AdvertsStatusChart stats={formattedStats} options={options} />
+      <AdvertsStatusChart
+        options={options}
+        plugins={htmlLegendPlugin}
+        stats={formattedStats}
+        stylesLegend={stylesLegend}
+        toggleLegend={toggleLegend}
+      />
     </Card>
   );
 };
