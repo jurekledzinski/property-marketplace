@@ -1,6 +1,6 @@
 import styles from '../Arrow.module.css';
 import { generateClassNames } from '@/helpers';
-import { GetClassNamesArrow } from '../types';
+import { GetClassNamesArrow } from './types';
 
 export const getClassNamesArrow: GetClassNamesArrow = (params) => {
   const { color, placement, size } = params;

@@ -14,5 +14,3 @@ export type ArrowProps = {
   placement?: Placement;
   size?: Size;
 };
-
-export type GetClassNamesArrow = (params: ArrowProps) => string;
