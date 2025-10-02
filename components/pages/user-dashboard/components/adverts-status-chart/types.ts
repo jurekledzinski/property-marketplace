@@ -1,7 +1,10 @@
 import { useChartPieControl } from '@/components/shared';
-import { ChartOptions } from 'chart.js';
+import { ChartOptions, LegendItem, Plugin } from 'chart.js';
 
 export type AdvertsStatusChartProps = {
-  stats?: ReturnType<typeof useChartPieControl>;
+  toggleLegend: (index: number) => void;
   options?: ChartOptions<'doughnut'>;
+  plugins?: Plugin<'doughnut', object>[];
+  stats?: ReturnType<typeof useChartPieControl>;
+  stylesLegend?: LegendItem[];
 };
