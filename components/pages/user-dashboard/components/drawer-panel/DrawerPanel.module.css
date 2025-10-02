@@ -16,5 +16,5 @@
 }
 
 .listItem:hover {
-  background-color: var(--color-surface-primary-hover);
+  background-color: var(--color-primary-alpha-10);
 }
