@@ -15,13 +15,19 @@ export const ModalLayout = forwardRef<HTMLDivElement, ModalLayoutProps>(
       onClose,
       title = 'Modal title',
       type = 'button',
+      variant,
       ...footerProps
     },
     ref
   ) => {
     return (
       <div className={className} ref={ref}>
-        <ModalHeader title={title} onClose={onClose} color={color} />
+        <ModalHeader
+          title={title}
+          onClose={onClose}
+          color={color}
+          variant={variant}
+        />
         <ModalBody>{children}</ModalBody>
         <ModalFooter
           {...footerProps}

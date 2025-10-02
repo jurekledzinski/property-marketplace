@@ -3,8 +3,13 @@ import { IconButton } from '@/components';
 import { modalHeaderClassNames } from '../../utils/classNames';
 import { ModalHeaderProps } from './types';
 
-export const ModalHeader = ({ color, title, onClose }: ModalHeaderProps) => {
-  const classes = modalHeaderClassNames(color!);
+export const ModalHeader = ({
+  color,
+  onClose,
+  title,
+  variant,
+}: ModalHeaderProps) => {
+  const classes = modalHeaderClassNames({ color, variant });
 
   return (
     <header className={classes.header}>
@@ -15,7 +20,6 @@ export const ModalHeader = ({ color, title, onClose }: ModalHeaderProps) => {
         onClick={onClose}
         size="size-xxs"
         variant="contained"
-        contrast={true}
       />
     </header>
   );
