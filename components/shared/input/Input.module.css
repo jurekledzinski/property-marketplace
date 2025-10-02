@@ -17,7 +17,7 @@
   color: var(--color-text-primary);
   font-size: 15px;
   border: 1px solid var(--color-surface-30);
-  background-color: var(--color-surface-elevated-0);
+  background-color: transparent;
   transition: box-shadow 300ms linear;
 }
 
@@ -400,7 +400,7 @@
   display: flex;
   width: inherit;
   border: 1px solid var(--color-surface-30);
-  /* transition: box-shadow 300ms linear; */
+  background-color: var(--color-surface-elevated-0);
 }
 
 .wrapper .input,
@@ -449,7 +449,7 @@
   justify-content: center;
   align-items: center;
   border: none;
-  background-color: var(--color-surface-elevated-0);
+  background-color: transparent;
   color: var(--color-black-600);
   padding: 6px 8px;
   width: 38px;
