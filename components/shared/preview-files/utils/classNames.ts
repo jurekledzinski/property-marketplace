@@ -19,5 +19,6 @@ export const getClassNamesCardFilePreview = (gridPlacement?: Placement) => ({
       { [`card-${gridPlacement}`]: true }
     )
   ),
+  button: stylesCardFile.closeButton,
   title: stylesCardFile.title,
 });

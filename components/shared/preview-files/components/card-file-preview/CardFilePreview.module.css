@@ -46,4 +46,8 @@
   height: 100%;
 }
 
-/* style={{ aspectRatio: '1/1' }} ImageContainer jeśli chcę by to był kwadrat i chyba także na image */
+.closeButton {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+}

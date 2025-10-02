@@ -48,11 +48,13 @@ export const CardFilePreview = ({
       <p className={classes.title}>{file.name}</p>
 
       <IconButton
+        className={classes.button}
         icon={[faXmark]}
-        style={{ position: 'absolute', top: 0, right: 0 }}
         onClick={() => onRemove(index, file)}
         size="size-xxs"
         type="button"
+        variant="contained"
+        color="negative"
       />
     </div>
   );
