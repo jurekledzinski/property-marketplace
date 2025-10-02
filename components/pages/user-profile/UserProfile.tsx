@@ -78,6 +78,7 @@ export const UserProfile = ({ user }: UserProfileProps) => {
         Delete account
       </Heading>
       <Modal
+        color="negative"
         confirmText="Delete"
         title="Delete account"
         isPending={
@@ -95,8 +96,8 @@ export const UserProfile = ({ user }: UserProfileProps) => {
           deleteAccount.reset();
           await signOut({ redirect: true, redirectTo: '/' });
         }}
-        color="negative"
         portal={true}
+        variant="outlined"
       >
         {title} <br />
         {description}

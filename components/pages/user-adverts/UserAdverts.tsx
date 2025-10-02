@@ -49,6 +49,7 @@ export const UserAdverts = ({ adverts = [] }: UserAdvertsProps) => {
         }}
       </AdvertsTable>
       <Modal
+        color="negative"
         confirmText="Delete"
         title="Delete advert"
         isPending={!action.state.message ? action.isPending : false}
@@ -58,8 +59,8 @@ export const UserAdverts = ({ adverts = [] }: UserAdvertsProps) => {
         onClose={modal.onClose}
         onConfirm={onConfirm}
         onSuccess={onSuccess}
-        color="negative"
         portal={true}
+        variant="outlined"
       >
         {title} <br />
         {description}

@@ -58,6 +58,7 @@ export const UserMessages = ({ messages = [] }: UserMessagesProps) => {
         ) : null}
       </Box>
       <Modal
+        color="negative"
         confirmText="Delete"
         title="Delete messages"
         isPending={action.isPending}
@@ -81,8 +82,8 @@ export const UserMessages = ({ messages = [] }: UserMessagesProps) => {
           action.resetStateAction();
           accordion.handleClearDeleteIds();
         }}
-        color="negative"
         portal={true}
+        variant="outlined"
       >
         {title}
         <br />

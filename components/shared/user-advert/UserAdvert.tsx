@@ -79,6 +79,7 @@ export const UserAdvert = ({
       />
 
       <Modal
+        color="warning"
         confirmText="Leave"
         open={isOpen}
         isPending={isLeavePending}
@@ -86,8 +87,8 @@ export const UserAdvert = ({
         onClose={onClose}
         onConfirm={onConfirm}
         title="Leave page warning"
-        color="warning"
         portal={true}
+        variant="outlined"
       >
         {title}
         <br />
