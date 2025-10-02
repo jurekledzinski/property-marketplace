@@ -1,5 +1,7 @@
 import { ModalFooterProps, ModalHeaderProps } from './components';
 
+export type Variant = 'outlined';
+
 export type UseControlModalProps = Partial<{
   open: boolean;
   isPending: boolean;
@@ -14,4 +16,5 @@ export interface ModalProps
     UseControlModalProps {
   children: React.ReactNode;
   portal?: boolean;
+  variant?: Variant;
 }
