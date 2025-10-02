@@ -12,7 +12,7 @@ export const MessageAccordion = ({
   if (!message || !message.id) return null;
 
   return (
-    <Accordion key={message.id} color="success" variant="contained">
+    <Accordion key={message.id} color="primary" variant="contained">
       <AccordionHeader
         p={'p-sm'}
         id={message.id!}
