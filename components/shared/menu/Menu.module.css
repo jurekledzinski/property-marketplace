@@ -8,7 +8,7 @@
 }
 
 .menuItem:hover {
-  background-color: var(--color-surface-default-hover);
+  background-color: var(--color-primary-alpha-10);
 }
 
 .menu.size-xs .menuItem {
