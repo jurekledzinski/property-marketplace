@@ -25,6 +25,7 @@
 
 .message {
   width: fit-content;
+  align-self: center;
 }
 
 /* --- Size --- */
