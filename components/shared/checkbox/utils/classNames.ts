@@ -1,26 +1,37 @@
-import { classNames } from '@/helpers';
-import { Color, Size } from '@/types';
 import styles from '../Checkbox.module.css';
-import { VariantCheckbox } from '../types';
+import { classNames, generateClassNames } from '@/helpers';
+import { GetClassNamesCheckbox, GetClassNamesLabelCheckbox } from './types';
 
-export const getClassCheckbox = (
-  color?: Color,
-  disabled?: boolean,
-  readOnly?: boolean,
-  size?: Size,
-  variant?: VariantCheckbox
-) => ({
-  label: classNames(
-    styles.label,
-    styles[size ?? ''],
-    disabled ? styles['disabled'] : '',
-    readOnly ? styles['read-only'] : ''
-  ),
-  checkbox: classNames(
-    styles.checkbox,
-    styles[color ?? ''],
-    styles[size ?? ''],
-    styles[variant ?? ''],
-    readOnly ? styles['read-only'] : ''
-  ),
-});
+export const getClassNamesLabel: GetClassNamesLabelCheckbox = ({
+  classNameLabel,
+  disabled,
+  readOnly,
+  size,
+}) =>
+  classNames(
+    generateClassNames(styles, {
+      label: true,
+      disabled: Boolean(disabled),
+      readOnly: Boolean(readOnly),
+      [`${size}`]: Boolean(size),
+    }),
+    classNameLabel || ''
+  );
+
+export const getClassNamesCheckbox: GetClassNamesCheckbox = ({
+  className,
+  color,
+  readOnly,
+  size,
+  variant,
+}) =>
+  classNames(
+    generateClassNames(styles, {
+      checkbox: true,
+      readOnly: Boolean(readOnly),
+      [`${color}`]: Boolean(color),
+      [`${size}`]: Boolean(size),
+      [`${variant}`]: Boolean(variant),
+    }),
+    className || ''
+  );
