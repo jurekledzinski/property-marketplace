@@ -6,7 +6,12 @@ import type { ChartOptions } from 'chart.js';
 export const useChartBarOptions = ({ chartData }: UseChartBarOptionsProps) => {
   const options = useMemo<ChartOptions<'bar'>>(() => {
     return {
+      animation: {
+        easing: 'linear',
+      },
       indexAxis: 'x',
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -47,7 +52,6 @@ export const useChartBarOptions = ({ chartData }: UseChartBarOptionsProps) => {
           },
         },
       },
-      maintainAspectRatio: false,
     };
   }, [chartData]);
 
