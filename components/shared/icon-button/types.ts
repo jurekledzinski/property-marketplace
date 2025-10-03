@@ -10,7 +10,7 @@ export type IconBaseButtonProps = {
   fullWidth?: boolean;
   radius?: Radius;
   size?: Size | 'size-xxs';
-  color?: Color;
+  color?: Color | 'info';
   variant?: Variant | 'minimal';
 };
 
