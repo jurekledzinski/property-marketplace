@@ -1,11 +1,11 @@
-import { UseChartPieControlProps } from './types';
+import { UseChartDoughnutControlProps } from './types';
 import { useMemo } from 'react';
 
-export const useChartPieControl = ({
+export const useChartDoughnutControl = ({
   backgroundColor,
   chartData,
   label,
-}: UseChartPieControlProps) => {
+}: UseChartDoughnutControlProps) => {
   const data = useMemo(() => {
     if (!chartData?.length) return { labels: [], datasets: [] };
 

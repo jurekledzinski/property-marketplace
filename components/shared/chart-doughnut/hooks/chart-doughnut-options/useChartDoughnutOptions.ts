@@ -1,9 +1,9 @@
 'use client';
+import { DoughnutPlugin } from './types';
 import { useMemo, useRef, useState } from 'react';
 import type { ChartOptions, LegendItem, Chart } from 'chart.js';
-import { DoughnutPlugin } from './types';
 
-export const useChartPieOptions = () => {
+export const useChartDoughnutOptions = () => {
   const [stylesLegend, setStylesLegend] = useState<LegendItem[]>();
   const legendItems = useRef<LegendItem[]>([]);
   const toggleVisibility = useRef<Chart['toggleDataVisibility']>(undefined);
@@ -12,8 +12,9 @@ export const useChartPieOptions = () => {
 
   const options = useMemo<ChartOptions<'doughnut'>>(() => {
     return {
-      type: 'doughnut',
-      responsive: true,
+      animation: {
+        easing: 'linear',
+      },
       plugins: {
         legend: {
           display: false,
@@ -25,6 +26,9 @@ export const useChartPieOptions = () => {
           containerID: 'legend-container',
         },
       },
+      responsive: true,
+      maintainAspectRatio: false,
+      type: 'doughnut',
     };
   }, []);
 
@@ -42,8 +46,6 @@ export const useChartPieOptions = () => {
         return;
 
       const items = chart.options.plugins.legend.labels.generateLabels(chart);
-
-      console.log('after', isMounted.current);
 
       if (!isMounted.current) setStylesLegend(items);
 
