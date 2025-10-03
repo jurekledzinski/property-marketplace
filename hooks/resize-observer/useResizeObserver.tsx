@@ -2,10 +2,10 @@
 import { useEffect } from 'react';
 import { UseResizeObserverProps } from './types';
 
-export const useResizeObserver = ({
+export const useResizeObserver = <T extends HTMLElement>({
   ref,
   onResize,
-}: UseResizeObserverProps) => {
+}: UseResizeObserverProps<T>) => {
   useEffect(() => {
     const node = ref && 'current' in ref ? ref.current : ref;
 
