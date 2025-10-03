@@ -1,6 +1,6 @@
 .alert {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   width: fit-content;
 }
 
@@ -11,63 +11,32 @@
 .icon {
   display: flex;
   justify-content: center;
-  align-self: flex-start;
-  width: 2rem;
-  background-color: transparent;
+  align-items: center;
+}
+
+.icon svg {
+  color: inherit;
+}
+
+.iconClose {
+  display: flex;
+  align-items: flex-start;
 }
 
 .message {
   width: fit-content;
-  font-weight: 400;
-}
-
-/* --- Colors --- */
-
-.info {
-  background-color: var(--color-info-50);
-  color: var(--color-info-800);
-}
-
-.secondary {
-  background-color: var(--color-secondary-50);
-  color: var(--color-secondary-600);
-}
-
-.success {
-  background-color: var(--color-success-50);
-  color: var(--color-success-900);
-}
-
-.negative {
-  background-color: var(--color-negative-50);
-  color: var(--color-negative-800);
-}
-
-.warning {
-  background-color: var(--color-warning-100);
-  color: var(--color-warning-1100);
 }
 
 /* --- Size --- */
 
-.size-xs {
+.message.size-xs {
   padding: 6px 8px;
   font-size: 12px;
 }
 
-.size-sm {
+.message.size-sm {
   padding: 8px 10px;
-  font-size: 14px;
-}
-
-.size-md {
-  padding: 10px 12px;
-  font-size: 14px;
-}
-
-.size-lg {
-  padding: 12px 14px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 /* --- Border --- */
@@ -94,120 +63,143 @@
 
 /* --- Size icon --- */
 
-.icon.size-xs,
-.icon.size-sm,
-.icon.size-md,
-.icon.size-lg {
-  padding: 0;
-  padding-right: inherit;
-}
-
 .icon.size-xs {
-  font-size: 16px;
+  padding: 6px 8px 6px 16px;
+  font-size: 20px;
 }
 
 .icon.size-sm {
-  font-size: 16px;
+  padding: 8px 10px 8px 20px;
+  font-size: 24px;
 }
 
-.icon.size-md {
-  font-size: 18px;
+.filled .icon.size-xs {
+  padding: 6px 8px;
 }
 
-.icon.size-lg {
-  font-size: 18px;
+.filled .icon.size-sm {
+  padding: 8px 10px;
 }
 
 /* --- Colors icon --- */
 
-.icon.info {
-  background-color: transparent;
-  color: var(--color-info-400);
+.filled .icon.info {
+  background-color: var(--color-info-800);
 }
 
-.icon.secondary {
-  background-color: transparent;
-  color: var(--color-secondary-400);
+.filled .icon.secondary {
+  background-color: var(--color-secondary-700);
 }
 
-.icon.success {
-  background-color: transparent;
-  color: var(--color-success-400);
+.filled .icon.success {
+  background-color: var(--color-success-700);
 }
 
-.icon.negative {
-  background-color: transparent;
-  color: var(--color-negative-400);
+.filled .icon.negative {
+  background-color: var(--color-negative-700);
 }
 
-.icon.warning {
-  background-color: transparent;
-  color: var(--color-warning-700);
+.filled .icon.warning {
+  background-color: var(--color-warning-1000);
 }
 
 /* --- Variant contained --- */
 
+.contained,
+.filled {
+  color: var(--color-text-white);
+}
+
 .contained.info {
   background-color: var(--color-info-500);
-  color: var(--color-text-white);
 }
 
 .contained.secondary {
   background-color: var(--color-secondary-500);
-  color: var(--color-text-white);
 }
 
 .contained.success {
   background-color: var(--color-success-400);
-  color: var(--color-text-white);
 }
 
 .contained.negative {
   background-color: var(--color-negative-500);
-  color: var(--color-text-white);
 }
 
 .contained.warning {
   background-color: var(--color-warning-900);
-  color: var(--color-text-white);
 }
 
-.contained.info .icon,
-.contained.secondary .icon,
-.contained.success .icon,
-.contained.negative .icon,
-.contained.warning .icon {
-  color: var(--color-text-white);
+/* Variant filled */
+
+.filled.info {
+  background-color: var(--color-info-700);
+}
+
+.filled.secondary {
+  background-color: var(--color-secondary-600);
+}
+
+.filled.success {
+  background-color: var(--color-success-600);
+}
+
+.filled.negative {
+  background-color: var(--color-negative-600);
+}
+
+.filled.warning {
+  background-color: var(--color-warning-900);
 }
 
 /* --- Variant outlined --- */
 
+.light.info,
 .outlined.info {
-  background-color: transparent;
-  border: 1px solid var(--color-info-500);
+  background-color: var(--color-info-alpha-10);
   color: var(--color-info-800);
 }
 
+.light.secondary,
 .outlined.secondary {
-  background-color: transparent;
-  border: 1px solid var(--color-secondary-500);
+  background-color: var(--color-secondary-alpha-10);
   color: var(--color-secondary-600);
 }
 
+.light.success,
 .outlined.success {
-  background-color: transparent;
-  border: 1px solid var(--color-success-500);
+  background-color: var(--color-success-alpha-10);
   color: var(--color-success-900);
 }
 
+.light.negative,
 .outlined.negative {
-  background-color: transparent;
-  border: 1px solid var(--color-negative-400);
+  background-color: var(--color-negative-alpha-10);
   color: var(--color-negative-800);
 }
 
+.light.warning,
 .outlined.warning {
-  background-color: transparent;
-  border: 1px solid var(--color-warning-900);
+  background-color: var(--color-warning-alpha-10);
   color: var(--color-warning-1100);
+}
+
+.outlined.info {
+  border: 1px solid var(--color-info-500);
+}
+
+.outlined.secondary {
+  border: 1px solid var(--color-secondary-500);
+}
+
+.outlined.success {
+  border: 1px solid var(--color-success-500);
+}
+
+.outlined.negative {
+  border: 1px solid var(--color-negative-400);
+}
+
+.outlined.warning {
+  border: 1px solid var(--color-warning-900);
 }

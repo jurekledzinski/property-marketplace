@@ -1,23 +1,40 @@
 import styles from '../Alert.module.css';
-import { generateClassNames } from '@/helpers';
+import stylesSpace from '@/styles/space.module.css';
+import { generateClassNames, spacingClasses } from '@/helpers';
 import { GetClassNamesAlert } from './types';
 
 export const getClassNamesAlert: GetClassNamesAlert = (params) => {
-  const { color, fullWidth, radius, size, variant } = params;
+  const {
+    color,
+    fullWidth,
+    radius,
+    size,
+    variant = 'contained',
+    ...rest
+  } = params;
+
+  const spacing = spacingClasses(rest);
+
+  const mergedClasses = { ...styles, ...stylesSpace };
+
   return {
-    alert: generateClassNames(styles, {
+    alert: generateClassNames(mergedClasses, {
       alert: true,
       fullWidth: Boolean(fullWidth),
       [`${color}`]: Boolean(color),
       [`${radius}`]: Boolean(radius),
-      [`${size}`]: Boolean(size),
       [`${variant}`]: Boolean(variant),
+      ...spacing,
     }),
     icon: generateClassNames(styles, {
       icon: true,
       [`${color}`]: Boolean(color),
       [`${size}`]: Boolean(size),
     }),
-    message: styles.message,
+    iconClose: styles.iconClose,
+    message: generateClassNames(styles, {
+      message: true,
+      [`${size}`]: Boolean(size),
+    }),
   };
 };
