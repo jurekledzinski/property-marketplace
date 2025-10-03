@@ -12,7 +12,7 @@ export const actionTryCatch = <T extends object = object>(
     } catch (error) {
       if (error instanceof z.ZodError) {
         return {
-          message: error.message,
+          message: z.prettifyError(error),
           success: false,
         };
       } else if (error instanceof AuthError) {
