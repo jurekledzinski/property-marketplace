@@ -1,10 +1,10 @@
-import { Checkbox, CheckboxGroup } from '@/components/shared';
 import styles from '../../UserDashboard.module.css';
 import { AdvertsStatusChartProps } from './types';
-import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
+import { ArcElement, Chart, Legend, Tooltip } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { DoughnutLegend } from './components';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+Chart.register(ArcElement, Tooltip, Legend);
 
 export const AdvertsStatusChart = ({
   options,
@@ -22,24 +22,12 @@ export const AdvertsStatusChart = ({
           plugins={plugins}
         />
       </div>
-      {/* <div className={styles.legendContainer} id="legend-container">
-        <CheckboxGroup orientation="column" spacing="tight">
-          {stylesLegend.map((item, index) => {
-            return (
-              <Checkbox
-                key={item.text}
-                id={item.text.toLowerCase()}
-                value={item.text.toLowerCase()}
-                size="size-xs"
-                checked={item.hidden}
-                onChange={() => toggleLegend(item.index || index)}
-              >
-                {item.text}
-              </Checkbox>
-            );
-          })}
-        </CheckboxGroup>
-      </div> */}
+      <div className={styles.legend} id="legend-container">
+        <DoughnutLegend
+          stylesLegend={stylesLegend}
+          toggleLegend={toggleLegend}
+        />
+      </div>
     </>
   );
 };

@@ -5,8 +5,8 @@ import {
   bgColors,
   Card,
   Heading,
-  useChartPieControl,
-  useChartPieOptions,
+  useChartDoughnutControl,
+  useChartDoughnutOptions,
 } from '@/components';
 
 export const AdvertsStatusCard = ({
@@ -14,14 +14,14 @@ export const AdvertsStatusCard = ({
   stats,
   title,
 }: AdvertsStatusCardProps) => {
-  const formattedStats = useChartPieControl({
+  const formattedStats = useChartDoughnutControl({
     backgroundColor: [...bgColors].reverse(),
     chartData: stats,
     label,
   });
 
   const { htmlLegendPlugin, options, stylesLegend, toggleLegend } =
-    useChartPieOptions();
+    useChartDoughnutOptions();
 
   return (
     <Card className={styles.statusAdverts}>
