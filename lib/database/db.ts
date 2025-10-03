@@ -78,9 +78,8 @@ const connectDBAction = <T extends object>(
       return await fn(prevState, formData);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const flattened = z.flattenError(error);
         return {
-          message: flattened.formErrors[0] || 'Incorrect type data',
+          message: z.prettifyError(error) || 'Incorrect type data',
           success: false,
         };
       } else if (error instanceof AuthError) {
