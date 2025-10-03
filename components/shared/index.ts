@@ -9,7 +9,7 @@ export * from './button';
 export * from './card';
 export * from './carousel-thumbnails';
 export * from './chart-bar';
-export * from './chart-pie';
+export * from './chart-doughnut';
 export * from './checkbox-group';
 export * from './checkbox';
 export * from './chip';
