@@ -30,6 +30,7 @@ export const Header = memo(({ session }: HeaderProps) => {
               </Link>
             </Heading>
             <ButtonGroup spacing="normal">
+              <span className={styles.username}>{session?.name}</span>
               <NavigationButtons
                 mode={mode}
                 onChangeTheme={onChange}

@@ -11,6 +11,10 @@
   z-index: var(--z-header);
 }
 
+.username {
+  font-size: 14px;
+}
+
 .logo a {
   color: var(--color-primary-400);
 }
