@@ -1,8 +1,6 @@
 import { ApiError } from '@/helpers';
 import { NextResponse } from 'next/server';
 
-//before errorMessage used in routes api
-
 type Params<T extends object> = {
   message?: string;
   status?: number;
