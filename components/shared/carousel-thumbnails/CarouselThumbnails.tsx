@@ -37,6 +37,7 @@ export const CarouselThumbnails = ({
                       message="Failed to load image"
                       fullWidth
                       size="size-xs"
+                      variant="light"
                     />
                   ) : (
                     <Image

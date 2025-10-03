@@ -30,6 +30,7 @@ export const CardFilePreview = ({
                 message="Failed to load image"
                 fullWidth
                 size="size-xs"
+                variant="light"
               />
             ) : (
               <Image

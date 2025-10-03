@@ -69,22 +69,24 @@ export const Register = () => {
             </Link>
           </p>
 
-          {!state.success && state.message && (
-            <Alert
-              color="negative"
-              icon={faTriangleExclamation}
-              message={state.message}
-              size="size-sm"
-              fullWidth
-            />
-          )}
-
           <p className={styles.linkBack}>
             <Icon icon={faArrowLeft} />
             <Link href="/" prefetch={true}>
               Back to Home
             </Link>
           </p>
+
+          {!state.success && state.message && (
+            <Alert
+              color="negative"
+              icon={faTriangleExclamation}
+              message={state.message}
+              mt="mt-sm"
+              size="size-xs"
+              fullWidth
+              variant="outlined"
+            />
+          )}
         </Box>
       </Box>
     </Box>

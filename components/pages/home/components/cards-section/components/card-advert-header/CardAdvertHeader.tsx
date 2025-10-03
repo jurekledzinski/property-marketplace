@@ -16,6 +16,7 @@ export const CardAdvertHeader = ({ src }: CardAdvertHeaderProps) => {
                 message="Failed to load image"
                 fullWidth
                 size="size-xs"
+                variant="light"
               />
             ) : (
               <Image

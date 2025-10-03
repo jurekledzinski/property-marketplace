@@ -14,6 +14,7 @@ import { classNames, showSuccessToast } from '@/helpers';
 import {
   faArrowLeft,
   faTriangleExclamation,
+  faCheckCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { login } from '@/actions';
 import { useActionStateReset } from '@/hooks';
@@ -37,6 +38,9 @@ export const Login = () => {
       router.refresh();
     },
   });
+
+  const message =
+    'The server encountered an unexpected condition that prevented it from fulfilling the request. This may be due to a misconfiguration, a temporary overload, or an unforeseen application issue.';
 
   return (
     <Box className={stylesCommon.container}>
@@ -65,22 +69,24 @@ export const Login = () => {
             </Link>
           </p>
 
-          {!state.success && state.message && (
-            <Alert
-              color="negative"
-              icon={faTriangleExclamation}
-              message={state.message}
-              size="size-xs"
-              fullWidth
-            />
-          )}
-
           <p className={styles.linkBack}>
             <Icon icon={faArrowLeft} />
             <Link href="/" prefetch={true}>
               Back to Home
             </Link>
           </p>
+
+          {!state.success && state.message && (
+            <Alert
+              color="negative"
+              icon={faTriangleExclamation}
+              message={state.message}
+              mt="mt-sm"
+              size="size-xs"
+              fullWidth
+              variant="outlined"
+            />
+          )}
         </Box>
       </Box>
     </Box>
