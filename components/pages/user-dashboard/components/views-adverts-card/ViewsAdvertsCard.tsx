@@ -10,7 +10,7 @@ import {
 } from '@/components';
 
 export const ViewsAdvertsCard = ({
-  classChartContainer,
+  className,
   label,
   title,
   views,
@@ -28,7 +28,7 @@ export const ViewsAdvertsCard = ({
         {title}
       </Heading>
       <AdvertsViewsChart
-        classChartContainer={classChartContainer}
+        classChartContainer={className}
         options={options}
         views={formattedViews}
       />

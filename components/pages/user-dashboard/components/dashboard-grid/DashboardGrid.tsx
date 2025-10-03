@@ -32,7 +32,7 @@ export const DashboardGrid = ({ analytics }: DashboardGridProps) => {
         title="Status adverts"
       />
       <ViewsAdvertsCard
-        classChartContainer={classes.chartContainer}
+        className={classes.chartContainer}
         label="Views"
         title="Views per advert"
         views={analytics?.views || []}

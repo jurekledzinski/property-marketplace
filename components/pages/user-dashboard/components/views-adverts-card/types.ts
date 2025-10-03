@@ -1,7 +1,7 @@
 import { DashboardAnalytics } from '@/models';
 
 export type ViewAdvertsCardProps = {
-  classChartContainer?: string;
+  className?: string;
   views?: DashboardAnalytics['views'];
   label?: string;
   title?: string;
