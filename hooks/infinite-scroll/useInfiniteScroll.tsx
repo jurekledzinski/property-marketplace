@@ -45,9 +45,11 @@ export const useInfiniteScroll = <T extends HTMLElement>({
 
     scrolledElement.addEventListener('scroll', onScroll);
 
+    const copyTimeoutId = timeOutId.current;
+
     return () => {
       scrolledElement.removeEventListener('scroll', onScroll);
-      clearTimeout(timeOutId.current);
+      clearTimeout(copyTimeoutId);
     };
   }, [isLoading, onScrollEnd, ref]);
 
