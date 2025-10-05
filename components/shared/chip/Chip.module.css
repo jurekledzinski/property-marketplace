@@ -45,6 +45,10 @@
   font-size: 1em;
 }
 
+.delete svg {
+  color: inherit;
+}
+
 /* Variants */
 
 .contained {
