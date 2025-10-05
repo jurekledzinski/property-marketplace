@@ -1,7 +1,7 @@
 import { showPromisToast } from '@/helpers';
 import { useAdvertForm } from '../control-advert-form';
 import { UseAdvertFormWithUploadsProps } from './types';
-import { useControlUploadFiles } from '@/hooks';
+import { useClearTimeout, useControlUploadFiles } from '@/hooks';
 import { useDraftsImages } from '../draft-images';
 
 export const useAdvertFormWithUploads = ({
@@ -28,6 +28,8 @@ export const useAdvertFormWithUploads = ({
     onSuccess,
     onFailed,
   });
+
+  const { timeId } = useClearTimeout();
 
   const { deleteUploadedFiles, isUploadPending, uploadFiles } =
     useControlUploadFiles({
@@ -61,10 +63,15 @@ export const useAdvertFormWithUploads = ({
 
         updateDraft(restImages, mergeDeletedImages);
 
+        const promise = new Promise((resolve) => {
+          timeId.current = setTimeout(
+            resolve,
+            Math.round(Math.random() * 3000)
+          );
+        }) as Promise<Response>;
+
         showPromisToast({
-          promise: new Promise((resolve) =>
-            setTimeout(resolve, Math.round(Math.random() * 3000))
-          ) as Promise<Response>,
+          promise,
           name: delImage.name,
           task: 'deleting',
           messageError: 'Could not delete',
