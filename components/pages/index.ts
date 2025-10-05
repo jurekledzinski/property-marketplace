@@ -1,6 +1,7 @@
 export * from './details-advert';
 export * from './home';
 export * from './login';
+export * from './not-found';
 export * from './register';
 export * from './user-adverts';
 export * from './user-dashboard';
