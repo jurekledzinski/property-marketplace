@@ -3,7 +3,7 @@ import { Card, optionsFormat } from '@/components';
 import { CardAdvertContent } from '../card-advert-content';
 import { CardAdvertHeader } from '../card-advert-header';
 import { CardAdvertProps } from './types';
-import { formatNumber } from '@/helpers';
+import { formatNumber } from '@/utils-client';
 
 export const CardAdvert = ({ advertCard }: CardAdvertProps) => {
   const { price, image } = advertCard;

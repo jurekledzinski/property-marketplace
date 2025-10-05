@@ -1,6 +1,6 @@
 import styles from '../styles/Styles.module.css';
 import stylesPagination from '../Pagination.module.css';
-import { generateClassNames } from '@/helpers';
+import { generateClassNames } from '@/utils-client';
 
 import {
   GenerateCommonClasses,

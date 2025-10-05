@@ -1,5 +1,5 @@
 import { FileMimeType } from '@/types';
-import { formatFileSize } from '@/helpers';
+import { formatFileSize } from '@/utils-client';
 import { UseValidateFilesProps } from './types';
 
 export const useValidateFiles = ({

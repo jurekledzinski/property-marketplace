@@ -1,6 +1,6 @@
 import stylesCardFile from '../components/card-file-preview/CardFilePreview.module.css';
 import stylesPreview from '../PreviewFiles.module.css';
-import { classNames, generateClassNames } from '@/helpers';
+import { classNames, generateClassNames } from '@/utils-client';
 import { PreviewFileProps } from '../types';
 
 type Placement = Pick<PreviewFileProps, 'gridPlacement'>['gridPlacement'];

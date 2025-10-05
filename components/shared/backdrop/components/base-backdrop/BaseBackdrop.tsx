@@ -1,6 +1,6 @@
 import styles from '../../Backdrop.module.css';
 import { BaseBackdropProps } from './types';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { CSSTransition } from 'react-transition-group';
 
 export const BaseBackdrop = ({

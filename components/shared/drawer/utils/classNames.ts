@@ -1,4 +1,4 @@
-import { classNames, generateClassNames } from '@/helpers';
+import { classNames, generateClassNames } from '@/utils-client';
 import styles from '../Drawer.module.css';
 import { DrawerProps } from '../types';
 

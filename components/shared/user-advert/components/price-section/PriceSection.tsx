@@ -1,6 +1,6 @@
 'use client';
 import { Controller } from 'react-hook-form';
-import { formatNumber } from '@/helpers';
+import { formatNumber } from '@/utils-client';
 import { PriceSectionProps } from './types';
 
 import {

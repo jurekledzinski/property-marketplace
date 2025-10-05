@@ -1,5 +1,5 @@
 import styles from '../Input.module.css';
-import { generateClassNames } from '@/helpers';
+import { generateClassNames } from '@/utils-client';
 import { GetClassNamesInput, GetClassNamesInputWrapper } from './types';
 
 export const getClassNamesInputWrapper: GetClassNamesInputWrapper = (

@@ -1,8 +1,8 @@
 'use client';
+import { classNames } from '@/utils-client';
 import { getClassNamesImage } from '../utils';
 import { ImageContainerProps } from './types';
 import { useState } from 'react';
-import { classNames } from '@/helpers';
 
 export const ImageContainer = ({
   children,

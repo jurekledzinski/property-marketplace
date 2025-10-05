@@ -1,6 +1,6 @@
 import stylesSpace from '@/styles/space.module.css';
 import { ClassesBox } from './types';
-import { classNames, generateClassNames, spacingClasses } from '@/helpers';
+import { classNames, generateClassNames, spacingClasses } from '@/utils-client';
 
 export const getClassesBox: ClassesBox = (params) => {
   const { className, m, mb, mt, ml, mr, p, pb, pl, pr, pt } = params;

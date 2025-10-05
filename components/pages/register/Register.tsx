@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styles from './Register.module.css';
 import stylesCommon from '@/components/pages/login/Common.module.css';
 import { Alert, Box, Heading, Icon, RegisterForm } from '@/components';
-import { classNames, showSuccessToast } from '@/helpers';
+import { classNames, showSuccessToast } from '@/utils-client';
 import { initialState } from '@/utils-client';
 import { register } from '@/actions';
 import { useActionState } from 'react';

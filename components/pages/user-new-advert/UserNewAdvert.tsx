@@ -1,6 +1,6 @@
 'use client';
 import { newAdvert } from '@/actions';
-import { showSuccessToast } from '@/helpers';
+import { showSuccessToast } from '@/utils-client';
 import { useQueryClient } from '@tanstack/react-query';
 import { UserAdvert, UserNewAdvertProps } from '@/components';
 import { useRouter } from 'next/navigation';

@@ -3,7 +3,7 @@ import stylesFooter from '../components/modal-footer/ModalFooter.module.css';
 import stylesHeader from '../components/modal-header/ModalHeader.module.css';
 import stylesModal from '../Modal.module.css';
 import { ClassNamesModalHeader } from './types';
-import { generateClassNames } from '@/helpers';
+import { generateClassNames } from '@/utils-client';
 
 export const modalClassNames = () => ({
   modal: stylesModal,

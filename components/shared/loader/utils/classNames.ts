@@ -1,5 +1,5 @@
 import styles from '../Loader.module.css';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { LoaderProps } from '../types';
 
 interface Params extends Pick<LoaderProps, 'border' | 'position' | 'size'> {

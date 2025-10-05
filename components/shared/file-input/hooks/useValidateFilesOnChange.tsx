@@ -1,6 +1,6 @@
 import { ChangeEvent, DragEvent } from 'react';
 import { FileMimeType } from '@/types';
-import { formatFileSize } from '@/helpers';
+import { formatFileSize } from '@/utils-client';
 import { UseValidateFilesOnChangeProps } from './types';
 
 export const useValidateFilesOnChange = ({

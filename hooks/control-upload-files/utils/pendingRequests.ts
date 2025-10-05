@@ -1,5 +1,5 @@
 import { fetchFiles, fetchFilesFailed, fetchFilesResponse } from './fetchFiles';
-import { showPromisToast } from '@/helpers';
+import { showPromisToast } from '@/utils-client';
 import { toastDeleteOptions, toastUploadOptions } from './toastPromiseOptions';
 import { tryCatchFiles } from './tryCatch';
 

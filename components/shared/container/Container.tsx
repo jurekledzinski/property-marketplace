@@ -1,7 +1,11 @@
 import { ContainerProps } from './types';
-import { filterProps, spacingInlineStyles, spacingValues } from '@/helpers';
 import { getClassesContainer } from './utils/classNames';
 import { JSX } from 'react';
+import {
+  filterProps,
+  spacingInlineStyles,
+  spacingValues,
+} from '@/utils-client';
 
 export const Container = ({
   as = 'div',

@@ -1,7 +1,11 @@
-import { filterProps, spacingInlineStyles, spacingValues } from '@/helpers';
 import { getClassNamesHeading } from './utils';
 import { HeadingProps } from './types';
 import { JSX } from 'react';
+import {
+  filterProps,
+  spacingInlineStyles,
+  spacingValues,
+} from '@/utils-client';
 
 export const Heading = ({ children, level = 1, ...props }: HeadingProps) => {
   const Tag = `h${level}` as keyof JSX.IntrinsicElements;

@@ -1,7 +1,7 @@
 'use client';
 import { ApiSuccessResponse, States } from '@/services';
 import { CountryState, UsePaginatedQueryProps } from './types';
-import { fetchApiClient } from '@/helpers';
+import { fetchApiClient } from '@/utils-client';
 import { uniqBy } from 'lodash';
 import { useCallback, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';

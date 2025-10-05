@@ -1,4 +1,4 @@
-import { MaxSize } from '../types';
+import { MaxSize } from '@/types';
 
 export const formatFileSize = (size: number, unit: MaxSize[1]) => {
   if (unit === 'KB') return (size / 1024).toFixed(2);

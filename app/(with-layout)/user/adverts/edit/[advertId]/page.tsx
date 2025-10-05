@@ -1,6 +1,6 @@
 import { EditAdvertPageProps } from './types';
 import { formatCountires, getCountries, getUserAdvertPage } from '@/services';
-import { formatNumberToStringObject } from '@/helpers';
+import { formatNumberToStringObject } from '@/utils-client';
 import { headers } from 'next/headers';
 import { UserEditAdvert } from '@/components';
 

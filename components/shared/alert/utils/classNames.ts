@@ -1,6 +1,6 @@
 import styles from '../Alert.module.css';
 import stylesSpace from '@/styles/space.module.css';
-import { generateClassNames, spacingClasses } from '@/helpers';
+import { generateClassNames, spacingClasses } from '@/utils-client';
 import { GetClassNamesAlert } from './types';
 
 export const getClassNamesAlert: GetClassNamesAlert = (params) => {

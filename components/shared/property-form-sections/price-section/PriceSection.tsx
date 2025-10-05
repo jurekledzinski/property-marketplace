@@ -1,7 +1,7 @@
 'use client';
 import { Controller } from 'react-hook-form';
 import { Field, Message, TextInput, usePriceInputType } from '@/components';
-import { formatNumber } from '@/helpers';
+import { formatNumber } from '@/utils-client';
 import { memo } from 'react';
 import { optionsFormat, validate } from './utils';
 import { PriceSectionProps } from './types';

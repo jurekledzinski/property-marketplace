@@ -1,5 +1,9 @@
 import { BoxProps } from './types';
-import { filterProps, spacingInlineStyles, spacingValues } from '@/helpers';
+import {
+  filterProps,
+  spacingInlineStyles,
+  spacingValues,
+} from '@/utils-client';
 import { getClassesBox } from './utils';
 
 export const Box = ({ children, ...props }: BoxProps) => {

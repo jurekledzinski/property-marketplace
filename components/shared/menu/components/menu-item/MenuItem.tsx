@@ -1,5 +1,5 @@
 import styles from '../../Menu.module.css';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { MenuItemProps } from './types';
 
 export const MenuItem = ({ children, className, ...props }: MenuItemProps) => {

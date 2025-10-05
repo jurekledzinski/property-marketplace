@@ -1,5 +1,5 @@
 import styles from '../Arrow.module.css';
-import { generateClassNames } from '@/helpers';
+import { generateClassNames } from '@/utils-client';
 import { GetClassNamesArrow } from './types';
 
 export const getClassNamesArrow: GetClassNamesArrow = (params) => {

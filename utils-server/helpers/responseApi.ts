@@ -1,4 +1,4 @@
-import { ApiError } from '@/helpers';
+import { ApiError } from '@/utils-client';
 import { NextResponse } from 'next/server';
 
 type Params<T extends object> = {

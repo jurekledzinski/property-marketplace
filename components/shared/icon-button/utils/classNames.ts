@@ -1,5 +1,5 @@
 import styles from '../IconButton.module.css';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { getBackgroundConstrast } from './helpers';
 import { IconBaseButtonProps } from '../types';
 

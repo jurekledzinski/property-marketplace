@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from '@/helpers';
+import { capitalizeFirstLetter } from '@/utils-client';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { getClassNamesInput, InputWrapper, usePopOver } from '@/components';
 import { SelectTriggerProps } from './types';

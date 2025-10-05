@@ -1,4 +1,4 @@
-import { formatNumber } from '@/helpers';
+import { formatNumber } from '@/utils-client';
 import { optionsFormat } from '@/components';
 import { UseFormatDetailsProps } from './types';
 import { useMemo } from 'react';

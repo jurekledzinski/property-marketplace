@@ -1,5 +1,5 @@
 import { OnError } from '@/components';
-import { showErrorToast } from '@/helpers';
+import { showErrorToast } from '@/utils-client';
 
 export const validationFilesInfo: OnError = ({ name, type }) => {
   if (type === 'amount') {

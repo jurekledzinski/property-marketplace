@@ -1,5 +1,5 @@
 import styles from '../RadioGroup.module.css';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { Color, Size, Orientation, Spacing } from '@/types';
 import { VariantRadio } from '../components';
 

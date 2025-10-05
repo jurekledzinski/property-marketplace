@@ -1,7 +1,7 @@
 import styles from '../Accordion.module.css';
 import stylesSpace from '@/styles/space.module.css';
 import { ClassesAccordionContent, ClassesAccordionHeader } from './types';
-import { classNames, generateClassNames, spacingClasses } from '@/helpers';
+import { classNames, generateClassNames, spacingClasses } from '@/utils-client';
 import { SpacingToken } from '@/types';
 
 const commonSpacingClassNames = (rest: SpacingToken) => {

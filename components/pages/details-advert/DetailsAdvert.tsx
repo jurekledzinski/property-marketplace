@@ -1,7 +1,7 @@
 'use client';
 import styles from './DetailsAdvert.module.css';
 import { DetailsAdvertProps } from './types';
-import { formatNumber, showErrorToast, showSuccessToast } from '@/helpers';
+import { formatNumber, showErrorToast, showSuccessToast } from '@/utils-client';
 import { newMessage } from '@/actions';
 import { useActionStateReset } from '@/hooks';
 import { useSearchParams } from 'next/navigation';

@@ -1,5 +1,5 @@
 import stylesSelectOption from '../Select.module.css';
-import { generateClassNames } from '@/helpers';
+import { generateClassNames } from '@/utils-client';
 import { Size } from '@/types';
 
 export const selectOptionClassNames = (

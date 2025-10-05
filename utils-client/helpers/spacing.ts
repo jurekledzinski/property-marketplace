@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import { SpacingToken } from '../types';
+import { SpacingToken } from '@/types';
 
 type Params = SpacingToken;
 

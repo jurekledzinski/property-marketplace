@@ -1,6 +1,6 @@
 import styles from '../UserDashboard.module.css';
 import { ClassNamesGrid, ClassNamesUserDashboard } from './types';
-import { generateClassNames } from '@/helpers';
+import { generateClassNames } from '@/utils-client';
 
 export const getClassNamesUserDashboard: ClassNamesUserDashboard = (params) => {
   const { open } = params;

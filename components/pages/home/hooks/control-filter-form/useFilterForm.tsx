@@ -1,6 +1,6 @@
 'use client';
 import { InputsAdvertsFilter, UseFilterFormProps } from './types';
-import { removeNonDigitsObj } from '@/helpers';
+import { removeNonDigitsObj } from '@/utils-client';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useCallback, useMemo } from 'react';
 

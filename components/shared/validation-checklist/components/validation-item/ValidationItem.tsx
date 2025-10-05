@@ -1,5 +1,5 @@
 import styles from './ValidationItem.module.css';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Icon } from '@/components';
 import { ValidationItemProps } from './types';

@@ -1,7 +1,7 @@
 import ImageNext from 'next/image';
 import styles from './Image.module.css';
+import { classNames } from '@/utils-client';
 import { ImageProps } from './types';
-import { classNames } from '@/helpers';
 
 export const Image = ({ className, ...props }: ImageProps) => {
   return (

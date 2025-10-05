@@ -1,5 +1,5 @@
 import styles from '../CheckboxGroup.module.css';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { Orientation, Spacing } from '@/types';
 
 export const getClassCheckboxGroup = (

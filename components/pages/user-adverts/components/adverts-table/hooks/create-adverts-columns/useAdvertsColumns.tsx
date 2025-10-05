@@ -1,6 +1,6 @@
 import styles from '../../AdvertsTable.module.css';
 import { createColumnHelper } from '@tanstack/react-table';
-import { formatDateLocalString } from '@/helpers';
+import { formatDateLocalString } from '@/utils-client';
 import { getStage, IconButton, UseAdvertsColumnsProps } from '@/components';
 import { useMemo } from 'react';
 import { UserAdvertsTable } from '@/services';

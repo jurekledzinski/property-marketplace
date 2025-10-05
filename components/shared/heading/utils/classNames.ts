@@ -1,7 +1,7 @@
 import styles from '../Heading.module.css';
 import stylesSpace from '@/styles/space.module.css';
 import { ClassesHeading } from './types';
-import { classNames, generateClassNames, spacingClasses } from '@/helpers';
+import { classNames, generateClassNames, spacingClasses } from '@/utils-client';
 
 export const getClassNamesHeading: ClassesHeading = (params) => {
   const { className, fw, level, m, mb, mt, ml, mr, p, pb, pl, pr, pt } = params;

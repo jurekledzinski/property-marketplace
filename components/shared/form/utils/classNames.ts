@@ -1,6 +1,6 @@
 import styles from '../Form.module.css';
 import stylesSpace from '@styles/space.module.css';
-import { classNames, generateClassNames } from '@/helpers';
+import { classNames, generateClassNames } from '@/utils-client';
 import { ClassNamesForm, ClassNamesFormGroup } from './types';
 
 export const getClassNamesForm: ClassNamesForm = (params) => {

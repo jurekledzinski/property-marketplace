@@ -1,7 +1,6 @@
 'use client';
 import { Heading, Modal, useAdvertActions } from '@/components';
-import { modalMessages } from '@/utils-client';
-import { showSuccessToast } from '@/helpers';
+import { modalMessages, showSuccessToast } from '@/utils-client';
 import { UserAdvertsProps } from './types';
 
 import {

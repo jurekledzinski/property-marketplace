@@ -1,4 +1,4 @@
-import { generateClassNames } from '@/helpers';
+import { generateClassNames } from '@/utils-client';
 import styles from '../Chip.module.css';
 import { GetChipClassNamesFn } from './types';
 

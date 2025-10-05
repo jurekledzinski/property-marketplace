@@ -1,5 +1,5 @@
 import { CheckboxProps } from '../../types';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { forwardRef } from 'react';
 import { getClassNamesCheckbox } from '../../utils';
 import { Icon } from '../icon';

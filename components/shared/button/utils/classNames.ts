@@ -1,6 +1,6 @@
 import styles from '../Button.module.css';
 import { BaseButtonProps } from '../types';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 
 export const getClassButton = ({
   border = 'border-xs',

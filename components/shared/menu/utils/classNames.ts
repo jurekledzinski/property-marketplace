@@ -1,5 +1,5 @@
 import styles from '../Menu.module.css';
-import { classNames, generateClassNames } from '@/helpers';
+import { classNames, generateClassNames } from '@/utils-client';
 import { MenuClassNames } from './types';
 
 export const getMenuClassNames: MenuClassNames = (params) => {

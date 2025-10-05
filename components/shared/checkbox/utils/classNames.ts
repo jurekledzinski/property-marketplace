@@ -1,5 +1,5 @@
 import styles from '../Checkbox.module.css';
-import { classNames, generateClassNames } from '@/helpers';
+import { classNames, generateClassNames } from '@/utils-client';
 import { GetClassNamesCheckbox, GetClassNamesLabelCheckbox } from './types';
 
 export const getClassNamesLabel: GetClassNamesLabelCheckbox = ({

@@ -1,5 +1,5 @@
+import { getLocalItem, setLocalItem } from '@/utils-client';
 import { RefObject } from 'react';
-import { getLocalItem, setLocalItem } from '@/helpers';
 import { ThemeMode } from '../types';
 
 export const setThemeAttributes = (mode: ThemeMode) => {

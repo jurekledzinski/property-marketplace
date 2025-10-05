@@ -3,7 +3,7 @@ import { ApiErrorResponse, ApiSuccessResponse } from '@/services';
 import { clientEndpoints } from '@/utils-client';
 import { DraftFile } from '@/models';
 import { DraftPayload, useDraftsImagesProps } from './types';
-import { fetchApiClient } from '@/helpers';
+import { fetchApiClient } from '@/utils-client';
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 

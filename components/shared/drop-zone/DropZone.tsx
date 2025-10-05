@@ -1,5 +1,5 @@
 'use client';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { dropZoneClassNames } from './utils/classNames';
 import { DropZoneProps } from './types';
 import { forwardRef, useImperativeHandle } from 'react';

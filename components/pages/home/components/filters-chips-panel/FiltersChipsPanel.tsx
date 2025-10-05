@@ -1,7 +1,7 @@
 import styles from './FiltersChipsPanel.module.css';
+import { capitalizeFirstLetter } from '@/utils-client';
 import { Chip } from '@/components';
 import { FiltersChipsPanelProps } from './types';
-import { capitalizeFirstLetter } from '@/helpers';
 
 export const FiltersChipsPanel = ({
   filters,

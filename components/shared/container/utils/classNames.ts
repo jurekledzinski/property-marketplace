@@ -1,7 +1,7 @@
 import styles from '../Container.module.css';
 import stylesSpace from '@/styles/space.module.css';
 import { ClassesContainer } from './types';
-import { classNames, generateClassNames, spacingClasses } from '@/helpers';
+import { classNames, generateClassNames, spacingClasses } from '@/utils-client';
 
 export const getClassesContainer: ClassesContainer = (params) => {
   const { className, maxWidth = 'mw-md', ...rest } = params;

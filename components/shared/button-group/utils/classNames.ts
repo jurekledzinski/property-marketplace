@@ -1,6 +1,6 @@
 import styles from '../ButtonGroup.module.css';
 import stylesSpace from '@/styles/space.module.css';
-import { classNames, generateClassNames } from '@/helpers';
+import { classNames, generateClassNames } from '@/utils-client';
 import { GetClassButtonGroup } from './types';
 
 export const getClassButtonGroup: GetClassButtonGroup = (params) => {

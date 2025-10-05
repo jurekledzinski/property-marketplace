@@ -1,6 +1,6 @@
 'use client';
 import { editAdvert } from '@/actions';
-import { showSuccessToast } from '@/helpers';
+import { showSuccessToast } from '@/utils-client';
 import { usePathname, useRouter } from 'next/navigation';
 import { UserAdvert } from '@/components';
 import { UserEditAdvertProps } from './types';

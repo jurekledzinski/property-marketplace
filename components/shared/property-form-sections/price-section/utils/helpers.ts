@@ -1,5 +1,5 @@
 import { InputsAdvertsFilter as InputsTypes } from '@/components';
-import { removeNonDigitsObj } from '@/helpers';
+import { removeNonDigitsObj } from '@/utils-client';
 
 export const validate = (value: string, fields: InputsTypes) => {
   const priceOne = removeNonDigitsObj(fields, ['priceFrom']);

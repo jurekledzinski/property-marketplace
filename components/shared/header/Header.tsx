@@ -5,7 +5,7 @@ import { AppBar, ButtonGroup, Container, Heading } from '@/components';
 import { HeaderMenu, NavigationButtons } from './components';
 import { HeaderProps } from './types';
 import { memo } from 'react';
-import { showSuccessToast } from '@/helpers';
+import { showSuccessToast } from '@/utils-client';
 import { signOut } from 'next-auth/react';
 import { useDrawer, useTheme } from '@/store';
 

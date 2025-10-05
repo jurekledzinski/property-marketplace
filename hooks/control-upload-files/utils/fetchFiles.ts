@@ -1,4 +1,4 @@
-import { ApiError } from '@/helpers';
+import { ApiError } from '@/utils-client';
 import { PayloadUpload, ResponseApi } from '../types';
 
 type Methods = 'DELETE' | 'POST';

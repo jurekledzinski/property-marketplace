@@ -1,5 +1,5 @@
 import styles from './List.module.css';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { ListProps } from './types';
 
 export const List = ({ className, children, ...props }: ListProps) => {

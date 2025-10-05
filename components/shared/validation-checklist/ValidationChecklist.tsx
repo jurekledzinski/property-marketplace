@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ValidationChecklist.module.css';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { Icons } from '@/types';
 import { ValidationChecklistProps } from './types';
 

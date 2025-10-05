@@ -1,5 +1,5 @@
 import styles from './TableState.module.css';
-import { classNames } from '@/helpers';
+import { classNames } from '@/utils-client';
 import { TableStateProps } from './types';
 
 export const TableState = ({
