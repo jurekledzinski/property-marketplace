@@ -1,4 +1,4 @@
-import AccordionProvider from './store/AccordionProvider';
+import AccordionProvider from './store';
 import { AccordionProps } from './types';
 
 export const Accordion = ({ children, ...props }: AccordionProps) => {
