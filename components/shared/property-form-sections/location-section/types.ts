@@ -1,4 +1,4 @@
-import { Countries } from '@/lib';
+import { Countries } from '@/services';
 import { CountryState } from '@/hooks';
 import { LocationFields } from '@/components';
 import {

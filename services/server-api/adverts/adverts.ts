@@ -1,15 +1,15 @@
 import 'server-only';
 import { Advert } from '@/models';
+import { getDomain } from '@/lib';
 
 import {
   AdvertDetails,
   Adverts,
   fetchApi,
-  getDomain,
   ReadonlyHeaders,
   serverEndpoints,
   UserAdvertsTable,
-} from '@/lib';
+} from '@/services';
 
 // Fetch user adverts server component
 

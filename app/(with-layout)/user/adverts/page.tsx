@@ -1,4 +1,4 @@
-import { getUserAdvertsPage } from '@/lib';
+import { getUserAdvertsPage } from '@/services';
 import { headers } from 'next/headers';
 import { UserAdverts } from '@/components';
 

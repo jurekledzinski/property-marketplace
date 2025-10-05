@@ -1,4 +1,4 @@
-import { UserAdvertsTable } from '@/lib';
+import { UserAdvertsTable } from '@/services';
 
 const maxDays = 7 * 24 * 60 * 60 * 1000;
 const minDays = 5 * 24 * 60 * 60 * 1000;

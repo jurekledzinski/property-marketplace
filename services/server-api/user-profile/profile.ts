@@ -1,5 +1,6 @@
 import 'server-only';
-import { fetchApi, getDomain, ReadonlyHeaders, serverEndpoints } from '@/lib';
+import { fetchApi, ReadonlyHeaders, serverEndpoints } from '@/services';
+import { getDomain } from '@/lib';
 import { User } from '@/models';
 
 export const getUserProfilePage = async (headers?: ReadonlyHeaders) => {

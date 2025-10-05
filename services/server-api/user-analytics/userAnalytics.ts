@@ -1,6 +1,7 @@
 import 'server-only';
 import { DashboardAnalytics } from '@/models';
-import { fetchApi, getDomain, ReadonlyHeaders, serverEndpoints } from '@/lib';
+import { fetchApi, ReadonlyHeaders, serverEndpoints } from '@/services';
+import { getDomain } from '@/lib';
 
 export const getUserAnalyticsPage = async (headers?: ReadonlyHeaders) => {
   const domain = await getDomain();

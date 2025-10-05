@@ -1,4 +1,4 @@
-import { getUserProfilePage } from '@/lib';
+import { getUserProfilePage } from '@/services';
 import { headers } from 'next/headers';
 import { UserProfile } from '@/components';
 

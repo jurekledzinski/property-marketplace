@@ -1,5 +1,5 @@
 import { ChangeEventHandler, MouseEventHandler } from 'react';
-import { Messages } from '@/lib';
+import { Messages } from '@/services';
 
 export type MessageAccordionProps = {
   openIds: string[];

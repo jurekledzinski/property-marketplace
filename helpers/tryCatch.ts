@@ -1,4 +1,4 @@
-import { ApiErrorResponse, ApiSuccessResponse } from '@/lib';
+import { ApiErrorResponse, ApiSuccessResponse } from '@/services';
 
 export const tryCatchApi = async <T extends object = object>({
   promise,

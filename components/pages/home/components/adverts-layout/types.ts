@@ -1,4 +1,4 @@
-import { Adverts, Countries } from '@/lib';
+import { Adverts, Countries } from '@/services';
 import { InputsAdvertsFilter } from '../../hooks';
 
 export type AdvertsLayoutProps = {

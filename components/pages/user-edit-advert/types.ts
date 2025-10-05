@@ -1,4 +1,4 @@
-import { Countries } from '@/lib';
+import { Countries } from '@/services';
 import { InputsAvert } from '@/components';
 
 export type UserEditAdvertProps = {

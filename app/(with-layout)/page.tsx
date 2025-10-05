@@ -1,12 +1,8 @@
+import { decodeQueryUrl } from '@/lib';
+import { formatCountires, getAdvertsPage, getCountries } from '@/services';
 import { headers } from 'next/headers';
 import { Home, InputsAdvertsFilter } from '@/components';
 import { HomePageProps } from './types';
-import {
-  decodeQueryUrl,
-  formatCountires,
-  getAdvertsPage,
-  getCountries,
-} from '@/lib';
 
 const HomePage = async ({ searchParams }: HomePageProps) => {
   const data = await searchParams;

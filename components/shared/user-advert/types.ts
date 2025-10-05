@@ -1,5 +1,4 @@
-import { ActionState } from '@/services';
-import { Countries } from '@/lib';
+import { ActionState, Countries } from '@/services';
 import { InputsAvert } from '@/components';
 
 type AdvertAction = (

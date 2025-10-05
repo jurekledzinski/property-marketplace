@@ -1,6 +1,6 @@
 import 'server-only';
-import { fetchApi, serverEndpoints } from '@/lib';
 import { Country } from './types';
+import { fetchApi, serverEndpoints } from '@/services';
 
 // Fetch countries server component
 

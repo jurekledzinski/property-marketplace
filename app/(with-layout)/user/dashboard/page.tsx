@@ -1,5 +1,5 @@
 import { DashboardGrid } from '@/components';
-import { getUserAnalyticsPage } from '@/lib';
+import { getUserAnalyticsPage } from '@/services';
 import { headers } from 'next/headers';
 
 const UserDashboardPage = async () => {

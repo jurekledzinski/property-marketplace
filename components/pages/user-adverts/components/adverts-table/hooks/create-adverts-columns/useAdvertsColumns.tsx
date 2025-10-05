@@ -3,7 +3,7 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { formatDateLocalString } from '@/helpers';
 import { getStage, IconButton, UseAdvertsColumnsProps } from '@/components';
 import { useMemo } from 'react';
-import { UserAdvertsTable } from '@/lib';
+import { UserAdvertsTable } from '@/services';
 import {
   faPenToSquare,
   faTrash,

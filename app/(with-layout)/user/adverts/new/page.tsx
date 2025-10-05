@@ -1,4 +1,4 @@
-import { formatCountires, getCountries } from '@/lib';
+import { formatCountires, getCountries } from '@/services';
 import { UserNewAdvert } from '@/components';
 
 const NewAdvertPage = async () => {

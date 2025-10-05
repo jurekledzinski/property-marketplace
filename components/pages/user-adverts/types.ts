@@ -1,4 +1,4 @@
-import { UserAdvertsTable } from '@/lib';
+import { UserAdvertsTable } from '@/services';
 
 export type UserAdvertsProps = {
   adverts?: UserAdvertsTable[];

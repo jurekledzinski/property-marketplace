@@ -1,4 +1,4 @@
-import { getMessagesPage } from '@/lib';
+import { getMessagesPage } from '@/services';
 import { headers } from 'next/headers';
 import { UserMessages } from '@/components';
 

@@ -1,6 +1,6 @@
 import { AdvertPageProps } from './types';
 import { DetailsAdvert } from '@/components';
-import { getAdvertPage } from '@/lib';
+import { getAdvertPage } from '@/services';
 import { headers } from 'next/headers';
 
 const DetailsAdvertPage = async ({ params }: AdvertPageProps) => {

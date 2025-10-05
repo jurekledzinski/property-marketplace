@@ -1,8 +1,9 @@
 import 'server-only';
 import { Advert } from '@/models';
 import { Collection } from 'mongodb';
-import { DataDB, UserAdvertsTable } from '@/lib';
+import { DataDB } from '@/lib';
 import { GetUserAdvertsContext } from './types';
+import { UserAdvertsTable } from '@/services';
 
 // --- GET ---
 

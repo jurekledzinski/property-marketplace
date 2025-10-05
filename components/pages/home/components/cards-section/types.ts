@@ -1,4 +1,4 @@
-import { Adverts } from '@/lib';
+import { Adverts } from '@/services';
 
 export type CardsSectionProps = {
   advertCards: Adverts[];

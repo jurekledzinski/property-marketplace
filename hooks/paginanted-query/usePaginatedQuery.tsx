@@ -1,5 +1,5 @@
 'use client';
-import { ApiSuccessResponse, States } from '@/lib';
+import { ApiSuccessResponse, States } from '@/services';
 import { CountryState, UsePaginatedQueryProps } from './types';
 import { fetchApiClient } from '@/helpers';
 import { uniqBy } from 'lodash';

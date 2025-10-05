@@ -1,6 +1,7 @@
 import styles from './AdvertsTable.module.css';
 import { AdvertsTableTableProps } from './types';
 import { ColumnsFilterBody, ColumnsFilterHeader } from './components';
+import { UserAdvertsTable } from '@/services';
 import {
   TableState,
   Table,
@@ -8,7 +9,6 @@ import {
   TableHeader,
   TableStatus,
 } from '@/components';
-import { UserAdvertsTable } from '@/lib';
 
 export const AdvertsTable = ({
   children,

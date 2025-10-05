@@ -1,4 +1,4 @@
-import { AdvertDetails } from '@/lib';
+import { AdvertDetails } from '@/services';
 
 export type DetailsAdvertProps = {
   advert: AdvertDetails | null;

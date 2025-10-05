@@ -1,5 +1,5 @@
 import { ApiError } from './error';
-import { ApiErrorResponse, ApiSuccessResponse } from '@/lib';
+import { ApiErrorResponse, ApiSuccessResponse } from '@/services';
 import { tryCatchApi } from './tryCatch';
 
 export const fetchResponse = async (response: Response) => {
