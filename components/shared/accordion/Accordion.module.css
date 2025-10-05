@@ -1,31 +1,53 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  color: var(--color-text-white);
+}
+
 .content {
   width: 100%;
   transition: 0.3s ease;
   overflow: hidden;
+  background-color: var(--color-surface-0);
+  border-right: 1px solid var(--color-surface-30);
+  border-left: 1px solid var(--color-surface-30);
+  border-bottom: 1px solid var(--color-surface-30);
   color: var(--color-text-primary);
   font-size: 14px;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.radioButton {
+.icon {
   display: block;
-  margin: 0 0.5rem 0 0;
+  justify-self: flex-end;
+  margin-right: 0.5rem;
 }
 
-.header > label:first-child {
+.icon svg {
+  color: var(--color-text-white);
+}
+
+.info {
   flex: 1;
-  color: var(--color-text-primary);
+  min-width: 0;
+}
+
+.title {
+  text-align: left;
+  word-break: break-word;
+}
+
+.subTitle {
+  text-align: left;
+  font-size: 12px;
 }
 
 /* Colors */
 
 .primary {
-  --color: var(--color-primary-500);
+  --color: var(--color-primary-400);
 }
 
 .secondary {
@@ -90,38 +112,6 @@
 .header.contained.negative > label:first-child,
 .header.contained.warning > label:first-child {
   color: var(--color-text-white);
-}
-
-/* Header padding checkbox label */
-
-.header.p-initial > label {
-  padding: var(--space-initial);
-}
-
-.header.p-xxs > label {
-  padding: var(--space-xxs);
-}
-
-.header.p-xs > label {
-  padding: var(--space-xs);
-}
-
-.header.p-sm > label {
-  padding: var(--space-sm);
-}
-
-.header.p-md > label {
-  padding: var(--space-md);
-}
-
-.header.p-lg > label {
-  padding: var(--space-lg);
-}
-
-/* Hide icon checkbox */
-
-.header div.hidden {
-  display: none;
 }
 
 /* Size content */
