@@ -1,5 +1,6 @@
 'use server';
 import { auth } from '@/auth';
+import { deleteUserMessage } from '@/services';
 import { Message } from '@/models';
 import { revalidateTag } from 'next/cache';
 
@@ -9,7 +10,6 @@ import {
   errorResponseAction,
   getCollectionDb,
   successResponseAction,
-  deleteUserMessage,
 } from '@/lib';
 
 export const deleteMessage = connectDBAction(

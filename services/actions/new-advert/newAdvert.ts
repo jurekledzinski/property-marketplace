@@ -1,7 +1,7 @@
 import 'server-only';
 import ImageKit from 'imagekit';
 import { DraftFile } from '@/models';
-import { getCollectionDb } from '../../database';
+import { getCollectionDb } from '@/lib';
 import {
   DataEditAdvert,
   DataNewAdvert,

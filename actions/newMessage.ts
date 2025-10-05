@@ -1,10 +1,10 @@
 'use server';
+import { formatDataNewMessage } from '@/services';
 import { Message, MessageSchema } from '@/models';
 
 import {
   connectDBAction,
   errorResponseAction,
-  formatDataNewMessage,
   getCollectionDb,
   successResponseAction,
 } from '@/lib';

@@ -1,6 +1,6 @@
 import { AuthError } from 'next-auth';
 import { authMessage } from './authMessage';
-import { ActionState } from '@/lib';
+import { ActionState } from '@/services';
 import { z } from 'zod';
 
 export const actionTryCatch = <T extends object = object>(

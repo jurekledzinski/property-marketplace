@@ -1,10 +1,10 @@
 import 'server-only';
 import { Advert, DraftFile } from '@/models';
 import { auth } from '@/auth';
+import { deleteImagesImagekit } from '@/services';
 
 import {
   connectDBAuth,
-  deleteImagesImagekit,
   errorResponseApi,
   getBodyRequest,
   getCollectionDb,
