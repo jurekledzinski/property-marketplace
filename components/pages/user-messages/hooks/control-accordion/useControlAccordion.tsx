@@ -12,8 +12,8 @@ export const useControlAccordion = () => {
     setDeleteIds((prev) => selectAccordion(prev, id));
   };
 
-  const handleSelect = (e: MouseEvent<HTMLInputElement>) => {
-    const id = (e.target as HTMLInputElement).id;
+  const handleSelect = (e: MouseEvent<HTMLDivElement>) => {
+    const id = (e.currentTarget as HTMLDivElement).id;
     setOpenIds((prev) => selectAccordion(prev, id));
   };
 
