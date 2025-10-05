@@ -1,8 +1,11 @@
 import { Color, Variant } from '@/types';
+import { MouseEventHandler } from 'react';
 
 export type AccordionProps = {
   children: React.ReactNode;
-  showCheckbox?: boolean;
+  open: boolean;
   color?: Color;
+  id?: string;
+  onClick?: MouseEventHandler<HTMLDivElement>;
   variant?: Variant;
 };
