@@ -1,5 +1,6 @@
 import 'server-only';
 import { auth } from '@/auth';
+import { getUserMessages } from '@/services';
 import { Message } from '@/models';
 
 import {
@@ -8,7 +9,6 @@ import {
   errorResponseApi,
   formatDBDocumentId,
   getCollectionDb,
-  getUserMessages,
   successResponseApi,
 } from '@/lib';
 

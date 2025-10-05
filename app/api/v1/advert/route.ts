@@ -1,18 +1,22 @@
 import 'server-only';
+import { Advert } from '@/models';
+import { NextRequest } from 'next/server';
+
 import {
   connectDB,
   DataDB,
   errorResponseApi,
   formatDBDocumentId,
-  getAdvert,
-  GetAdvertSearchParams,
   getCollectionDb,
   getQueries,
   successResponseApi,
-  updateAdvertViews,
 } from '@/lib';
-import { Advert } from '@/models';
-import { NextRequest } from 'next/server';
+
+import {
+  updateAdvertViews,
+  getAdvert,
+  GetAdvertSearchParams,
+} from '@/services';
 
 export const GET = connectDB(async (req: NextRequest) => {
   const { id } = getQueries<GetAdvertSearchParams>(req);

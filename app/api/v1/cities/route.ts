@@ -1,11 +1,7 @@
 import 'server-only';
+import { errorResponseApi, getQueries, successResponseApi } from '@/lib';
+import { GetCitiesSearchParams } from '@/services';
 import { NextRequest } from 'next/server';
-import {
-  errorResponseApi,
-  GetCitiesSearchParams,
-  getQueries,
-  successResponseApi,
-} from '@/lib';
 
 export const GET = async (req: NextRequest) => {
   const { after, code, division1Code } = getQueries<GetCitiesSearchParams>(req);

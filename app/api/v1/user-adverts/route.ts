@@ -1,13 +1,13 @@
 import 'server-only';
 import { Advert } from '@/models';
 import { auth } from '@/auth';
+import { getUserAdvertsApi } from '@/services';
 
 import {
   connectDBAuth,
   getCollectionDb,
   errorResponseApi,
   formatDBDocumentId,
-  getUserAdvertsApi,
 } from '@/lib';
 
 export const GET = connectDBAuth(

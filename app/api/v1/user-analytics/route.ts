@@ -1,13 +1,13 @@
 import 'server-only';
 import { Advert, Message } from '@/models';
 import { auth } from '@/auth';
+import { getUserAnalytics } from '@/services';
 
 import {
   connectDBAuth,
   DataDB,
   errorResponseApi,
   getCollectionDb,
-  getUserAnalytics,
   successResponseApi,
 } from '@/lib';
 

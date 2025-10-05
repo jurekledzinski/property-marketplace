@@ -1,6 +1,7 @@
 import 'server-only';
 import { Advert } from '@/models';
 import { auth } from '@/auth';
+import { GetUserAdvertSearchParams } from '@/services';
 import { ObjectId } from 'mongodb';
 
 import {
@@ -9,7 +10,6 @@ import {
   errorResponseApi,
   DataDB,
   formatDBDocumentId,
-  GetUserAdvertSearchParams,
   getQueries,
   successResponseApi,
 } from '@/lib';

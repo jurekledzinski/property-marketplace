@@ -9,6 +9,10 @@ import {
   getBodyRequest,
   getCollectionDb,
   successResponseApi,
+  getQueries,
+} from '@/lib';
+
+import {
   getUserAdvert,
   createDraftQuery,
   updateDraft,
@@ -23,8 +27,7 @@ import {
   DeleteDraftSearchParams,
   DeleteBodyDraft,
   PatchBodyDraft,
-  getQueries,
-} from '@/lib';
+} from '@/services';
 
 export const GET = connectDBAuth(
   auth(async (req) => {

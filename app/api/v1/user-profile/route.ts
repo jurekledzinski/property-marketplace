@@ -1,13 +1,14 @@
 import 'server-only';
 import { auth } from '@/auth';
+import { getUserProfile } from '@/services';
 import { User } from '@/models';
+
 import {
   connectDBAuth,
   DataDB,
   errorResponseApi,
   formatDBDocumentId,
   getCollectionDb,
-  getUserProfile,
   successResponseApi,
 } from '@/lib';
 
