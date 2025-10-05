@@ -1,36 +1,40 @@
-import styles from '../../UserMessages.module.css';
-import { Accordion, AccordionContent, AccordionHeader } from '@/components';
-import { formatDateLocalString } from '@/helpers';
+import { formatDateLocalString, optionsFormatDate1 } from '@/helpers';
 import { MessageAccordionProps } from './types';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionHeader,
+  AccordionIcon,
+  AccordionSelect,
+  AccordionInfo,
+} from '@/components';
 
 export const MessageAccordion = ({
   message,
   openIds,
   onClick,
-  onChangeDelete,
+  onSelect,
 }: MessageAccordionProps) => {
   if (!message || !message.id) return null;
+  const date = formatDateLocalString({
+    date: message?.createdAt,
+    options: optionsFormatDate1,
+  });
 
   return (
-    <Accordion key={message.id} color="primary" variant="contained">
-      <AccordionHeader
-        p={'p-sm'}
-        id={message.id!}
-        checked={openIds.includes(message.id)}
-        title={message.title}
-        onClick={onClick}
-        onChangeDelete={onChangeDelete}
-      >
-        <span className={styles.date}>
-          {formatDateLocalString({
-            date: message?.createdAt,
-            options: { dateStyle: 'full', timeStyle: 'medium' },
-          })}
-        </span>
+    <Accordion
+      color="primary"
+      id={message.id!}
+      onClick={onClick}
+      open={openIds.includes(message.id)}
+      variant="contained"
+    >
+      <AccordionHeader p="p-sm">
+        <AccordionInfo title={message.title} text={date} />
+        <AccordionIcon />
+        <AccordionSelect onSelect={onSelect} />
       </AccordionHeader>
-      <AccordionContent active={openIds.includes(message.id)} pt={'pt-sm'}>
-        {message.message}
-      </AccordionContent>
+      <AccordionContent p="p-sm">{message.message}</AccordionContent>
     </Accordion>
   );
 };
