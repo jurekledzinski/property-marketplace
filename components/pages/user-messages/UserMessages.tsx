@@ -22,8 +22,10 @@ import {
 
 export const UserMessages = ({ messages = [] }: UserMessagesProps) => {
   const action = useActionStateReset({ fnAction: deleteMessage });
+
   const accordion = useControlAccordion();
   const modal = useControlModal();
+
   const { description, title } = modalMessages.deleteMessages(
     accordion.deleteIds.length
   );
@@ -49,8 +51,8 @@ export const UserMessages = ({ messages = [] }: UserMessagesProps) => {
             openIds={accordion.openIds}
             key={message.id}
             message={message}
-            onChangeDelete={accordion.handleDelete}
             onClick={accordion.handleSelect}
+            onSelect={accordion.handleDelete}
           />
         ))}
         {!messages.length ? (
