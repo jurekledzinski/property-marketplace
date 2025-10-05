@@ -1,10 +1,11 @@
 import { Alert, IconButton, Image, ImageContainer } from '@/components';
 import { CardFilePreviewProps } from './types';
 import { getClassNamesCardFilePreview } from '../../utils';
+import { useClearTimeout } from '@/hooks';
 import { useObjectUrl } from './hooks';
 import {
+  faTrash,
   faTriangleExclamation,
-  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const CardFilePreview = ({
@@ -17,6 +18,8 @@ export const CardFilePreview = ({
   const objectUrl = useObjectUrl(
     file && file instanceof File ? file : file.url
   );
+
+  const { handleCleanTimeout, timeId } = useClearTimeout();
 
   return (
     <div className={classes.card}>
@@ -35,7 +38,10 @@ export const CardFilePreview = ({
             ) : (
               <Image
                 src={file && file instanceof File ? objectUrl ?? '' : file.url}
-                onLoad={() => setTimeout(() => onLoad && onLoad(), 1000)}
+                onLoad={() => {
+                  handleCleanTimeout();
+                  timeId.current = setTimeout(() => onLoad && onLoad(), 1000);
+                }}
                 onError={onError}
                 alt="image"
                 width={500}
@@ -50,11 +56,11 @@ export const CardFilePreview = ({
 
       <IconButton
         className={classes.button}
-        icon={[faXmark]}
+        icon={[faTrash]}
         onClick={() => onRemove(index, file)}
         size="size-xxs"
         type="button"
-        variant="contained"
+        variant="minimal"
         color="negative"
       />
     </div>
