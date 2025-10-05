@@ -1,13 +1,13 @@
 import 'server-only';
 import { Advert } from '@/models';
 import { getDomain } from '@/utils-server';
+import { serverEndpoints } from '@/utils-server';
 
 import {
   AdvertDetails,
   Adverts,
   fetchApi,
   ReadonlyHeaders,
-  serverEndpoints,
   UserAdvertsTable,
 } from '@/services';
 

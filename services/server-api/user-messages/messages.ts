@@ -1,6 +1,6 @@
 import 'server-only';
-import { fetchApi, ReadonlyHeaders, serverEndpoints } from '@/services';
-import { getDomain } from '@/utils-server';
+import { fetchApi, ReadonlyHeaders } from '@/services';
+import { getDomain, serverEndpoints } from '@/utils-server';
 import { Messages } from './types';
 
 // Fetch all user messages server component
