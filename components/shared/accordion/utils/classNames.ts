@@ -1,40 +1,46 @@
 import styles from '../Accordion.module.css';
 import stylesSpace from '@/styles/space.module.css';
 import { ClassesAccordionContent, ClassesAccordionHeader } from './types';
-import { generateClassNames } from '@/helpers';
+import { classNames, generateClassNames, spacingClasses } from '@/helpers';
+import { SpacingToken } from '@/types';
+
+const commonSpacingClassNames = (rest: SpacingToken) => {
+  const spacing = spacingClasses(rest);
+  const mergedStyles = { ...styles, ...stylesSpace };
+  return { spacing, mergedStyles };
+};
 
 export const getClassNamesAccordionHeader: ClassesAccordionHeader = (
   params
 ) => {
-  const { color, p, showCheckbox = false, variant } = params;
+  const { color, variant, size, ...rest } = params;
 
-  return {
-    header: generateClassNames(styles, {
-      header: true,
-      [`${color}`]: Boolean(color),
-      [`${p}`]: Boolean(p),
-      [`${variant}`]: Boolean(variant),
-    }),
-    ...(!showCheckbox ? { checkbox: styles.hidden } : {}),
-  };
+  const { mergedStyles, spacing } = commonSpacingClassNames(rest);
+
+  return generateClassNames(mergedStyles, {
+    header: true,
+    [`${color}`]: Boolean(color),
+    [`${size}`]: Boolean(size),
+    [`${variant}`]: Boolean(variant),
+    ...spacing,
+  });
 };
 
 export const getClassNamesContent: ClassesAccordionContent = (params) => {
-  const { p, pb, pt, pl, pr, size } = params;
+  const { className, size, ...rest } = params;
 
-  const mergedStyles = { ...styles, ...stylesSpace };
+  const { mergedStyles, spacing } = commonSpacingClassNames(rest);
 
   return {
-    content: generateClassNames(styles, {
-      content: true,
-      [`${size}`]: Boolean(size),
-    }),
+    content: classNames(
+      generateClassNames(styles, {
+        content: true,
+        [`${size}`]: Boolean(size),
+      }),
+      className || ''
+    ),
     inner: generateClassNames(mergedStyles, {
-      [`${p}`]: Boolean(p),
-      [`${pb}`]: Boolean(pb),
-      [`${pt}`]: Boolean(pt),
-      [`${pl}`]: Boolean(pl),
-      [`${pr}`]: Boolean(pr),
+      ...spacing,
     }),
   };
 };

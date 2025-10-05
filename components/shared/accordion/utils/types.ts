@@ -1,32 +1,16 @@
-import { AccordionContentProps } from '../components';
+import { AccordionContentProps, AccordionHeaderProps } from '../components';
 import { AccordionProps } from '../types';
-import {
-  PaddingBottomToken,
-  PaddingLeftToken,
-  PaddingRightToken,
-  PaddingToken,
-  PaddingTopToken,
-} from '@/types';
 
-interface ParamsAccordionHeader extends Omit<AccordionProps, 'children'> {
-  p?: PaddingToken;
-}
+type CleanHeaderProps = Omit<AccordionHeaderProps, 'children' | 'onClick'>;
 
-interface ParamsAccordionContent
-  extends Omit<AccordionContentProps, 'active' | 'children' | 'className'> {
-  p?: PaddingToken;
-  pt?: PaddingTopToken;
-  pb?: PaddingBottomToken;
-  pl?: PaddingLeftToken;
-  pr?: PaddingRightToken;
-}
+type ParamsHeader = Omit<AccordionProps, 'children' | 'id' | 'open'> &
+  CleanHeaderProps;
 
-export type ClassesAccordionHeader = (params: ParamsAccordionHeader) => {
-  checkbox?: string;
-  header: string;
-};
+type ParamsContent = Omit<AccordionContentProps, 'children'>;
 
-export type ClassesAccordionContent = (params: ParamsAccordionContent) => {
+export type ClassesAccordionHeader = (params: ParamsHeader) => string;
+
+export type ClassesAccordionContent = (params: ParamsContent) => {
   content: string;
   inner: string;
 };
