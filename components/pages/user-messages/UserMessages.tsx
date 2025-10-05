@@ -3,7 +3,7 @@ import styles from './UserMessages.module.css';
 import { deleteMessage } from '@/actions';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { MessageAccordion } from './components';
-import { modalMessages } from '@/constants';
+import { modalMessages } from '@/utils';
 import { showSuccessToast } from '@/helpers';
 import { startTransition } from 'react';
 import { useActionStateReset } from '@/hooks';

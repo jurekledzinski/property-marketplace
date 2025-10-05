@@ -4,7 +4,7 @@ import styles from './Register.module.css';
 import stylesCommon from '@/components/pages/login/Common.module.css';
 import { Alert, Box, Heading, Icon, RegisterForm } from '@/components';
 import { classNames, showSuccessToast } from '@/helpers';
-import { initialState } from '@/constants';
+import { initialState } from '@/utils';
 import { register } from '@/actions';
 import { useActionState } from 'react';
 import { usePasswordRules, useRegisterForm } from './hooks';

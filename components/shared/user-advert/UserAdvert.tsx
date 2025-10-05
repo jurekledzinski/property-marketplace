@@ -1,7 +1,7 @@
 'use client';
 import { AdvertForm } from './components';
 import { Heading, Modal, validationFilesInfo } from '@/components';
-import { initialState, modalMessages } from '@/constants';
+import { initialState, modalMessages } from '@/utils';
 import { showErrorToast } from '@/helpers';
 import { useActionState } from 'react';
 import { useAdvertFormWithUploads } from './hooks';
