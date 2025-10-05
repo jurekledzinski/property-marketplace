@@ -4,8 +4,3 @@
   gap: 0.5rem;
   height: calc(100% - 169px);
 }
-
-.date {
-  display: contents;
-  font-size: 13px;
-}
