@@ -1,14 +1,7 @@
-import React, { ChangeEventHandler } from 'react';
-import { PaddingToken, Size } from '@/types';
+import { ReactNode } from 'react';
+import { Size, SpacingToken } from '@/types';
 
-export type AccordionHeaderProps = {
-  children?: React.ReactNode;
-  checked?: boolean;
-  id: string;
-  onClick?: React.MouseEventHandler<HTMLInputElement>;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-  onChangeDelete?: ChangeEventHandler<HTMLInputElement>;
-  p?: PaddingToken;
+export interface AccordionHeaderProps extends SpacingToken {
+  children?: ReactNode;
   size?: Size;
-  title: string;
-};
+}
