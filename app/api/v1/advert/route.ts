@@ -1,16 +1,14 @@
 import 'server-only';
 import { Advert } from '@/models';
+import { connectDB, DataDB, getCollectionDb } from '@/lib';
 import { NextRequest } from 'next/server';
 
 import {
-  connectDB,
-  DataDB,
   errorResponseApi,
   formatDBDocumentId,
-  getCollectionDb,
   getQueries,
   successResponseApi,
-} from '@/lib';
+} from '@/utils-server';
 
 import {
   updateAdvertViews,

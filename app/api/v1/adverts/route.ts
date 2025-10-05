@@ -1,17 +1,15 @@
 import 'server-only';
 import { Advert } from '@/models';
+import { connectDB, DataDB, getCollectionDb } from '@/lib';
 import { getAdverts, GetAdvertsSearchParams } from '@/services';
 
 import {
-  connectDB,
-  DataDB,
   decodeQueryUrl,
   errorResponseApi,
   formatDBDocumentId,
-  getCollectionDb,
   getQueries,
   successResponseApi,
-} from '@/lib';
+} from '@/utils-server';
 
 export const GET = connectDB(async (req) => {
   const searchParams = getQueries<GetAdvertsSearchParams>(req);

@@ -1,14 +1,9 @@
 'use server';
 import { Advert, AdvertSchema } from '@/models';
 import { auth } from '@/auth';
+import { connectDBAction, getCollectionDb } from '@/lib';
 import { deleteImagesImagekit, formatDataNewAdvert } from '@/services';
-
-import {
-  connectDBAction,
-  errorResponseAction,
-  getCollectionDb,
-  successResponseAction,
-} from '@/lib';
+import { errorResponseAction, successResponseAction } from '@/utils-server';
 
 export const newAdvert = connectDBAction(
   async (prevState: unknown, formData: FormData) => {

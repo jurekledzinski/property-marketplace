@@ -1,16 +1,10 @@
 'use server';
 import bcrypt from 'bcrypt';
 import { auth } from '@/auth';
+import { connectDBAction, DataDB, getCollectionDb } from '@/lib';
+import { errorResponseAction, successResponseAction } from '@/utils-server';
 import { ObjectId } from 'mongodb';
 import { User, UserSchema } from '@/models';
-
-import {
-  connectDBAction,
-  DataDB,
-  errorResponseAction,
-  getCollectionDb,
-  successResponseAction,
-} from '@/lib';
 
 export const updatePassword = connectDBAction(
   async (prevState: unknown, formData: FormData) => {

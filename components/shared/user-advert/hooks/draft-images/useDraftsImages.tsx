@@ -1,6 +1,6 @@
 'use client';
 import { ApiErrorResponse, ApiSuccessResponse } from '@/services';
-import { clientEndpoints } from '@/utils';
+import { clientEndpoints } from '@/utils-client';
 import { DraftFile } from '@/models';
 import { DraftPayload, useDraftsImagesProps } from './types';
 import { fetchApiClient } from '@/helpers';

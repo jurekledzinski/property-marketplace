@@ -1,6 +1,6 @@
 import 'server-only';
 import { Advert } from '@/models';
-import { getDomain } from '@/lib';
+import { getDomain } from '@/utils-server';
 
 import {
   AdvertDetails,

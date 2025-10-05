@@ -1,4 +1,4 @@
-// wcześniej transformMessage
+import 'server-only';
 
 export const authMessage = (name: string) => {
   switch (name) {

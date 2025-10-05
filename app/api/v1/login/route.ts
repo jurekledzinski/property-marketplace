@@ -1,16 +1,13 @@
 import 'server-only';
+import { comparePasswords, connectDB, DataDB, getCollectionDb } from '@/lib';
 import { NextRequest } from 'next/server';
 import { User } from '@/models';
 
 import {
-  getCollectionDb,
-  connectDB,
-  comparePasswords,
   errorResponseApi,
-  successResponseApi,
-  DataDB,
   getBodyRequest,
-} from '@/lib';
+  successResponseApi,
+} from '@/utils-server';
 
 export const POST = connectDB(async (req: NextRequest) => {
   const body = await getBodyRequest<Omit<User, 'name'>>(req);

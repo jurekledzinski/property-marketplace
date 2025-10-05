@@ -1,13 +1,8 @@
 import 'server-only';
 import ImageKit from 'imagekit';
+import { connectDB, getCollectionDb } from '@/lib';
 import { DraftFile } from '@/models';
-
-import {
-  getCollectionDb,
-  connectDB,
-  errorResponseApi,
-  successResponseApi,
-} from '@/lib';
+import { errorResponseApi, successResponseApi } from '@/utils-server';
 
 export const GET = connectDB(async () => {
   const maxTime = 2 * 60 * 60 * 1000;

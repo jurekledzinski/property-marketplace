@@ -1,6 +1,8 @@
 'use server';
 import { Advert, DraftFile, Message, User } from '@/models';
 import { auth } from '@/auth';
+import { connectDBAction, DataDB, getCollectionDb } from '@/lib';
+import { errorResponseAction, successResponseAction } from '@/utils-server';
 import { uniqBy } from 'lodash';
 
 import {
@@ -11,14 +13,6 @@ import {
   getAllUserAdverts,
   getAllUserDrafts,
 } from '@/services';
-
-import {
-  connectDBAction,
-  DataDB,
-  errorResponseAction,
-  getCollectionDb,
-  successResponseAction,
-} from '@/lib';
 
 export const deleteAccount = connectDBAction(async () => {
   const session = await auth();

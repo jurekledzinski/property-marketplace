@@ -1,5 +1,5 @@
 'use client';
-import { clientEndpoints } from '@/utils';
+import { clientEndpoints } from '@/utils-client';
 import { usePaginatedQuery } from '../paginanted-query';
 
 export const useFetchStates = () => {

@@ -1,12 +1,8 @@
 'use server';
 import bcrypt from 'bcrypt';
+import { connectDBAction, getCollectionDb } from '@/lib';
+import { errorResponseAction, successResponseAction } from '@/utils-server';
 import { User, UserSchema } from '@/models';
-import {
-  connectDBAction,
-  errorResponseAction,
-  getCollectionDb,
-  successResponseAction,
-} from '@/lib';
 
 export const register = connectDBAction(
   async (prevState: unknown, formData: FormData) => {

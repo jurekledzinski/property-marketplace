@@ -1,16 +1,10 @@
 'use server';
 import { auth } from '@/auth';
+import { connectDBAction, DataDB, getCollectionDb } from '@/lib';
+import { errorResponseAction, successResponseAction } from '@/utils-server';
 import { ObjectId } from 'mongodb';
 import { revalidateTag } from 'next/cache';
 import { User, UserSchema } from '@/models';
-
-import {
-  connectDBAction,
-  DataDB,
-  errorResponseAction,
-  getCollectionDb,
-  successResponseAction,
-} from '@/lib';
 
 export const updateProfile = connectDBAction(
   async (prevState: unknown, formData: FormData) => {

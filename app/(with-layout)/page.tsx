@@ -1,4 +1,4 @@
-import { decodeQueryUrl } from '@/lib';
+import { decodeQueryUrl } from '@/utils-server';
 import { formatCountires, getAdvertsPage, getCountries } from '@/services';
 import { headers } from 'next/headers';
 import { Home, InputsAdvertsFilter } from '@/components';

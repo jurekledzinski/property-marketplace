@@ -1,14 +1,9 @@
 import 'server-only';
 import { Advert } from '@/models';
 import { auth } from '@/auth';
+import { connectDBAuth, getCollectionDb } from '@/lib';
+import { errorResponseApi, formatDBDocumentId } from '@/utils-server';
 import { getUserAdvertsApi } from '@/services';
-
-import {
-  connectDBAuth,
-  getCollectionDb,
-  errorResponseApi,
-  formatDBDocumentId,
-} from '@/lib';
 
 export const GET = connectDBAuth(
   auth(async (req) => {

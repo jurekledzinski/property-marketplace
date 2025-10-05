@@ -1,16 +1,14 @@
 import 'server-only';
 import { auth } from '@/auth';
+import { connectDBAuth, DataDB, getCollectionDb } from '@/lib';
 import { getUserProfile } from '@/services';
 import { User } from '@/models';
 
 import {
-  connectDBAuth,
-  DataDB,
   errorResponseApi,
   formatDBDocumentId,
-  getCollectionDb,
   successResponseApi,
-} from '@/lib';
+} from '@/utils-server';
 
 export const GET = connectDBAuth(
   auth(async (req) => {

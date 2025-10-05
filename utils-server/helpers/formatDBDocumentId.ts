@@ -1,4 +1,4 @@
-import { DataDB } from '../database';
+import { DataDB } from '@/lib';
 
 export const formatDBDocumentId = <T extends DataDB<object>>(data: T[] | T) => {
   if (Array.isArray(data)) {

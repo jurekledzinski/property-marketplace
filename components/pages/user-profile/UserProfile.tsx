@@ -1,6 +1,6 @@
 'use client';
 import styles from './UserProfile.module.css';
-import { modalMessages } from '@/utils';
+import { modalMessages } from '@/utils-client';
 import { PasswordForm, UserForm } from './components';
 import { signOut } from 'next-auth/react';
 import { startTransition } from 'react';

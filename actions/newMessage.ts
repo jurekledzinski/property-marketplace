@@ -1,13 +1,8 @@
 'use server';
+import { connectDBAction, getCollectionDb } from '@/lib';
+import { errorResponseAction, successResponseAction } from '@/utils-server';
 import { formatDataNewMessage } from '@/services';
 import { Message, MessageSchema } from '@/models';
-
-import {
-  connectDBAction,
-  errorResponseAction,
-  getCollectionDb,
-  successResponseAction,
-} from '@/lib';
 
 export const newMessage = connectDBAction(
   async (prevState: unknown, formData: FormData) => {

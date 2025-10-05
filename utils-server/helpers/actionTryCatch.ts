@@ -1,3 +1,4 @@
+import 'server-only';
 import { AuthError } from 'next-auth';
 import { authMessage } from './authMessage';
 import { ActionState } from '@/services';

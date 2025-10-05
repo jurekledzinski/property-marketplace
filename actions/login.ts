@@ -1,5 +1,5 @@
 'use server';
-import { actionTryCatch, successResponseAction } from '@/lib';
+import { actionTryCatch, successResponseAction } from '@/utils-server';
 import { signIn } from '@/auth';
 import { UserSchema } from '@/models';
 

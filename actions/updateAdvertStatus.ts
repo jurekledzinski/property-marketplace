@@ -1,16 +1,10 @@
 'use server';
 import { Advert } from '@/models';
 import { auth } from '@/auth';
+import { connectDBAction, DataDB, getCollectionDb } from '@/lib';
+import { errorResponseAction, successResponseAction } from '@/utils-server';
 import { ObjectId } from 'mongodb';
 import { revalidateTag } from 'next/cache';
-
-import {
-  connectDBAction,
-  DataDB,
-  errorResponseAction,
-  getCollectionDb,
-  successResponseAction,
-} from '@/lib';
 
 export const updateAdvertStatus = connectDBAction(
   async (prevState: unknown, formData: FormData) => {

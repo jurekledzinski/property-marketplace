@@ -1,16 +1,10 @@
 'use server';
 import { auth } from '@/auth';
+import { connectDBAction, DataDB, getCollectionDb } from '@/lib';
 import { deleteUserMessage } from '@/services';
+import { errorResponseAction, successResponseAction } from '@/utils-server';
 import { Message } from '@/models';
 import { revalidateTag } from 'next/cache';
-
-import {
-  connectDBAction,
-  DataDB,
-  errorResponseAction,
-  getCollectionDb,
-  successResponseAction,
-} from '@/lib';
 
 export const deleteMessage = connectDBAction(
   async (prevState: unknown, formData: FormData) => {
