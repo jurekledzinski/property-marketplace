@@ -4,6 +4,6 @@ import { Messages } from '@/lib';
 export type MessageAccordionProps = {
   openIds: string[];
   message?: Messages;
-  onClick?: MouseEventHandler<HTMLInputElement>;
-  onChangeDelete?: ChangeEventHandler<HTMLInputElement>;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+  onSelect?: ChangeEventHandler<HTMLInputElement>;
 };
