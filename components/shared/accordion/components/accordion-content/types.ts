@@ -1,20 +1,7 @@
-import {
-  PaddingBottomToken,
-  PaddingLeftToken,
-  PaddingRightToken,
-  PaddingToken,
-  PaddingTopToken,
-  Size,
-} from '@/types';
+import { Size, SpacingToken } from '@/types';
 
-export type AccordionContentProps = {
-  active: boolean;
+export interface AccordionContentProps extends SpacingToken {
   children?: React.ReactNode;
   className?: string;
-  p?: PaddingToken;
-  pt?: PaddingTopToken;
-  pb?: PaddingBottomToken;
-  pl?: PaddingLeftToken;
-  pr?: PaddingRightToken;
   size?: Size;
-};
+}
