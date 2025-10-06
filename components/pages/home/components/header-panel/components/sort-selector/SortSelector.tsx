@@ -1,7 +1,8 @@
 'use client';
 import styles from './SortSelector.module.css';
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { options } from './utils';
 import { SortSelectorProps } from './types';
+import { useMemo } from 'react';
 
 import {
   Icon,
@@ -11,29 +12,31 @@ import {
   SelectPanel,
   SelectTrigger,
 } from '@/components';
-import { useMemo } from 'react';
 
 export const SortSelector = ({ onChange, sortValue }: SortSelectorProps) => {
-  const value = useMemo(() => sortValue ?? '', [sortValue]);
+  const value = useMemo(() => sortValue || '', [sortValue]);
+  const formatOptions = useMemo(
+    () =>
+      options.map((option) => ({
+        key: option.id,
+        value: option.label,
+      })),
+    []
+  );
 
   return (
-    <Select value={value} onChange={onChange}>
+    <Select value={value} onChange={onChange} options={formatOptions}>
       <SelectTrigger placeholder="Sort adverts" />
       <SelectPanel>
         <SelectList>
-          <SelectOption id="">Default</SelectOption>
-          <SelectOption id="ascending">
-            <span className={styles.option}>
-              <Icon icon={faArrowUp} />
-              <span>Adverts sort ascending</span>
-            </span>
-          </SelectOption>
-          <SelectOption id="descending">
-            <span className={styles.option}>
-              <Icon icon={faArrowDown} />
-              <span>Adverts sort descending</span>
-            </span>
-          </SelectOption>
+          {options.map(({ id, label, icon }) => (
+            <SelectOption key={id} value={{ key: id }}>
+              <span className={styles.option}>
+                {icon && <Icon icon={icon} />}
+                <span>{label}</span>
+              </span>
+            </SelectOption>
+          ))}
         </SelectList>
       </SelectPanel>
     </Select>
