@@ -12,7 +12,8 @@ export type SelectProps = {
   gap?: number;
   isError?: boolean;
   label?: string;
-  onChange?: (key: string, value?: Record<string, string>) => void;
+  onChange?: (key: string, payload?: unknown) => void;
+  options: { key: string; value: string }[];
   size?: Size;
   value?: string;
   variant?: PopOverVariant;
