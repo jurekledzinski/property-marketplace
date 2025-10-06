@@ -1,16 +1,18 @@
 'use client';
 import { Toaster } from 'react-hot-toast';
-import { ToasterProviderProps } from './types';
+import { useTheme } from '@/store';
 
-export const ToasterProvider = ({ mode = 'light' }: ToasterProviderProps) => {
+export const ToasterProvider = () => {
+  const context = useTheme();
+
   return (
     <Toaster
       position="top-left"
       toastOptions={{
         style: {
           borderRadius: 0,
-          backgroundColor: mode === 'light' ? '#ffffff' : '#333333',
-          color: mode === 'light' ? '#555555' : '#ffffff',
+          backgroundColor: context.mode === 'light' ? '#ffffff' : '#333333',
+          color: context.mode === 'light' ? '#555555' : '#ffffff',
         },
       }}
     />
