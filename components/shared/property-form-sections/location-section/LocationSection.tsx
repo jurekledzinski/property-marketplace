@@ -1,23 +1,10 @@
 'use client';
 import styles from './LocationSection.module.css';
-import { Controller, FieldPathValue, useWatch } from 'react-hook-form';
+import { Box, LocationFields, SelectOption } from '@/components';
 import { LocationSectionProps } from './types';
+import { LocationSelect } from './components';
 import { memo } from 'react';
-
-import {
-  Box,
-  Field,
-  Label,
-  Loader,
-  LocationFields,
-  Message,
-  Select,
-  SelectList,
-  SelectOption,
-  SelectPanel,
-  SelectScrollList,
-  SelectTrigger,
-} from '@/components';
+import { useLocationFields } from './hooks';
 
 export const LocationPart = <T extends LocationFields>({
   controls,
@@ -42,159 +29,125 @@ export const LocationPart = <T extends LocationFields>({
   onScrollEndStates,
 }: LocationSectionProps<T>) => {
   const { control, setValue } = controls;
-  const country = useWatch({ control, name: nameCountry });
-  const state = useWatch({ control, name: nameState });
-  const city = useWatch({ control, name: nameCity });
-  const clearState = '' as FieldPathValue<T, typeof nameState>;
-  const clearCity = '' as FieldPathValue<T, typeof nameCity>;
-  const disabledState = country === '' || !isSuccessStates || !states.length;
-  const disabledCity =
-    country === '' || state === '' || !isSuccessCities || !cities.length;
+  const { city, clearCity, clearState, disabledCity, disabledState, state } =
+    useLocationFields({
+      amountCities: cities.length,
+      amountStates: states.length,
+      control,
+      isSuccessCities,
+      isSuccessStates,
+      nameCity,
+      nameCountry,
+      nameState,
+    });
 
   return (
     <>
-      <Field>
-        {labels && <Label>Country</Label>}
-        <Controller
-          name={nameCountry}
-          control={control}
-          rules={rulesCountry}
-          render={({ field: { onChange, ...rest } }) => (
-            <Select
-              closeOnScroll={true}
-              onChange={(id, data) => {
-                if (data && data.code) getStates(data.code);
-                onChange(id);
+      <LocationSelect
+        control={control}
+        data={countries}
+        disabled={!countries.length}
+        errors={errors}
+        isLabel={labels}
+        nameField={nameCountry}
+        label="Country"
+        options={countries.map(({ name }) => ({
+          key: name.toLowerCase(),
+          value: name,
+        }))}
+        onSelect={(key, onChange, payload) => {
+          if (payload && typeof payload === 'string') getStates(payload);
+          if (state) setValue(nameState, clearState);
+          if (city) setValue(nameCity, clearCity);
+          onChange(key);
+        }}
+        placeHolder="Select country"
+        rulesField={rulesCountry}
+        renderOption={(item, index) => (
+          <SelectOption
+            key={item.name}
+            value={{
+              key: item.name.toLowerCase(),
+              payload: item.code,
+            }}
+          >
+            <Box className={styles.countryOption}>
+              <span>{item.name}</span>
+              <span
+                className={styles.flag}
+                style={{ backgroundPosition: `-${index * 30}px 0` }}
+              ></span>
+            </Box>
+          </SelectOption>
+        )}
+      />
 
-                if (state) setValue(nameState, clearState);
-                if (city) setValue(nameCity, clearCity);
-              }}
-              {...rest}
-            >
-              <SelectTrigger
-                disabled={!countries.length}
-                placeholder="Select country"
-              />
-              <SelectPanel>
-                <SelectList>
-                  {countries.map((country, index) => (
-                    <SelectOption
-                      key={country.name}
-                      id={country.name.toLowerCase()}
-                      data={{ code: country.code }}
-                    >
-                      <Box className={styles.countryOption}>
-                        <span>{country.name}</span>
-                        <span
-                          className={styles.flag}
-                          style={{ backgroundPosition: `-${index * 30}px 0` }}
-                        ></span>
-                      </Box>
-                    </SelectOption>
-                  ))}
-                </SelectList>
-              </SelectPanel>
-            </Select>
-          )}
-        />
-        {errors.country ? (
-          <Message variant="error">{errors.country.message}</Message>
-        ) : null}
-      </Field>
+      <LocationSelect
+        control={control}
+        data={states}
+        disabled={disabledState}
+        errors={errors}
+        isLabel={labels}
+        isLoadingCities={isLoadingCities}
+        isLoadingStates={isLoadingStates}
+        nameField={nameState}
+        label="State"
+        options={states.map(({ name }) => ({
+          key: name.toLowerCase(),
+          value: name,
+        }))}
+        onSelect={(key, onChange, payload) => {
+          const value = payload as { code: string; div1Code: string };
+          if (value) getCities(value.code, value.div1Code);
+          if (city) setValue(nameCity, clearCity);
+          onChange(key);
+        }}
+        onScrollEnd={onScrollEndStates}
+        placeHolder="Select state"
+        rulesField={rulesState}
+        renderOption={(item) => (
+          <SelectOption
+            key={item.name}
+            value={{
+              key: item.name.toLowerCase(),
+              payload: {
+                code: item.code,
+                div1Code: item.div1Code,
+              },
+            }}
+          >
+            {item.name}
+          </SelectOption>
+        )}
+      />
 
-      <Field>
-        {labels && <Label>State</Label>}
-        <Controller
-          name={nameState}
-          control={control}
-          rules={rulesState}
-          render={({ field: { onChange, ...rest } }) => (
-            <Select
-              closeOnScroll={true}
-              onChange={(id, data) => {
-                if (data && data.code && data.div1Code) {
-                  getCities(data.code, data.div1Code);
-                }
-                onChange(id);
-
-                if (city) setValue(nameCity, clearCity);
-              }}
-              {...rest}
-            >
-              <SelectTrigger
-                placeholder="Select state"
-                disabled={disabledState}
-              >
-                {disabledState && isLoadingStates && (
-                  <Loader position="element" />
-                )}
-              </SelectTrigger>
-              <SelectPanel>
-                <SelectScrollList
-                  isLoading={isLoadingStates}
-                  onScrollEnd={onScrollEndStates}
-                >
-                  {states.map((state) => (
-                    <SelectOption
-                      key={state.name}
-                      id={state.name.toLowerCase()}
-                      data={{
-                        code: state.code,
-                        div1Code: state.div1Code,
-                      }}
-                    >
-                      {state.name}
-                    </SelectOption>
-                  ))}
-                </SelectScrollList>
-              </SelectPanel>
-            </Select>
-          )}
-        />
-        {errors.state ? (
-          <Message variant="error">{errors.state.message}</Message>
-        ) : null}
-      </Field>
-
-      <Field>
-        {labels && <Label>City</Label>}
-        <Controller
-          name={nameCity}
-          control={control}
-          rules={rulesCity}
-          render={({ field: { onChange, ...rest } }) => (
-            <Select
-              closeOnScroll={true}
-              onChange={(id) => onChange(id)}
-              {...rest}
-            >
-              <SelectTrigger placeholder="Select city" disabled={disabledCity}>
-                {disabledCity && isLoadingCities && (
-                  <Loader position="element" />
-                )}
-              </SelectTrigger>
-              <SelectPanel>
-                <SelectScrollList
-                  isLoading={isLoadingCities}
-                  onScrollEnd={onScrollEndCities}
-                >
-                  {cities.map((city) => (
-                    <SelectOption
-                      key={city.name + city.div2Code}
-                      id={city.name.toLowerCase()}
-                    >
-                      {city.name}
-                    </SelectOption>
-                  ))}
-                </SelectScrollList>
-              </SelectPanel>
-            </Select>
-          )}
-        />
-        {errors.city ? (
-          <Message variant="error">{errors.city.message}</Message>
-        ) : null}
-      </Field>
+      <LocationSelect
+        control={control}
+        data={cities}
+        disabled={disabledCity}
+        errors={errors}
+        isLabel={labels}
+        isLoadingCities={isLoadingCities}
+        isLoadingStates={isLoadingStates}
+        nameField={nameCity}
+        label="City"
+        options={cities.map(({ name }) => ({
+          key: name.toLowerCase(),
+          value: name,
+        }))}
+        onSelect={(key, onChange) => onChange(key)}
+        onScrollEnd={onScrollEndCities}
+        placeHolder="Select city"
+        rulesField={rulesCity}
+        renderOption={(item) => (
+          <SelectOption
+            key={item.name + item.div2Code}
+            value={{ key: item.name.toLowerCase() }}
+          >
+            {item.name}
+          </SelectOption>
+        )}
+      />
     </>
   );
 };
