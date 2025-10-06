@@ -17,7 +17,7 @@ export const useInfiniteScroll = <T extends HTMLElement>({
   useEffect(() => {
     const currentREf = ref ? ref : localRef;
 
-    if (!currentREf || !currentREf.current || isLoading) return;
+    if (!currentREf || !currentREf.current || isLoading || !onScrollEnd) return;
 
     const scrolledElement = currentREf.current;
 
