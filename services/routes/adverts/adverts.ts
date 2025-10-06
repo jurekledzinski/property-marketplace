@@ -110,7 +110,8 @@ export const getAdverts = async (
   }
 
   if (sort) {
-    sortStage[0] = { $sort: { createdAt: sort === 'ascending' ? 1 : -1 } };
+    const [key, value] = sort.split('+');
+    sortStage[0] = { $sort: { [key]: value === 'asc' ? 1 : -1 } };
   }
 
   if (page) {
