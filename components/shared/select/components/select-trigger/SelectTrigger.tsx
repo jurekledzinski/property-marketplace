@@ -1,4 +1,3 @@
-import { capitalizeFirstLetter } from '@/utils-client';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { getClassNamesInput, InputWrapper, usePopOver } from '@/components';
 import { SelectTriggerProps } from './types';
@@ -12,7 +11,7 @@ export const SelectTrigger = ({
   ...props
 }: SelectTriggerProps) => {
   const { onDeleteKey, onToggle, open, setTrigger: onSetKey } = usePopOver();
-  const { isError, label, size, value, variant } = useSelect();
+  const { isError, label, options, size, value, variant } = useSelect();
   const { onClick, onKeyDown } = useTriggerEvents({ onToggle });
 
   const isOpen = open['root'];
@@ -20,6 +19,7 @@ export const SelectTrigger = ({
   const classes = getClassNamesInput({ variant, size, isError });
 
   const setKeyMap = useSetKeyMap({ id: 'root', onDeleteKey, onSetKey });
+  const currentValue = options?.find((option) => option.key === value);
 
   return (
     <InputWrapper
@@ -39,7 +39,7 @@ export const SelectTrigger = ({
           {...props}
           className={classes.input}
           readOnly
-          value={capitalizeFirstLetter(value)}
+          value={value && currentValue ? currentValue.value : ''}
           onKeyDown={onKeyDown}
           tabIndex={-1}
           name="select"
