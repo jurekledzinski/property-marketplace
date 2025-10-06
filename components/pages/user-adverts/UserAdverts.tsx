@@ -1,7 +1,12 @@
 'use client';
 import { Heading, Modal, useAdvertActions } from '@/components';
-import { modalMessages, showSuccessToast } from '@/utils-client';
 import { UserAdvertsProps } from './types';
+
+import {
+  modalMessages,
+  showErrorToast,
+  showSuccessToast,
+} from '@/utils-client';
 
 import {
   AdvertsPagination,
@@ -13,9 +18,13 @@ import {
 export const UserAdverts = ({ adverts = [] }: UserAdvertsProps) => {
   const { description, title } = modalMessages.deleteAdvert();
 
-  const { action, onActive, onConfirm, onDelete, onSuccess, modal } =
+  const { action, onActive, onConfirm, onDelete, onFailed, onSuccess, modal } =
     useAdvertActions({
-      onSuccess: () => showSuccessToast('Advert activated successfully'),
+      onFailedDelete: () => {
+        showErrorToast('Unable to delete the advert. Please try again.');
+      },
+      onSuccessDelete: () => showSuccessToast('Advert deleted successfully'),
+      onSuccessUpdate: () => showSuccessToast('Advert activated successfully'),
     });
 
   const columns = useAdvertsColumns({ onActive, onDelete });
@@ -58,6 +67,7 @@ export const UserAdverts = ({ adverts = [] }: UserAdvertsProps) => {
         onClose={modal.onClose}
         onConfirm={onConfirm}
         onSuccess={onSuccess}
+        onFailed={onFailed}
         portal={true}
         variant="outlined"
       >

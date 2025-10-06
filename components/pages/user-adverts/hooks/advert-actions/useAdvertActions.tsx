@@ -6,12 +6,20 @@ import { UseAdvertActionsProps } from './types';
 import { useControlModal } from '@/components';
 
 export const useAdvertActions = ({
-  onSuccess: onSuccessUpdate,
+  onFailedDelete,
+  onSuccessDelete,
+  onSuccessUpdate,
 }: UseAdvertActionsProps) => {
   const advertId = useRef<string | null>(null);
   const modal = useControlModal();
 
-  const actionDeleteAdvert = useActionStateReset({ fnAction: deleteAdvert });
+  const actionDeleteAdvert = useActionStateReset({
+    fnAction: deleteAdvert,
+    onResetAction: () => {
+      if (actionDeleteAdvert.state.success) onSuccessDelete();
+      else onFailedDelete();
+    },
+  });
   const actionUpdateStatus = useActionStateReset({
     fnAction: updateAdvertStatus,
     autoReset: true,
@@ -37,6 +45,10 @@ export const useAdvertActions = ({
     actionDeleteAdvert.resetStateAction();
   };
 
+  const onFailed = () => {
+    actionDeleteAdvert.resetStateAction();
+  };
+
   const onActive = (id: string) => {
     startTransition(() => {
       if (!id) return;
@@ -52,6 +64,7 @@ export const useAdvertActions = ({
     onActive,
     onDelete,
     onConfirm,
+    onFailed,
     onSuccess,
   };
 };

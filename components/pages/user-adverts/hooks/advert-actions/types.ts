@@ -1,3 +1,5 @@
 export type UseAdvertActionsProps = {
-  onSuccess: () => void;
+  onFailedDelete: () => void;
+  onSuccessDelete: () => void;
+  onSuccessUpdate: () => void;
 };
