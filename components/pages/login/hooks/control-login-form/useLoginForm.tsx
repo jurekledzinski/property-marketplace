@@ -12,6 +12,7 @@ const defaultValues = {
 export const useLoginForm = ({
   isPending,
   isSuccess,
+  onFailed,
   onSubmitForm,
   onSuccess,
 }: UseLoginFormProps) => {
@@ -30,6 +31,7 @@ export const useLoginForm = ({
     isSuccess,
     formControl,
     defaultValues,
+    onFailed,
     onSuccess,
   });
 

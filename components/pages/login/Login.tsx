@@ -2,42 +2,43 @@
 import Link from 'next/link';
 import styles from './Login.module.css';
 import stylesCommon from './Common.module.css';
-import { classNames, showSuccessToast } from '@/utils-client';
+import { Box, Heading, Icon, LoginForm, useLoginForm } from '@/components';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { login } from '@/actions';
 import { useActionStateReset } from '@/hooks';
 import { useRouter } from 'next/navigation';
 
 import {
-  Alert,
-  Box,
-  Heading,
-  Icon,
-  LoginForm,
-  useLoginForm,
-} from '@/components';
-
-import {
-  faArrowLeft,
-  faTriangleExclamation,
-} from '@fortawesome/free-solid-svg-icons';
+  classNames,
+  formatZodMessage,
+  showErrorToast,
+  showSuccessToast,
+} from '@/utils-client';
 
 export const Login = () => {
   const router = useRouter();
 
-  const { formAction, isPending, state } = useActionStateReset({
-    fnAction: login,
-    autoReset: true,
-  });
+  const { formAction, isPending, state, resetStateAction } =
+    useActionStateReset({
+      fnAction: login,
+      onResetAction: () => {
+        if (state.success) {
+          showSuccessToast(state.message);
+          router.replace('/user/dashboard');
+          router.refresh();
+        } else {
+          const result = formatZodMessage(state.message);
+          showErrorToast(result);
+        }
+      },
+    });
 
   const { formControl, onSubmit } = useLoginForm({
     isPending,
     isSuccess: state.success,
     onSubmitForm: formAction,
-    onSuccess: async () => {
-      showSuccessToast(state.message);
-      router.replace('/user/dashboard');
-      router.refresh();
-    },
+    onFailed: () => resetStateAction(),
+    onSuccess: () => resetStateAction(),
   });
 
   return (
@@ -73,18 +74,6 @@ export const Login = () => {
               Back to Home
             </Link>
           </p>
-
-          {!state.success && state.message && (
-            <Alert
-              color="negative"
-              icon={faTriangleExclamation}
-              message={state.message}
-              mt="mt-sm"
-              size="size-xs"
-              fullWidth
-              variant="outlined"
-            />
-          )}
         </Box>
       </Box>
     </Box>
