@@ -7,6 +7,7 @@ export * from './formatFile';
 export * from './formatFormData';
 export * from './formatNumber';
 export * from './formatText';
+export * from './formatZodMessage';
 export * from './hasError';
 export * from './localStorage';
 export * from './spacing';
