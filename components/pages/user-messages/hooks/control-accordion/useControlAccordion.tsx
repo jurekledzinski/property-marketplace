@@ -8,7 +8,7 @@ export const useControlAccordion = () => {
   const [deleteIds, setDeleteIds] = useState<string[]>([]);
 
   const handleDelete = (e: ChangeEvent<HTMLInputElement>) => {
-    const id = (e.target as HTMLInputElement).id.replace('delete-', '');
+    const id = (e.target as HTMLInputElement).id.replace('select-', '');
     setDeleteIds((prev) => selectAccordion(prev, id));
   };
 
