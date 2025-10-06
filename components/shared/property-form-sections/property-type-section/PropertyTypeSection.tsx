@@ -1,4 +1,5 @@
 'use client';
+import { advertStatutes, advertTypes, propertyConditons } from './utils';
 import { Controller } from 'react-hook-form';
 import { memo } from 'react';
 import { PropertyTypeSectionProps } from './types';
@@ -14,17 +15,6 @@ import {
   SelectPanel,
   SelectTrigger,
 } from '@/components';
-
-const conditons = [
-  'New',
-  'Like New',
-  'Renovated',
-  'Good Condition',
-  'Needs Renovation',
-  'Under Construction',
-  'Old',
-  'Not Specified',
-];
 
 const TypePart = <T extends PropertyTypeFields>({
   controls,
@@ -49,15 +39,19 @@ const TypePart = <T extends PropertyTypeFields>({
           control={control}
           render={({ field: { onChange, ...rest } }) => (
             <Select
-              closeOnScroll={true}
+              closeOnScroll
               onChange={(id) => onChange(id)}
+              options={advertTypes}
               {...rest}
             >
               <SelectTrigger placeholder="Select type property" />
               <SelectPanel>
                 <SelectList>
-                  <SelectOption id="house">House</SelectOption>
-                  <SelectOption id="apartment">Apartment</SelectOption>
+                  {advertTypes.map((type) => (
+                    <SelectOption key={type.key} value={{ key: type.key }}>
+                      {type.value}
+                    </SelectOption>
+                  ))}
                 </SelectList>
               </SelectPanel>
             </Select>
@@ -75,15 +69,19 @@ const TypePart = <T extends PropertyTypeFields>({
           control={control}
           render={({ field: { onChange, ...rest } }) => (
             <Select
-              closeOnScroll={true}
+              closeOnScroll
               onChange={(id) => onChange(id)}
+              options={advertStatutes}
               {...rest}
             >
               <SelectTrigger placeholder="Select type advertisement" />
               <SelectPanel>
                 <SelectList>
-                  <SelectOption id="sale">Sale</SelectOption>
-                  <SelectOption id="rent">Rent</SelectOption>
+                  {advertStatutes.map((status) => (
+                    <SelectOption key={status.key} value={{ key: status.key }}>
+                      {status.value}
+                    </SelectOption>
+                  ))}
                 </SelectList>
               </SelectPanel>
             </Select>
@@ -101,15 +99,22 @@ const TypePart = <T extends PropertyTypeFields>({
           control={control}
           render={({ field: { onChange, ...rest } }) => (
             <Select
-              closeOnScroll={true}
+              closeOnScroll
               onChange={(id) => onChange(id)}
+              options={propertyConditons.map((condition) => ({
+                key: condition.toLowerCase(),
+                value: condition,
+              }))}
               {...rest}
             >
               <SelectTrigger placeholder="Select technical condition" />
               <SelectPanel>
                 <SelectList>
-                  {conditons.map((condition) => (
-                    <SelectOption key={condition} id={condition.toLowerCase()}>
+                  {propertyConditons.map((condition) => (
+                    <SelectOption
+                      key={condition}
+                      value={{ key: condition.toLowerCase() }}
+                    >
                       {condition}
                     </SelectOption>
                   ))}
