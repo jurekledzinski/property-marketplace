@@ -3,12 +3,17 @@ import Link from 'next/link';
 import styles from './Register.module.css';
 import stylesCommon from '@/components/pages/login/Common.module.css';
 import { Alert, Box, Heading, Icon, RegisterForm } from '@/components';
-import { classNames, showSuccessToast } from '@/utils-client';
-import { initialState } from '@/utils-client';
 import { register } from '@/actions';
-import { useActionState } from 'react';
+import { useActionStateReset } from '@/hooks';
 import { usePasswordRules, useRegisterForm } from './hooks';
 import { useRouter } from 'next/navigation';
+
+import {
+  classNames,
+  formatZodMessage,
+  showErrorToast,
+  showSuccessToast,
+} from '@/utils-client';
 
 import {
   faArrowLeft,
@@ -18,16 +23,26 @@ import {
 export const Register = () => {
   const router = useRouter();
 
-  const [state, action, isPending] = useActionState(register, initialState);
+  const { formAction, isPending, state, resetStateAction } =
+    useActionStateReset({
+      fnAction: register,
+      onResetAction: () => {
+        if (state.success) {
+          showSuccessToast(state.message);
+          router.push('/auth/login');
+        } else {
+          const result = formatZodMessage(state.message);
+          showErrorToast(result);
+        }
+      },
+    });
 
   const { formControl, onSubmit } = useRegisterForm({
     isPending,
     isSuccess: state.success,
-    onSubmitForm: action,
-    onSuccess: () => {
-      showSuccessToast(state.message);
-      router.push('/auth/login');
-    },
+    onSubmitForm: formAction,
+    onFailed: () => resetStateAction(),
+    onSuccess: () => resetStateAction(),
   });
 
   const passwordRules = usePasswordRules({

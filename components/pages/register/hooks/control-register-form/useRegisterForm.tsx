@@ -14,6 +14,7 @@ const defaultValues = {
 export const useRegisterForm = ({
   isPending,
   isSuccess,
+  onFailed,
   onSubmitForm,
   onSuccess,
 }: UseRegisterFormProps) => {
@@ -33,6 +34,7 @@ export const useRegisterForm = ({
     isSuccess,
     formControl,
     defaultValues,
+    onFailed,
     onSuccess,
   });
 
