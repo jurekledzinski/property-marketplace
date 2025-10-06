@@ -42,7 +42,7 @@ export default async function RootLayout({
       <ThemeProvider>
         <DrawerProvider>
           <body>
-            <ToasterProvider mode={mode?.value} />
+            <ToasterProvider />
             {children}
           </body>
         </DrawerProvider>
