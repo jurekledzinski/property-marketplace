@@ -93,6 +93,7 @@ export const formatDataEditAdvert = (
   const dataForm = {
     ...formatted,
     createdAt: new Date(data.createdAt.toString()),
+    updatedAt: new Date(data.updatedAt.toString()),
   };
 
   return dataForm;
