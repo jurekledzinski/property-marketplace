@@ -28,7 +28,6 @@ export const Register = () => {
       fnAction: register,
       onResetAction: () => {
         if (state.success) {
-          showSuccessToast(state.message);
           router.push('/auth/login');
         } else {
           const result = formatZodMessage(state.message);
@@ -42,7 +41,10 @@ export const Register = () => {
     isSuccess: state.success,
     onSubmitForm: formAction,
     onFailed: () => resetStateAction(),
-    onSuccess: () => resetStateAction(),
+    onSuccess: () => {
+      showSuccessToast(state.message);
+      resetStateAction();
+    },
   });
 
   const passwordRules = usePasswordRules({
