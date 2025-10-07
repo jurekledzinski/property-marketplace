@@ -23,7 +23,6 @@ export const Login = () => {
       fnAction: login,
       onResetAction: () => {
         if (state.success) {
-          showSuccessToast(state.message);
           router.replace('/user/dashboard');
           router.refresh();
         } else {
@@ -38,7 +37,10 @@ export const Login = () => {
     isSuccess: state.success,
     onSubmitForm: formAction,
     onFailed: () => resetStateAction(),
-    onSuccess: () => resetStateAction(),
+    onSuccess: () => {
+      showSuccessToast(state.message);
+      resetStateAction();
+    },
   });
 
   return (
