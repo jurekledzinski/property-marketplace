@@ -4,7 +4,11 @@ export type Option = {
   key: string;
   value: string;
 };
-type PopOverVariant = Exclude<Variant, 'text'> | 'basic' | 'underline';
+
+type PopOverVariant =
+  | Exclude<Variant, 'text' | 'minimal'>
+  | 'basic'
+  | 'underline';
 
 export type SelectProps = {
   children?: React.ReactNode;
