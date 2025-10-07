@@ -18,7 +18,6 @@ export const Header = memo(({ session }: HeaderProps) => {
 
   const segments = pathname.split('/').filter(Boolean);
   const isDetails = segments[0] === 'adverts' && segments.length === 3;
-  console.log('segments', segments);
 
   return (
     <>
