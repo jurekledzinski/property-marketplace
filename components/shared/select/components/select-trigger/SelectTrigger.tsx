@@ -39,10 +39,11 @@ export const SelectTrigger = ({
           {...props}
           className={classes.input}
           readOnly
-          value={value && currentValue ? currentValue.value : ''}
+          value={value && currentValue ? currentValue.value : value}
           onKeyDown={onKeyDown}
           tabIndex={-1}
           name="select"
+          style={{ textTransform: 'capitalize' }}
         />
         {variant !== 'basic' && (
           <legend className={classes.legend}>{label}</legend>
