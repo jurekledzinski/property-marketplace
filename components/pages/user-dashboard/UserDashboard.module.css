@@ -77,6 +77,10 @@ div.drawer {
   font-size: 14px;
 }
 
+svg.icon {
+  color: var(--color-black-600);
+}
+
 .totalAdverts {
   grid-area: total-adverts;
   display: grid;
