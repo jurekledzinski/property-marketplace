@@ -4,6 +4,7 @@ export const modalMessages = {
     const target = amount > 1 ? 'messages' : 'message';
 
     return {
+      headerTitle: amount > 1 ? 'Delete messages' : 'Delete message',
       title: `Are you sure you want to delete ${plural} ${target}?`,
       description: `This action is permanent and cannot be undone. The ${target} will be permanently deleted from your account.`,
     };
