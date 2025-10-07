@@ -1,7 +1,6 @@
 import styles from '../../Header.module.css';
 import { IconButton } from '@/components';
 import { NavigationButtonsProps } from './types';
-import { usePathname } from 'next/navigation';
 import {
   faFilter,
   faMoon,
@@ -14,9 +13,8 @@ export const NavigationButtons = ({
   onChangeTheme,
   onToggleFilters,
   onToggleMenu,
+  pathname,
 }: NavigationButtonsProps) => {
-  const pathname = usePathname();
-
   const isHome = pathname === '/';
   const isUser = pathname.includes('/user');
 

@@ -5,4 +5,5 @@ export type NavigationButtonsProps = {
   onChangeTheme: (mode: ThemeMode) => void;
   onToggleFilters: () => void;
   onToggleMenu: () => void;
+  pathname: string;
 };
