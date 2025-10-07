@@ -25,7 +25,7 @@ export const UserMessages = ({ messages = [] }: UserMessagesProps) => {
   const accordion = useControlAccordion();
   const modal = useControlModal();
 
-  const { description, title } = modalMessages.deleteMessages(
+  const { description, headerTitle, title } = modalMessages.deleteMessages(
     accordion.deleteIds.length
   );
 
@@ -61,7 +61,7 @@ export const UserMessages = ({ messages = [] }: UserMessagesProps) => {
       <Modal
         color="negative"
         confirmText="Delete"
-        title="Delete messages"
+        title={headerTitle}
         isPending={action.isPending}
         open={modal.isOpen}
         isSuccess={action.state.success}
