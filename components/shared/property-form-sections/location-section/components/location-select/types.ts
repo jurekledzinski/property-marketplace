@@ -21,6 +21,7 @@ export type LocationSelectProps<
   ) => void;
   options: { key: string; value: string }[];
   renderOption: (item: V, index: number) => React.ReactNode;
+  closeOnScroll?: boolean;
   disabled?: boolean;
   isLabel?: boolean;
   isLoadingCities?: boolean;

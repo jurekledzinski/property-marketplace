@@ -16,6 +16,7 @@ export const LocationSelect = <
   T extends LocationFields,
   V extends Record<string, unknown>
 >({
+  closeOnScroll,
   control,
   nameField,
   rulesField,
@@ -41,7 +42,7 @@ export const LocationSelect = <
         rules={rulesField}
         render={({ field: { onChange, ...rest } }) => (
           <Select
-            closeOnScroll
+            closeOnScroll={closeOnScroll}
             onChange={(key, value) => onSelect(key, onChange, value)}
             options={options}
             {...rest}

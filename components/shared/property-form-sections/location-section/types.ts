@@ -25,6 +25,7 @@ export type LocationSectionProps<T extends LocationFields> = {
   onScrollEndCities: () => void;
   onScrollEndStates: () => void;
   states: CountryState[];
+  closeOnScroll?: boolean;
   labels?: boolean;
   rulesCity?: UseControllerProps<T, Path<T>>['rules'];
   rulesCountry?: UseControllerProps<T, Path<T>>['rules'];

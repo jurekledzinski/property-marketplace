@@ -11,6 +11,7 @@ import {
 
 export const FilterForm = ({
   cities,
+  closeOnScroll,
   controls,
   countries,
   getCities,
@@ -28,6 +29,7 @@ export const FilterForm = ({
     <Form id="filterForm" onSubmit={controls.handleSubmit(onSubmit)} noValidate>
       <LocationSection
         cities={cities}
+        closeOnScroll={closeOnScroll}
         controls={controls}
         countries={countries}
         getCities={getCities}

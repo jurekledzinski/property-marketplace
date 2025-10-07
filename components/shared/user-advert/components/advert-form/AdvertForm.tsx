@@ -18,6 +18,7 @@ import {
 
 export const AdvertForm = ({
   cities,
+  closeOnScroll,
   controls,
   countries,
   getCities,
@@ -47,6 +48,7 @@ export const AdvertForm = ({
         <PersonalSection controls={controls} />
         <LocationSection
           cities={cities}
+          closeOnScroll={closeOnScroll}
           controls={controls}
           countries={countries}
           errors={controls.formState.errors}

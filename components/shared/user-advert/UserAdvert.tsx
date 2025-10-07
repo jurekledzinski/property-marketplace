@@ -59,6 +59,7 @@ export const UserAdvert = ({
 
       <AdvertForm
         cities={controlFetchCities.dataList}
+        closeOnScroll={false}
         countries={countries}
         controls={advertControl.form.formControl}
         deleteUploadedFiles={advertControl.deleteUploadedFiles}

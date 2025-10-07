@@ -91,6 +91,7 @@ export const AdvertsLayout = ({
         >
           <FilterForm
             cities={controlFetchCities.dataList}
+            closeOnScroll={true}
             controls={form.formControl}
             countries={countries}
             getCities={controlFetchCities.fetchData}

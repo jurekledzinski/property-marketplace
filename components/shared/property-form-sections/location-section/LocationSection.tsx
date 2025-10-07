@@ -7,6 +7,7 @@ import { memo } from 'react';
 import { useLocationFields } from './hooks';
 
 export const LocationPart = <T extends LocationFields>({
+  closeOnScroll,
   controls,
   countries,
   cities,
@@ -44,6 +45,7 @@ export const LocationPart = <T extends LocationFields>({
   return (
     <>
       <LocationSelect
+        closeOnScroll={closeOnScroll}
         control={control}
         data={countries}
         disabled={!countries.length}
@@ -83,6 +85,7 @@ export const LocationPart = <T extends LocationFields>({
       />
 
       <LocationSelect
+        closeOnScroll={closeOnScroll}
         control={control}
         data={states}
         disabled={disabledState}
@@ -122,6 +125,7 @@ export const LocationPart = <T extends LocationFields>({
       />
 
       <LocationSelect
+        closeOnScroll={closeOnScroll}
         control={control}
         data={cities}
         disabled={disabledCity}
