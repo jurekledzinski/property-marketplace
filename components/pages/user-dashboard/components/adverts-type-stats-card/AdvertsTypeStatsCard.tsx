@@ -26,7 +26,7 @@ export const AdvertsTypeStatsCard = ({
         </div>
       </CardContent>
       <CardHeader className={styles.cardHeader}>
-        <Icon icon={faHouseCircleCheck} size="1x" />
+        <Icon className={styles.icon} icon={faHouseCircleCheck} size="1x" />
       </CardHeader>
       <CardFooter className={styles.cardFooter}></CardFooter>
     </Card>

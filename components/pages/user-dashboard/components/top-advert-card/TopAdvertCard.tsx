@@ -11,7 +11,7 @@ export const TopAdvertCard = ({ title }: TopAdvertCardProps) => {
         <p className={styles.cardText}>Top viewed advert</p>
       </CardContent>
       <CardHeader className={styles.cardHeader}>
-        <Icon icon={faEye} size="1x" />
+        <Icon className={styles.icon} icon={faEye} size="1x" />
       </CardHeader>
       <CardFooter className={styles.cardFooter}></CardFooter>
     </Card>

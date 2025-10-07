@@ -11,7 +11,7 @@ export const MessagesCard = ({ amount }: MessagesCardProps) => {
         <p className={styles.cardText}>Total messages</p>
       </CardContent>
       <CardHeader className={styles.cardHeader}>
-        <Icon icon={faEnvelope} size="1x" />
+        <Icon className={styles.icon} icon={faEnvelope} size="1x" />
       </CardHeader>
       <CardFooter className={styles.cardFooter}></CardFooter>
     </Card>

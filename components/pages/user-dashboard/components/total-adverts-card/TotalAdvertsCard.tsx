@@ -11,7 +11,7 @@ export const TotalAdvertsCard = ({ amount }: TotalAdvertsCardProps) => {
         <p className={styles.cardText}>Total adverts</p>
       </CardContent>
       <CardHeader className={styles.cardHeader}>
-        <Icon icon={faRectangleAd} size="1x" />
+        <Icon className={styles.icon} icon={faRectangleAd} size="1x" />
       </CardHeader>
       <CardFooter className={styles.cardFooter}></CardFooter>
     </Card>
