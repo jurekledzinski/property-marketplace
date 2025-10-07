@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  position: sticky;
+  top: 54px;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  z-index: var(--z-adverts-layout);
+  background-color: var(--color-surface);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  width: 100%;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 575px) {
+  .header {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,33 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+  padding: 1px 0.5rem 0.5rem 0.5rem;
+  max-height: calc(100vh - 6.5rem);
+  -webkit-overflow-scrolling: touch;
+  overflow-x: clip;
+  overflow-y: auto;
+  overscroll-behavior: none;
+}
+
+.group {
+  position: sticky;
+  top: 54px;
+  display: flex;
+  gap: 0.5rem;
+  background-color: var(--color-surface);
+  padding: 0.5rem 0.5rem 7px;
+  z-index: var(--z-drawer);
+}
+
+@media (min-width: 575px) {
+  .group {
+    padding: 0.5rem 0rem 7px 0.5rem;
+  }
+}

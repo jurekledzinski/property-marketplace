@@ -1,0 +1,23 @@
+.leftBackground {
+  background-image: url('/images/House-register.png');
+}
+
+.linkText {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 14px;
+}
+
+.linkLogin {
+  color: var(--color-primary-700);
+}
+
+.linkBack {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--color-secondary-500);
+  font-size: 14px;
+}

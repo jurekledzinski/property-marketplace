@@ -1,0 +1,28 @@
+.content {
+  width: 100%;
+}
+
+.title {
+  padding: 1rem 1rem 0.5rem;
+}
+
+.location {
+  padding: 0 1rem 0.5rem 0.85rem;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.price {
+  padding: 0 1rem;
+  letter-spacing: 0.5px;
+  color: var(--color-primary-600);
+}
+
+.amenities {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 1rem 0.5rem;
+  font-size: 14px;
+  text-transform: capitalize;
+}

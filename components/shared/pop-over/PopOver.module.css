@@ -1,0 +1,26 @@
+.popOver {
+  position: fixed;
+  z-index: var(--z-popover);
+  will-change: opacity;
+  border: 1px solid var(--color-surface-30);
+  background-color: var(--color-surface-elevated-2);
+  padding: 0.5rem;
+}
+
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity 300ms;
+}

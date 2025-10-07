@@ -1,0 +1,203 @@
+.drawer {
+  --drawer-gap: 0px;
+  --drawer-width: 250px;
+  --drawer-top: 0px;
+}
+
+.inner {
+  position: sticky;
+  top: var(--drawer-top);
+  align-self: flex-start;
+  min-height: inherit;
+}
+
+.horizontal,
+.vertical {
+  position: fixed;
+  background-color: var(--color-surface);
+  z-index: var(--z-drawer);
+}
+
+.horizontal {
+  width: 100%;
+}
+
+.vertical {
+  width: min(var(--drawer-width), 100%);
+  min-height: inherit;
+  flex-shrink: 0;
+}
+
+/* --- Directions --- */
+
+.top {
+  top: 0;
+  left: 0;
+  height: 200px;
+  transform: translateY(-100%);
+  transition: 300ms ease;
+}
+
+.bottom {
+  bottom: 0;
+  left: 0;
+  height: 200px;
+  transform: translateY(100%);
+  transition: 300ms ease;
+}
+
+.left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateX(-100%);
+  transition: 300ms ease;
+}
+
+.right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateX(100%);
+  transition: 300ms ease;
+}
+
+.left:not(.pinned),
+.right:not(.pinned) {
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Gap */
+
+.push.top,
+.pinned.top {
+  margin-bottom: var(--drawer-gap);
+}
+
+.push.bottom,
+.pinned.bottom {
+  margin-top: var(--drawer-gap);
+}
+
+.push.right,
+.pinned.right {
+  margin-left: var(--drawer-gap);
+}
+
+.push.left,
+.pinned.left {
+  margin-right: var(--drawer-gap);
+}
+
+/* --- Status Open --- */
+
+.open.left {
+  transform: translateX(0%);
+  visibility: visible;
+}
+
+.open.right {
+  transform: translateX(0%);
+  visibility: visible;
+}
+
+.open.top {
+  transform: translateY(0%);
+}
+
+.open.bottom {
+  transform: translateY(0%);
+}
+
+.open.left:not(.pinned),
+.open.right:not(.pinned) {
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* --- Variants --- */
+
+@media (min-width: 575px) {
+  .horizontal.top.push,
+  .horizontal.top.pinned,
+  .vertical.left.push,
+  .vertical.left.pinned,
+  .vertical.right.push,
+  .vertical.right.pinned {
+    right: unset;
+    bottom: unset;
+    transform: unset;
+
+    position: sticky;
+
+    /* top: 0;
+    align-self: flex-start; 
+    */
+  }
+
+  .horizontal.bottom.push,
+  .horizontal.bottom.pinned {
+    right: unset;
+    top: unset;
+    transform: unset;
+
+    position: sticky;
+    bottom: 0;
+    align-self: flex-end;
+  }
+
+  /* --- Pinned --- */
+
+  .horizontal.top.pinned,
+  .horizontal.bottom.pinned {
+    max-height: 100px;
+  }
+
+  .vertical.right.pinned,
+  .vertical.left.pinned {
+    width: var(--drawer-width);
+  }
+
+  .vertical.left.pinned .inner,
+  .vertical.right.pinned .inner {
+    top: var(--drawer-top);
+  }
+
+  /* --- Push --- */
+
+  .horizontal.top.push,
+  .horizontal.bottom.push {
+    width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+  }
+
+  .horizontal.top.push.open,
+  .horizontal.bottom.push.open {
+    max-height: 100px;
+  }
+
+  /* gap trzeba dodać jako zmienna --drawer-gap: 8px*/
+  .vertical.right.push {
+    position: relative;
+    margin-right: calc((var(--drawer-width) + var(--drawer-gap)) * -1);
+  }
+
+  .vertical.right.push.open {
+    margin-right: 0;
+  }
+
+  /* gap trzeba dodać jako zmienna --drawer-gap: 8px*/
+  .vertical.left.push {
+    position: relative;
+    margin-left: calc((var(--drawer-width) + var(--drawer-gap)) * -1);
+  }
+
+  .vertical.left.push.open {
+    margin-left: 0;
+  }
+}

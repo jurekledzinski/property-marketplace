@@ -1,0 +1,133 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  color: var(--color-text-white);
+}
+
+.content {
+  width: 100%;
+  transition: 0.3s ease;
+  overflow: hidden;
+  background-color: var(--color-surface-0);
+  border-right: 1px solid var(--color-surface-30);
+  border-left: 1px solid var(--color-surface-30);
+  border-bottom: 1px solid var(--color-surface-30);
+  color: var(--color-text-primary);
+  font-size: 14px;
+}
+
+.icon {
+  display: block;
+  justify-self: flex-end;
+  margin-right: 0.5rem;
+}
+
+.icon svg {
+  color: var(--color-text-white);
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  text-align: left;
+  word-break: break-word;
+}
+
+.subTitle {
+  text-align: left;
+  font-size: 12px;
+}
+
+/* Colors */
+
+.primary {
+  --color: var(--color-primary-400);
+}
+
+.secondary {
+  --color: var(--color-secondary-400);
+}
+
+.success {
+  --color: var(--color-success-400);
+}
+
+.negative {
+  --color: var(--color-negative-500);
+}
+
+.warning {
+  --color: var(--color-warning-900);
+}
+
+/* Variants */
+
+.header.text.primary,
+.header.text.secondary,
+.header.text.success,
+.header.text.negative,
+.header.text.warning {
+  background-color: transparent;
+  border: none;
+  color: var(--color);
+}
+
+.header.outlined.primary,
+.header.outlined.secondary,
+.header.outlined.success,
+.header.outlined.negative,
+.header.outlined.warning {
+  background-color: transparent;
+  border: 1px solid var(--color);
+  color: var(--color);
+}
+
+.header.outlined.primary > label:first-child,
+.header.outlined.secondary > label:first-child,
+.header.outlined.success > label:first-child,
+.header.outlined.negative > label:first-child,
+.header.outlined.warning > label:first-child {
+  color: var(--color);
+}
+
+.header.contained.primary,
+.header.contained.secondary,
+.header.contained.success,
+.header.contained.negative,
+.header.contained.warning {
+  border: 1px solid var(--color);
+  background-color: var(--color);
+  color: var(--color-text-white);
+}
+
+.header.contained.primary > label:first-child,
+.header.contained.secondary > label:first-child,
+.header.contained.success > label:first-child,
+.header.contained.negative > label:first-child,
+.header.contained.warning > label:first-child {
+  color: var(--color-text-white);
+}
+
+/* Size content */
+
+.content.size-xs {
+  font-size: 12px;
+}
+
+.content.size-sm {
+  font-size: 14px;
+}
+
+.content.size-md {
+  font-size: 1rem;
+}
+
+.content.size-lg {
+  font-size: 1rem;
+}

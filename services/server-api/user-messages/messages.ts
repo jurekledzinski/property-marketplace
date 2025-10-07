@@ -1,0 +1,22 @@
+import 'server-only';
+import { fetchApi, ReadonlyHeaders } from '@/services';
+import { getDomain, serverEndpoints } from '@/utils-server';
+import { Messages } from './types';
+
+// Fetch all user messages server component
+
+export const getMessagesPage = async (headers?: ReadonlyHeaders) => {
+  const domain = await getDomain();
+
+  const response = await fetchApi<Messages[]>({
+    tags: ['messages'],
+    url: serverEndpoints.userMessages(domain),
+    headers,
+  });
+
+  if (!response.success || !response.payload) {
+    return null;
+  }
+
+  return response.payload;
+};

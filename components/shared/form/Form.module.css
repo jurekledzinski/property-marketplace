@@ -1,0 +1,24 @@
+.form,
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form[data-group='true'] {
+  gap: 0.5rem;
+}
+
+.form-group {
+  width: 100%;
+}
+
+@media (min-width: 575px) {
+  .row {
+    flex-direction: row;
+  }
+
+  .column {
+    flex-direction: column;
+  }
+}
