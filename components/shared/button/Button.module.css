@@ -126,6 +126,25 @@
   color: var(--color-warning-900);
 }
 
+/* Variant minimal */
+
+a.minimal {
+  background-color: transparent;
+  border: none;
+  padding: initial;
+  min-width: initial;
+  color: var(--icon-color-default);
+  transition: 300ms linear;
+}
+
+a.minimal:hover {
+  color: var(--icon-color-hover);
+}
+
+a.minimal.primary {
+  background-color: transparent;
+}
+
 /* --- Hover outline variant --- */
 
 .outlined.primary:hover,

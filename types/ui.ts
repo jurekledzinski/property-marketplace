@@ -23,7 +23,7 @@ export type Color =
   | 'negative'
   | 'warning';
 
-export type Variant = 'contained' | 'outlined' | 'text';
+export type Variant = 'contained' | 'outlined' | 'text' | 'minimal';
 export type InputVariant = 'basic' | 'contained' | 'outlined' | 'underline';
 
 export type Icons = IconProp[];
