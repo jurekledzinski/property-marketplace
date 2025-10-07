@@ -458,6 +458,10 @@
   outline: none;
 }
 
+.wrapper > .endIcon {
+  cursor: pointer;
+}
+
 .wrapper > button.startIcon:focus {
   outline: none;
 }
