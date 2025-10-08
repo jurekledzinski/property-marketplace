@@ -1,1 +1,3 @@
-export type MenuItemProps = React.LiHTMLAttributes<HTMLLIElement>;
+export interface MenuItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
+  type?: 'link';
+}
