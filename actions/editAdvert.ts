@@ -6,6 +6,7 @@ import { connectDBAction, DataDB, getCollectionDb } from '@/lib';
 import { deleteImagesImagekit, formatDataEditAdvert } from '@/services';
 import { errorResponseAction, successResponseAction } from '@/utils-server';
 import { ObjectId } from 'mongodb';
+import { revalidateTag } from 'next/cache';
 
 export const editAdvert = connectDBAction(
   async (prevState: unknown, formData: FormData) => {
@@ -43,6 +44,8 @@ export const editAdvert = connectDBAction(
       { $set: { ...parsedData, updatedAt: new Date() } }
     );
 
+    revalidateTag('adverts');
+    revalidateTag('userAdvert');
     return successResponseAction('Edit advert successful');
   }
 );

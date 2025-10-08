@@ -3,6 +3,7 @@ import { Advert, DraftFile, Message, User } from '@/models';
 import { auth } from '@/auth';
 import { connectDBAction, DataDB, getCollectionDb } from '@/lib';
 import { errorResponseAction, successResponseAction } from '@/utils-server';
+import { revalidateTag } from 'next/cache';
 import { uniqBy } from 'lodash';
 
 import {
@@ -47,5 +48,6 @@ export const deleteAccount = connectDBAction(async () => {
   await deleteUserMessages(ctx, messagesCol);
   await deleteUser(ctx, usersCol);
 
+  revalidateTag('adverts');
   return successResponseAction('Account delete successful');
 });

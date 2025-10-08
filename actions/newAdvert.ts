@@ -4,6 +4,7 @@ import { auth } from '@/auth';
 import { connectDBAction, getCollectionDb } from '@/lib';
 import { deleteImagesImagekit, formatDataNewAdvert } from '@/services';
 import { errorResponseAction, successResponseAction } from '@/utils-server';
+import { revalidateTag } from 'next/cache';
 
 export const newAdvert = connectDBAction(
   async (prevState: unknown, formData: FormData) => {
@@ -38,6 +39,7 @@ export const newAdvert = connectDBAction(
       updatedAt: new Date(),
     });
 
+    revalidateTag('adverts');
     return successResponseAction('Create advert successful');
   }
 );

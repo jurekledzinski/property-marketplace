@@ -48,6 +48,7 @@ export const deleteAdvert = connectDBAction(
       return errorResponseAction('Delete failed: No document found');
     }
 
+    revalidateTag('adverts');
     revalidateTag('userAdverts');
     return successResponseAction('Account delete successful');
   }

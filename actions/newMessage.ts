@@ -3,6 +3,7 @@ import { connectDBAction, getCollectionDb } from '@/lib';
 import { errorResponseAction, successResponseAction } from '@/utils-server';
 import { formatDataNewMessage } from '@/services';
 import { Message, MessageSchema } from '@/models';
+import { revalidateTag } from 'next/cache';
 
 export const newMessage = connectDBAction(
   async (prevState: unknown, formData: FormData) => {
@@ -16,6 +17,7 @@ export const newMessage = connectDBAction(
 
     await messagesCol.insertOne(parsedData);
 
+    revalidateTag('messages');
     return successResponseAction('Message sent successfully');
   }
 );
