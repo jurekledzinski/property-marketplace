@@ -37,7 +37,7 @@ export const ViewsAdvertsCard = ({
         />
       ) : (
         <NoResults
-          className={styles.info}
+          className={styles.infoBar}
           icon={faChartSimple}
           iconSize="2x"
           level={5}

@@ -41,7 +41,7 @@ export const AdvertsStatusCard = ({
         />
       ) : (
         <NoResults
-          className={styles.info}
+          className={styles.infoStatus}
           icon={faChartSimple}
           iconSize="2x"
           level={5}
