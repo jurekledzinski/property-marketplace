@@ -1,6 +1,7 @@
 import styles from './AdvertsTable.module.css';
 import { AdvertsTableTableProps } from './types';
 import { ColumnsFilterBody, ColumnsFilterHeader } from './components';
+import { faRectangleAd } from '@fortawesome/free-solid-svg-icons';
 import { UserAdvertsTable } from '@/services';
 import {
   TableState,
@@ -8,6 +9,7 @@ import {
   TableBody,
   TableHeader,
   TableStatus,
+  NoResults,
 } from '@/components';
 
 export const AdvertsTable = ({
@@ -34,8 +36,20 @@ export const AdvertsTable = ({
             </TableBody>
           </Table>
 
-          {!isEmpty && <TableState>{emptyMessage}</TableState>}
-          {!noResults && isEmpty && <TableState>{noResultsMessage}</TableState>}
+          {!isEmpty && (
+            <TableState>
+              <NoResults icon={faRectangleAd} level={5} text={emptyMessage} />
+            </TableState>
+          )}
+          {!noResults && isEmpty && (
+            <TableState>
+              <NoResults
+                icon={faRectangleAd}
+                level={5}
+                text={noResultsMessage}
+              />
+            </TableState>
+          )}
         </div>
       </div>
       <div className={styles.wrapperPagination}>
