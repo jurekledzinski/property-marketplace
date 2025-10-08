@@ -1,10 +1,16 @@
-import styles from '../../Menu.module.css';
-import { classNames } from '@/utils-client';
+import { getMenuItemClassNames } from '../../utils';
 import { MenuItemProps } from './types';
 
-export const MenuItem = ({ children, className, ...props }: MenuItemProps) => {
+export const MenuItem = ({
+  children,
+  className,
+  type,
+  ...props
+}: MenuItemProps) => {
+  const classes = getMenuItemClassNames({ className, type });
+
   return (
-    <li className={classNames(styles.menuItem, className)} {...props}>
+    <li className={classes} {...props}>
       {children}
     </li>
   );
