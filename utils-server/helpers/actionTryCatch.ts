@@ -11,6 +11,7 @@ export const actionTryCatch = <T extends object = object>(
     try {
       return await fn(prevState, formData);
     } catch (error) {
+      console.log('error --->', error);
       if (error instanceof z.ZodError) {
         return {
           message: z.prettifyError(error),
