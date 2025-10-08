@@ -1,10 +1,12 @@
 import styles from '../../UserDashboard.module.css';
+import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import {
   AdvertsStatusCardProps,
   AdvertsStatusChart,
   bgColors,
   Card,
   Heading,
+  NoResults,
   useChartDoughnutControl,
   useChartDoughnutOptions,
 } from '@/components';
@@ -19,6 +21,7 @@ export const AdvertsStatusCard = ({
     chartData: stats,
     label,
   });
+  const isStatus = (stats ?? []).find((status) => status.amount);
 
   const { htmlLegendPlugin, options, stylesLegend, toggleLegend } =
     useChartDoughnutOptions();
@@ -28,13 +31,21 @@ export const AdvertsStatusCard = ({
       <Heading className={styles.heading} level={4} mb="mb-md">
         {title}
       </Heading>
-      <AdvertsStatusChart
-        options={options}
-        plugins={htmlLegendPlugin}
-        stats={formattedStats}
-        stylesLegend={stylesLegend}
-        toggleLegend={toggleLegend}
-      />
+      {isStatus ? (
+        <AdvertsStatusChart
+          options={options}
+          plugins={htmlLegendPlugin}
+          stats={formattedStats}
+          stylesLegend={stylesLegend}
+          toggleLegend={toggleLegend}
+        />
+      ) : (
+        <NoResults
+          className={styles.info}
+          icon={faChartSimple}
+          text="No data to display"
+        />
+      )}
     </Card>
   );
 };
