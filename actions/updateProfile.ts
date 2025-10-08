@@ -15,6 +15,12 @@ export const updateProfile = connectDBAction(
 
     const ctx = { userId: session.user.id };
 
+    if (ctx.userId === process.env.EXAMPLE_USER_ID) {
+      return errorResponseAction(
+        'Update profile is not possible for this user'
+      );
+    }
+
     const parsedData = UserSchema.omit({ password: true }).parse(data);
 
     const usersCol = getCollectionDb<DataDB<User>>('users');
