@@ -208,7 +208,7 @@ div.info {
   height: calc(100% - 56px);
 }
 
-div.info h4 {
+div.info h5 {
   color: var(--color-text-dark);
   text-align: center;
 }
