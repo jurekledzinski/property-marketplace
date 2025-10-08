@@ -204,6 +204,15 @@ svg.icon {
   justify-content: flex-start;
 }
 
+div.info {
+  height: calc(100% - 56px);
+}
+
+div.info h4 {
+  color: var(--color-text-dark);
+  text-align: center;
+}
+
 @media (min-width: 575px) {
   div.chartContainer.open {
     max-width: calc(100vw - 300px);
