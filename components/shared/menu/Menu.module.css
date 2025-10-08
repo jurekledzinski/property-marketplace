@@ -4,16 +4,11 @@
 
 .menuItem {
   transition: 300ms linear;
-  cursor: pointer;
-}
-
-.menuItem a {
-  display: block;
-  padding: 0.5rem;
 }
 
 .menuItem:hover {
   background-color: var(--color-primary-alpha-10);
+  cursor: pointer;
 }
 
 .menu.size-xs .menuItem {
@@ -36,9 +31,17 @@
   font-size: 16px;
 }
 
-.menu.size-xs .menuItem a,
-.menu.size-sm .menuItem a,
-.menu.size-md .menuItem a,
-.menu.size-lg .menuItem a {
+.menu.size-xs .menuItem:not(.link),
+.menu.size-sm .menuItem:not(.link),
+.menu.size-md .menuItem:not(.link),
+.menu.size-lg .menuItem:not(.link) {
+  padding: var(--padding);
+}
+
+.menu.size-xs .menuItem.link a,
+.menu.size-sm .menuItem.link a,
+.menu.size-md .menuItem.link a,
+.menu.size-lg .menuItem.link a {
+  display: block;
   padding: var(--padding);
 }
