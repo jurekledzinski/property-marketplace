@@ -85,7 +85,7 @@ export const RegisterForm = <T extends FieldValues>({
         <Button
           fullWidth
           isLoading={isPending}
-          label="Sign In"
+          label="Sign Up"
           size="size-lg"
           type="submit"
         />
