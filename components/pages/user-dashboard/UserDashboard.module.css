@@ -204,11 +204,16 @@ svg.icon {
   justify-content: flex-start;
 }
 
-div.info {
+div.infoBar {
   height: calc(100% - 56px);
 }
 
-div.info h5 {
+div.infoStatus {
+  height: calc(100% - 40px);
+}
+
+div.infoBar h5,
+div.infoStatus h5 {
   color: var(--color-text-dark);
   text-align: center;
 }
