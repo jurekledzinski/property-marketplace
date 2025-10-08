@@ -22,19 +22,11 @@ const nextAuthOptions: NextAuthConfig = {
             }
           );
 
-          console.error(
-            'Authentication check log --->',
-            res.status,
-            res.statusText
-          );
-
           if (!res.ok) {
             throw new Error(`Authentication failed: ${res.statusText}`);
           }
 
           const data = await res.json();
-
-          console.log('authorize data --->', data);
 
           return data.payload;
         } catch (err) {
@@ -68,7 +60,6 @@ const nextAuthOptions: NextAuthConfig = {
       return true;
     },
   },
-  debug: true,
 };
 
 export const { handlers, signIn, signOut, auth } = NextAuth(nextAuthOptions);
