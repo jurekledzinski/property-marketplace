@@ -39,6 +39,7 @@ export const newAdvert = connectDBAction(
       updatedAt: new Date(),
     });
 
+    revalidateTag('advert');
     revalidateTag('adverts');
     return successResponseAction('Create advert successful');
   }

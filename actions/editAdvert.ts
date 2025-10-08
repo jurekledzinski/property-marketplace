@@ -44,6 +44,7 @@ export const editAdvert = connectDBAction(
       { $set: { ...parsedData, updatedAt: new Date() } }
     );
 
+    revalidateTag('advert');
     revalidateTag('adverts');
     revalidateTag('userAdvert');
     return successResponseAction('Edit advert successful');
