@@ -10,16 +10,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cdn.pixabay.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.pexels.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
         hostname: 'ik.imagekit.io',
         port: '',
       },
