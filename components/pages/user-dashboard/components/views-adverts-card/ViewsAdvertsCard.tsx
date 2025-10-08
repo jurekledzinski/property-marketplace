@@ -1,3 +1,4 @@
+import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../UserDashboard.module.css';
 import { AdvertsViewsChart } from '../adverts-views-chart';
 import { ViewAdvertsCardProps } from './types';
@@ -7,6 +8,7 @@ import {
   useChartBarOptions,
   Card,
   bgColors,
+  NoResults,
 } from '@/components';
 
 export const ViewsAdvertsCard = ({
@@ -27,11 +29,19 @@ export const ViewsAdvertsCard = ({
       <Heading className={styles.heading} level={4} mb="mb-md">
         {title}
       </Heading>
-      <AdvertsViewsChart
-        classChartContainer={className}
-        options={options}
-        views={formattedViews}
-      />
+      {views?.length ? (
+        <AdvertsViewsChart
+          classChartContainer={className}
+          options={options}
+          views={formattedViews}
+        />
+      ) : (
+        <NoResults
+          className={styles.info}
+          icon={faChartSimple}
+          text="No adverts found"
+        />
+      )}
     </Card>
   );
 };
