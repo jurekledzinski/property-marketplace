@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏷️Property Marketplace (Next.js)
 
-## Getting Started
+![Homepage Preview](https://github.com/jurekledzinski/property-marketplace/blob/media/images/home_page_light_1.png?raw=true)
 
-First, run the development server:
+🔗 [Live Demo](https://property-marketplace-olive.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+A modern, responsive marketplace application built with **Next.js** and **TypeScript**, featuring secure authentication, advert management, real-time image uploads, and dynamic filtering.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js** (App Router)
+- **TypeScript**
+- **NextAuth bcrypt jose** for authentication
+- **MongoDB**
+- **React Hook Form / Zod** for validation
+- **CSS modules** for styling
+- **Chart.js React-chartjs-2** for analytics & charts
+- **React tanstack query** fetch data on frontend
+- **React tanstack table** for tables
+- **Imagekit** for store images
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🧱 Core Functionality
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **User Authentication & Authorization** — Secure login, registration, and session management with NextAuth.
+2. **Advert Management** — Create, edit, and delete adverts with full validation.
+3. **User Adverts Table** — Manage adverts with edit, delete, and activate controls.
+4. **Image Upload Queue** — Upload multiple images per advert with:
+   - Real-time previews
+   - Delete functionality
+   - Progress indicators
+5. **Server-side Pagination** — Efficiently load adverts with backend pagination.
+6. **Advert Filtering, Sorting & Search** — Filter adverts by queries, sort by date or price, and search by keywords.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 👤 User Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+7. **User Dashboard** — Centralized overview of personal stats and active adverts.
+8. **Analytics & Charts** — Interactive charts showing advert views and status.
+9. **Profile Management** — Securely update user details and change password.
+10. **Account Deletion** — Permanently remove user account and related data.
+
+---
+
+### 💬 Communication
+
+11. **Messaging System** — Send messages from viewers to advertisers.
+12. **Messages Overview & Deletion** — View, delete received messages.
+
+---
+
+### 🌍 UI & Experience
+
+13. **Dynamic Location Selects** — Fetch countries, states, and cities dynamically for form selects.
+14. **Image Carousel** — Interactive carousel for browsing advert images.
+15. **Dark/Light Theme** — User-selectable theme for improved accessibility.
+16. **Responsive Design** — Fully optimized layout for mobile, tablet, and desktop devices.
+
+---
