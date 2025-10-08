@@ -39,7 +39,9 @@ export const ViewsAdvertsCard = ({
         <NoResults
           className={styles.info}
           icon={faChartSimple}
-          text="No adverts found"
+          iconSize="2x"
+          level={5}
+          text="No data to display"
         />
       )}
     </Card>

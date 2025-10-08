@@ -43,6 +43,8 @@ export const AdvertsStatusCard = ({
         <NoResults
           className={styles.info}
           icon={faChartSimple}
+          iconSize="2x"
+          level={5}
           text="No data to display"
         />
       )}
