@@ -55,7 +55,7 @@ export const UserMessages = ({ messages = [] }: UserMessagesProps) => {
           />
         ))}
         {!messages.length ? (
-          <NoResults icon={faEnvelope} text="No messages found" />
+          <NoResults icon={faEnvelope} level={5} text="No messages found" />
         ) : null}
       </Box>
       <Modal
