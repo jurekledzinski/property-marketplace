@@ -28,6 +28,8 @@ const nextAuthOptions: NextAuthConfig = {
 
           const data = await res.json();
 
+          if (!data.payload || !data.payload.id) return null;
+
           return data.payload;
         } catch (err) {
           const error = err as Error;
