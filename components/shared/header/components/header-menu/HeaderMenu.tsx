@@ -10,21 +10,21 @@ export const HeaderMenu = ({ onLogout, session }: HeaderMenuProps) => {
         <IconButton icon={[faBars]} variant="minimal" size="size-md" />
         <Menu size="size-xs">
           {!session?.id && (
-            <MenuItem id="login">
+            <MenuItem id="login" type="link">
               <Link href="/auth/login" prefetch={true}>
                 Login
               </Link>
             </MenuItem>
           )}
           {!session?.id && (
-            <MenuItem id="register">
+            <MenuItem id="register" type="link">
               <Link href="/auth/register" prefetch={true}>
                 Register
               </Link>
             </MenuItem>
           )}
           {!!session?.id && (
-            <MenuItem id="dashbord">
+            <MenuItem id="dashbord" type="link">
               <Link href="/user/dashboard" prefetch={true}>
                 Dashboard
               </Link>
