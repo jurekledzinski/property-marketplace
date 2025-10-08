@@ -13,3 +13,13 @@
   justify-content: center;
   align-items: center;
 }
+
+.wrapper h1,
+.wrapper h2,
+.wrapper h3,
+.wrapper h4,
+.wrapper h5,
+.wrapper h6 {
+  font-family: var(--font-roboto);
+  font-weight: 400;
+}
