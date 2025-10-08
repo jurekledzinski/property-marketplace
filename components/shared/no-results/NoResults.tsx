@@ -4,12 +4,18 @@ import { Heading } from '../heading';
 import { Icon } from '../icon';
 import { NoResultsProps } from './types';
 
-export const NoResults = ({ className, icon, text }: NoResultsProps) => {
+export const NoResults = ({
+  className,
+  icon,
+  iconSize = '2x',
+  level = 4,
+  text,
+}: NoResultsProps) => {
   return (
     <div className={classNames(styles.container, className ?? '')}>
       <div className={styles.wrapper}>
-        <Icon icon={icon} size="2x" />
-        <Heading level={4}>{text}</Heading>
+        <Icon icon={icon} size={iconSize} />
+        <Heading level={level}>{text}</Heading>
       </div>
     </div>
   );
