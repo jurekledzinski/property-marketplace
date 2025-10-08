@@ -46,6 +46,11 @@ export const deleteAccount = connectDBAction(async () => {
 
   await deleteUserAdverts(ctx, advertsCol);
   await deleteUserMessages(ctx, messagesCol);
+
+  if (ctx.userId === process.env.EXAMPLE_USER_ID) {
+    return successResponseAction('Thanks for visit this page');
+  }
+
   await deleteUser(ctx, usersCol);
 
   revalidateTag('adverts');
