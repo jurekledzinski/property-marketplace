@@ -5,7 +5,8 @@
 }
 
 .inner {
-  position: sticky;
+  /* position: sticky; */
+  position: fixed;
   top: var(--drawer-top);
   align-self: flex-start;
   min-height: inherit;
@@ -163,6 +164,7 @@
 
   .vertical.left.pinned .inner,
   .vertical.right.pinned .inner {
+    position: sticky;
     top: var(--drawer-top);
   }
 
