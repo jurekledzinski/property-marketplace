@@ -11,6 +11,10 @@
   background-color: var(--color-surface);
 }
 
+.drawer {
+  height: 100vh;
+}
+
 @media (min-width: 575px) {
   .backdropFilters {
     display: none;

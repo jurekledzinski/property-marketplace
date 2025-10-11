@@ -80,6 +80,7 @@ export const AdvertsLayout = ({
         onClick={onCloseFilterPanel}
       />
       <Drawer
+        className={styles.drawer}
         direction="right"
         open={openFiltersPanel}
         variant="pinned"
