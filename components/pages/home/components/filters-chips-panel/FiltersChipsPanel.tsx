@@ -20,6 +20,7 @@ export const FiltersChipsPanel = ({
                 label={`Amenity: ${capitalizeFirstLetter(amenity)}`}
                 color="success"
                 onDelete={onDelete}
+                size="size-sm"
               />
             );
           });
@@ -34,6 +35,7 @@ export const FiltersChipsPanel = ({
               )}: ${capitalizeFirstLetter(filter[1].toString())}`}
               color="success"
               onDelete={onDelete}
+              size="size-sm"
             />
           );
         }
