@@ -4,14 +4,14 @@ import { Border, Color, Icons, Radius, Size, Variant } from '@/types';
 export type BaseButtonProps = {
   label: string;
   border?: Border;
-  iconStart?: Icons;
-  iconEnd?: Icons;
-  isLoading?: boolean;
+  color?: Color;
   disabled?: boolean;
   fullWidth?: boolean;
+  iconEnd?: Icons;
+  iconStart?: Icons;
+  isLoading?: boolean;
   radius?: Radius;
   size?: Size;
-  color?: Color;
   variant?: Variant;
 };
 
