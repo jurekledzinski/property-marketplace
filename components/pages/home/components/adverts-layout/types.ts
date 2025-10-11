@@ -8,6 +8,7 @@ export type AdvertsLayoutProps = {
   page: number;
   pageSize: number;
   totalItems: number;
+  queryParams?: string;
   searchValue?: string;
   sortValue?: string;
 };

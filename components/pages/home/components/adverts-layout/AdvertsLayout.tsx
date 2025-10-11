@@ -27,6 +27,7 @@ export const AdvertsLayout = ({
   pageSize,
   searchValue,
   sortValue,
+  queryParams,
   totalItems,
 }: AdvertsLayoutProps) => {
   const { openFiltersPanel, onCloseFilterPanel } = useDrawer();
@@ -53,7 +54,7 @@ export const AdvertsLayout = ({
             onDelete={utilsFilter.onDelete}
           />
         )}
-        <CardsSection advertCards={advertCards} />
+        <CardsSection advertCards={advertCards} queryParams={queryParams} />
         {advertCards.length ? (
           <ButtonGroup
             fullWidth={true}
