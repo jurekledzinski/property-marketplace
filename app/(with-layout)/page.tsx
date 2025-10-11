@@ -24,6 +24,7 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
       filters={decodedFilters as InputsAdvertsFilter}
       page={Number(page) || 1}
       pageSize={5}
+      queryParams={queries.toString()}
       searchValue={decodeURIComponent(search ?? '')}
       sortValue={decodeURIComponent(sort ?? '')}
       totalItems={adverts?.totalItems || 0}
