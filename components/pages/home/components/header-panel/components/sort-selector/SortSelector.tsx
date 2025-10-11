@@ -25,7 +25,12 @@ export const SortSelector = ({ onChange, sortValue }: SortSelectorProps) => {
   );
 
   return (
-    <Select value={value} onChange={onChange} options={formatOptions}>
+    <Select
+      closeOnScroll
+      value={value}
+      onChange={onChange}
+      options={formatOptions}
+    >
       <SelectTrigger placeholder="Sort adverts" />
       <SelectPanel>
         <SelectList>
