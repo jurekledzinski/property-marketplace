@@ -11,7 +11,7 @@ import { signOut } from 'next-auth/react';
 import { useDrawer, useTheme } from '@/store';
 import { usePathname } from 'next/navigation';
 
-export const Header = memo(({ session }: HeaderProps) => {
+export const Header = memo(({ session, queryParams }: HeaderProps) => {
   const pathname = usePathname();
   const { mode, onChange } = useTheme();
   const { onToggleFiltersPanel, onToggleMenuPanel } = useDrawer();
@@ -38,7 +38,7 @@ export const Header = memo(({ session }: HeaderProps) => {
             <ButtonGroup spacing="normal">
               {isDetails && (
                 <Button
-                  href="/"
+                  href={`/?${queryParams}`}
                   iconStart={[faArrowLeft]}
                   label="Back"
                   variant="minimal"
