@@ -2,6 +2,7 @@ export * from './action-state-reset';
 export * from './aria-attributes';
 export * from './arrow-navigation';
 export * from './arrow-nested-navigation';
+export * from './background-image-loaded';
 export * from './check-mount';
 export * from './clear-timeout';
 export * from './click-outside';
