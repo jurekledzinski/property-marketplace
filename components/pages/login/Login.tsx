@@ -4,19 +4,23 @@ import styles from './Login.module.css';
 import stylesCommon from './Common.module.css';
 import { Box, Heading, Icon, LoginForm, useLoginForm } from '@/components';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { getClassNamesBackground } from './utils';
 import { login } from '@/actions';
-import { useActionStateReset } from '@/hooks';
+import { useActionStateReset, useBackgroundImageLoaded } from '@/hooks';
 import { useRouter } from 'next/navigation';
 
 import {
-  classNames,
   formatZodMessage,
   showErrorToast,
   showSuccessToast,
 } from '@/utils-client';
 
+const src = '/images/House-login.png';
+
 export const Login = () => {
   const router = useRouter();
+  const isLoaded = useBackgroundImageLoaded(src);
+  const classBackground = getClassNamesBackground(isLoaded);
 
   const { formAction, isPending, state, resetStateAction } =
     useActionStateReset({
@@ -46,9 +50,7 @@ export const Login = () => {
   return (
     <Box className={stylesCommon.container}>
       <Box className={stylesCommon.wrapper}>
-        <Box
-          className={classNames(styles.leftBackground, stylesCommon.left)}
-        ></Box>
+        <Box className={classBackground}></Box>
         <Box className={stylesCommon.right}>
           <Heading className={stylesCommon.title} level={4}>
             Sign in
