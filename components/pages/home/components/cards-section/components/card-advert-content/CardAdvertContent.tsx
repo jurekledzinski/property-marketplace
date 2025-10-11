@@ -6,6 +6,7 @@ import {
   faLocationDot,
   faRulerCombined,
 } from '@fortawesome/free-solid-svg-icons';
+
 import {
   Box,
   Button,
@@ -30,6 +31,7 @@ export const CardAdvertContent = ({
     status,
     state,
   },
+  queryParams,
 }: CardAdvertContentProps) => {
   return (
     <CardContent className={styles.content}>
@@ -57,7 +59,7 @@ export const CardAdvertContent = ({
 
       <ButtonGroup orientation="row" justify="justify-end" fullWidth p="p-md">
         <Button
-          href={`adverts/${encodeURIComponent(title)}/${id}`}
+          href={`adverts/${encodeURIComponent(title)}/${id}?${queryParams}`}
           label="Read more ..."
           variant="contained"
           color="primary"
