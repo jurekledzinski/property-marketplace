@@ -13,6 +13,7 @@ export const Home = ({
   filters,
   page,
   pageSize,
+  queryParams,
   searchValue,
   sortValue,
   totalItems,
@@ -33,6 +34,7 @@ export const Home = ({
               filters={filters}
               page={page}
               pageSize={pageSize}
+              queryParams={queryParams}
               searchValue={searchValue}
               sortValue={sortValue}
               totalItems={totalItems}
