@@ -1,15 +1,15 @@
 'use client';
 import Link from 'next/link';
 import styles from './Register.module.css';
-import stylesCommon from '@/components/pages/login/Common.module.css';
+import stylesCommon from '../login/Common.module.css';
 import { Alert, Box, Heading, Icon, RegisterForm } from '@/components';
+import { getClassNamesBackground } from './utils';
 import { register } from '@/actions';
-import { useActionStateReset } from '@/hooks';
+import { useActionStateReset, useBackgroundImageLoaded } from '@/hooks';
 import { usePasswordRules, useRegisterForm } from './hooks';
 import { useRouter } from 'next/navigation';
 
 import {
-  classNames,
   formatZodMessage,
   showErrorToast,
   showSuccessToast,
@@ -20,8 +20,12 @@ import {
   faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 
+const src = '/images/House-register.png';
+
 export const Register = () => {
   const router = useRouter();
+  const isLoaded = useBackgroundImageLoaded(src);
+  const classBackground = getClassNamesBackground(isLoaded);
 
   const { formAction, isPending, state, resetStateAction } =
     useActionStateReset({
@@ -56,9 +60,7 @@ export const Register = () => {
   return (
     <Box className={stylesCommon.container}>
       <Box className={stylesCommon.wrapper}>
-        <Box
-          className={classNames(stylesCommon.left, styles.leftBackground)}
-        ></Box>
+        <Box className={classBackground}></Box>
         <Box className={stylesCommon.right}>
           <Heading className={stylesCommon.title} level={4}>
             Sign up
