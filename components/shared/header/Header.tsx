@@ -27,7 +27,7 @@ export const Header = memo(({ session, queryParams }: HeaderProps) => {
             <Heading className={styles.logo} level={4}>
               <Link
                 data-link="logo-link"
-                href="/"
+                href={`/?${queryParams}`}
                 prefetch={true}
                 scroll={false}
                 as="/"
