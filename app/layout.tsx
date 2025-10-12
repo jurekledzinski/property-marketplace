@@ -39,6 +39,9 @@ export default async function RootLayout({
       className={[montserrat.variable, roboto.variable].join(' ')}
       data-theme={`${mode?.value ?? 'light'}`}
     >
+      <head>
+        <link rel="preload" as="image" href="/sprite/spritesheet-flags.png" />
+      </head>
       <ThemeProvider>
         <DrawerProvider>
           <body>
