@@ -6,6 +6,11 @@
 
 A modern, responsive marketplace application built with **Next.js** and **TypeScript**, featuring secure authentication, advert management, real-time image uploads, and dynamic filtering.
 
+Test account credentials:
+
+email: bobdoe@gmail.com
+password: Welcome2@
+
 ---
 
 ## 🚀 Tech Stack
