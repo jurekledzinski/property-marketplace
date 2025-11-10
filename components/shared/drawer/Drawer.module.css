@@ -5,11 +5,11 @@
 }
 
 .inner {
-  /* position: sticky; */
   position: fixed;
   top: var(--drawer-top);
   align-self: flex-start;
   min-height: inherit;
+  width: calc(var(--drawer-width) - 2px);
 }
 
 .horizontal,
