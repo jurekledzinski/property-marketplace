@@ -46,10 +46,7 @@ export const POST = connectDBAuth(
       const uploadFileInfo: UploadInfo = [];
 
       bb.on('file', (name, file, info) => {
-        const tempFilePath = path.join(
-          os.tmpdir(),
-          `${Date.now()}-${info.filename}`
-        );
+        const tempFilePath = path.join(os.tmpdir(), `${Date.now()}-${info.filename}`);
         const writeStream = fs.createWriteStream(tempFilePath);
 
         file.pipe(writeStream);
@@ -125,9 +122,7 @@ export const POST = connectDBAuth(
         );
       });
 
-      const nodeStream = Readable.fromWeb(
-        request.body! as ReadableStream<Uint8Array<ArrayBuffer>>
-      );
+      const nodeStream = Readable.fromWeb(request.body! as ReadableStream<Uint8Array<ArrayBuffer>>);
       nodeStream.pipe(bb);
     });
   })
