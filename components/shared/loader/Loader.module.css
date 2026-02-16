@@ -27,31 +27,31 @@
 /* Sizes */
 
 .size-xs {
-  --size: var(var(--size-xs));
+  --size: var(--size-xs);
   width: 14px;
   height: 14px;
 }
 
 .size-xxs {
-  --size: var(var(--size-xxs));
+  --size: var(--size-xxs);
   width: 14px;
   height: 14px;
 }
 
 .size-sm {
-  --size: var(var(--size-sm));
+  --size: var(--size-sm);
   width: 16px;
   height: 16px;
 }
 
 .size-md {
-  --size: var(var(--size-md));
+  --size: var(--size-md);
   width: 16px;
   height: 16px;
 }
 
 .size-lg {
-  --size: var(var(--size-lg));
+  --size: var(--size-lg);
   width: 16px;
   height: 16px;
 }
