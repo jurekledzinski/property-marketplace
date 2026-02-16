@@ -10,10 +10,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-export const useControlAdvertsTable = <T extends RowData>({
-  adverts,
-  columns,
-}: UseControlTableProps<T>) => {
+export const useControlAdvertsTable = <T extends RowData>({ adverts, columns }: UseControlTableProps<T>) => {
   const data = useMemo(() => [...adverts], [adverts]);
   const [pagination, onPaginationChange] = useState<PaginationState>({
     pageIndex: 0,
@@ -29,17 +26,12 @@ export const useControlAdvertsTable = <T extends RowData>({
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onPaginationChange,
+    autoResetPageIndex: false,
   });
 
-  const isEmpty = useMemo(
-    () => Boolean(table.options.data.length),
-    [table.options.data.length]
-  );
+  const isEmpty = useMemo(() => Boolean(table.options.data.length), [table.options.data.length]);
 
-  const noResults = useMemo(
-    () => Boolean(table.getPrePaginationRowModel().rows.length),
-    [table]
-  );
+  const noResults = useMemo(() => Boolean(table.getPrePaginationRowModel().rows.length), [table]);
 
   return { isEmpty, noResults, table };
 };
