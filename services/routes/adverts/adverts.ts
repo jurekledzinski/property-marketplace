@@ -20,7 +20,7 @@ const projection = {
   year: 0,
 };
 
-const maxDays = 2 * 24 * 60 * 60 * 1000;
+const maxDays = 365 * 24 * 60 * 60 * 1000;
 
 export const getAdverts = async (col: Collection<DataDB<Advert>>, searchParams: GetAdvertsSearchParams) => {
   const {

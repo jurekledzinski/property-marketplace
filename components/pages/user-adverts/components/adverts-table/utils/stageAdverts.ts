@@ -1,7 +1,7 @@
 import { UserAdvertsTable } from '@/services';
 
-const maxDays = 2 * 24 * 60 * 60 * 1000;
-const minDays = 1 * 24 * 60 * 60 * 1000;
+const maxDays = 365 * 24 * 60 * 60 * 1000;
+const minDays = 330 * 24 * 60 * 60 * 1000;
 
 export const getStage = (updatedAt: UserAdvertsTable['updatedAt']) => {
   if (!updatedAt) return;

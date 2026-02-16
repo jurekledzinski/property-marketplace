@@ -13,8 +13,8 @@ export const getUserAnalytics = async (
 ) => {
   const { userId } = ctx;
   const totalMessages = await colMessages.countDocuments({ userId });
-  const maxDays = 2 * 24 * 60 * 60 * 1000;
-  const minDays = 1 * 24 * 60 * 60 * 1000;
+  const maxDays = 365 * 24 * 60 * 60 * 1000;
+  const minDays = 330 * 24 * 60 * 60 * 1000;
 
   const result = await colAdverts
     .aggregate<DataDB<DashboardAnalytics>>([
