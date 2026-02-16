@@ -53,6 +53,6 @@ export const deleteAccount = connectDBAction(async () => {
 
   await deleteUser(ctx, usersCol);
 
-  revalidateTag('adverts');
+  revalidateTag('adverts', 'max');
   return successResponseAction('Account delete successful');
 });
