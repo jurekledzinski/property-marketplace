@@ -3,13 +3,7 @@ import { Advert } from '@/models';
 import { getDomain } from '@/utils-server';
 import { serverEndpoints } from '@/utils-server';
 
-import {
-  AdvertDetails,
-  Adverts,
-  fetchApi,
-  ReadonlyHeaders,
-  UserAdvertsTable,
-} from '@/services';
+import { AdvertDetails, Adverts, fetchApi, ReadonlyHeaders, UserAdvertsTable } from '@/services';
 
 // Fetch user adverts server component
 
@@ -27,10 +21,7 @@ export const getUserAdvertsPage = async (headers?: ReadonlyHeaders) => {
 
 // Fetch user advert server component
 
-export const getUserAdvertPage = async (
-  headers?: ReadonlyHeaders,
-  advertId?: string
-) => {
+export const getUserAdvertPage = async (headers?: ReadonlyHeaders, advertId?: string) => {
   const domain = await getDomain();
 
   const response = await fetchApi<Advert>({
@@ -48,10 +39,7 @@ export const getUserAdvertPage = async (
 
 // Fetch all adverts server component
 
-export const getAdvertsPage = async (
-  searchParams: URLSearchParams,
-  headers?: ReadonlyHeaders
-) => {
+export const getAdvertsPage = async (searchParams: URLSearchParams, headers?: ReadonlyHeaders) => {
   const domain = await getDomain();
 
   const response = await fetchApi<{ data: Adverts[]; totalItems: number }>({
@@ -69,10 +57,7 @@ export const getAdvertsPage = async (
 
 // Fetch details advert server component
 
-export const getAdvertPage = async (
-  headers?: ReadonlyHeaders,
-  advertId?: string
-) => {
+export const getAdvertPage = async (headers?: ReadonlyHeaders, advertId?: string) => {
   const domain = await getDomain();
 
   const response = await fetchApi<AdvertDetails>({
