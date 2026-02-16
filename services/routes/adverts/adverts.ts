@@ -20,12 +20,9 @@ const projection = {
   year: 0,
 };
 
-const maxDays = 7 * 24 * 60 * 60 * 1000;
+const maxDays = 2 * 24 * 60 * 60 * 1000;
 
-export const getAdverts = async (
-  col: Collection<DataDB<Advert>>,
-  searchParams: GetAdvertsSearchParams
-) => {
+export const getAdverts = async (col: Collection<DataDB<Advert>>, searchParams: GetAdvertsSearchParams) => {
   const {
     amenities,
     area,
@@ -173,10 +170,7 @@ export const getAdverts = async (
         $project: {
           data: '$data',
           totalItems: {
-            $ifNull: [
-              { $arrayElemAt: ['$totalAmountAdverts.totalCount', 0] },
-              0,
-            ],
+            $ifNull: [{ $arrayElemAt: ['$totalAmountAdverts.totalCount', 0] }, 0],
           },
         },
       },

@@ -9,12 +9,12 @@ import { GetUserAnalyticsContext } from './types';
 export const getUserAnalytics = async (
   ctx: GetUserAnalyticsContext,
   colAdverts: Collection<DataDB<Advert>>,
-  colMessages: Collection<DataDB<Message>>
+  colMessages: Collection<DataDB<Message>>,
 ) => {
   const { userId } = ctx;
   const totalMessages = await colMessages.countDocuments({ userId });
-  const maxDays = 7 * 24 * 60 * 60 * 1000;
-  const minDays = 5 * 24 * 60 * 60 * 1000;
+  const maxDays = 2 * 24 * 60 * 60 * 1000;
+  const minDays = 1 * 24 * 60 * 60 * 1000;
 
   const result = await colAdverts
     .aggregate<DataDB<DashboardAnalytics>>([
@@ -27,18 +27,9 @@ export const getUserAnalytics = async (
             { $project: { topViewAdvert: '$title' } },
           ],
           totalAdverts: [{ $match: { userId } }, { $count: 'totalCount' }],
-          totalRent: [
-            { $match: { status: 'rent', userId } },
-            { $count: 'rentCount' },
-          ],
-          totalSale: [
-            { $match: { status: 'sale', userId } },
-            { $count: 'saleCount' },
-          ],
-          views: [
-            { $match: { userId } },
-            { $project: { label: '$title', amount: '$views' } },
-          ],
+          totalRent: [{ $match: { status: 'rent', userId } }, { $count: 'rentCount' }],
+          totalSale: [{ $match: { status: 'sale', userId } }, { $count: 'saleCount' }],
+          views: [{ $match: { userId } }, { $project: { label: '$title', amount: '$views' } }],
           statusActive: [
             {
               $match: {
